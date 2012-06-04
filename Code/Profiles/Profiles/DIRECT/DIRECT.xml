@@ -1,0 +1,4 @@
+﻿<site-description>
+  <name>[INSTUTION NAME HERE]/name>
+  <aggregate-query>http://localhost:55956/DIRECT/Modules/SearchInstitutions/DirectService.asp?Request=IncomingCount&amp;SearchPhrase=</aggregate-query>
+</site-description>

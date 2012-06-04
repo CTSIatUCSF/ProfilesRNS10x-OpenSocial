@@ -1,0 +1,8 @@
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\log4net.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Newtonsoft.Json.Net35.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Newtonsoft.Json.Net35.xml
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Release\ResolveAssemblyReference.cache
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Release\Profiles.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Release\Profiles.pdb

@@ -1,0 +1,40 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="3"/>
+  <WindowName>Search</WindowName>
+  <PageTitle>Search</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription>Search or browse for people, publications, concepts, and other items in Profiles.</PageDescription>
+  <PanelList>
+    <Panel Type="header"  />
+    <Panel Type="page" />
+    <Panel Type="active">
+      <Module ID="DefaultMenu">
+      </Module>
+    </Panel>
+    <Panel Name="Find People" Alias="people" Type="main" TabType="default" TabSort="0">
+      <Module ID="PersonSearch">
+      </Module>
+    </Panel>
+    <Panel Name="Find Everything" Alias="all" Type="main" TabType="fixed" TabSort="1" >
+      <Module ID="SearchEverything" />        
+    </Panel>
+    <Panel Type="passive" >
+      <Module ID="GetTopSearchPhrase">
+        <ParamList>
+          <Param Name="Description">Most viewed (today)</Param>
+          <Param Name="TimePeriod">d</Param>
+        </ParamList>
+      </Module>
+      <Module ID="GetTopSearchPhrase">
+        <ParamList>
+          <Param Name="Description">Most viewed (month)</Param>
+          <Param Name="TimePeriod">m</Param>
+        </ParamList>
+      </Module>
+    </Panel>
+    <Panel type="footer" />
+  </PanelList>
+</Presentation>
+

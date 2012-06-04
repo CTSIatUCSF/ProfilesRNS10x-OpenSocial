@@ -1,0 +1,25 @@
+﻿<Presentation PresentationClass="network">
+  <PageOptions Columns="2"/>
+  <WindowName>Search Proxies</WindowName>
+  <PageTitle>Search Proxies</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription>
+   
+  </PageDescription>
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="DefaultMenu">
+      </Module>
+    </Panel>
+    <Panel Name="" Alias="" Type="main" TabType="default" TabSort="0">
+      <Module ID="SearchProxies">
+      </Module>
+    </Panel>
+    <Panel type="footer" />
+  </PanelList>
+</Presentation>
+

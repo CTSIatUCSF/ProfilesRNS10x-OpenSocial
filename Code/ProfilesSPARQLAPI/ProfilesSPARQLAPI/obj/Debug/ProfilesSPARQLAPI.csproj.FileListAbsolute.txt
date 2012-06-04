@@ -1,0 +1,20 @@
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
+C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb

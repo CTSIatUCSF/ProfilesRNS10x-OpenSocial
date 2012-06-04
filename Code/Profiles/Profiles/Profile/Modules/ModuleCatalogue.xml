@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.
+Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
+and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the
+National Center for Research Resources and Harvard University.
+
+
+Code licensed under a BSD License.
+For details, see: LICENSE.txt
+-->
+<ModuleList>
+  <Module ModulePath="Modules" NameSpace="NetworkBrowser" FileName="NetworkBrowser.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="GoogleMap" FileName="GoogleMap.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PersonalInfo" FileName="PersonalInfo.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="ConceptConnection" FileName="ConceptConnection.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CoAuthorConnection" FileName="CoAuthorConnection.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PropertyList" FileName="PropertyList.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SameDepartment" FileName="SameDepartment.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="Publication" FileName="Publication.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PassiveHead" FileName="PassiveHead.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PersonPublications" FileName="PersonPublications.ascx" Enabled="true"/>
+</ModuleList>
+

@@ -1,0 +1,5 @@
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\bin\SemWeb.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\bin\SemWeb.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\obj\Release\ResolveAssemblyReference.cache
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\obj\Release\SemWeb.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\obj\Release\SemWeb.pdb

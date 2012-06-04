@@ -1,0 +1,5 @@
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Profiles.Common\bin\Release\Connects.Profiles.Common.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Profiles.Common\bin\Release\Connects.Profiles.Common.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Profiles.Common\obj\Release\ResolveAssemblyReference.cache
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Profiles.Common\obj\Release\Connects.Profiles.Common.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Profiles.Common\obj\Release\Connects.Profiles.Common.pdb

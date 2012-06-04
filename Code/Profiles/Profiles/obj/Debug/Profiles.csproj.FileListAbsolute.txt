@@ -1,0 +1,16 @@
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\log4net.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Newtonsoft.Json.Net35.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Newtonsoft.Json.Net35.xml
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Debug\Profiles.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Debug\Profiles.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.XML
+C:\tt\Code\Profiles\Profiles\bin\Profiles.XML
+C:\tt\Code\Profiles\Profiles\bin\Profiles.dll
+C:\tt\Code\Profiles\Profiles\bin\Profiles.pdb
+C:\tt\Code\Profiles\Profiles\bin\Newtonsoft.Json.Net35.xml
+C:\tt\Code\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
+C:\tt\Code\Profiles\Profiles\obj\Debug\Profiles.dll
+C:\tt\Code\Profiles\Profiles\obj\Debug\Profiles.pdb

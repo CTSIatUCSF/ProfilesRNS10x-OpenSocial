@@ -1,0 +1,34 @@
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceImplementation.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceImplementation.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Common.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.DataContracts.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceContracts.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Utility.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Profiles.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\AjaxControlToolkit.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Profiles.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Profiles.xml
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceContracts.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Utility.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Common.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.DataContracts.pdb
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\obj\Debug\ResolveAssemblyReference.cache
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\obj\Debug\Connects.Profiles.Service.ServiceImplementation.dll
+C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\obj\Debug\Connects.Profiles.Service.ServiceImplementation.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceImplementation.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceImplementation.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Common.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.DataContracts.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceContracts.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Utility.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Profiles.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\AjaxControlToolkit.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Profiles.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Profiles.xml
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.ServiceContracts.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Utility.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Common.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\bin\Debug\Connects.Profiles.Service.DataContracts.pdb
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\obj\Debug\ResolveAssemblyReference.cache
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\obj\Debug\Connects.Profiles.Service.ServiceImplementation.dll
+C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\obj\Debug\Connects.Profiles.Service.ServiceImplementation.pdb

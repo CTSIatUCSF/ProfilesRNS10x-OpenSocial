@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EverythingResults.ascx.cs" Inherits="Profiles.Search.Modules.EverythingResults.EverythingResults" %>
+<asp:Literal runat="server" ID="litEverythingResults"></asp:Literal>
