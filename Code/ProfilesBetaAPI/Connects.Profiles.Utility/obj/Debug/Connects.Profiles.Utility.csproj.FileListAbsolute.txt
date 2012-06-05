@@ -8,8 +8,3 @@ C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Utility\bin\Debug\Connects.Profiles
 C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Utility\obj\Debug\ResolveAssemblyReference.cache
 C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Utility\obj\Debug\Connects.Profiles.Utility.dll
 C:\tt\Code\ProfilesBetaAPI\Connects.Profiles.Utility\obj\Debug\Connects.Profiles.Utility.pdb
-C:\Development\ProfilesRNS10x-OpenSocial\Code\ProfilesBetaAPI\Connects.Profiles.Utility\bin\Debug\Connects.Profiles.Utility.dll
-C:\Development\ProfilesRNS10x-OpenSocial\Code\ProfilesBetaAPI\Connects.Profiles.Utility\bin\Debug\Connects.Profiles.Utility.pdb
-C:\Development\ProfilesRNS10x-OpenSocial\Code\ProfilesBetaAPI\Connects.Profiles.Utility\obj\Debug\ResolveAssemblyReference.cache
-C:\Development\ProfilesRNS10x-OpenSocial\Code\ProfilesBetaAPI\Connects.Profiles.Utility\obj\Debug\Connects.Profiles.Utility.dll
-C:\Development\ProfilesRNS10x-OpenSocial\Code\ProfilesBetaAPI\Connects.Profiles.Utility\obj\Debug\Connects.Profiles.Utility.pdb
