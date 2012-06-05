@@ -14,3 +14,8 @@ C:\tt\Code\Profiles\Profiles\bin\Newtonsoft.Json.Net35.xml
 C:\tt\Code\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
 C:\tt\Code\Profiles\Profiles\obj\Debug\Profiles.dll
 C:\tt\Code\Profiles\Profiles\obj\Debug\Profiles.pdb
+C:\Development\ProfilesRNS10x-OpenSocial\Code\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS10x-OpenSocial\Code\Profiles\Profiles\bin\Profiles.dll
+C:\Development\ProfilesRNS10x-OpenSocial\Code\Profiles\Profiles\bin\Profiles.pdb
+C:\Development\ProfilesRNS10x-OpenSocial\Code\Profiles\Profiles\obj\Debug\Profiles.dll
+C:\Development\ProfilesRNS10x-OpenSocial\Code\Profiles\Profiles\obj\Debug\Profiles.pdb

@@ -74,7 +74,9 @@
   <ItemGroup>
     <Content Include="Query.aspx" />
     <Content Include="SPARQLAPI.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\APICommon.cs">

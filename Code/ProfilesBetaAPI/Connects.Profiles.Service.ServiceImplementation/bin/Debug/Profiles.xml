@@ -4,6 +4,147 @@
         <name>Profiles</name>
     </assembly>
     <members>
+        <member name="T:Profiles.Framework.Utilities.BaseModule">
+            <summary>
+            All modules that inherent this base class will have the ablity to extract the module parameters defined in a PresentationXML and provide an additional
+            data call based on a Data URI supplied as a module parameter.
+            </summary>
+        </member>
+        <member name="F:Profiles.Framework.Modules.NetworkDetails.NetworkDetails.litNetworkDetails">
+            <summary>
+            litNetworkDetails control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Error.Modules.ErrorMessage.litError">
+            <summary>
+            litError control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.imbSecurityOptions">
+            <summary>
+            imbSecurityOptions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.lbSecurityOptions">
+            <summary>
+            lbSecurityOptions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.pnlSecurityOptions">
+            <summary>
+            pnlSecurityOptions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.grdSecurityGroups">
+            <summary>
+            grdSecurityGroups control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.ApplyXSLT.ApplyXSLT.litGeneric">
+            <summary>
+            litGeneric control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.trInstitution">
+            <summary>
+            trInstitution control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.litInstitution">
+            <summary>
+            litInstitution control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.trDepartment">
+            <summary>
+            trDepartment control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.litDepartment">
+            <summary>
+            litDepartment control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.trDivision">
+            <summary>
+            trDivision control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.litDivision">
+            <summary>
+            litDivision control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.ctcFirst">
+            <summary>
+            ctcFirst control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.PassiveTextBlock.PassiveTextBlock.litPassiveTextBlock">
+            <summary>
+            litPassiveTextBlock control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="T:Profiles.Framework.Utilities.DataIO">
             <summary>
                 This class is used for all database IO of the web data layer of profiles.  
@@ -54,22 +195,16 @@
             Property: error message
             </summary>
         </member>
-        <member name="T:Profiles.Framework.Utilities.BaseModule">
+        <member name="F:Profiles.Edit.Modules.EditPropertyContainer.EditPropertyContainer.phControlContainer">
             <summary>
-            All modules that inherent this base class will have the ablity to extract the module parameters defined in a PresentationXML and provide an additional
-            data call based on a Data URI supplied as a module parameter.
-            </summary>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.litBackLink">
-            <summary>
-            litBackLink control.
+            phControlContainer control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.upnlEditSection">
+        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.upnlEditSection">
             <summary>
             upnlEditSection control.
             </summary>
@@ -78,16 +213,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.hiddenSubjectID">
-            <summary>
-            hiddenSubjectID control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.updateProgress">
+        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.updateProgress">
             <summary>
             updateProgress control.
             </summary>
@@ -96,54 +222,253 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.gvMyProxies">
+        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.litBackLink">
             <summary>
-            gvMyProxies control.
+            litBackLink control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.imgAdd">
+        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.pnlSecurityOptions">
             <summary>
-            imgAdd control.
+            pnlSecurityOptions control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.lnkAddProxyTmp">
+        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.securityOptions">
             <summary>
-            lnkAddProxyTmp control.
+            securityOptions control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.gvWhoCanIEdit">
+        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.litMailingAddress">
             <summary>
-            gvWhoCanIEdit control.
+            litMailingAddress control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.gvYouCanEdit">
+        <member name="F:Profiles.Search.Modules.EverythingPassiveResults.EverythingPassiveResults.litEverythingPassiveResults">
             <summary>
-            gvYouCanEdit control.
+            litEverythingPassiveResults control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Profile.Modules.SameDepartment.SameDepartment.rptSameDepartment">
+        <member name="F:Profiles.Framework.Modules.PassiveNetworkList.PassiveNetworkList.litPassiveNetworkList">
             <summary>
-            rptSameDepartment control.
+            litPassiveNetworkList control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.pnlMyNetwork">
+            <summary>
+            pnlMyNetwork control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.gvActiveNetwork">
+            <summary>
+            gvActiveNetwork control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.litActiveNetworkDetails">
+            <summary>
+            litActiveNetworkDetails control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.pnlSetActiveNetworks">
+            <summary>
+            pnlSetActiveNetworks control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.rptRelationshipTypes">
+            <summary>
+            rptRelationshipTypes control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.upnlEditSection">
+            <summary>
+            upnlEditSection control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.updateProgress">
+            <summary>
+            updateProgress control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.litBackLink">
+            <summary>
+            litBackLink control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.pnlSecurityOptions">
+            <summary>
+            pnlSecurityOptions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.securityOptions">
+            <summary>
+            securityOptions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.imgPhoto">
+            <summary>
+            imgPhoto control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.pnlUpload">
+            <summary>
+            pnlUpload control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.AsyncFileUpload1">
+            <summary>
+            AsyncFileUpload1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.spanUploading">
+            <summary>
+            spanUploading control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="T:Profiles.Framework.Utilities.RDFTriple">
+            <summary>
+            
+            S = SUBJECT
+            P = PREDICATE
+            O = OBJECT    
+            
+            SPO (Triple)   requests are built and used to determine what data is being requested 
+            based on the URI dereference from our Alias program
+            
+            Other properties are used for the state of the transaction request.
+            
+            </summary>
+        </member>
+        <member name="P:Profiles.Framework.Utilities.RDFTriple.Key">
+            <summary>
+            Internal calls will have a SPO request, external will have a URI request.
+            </summary>
+        </member>
+        <member name="F:Profiles.Search.Modules.SPARQLQuery.SPARQLQuery.txtQuery">
+            <summary>
+            txtQuery control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SPARQLQuery.SPARQLQuery.cmdRun">
+            <summary>
+            cmdRun control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SPARQLQuery.SPARQLQuery.txtResults">
+            <summary>
+            txtResults control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchCriteria.SearchCriteria.litSearchCriteria">
+            <summary>
+            litSearchCriteria control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchCriteria.SearchCriteria.litSearchOtherInstitutions">
+            <summary>
+            litSearchOtherInstitutions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.PropertyListRange.PropertyListRange.ddlPropertyList">
+            <summary>
+            ddlPropertyList control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -366,137 +691,32 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="T:Profiles.Framework.Modules.HelloWorld.hello">
+        <member name="T:Profiles.Framework.Utilities.Panel">
             <summary>
-            This module is used to test a presentation XML for proper module placement.
+            This class processes a PresentationXML panel and the modules with in a Panel.
             </summary>
         </member>
-        <member name="F:Profiles.Search.Modules.SearchOptions.SearchOptions.litModifySearch">
+        <member name="F:Profiles.Search.Modules.GetTopSearchPhrase.GetTopSearchPhrase.litDescription">
             <summary>
-            litModifySearch control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchOptions.SearchOptions.litSearchOtherInstitutions">
-            <summary>
-            litSearchOtherInstitutions control.
+            litDescription control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Search.Modules.SearchCriteria.SearchCriteria.litSearchCriteria">
+        <member name="F:Profiles.Search.Modules.GetTopSearchPhrase.GetTopSearchPhrase.litTopSearchPhrase">
             <summary>
-            litSearchCriteria control.
+            litTopSearchPhrase control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Search.Modules.SearchCriteria.SearchCriteria.litSearchOtherInstitutions">
+        <member name="F:Profiles.Profile.Modules.SameDepartment.SameDepartment.rptSameDepartment">
             <summary>
-            litSearchOtherInstitutions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="M:Profiles.Login.Utilities.DataIO.UserLogin(Profiles.Login.Utilities.User@)">
-            <summary>
-            For User Authentication 
-            </summary>
-            <param name="user"></param>
-            <param name="session"></param>
-        </member>
-        <member name="M:Profiles.Login.Utilities.DataIO.UserLogout">
-            <summary>
-            For User Authentication 
-            </summary>
-            <param name="user"></param>
-            <param name="session"></param>
-        </member>
-        <member name="F:Profiles.Framework.Modules.PropertyListRange.PropertyListRange.ddlPropertyList">
-            <summary>
-            ddlPropertyList control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.PassiveNetworkList.PassiveNetworkList.litPassiveNetworkList">
-            <summary>
-            litPassiveNetworkList control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.upnlEditSection">
-            <summary>
-            upnlEditSection control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.updateProgress">
-            <summary>
-            updateProgress control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.litBackLink">
-            <summary>
-            litBackLink control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.securityOptions">
-            <summary>
-            securityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <!-- Badly formed XML comment ignored for member "T:Profiles.REST" -->
-        <member name="F:Profiles.Search.Modules.SPARQLQuery.SPARQLQuery.txtQuery">
-            <summary>
-            txtQuery control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SPARQLQuery.SPARQLQuery.cmdRun">
-            <summary>
-            cmdRun control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SPARQLQuery.SPARQLQuery.txtResults">
-            <summary>
-            txtResults control.
+            rptSameDepartment control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -535,162 +755,57 @@
             Summary description for GoogleMapHelper
             </summary>
         </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.DefaultMenu.panelMenu">
+        <member name="T:Profiles.Framework.Utilities.Session">
             <summary>
-            panelMenu control.
+                This class stores the Profiles custom session state
+            
+            </summary>
+        </member>
+        <member name="T:Profiles.Framework.Utilities.SessionManagement">
+            <summary>
+                This Class is used to manage the custom Profiles session data and processes
+                
+            !!!!!!!!!!!
+            
+                    I COMMENTED OUT THIS AND THE SESSION.DATAIO STUFF AS WELL DEALING WITH SESSION UNTILL WE GET THE RDF DESIGN WORKED OUT.
+            
+            
+            
+            
+            </summary>
+        </member>
+        <member name="M:Profiles.Framework.Utilities.SessionManagement.Session">
+            <summary>
+            Public method used to get the custom Profiles session object.  The object is stored in the current users session and can be accessed with the "PROFILES_SESSION" key.
+            
+            If the session does not exist then this method will create the session by calling this.SessionCreate();
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Profiles.Framework.Utilities.SessionManagement.SessionCreate">
+            <summary>
+                Public method used to create an instance of the custom Profiles session object.
+            </summary>
+        </member>
+        <member name="M:Profiles.Framework.Utilities.SessionManagement.SessionGetInfo">
+            <summary>
+            
+            </summary>
+            <returns>Current Framework.Session object from the database.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Profiles.REST" -->
+        <member name="F:Profiles.Profile.Modules.PropertyList.PropertyList.litPropertyList">
+            <summary>
+            litPropertyList control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.DefaultMenu.ActiveNetworkRelationshipTypes">
+        <member name="F:Profiles.Profile.Modules.PassiveHead.PassiveHead.litLname">
             <summary>
-            ActiveNetworkRelationshipTypes control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.litBackLink">
-            <summary>
-            litBackLink control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.upnlEditSection">
-            <summary>
-            upnlEditSection control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.hiddenSubjectID">
-            <summary>
-            hiddenSubjectID control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.updateProgress">
-            <summary>
-            updateProgress control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.Literal1">
-            <summary>
-            Literal1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.securityOptions">
-            <summary>
-            securityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.imbAddArror">
-            <summary>
-            imbAddArror control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnEditProperty">
-            <summary>
-            btnEditProperty control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.lblNoProperty">
-            <summary>
-            lblNoProperty control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.RptrEditProperty">
-            <summary>
-            RptrEditProperty control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.pnlInsertProperty">
-            <summary>
-            pnlInsertProperty control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.txtLabel">
-            <summary>
-            txtLabel control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnInsertProperty">
-            <summary>
-            btnInsertProperty control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnInsertProperty2">
-            <summary>
-            btnInsertProperty2 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnInsertCancel">
-            <summary>
-            btnInsertCancel control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.GridViewProperty">
-            <summary>
-            GridViewProperty control.
+            litLname control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -787,786 +902,10 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="T:Profiles.Framework.Utilities.RDFTriple">
+        <member name="T:Profiles.Framework.Modules.HelloWorld.hello">
             <summary>
-            
-            S = SUBJECT
-            P = PREDICATE
-            O = OBJECT    
-            
-            SPO (Triple)   requests are built and used to determine what data is being requested 
-            based on the URI dereference from our Alias program
-            
-            Other properties are used for the state of the transaction request.
-            
+            This module is used to test a presentation XML for proper module placement.
             </summary>
-        </member>
-        <member name="P:Profiles.Framework.Utilities.RDFTriple.Key">
-            <summary>
-            Internal calls will have a SPO request, external will have a URI request.
-            </summary>
-        </member>
-        <member name="F:Profiles.Profile.Modules.Publication.Publication.litPublication">
-            <summary>
-            litPublication control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.CategoryList.CategoryList.litCategoryList">
-            <summary>
-            litCategoryList control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="T:Profiles.Framework.Utilities.URLResolve">
-            <summary>
-            This class is used to store the state of the REST URL Resolve process called by the REST.aspx.cs file.
-            </summary>
-        </member>
-        <member name="F:Profiles.Framework.Modules.RDFLink.RDFLink.lblRDFLink">
-            <summary>
-            lblRDFLink control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Profile.Modules.PersonPublications.rpPublication">
-            <summary>
-            rpPublication control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Profile.Modules.PassiveHead.PassiveHead.litLname">
-            <summary>
-            litLname control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.imbSecurityOptions">
-            <summary>
-            imbSecurityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.lbSecurityOptions">
-            <summary>
-            lbSecurityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.pnlSecurityOptions">
-            <summary>
-            pnlSecurityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.SecurityOptions.SecurityOptions.grdSecurityGroups">
-            <summary>
-            grdSecurityGroups control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="M:Profiles.Search.Utilities.DataIO.GetDivisions">
-            <summary>
-            To return the list of all the Divisions
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Profiles.Search.Utilities.DataIO.GetInstitutions">
-            <summary>
-            To return the list of all the Institutions
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Profiles.Search.Utilities.DataIO.GetDepartments">
-            <summary>
-            To return the list of all the Departments
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Profiles.Search.Utilities.DataIO.GetPersonTypes">
-            <summary>
-            Get a list of person types from the database.
-            Logically reorganized to be in the correct format for the ComboTreeCheck control
-            </summary>
-            <returns>DataSet</returns>
-        </member>
-        <member name="T:Profiles.Framework.Utilities.Panel">
-            <summary>
-            This class processes a PresentationXML panel and the modules with in a Panel.
-            </summary>
-        </member>
-        <member name="F:Profiles.Framework.Modules.ApplyXSLT.ApplyXSLT.litGeneric">
-            <summary>
-            litGeneric control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="T:Profiles.Framework.Utilities.Tab">
-            <summary>
-            This class is used to hold the state and process the HTML for tabs that are defined Panels of type="main"
-            </summary>
-        </member>
-        <member name="F:Profiles.Framework.Modules.ListView.ListView.litListView">
-            <summary>
-            litListView control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.litBackLink">
-            <summary>
-            litBackLink control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.pnlProxySearch">
-            <summary>
-            pnlProxySearch control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.txtLastName">
-            <summary>
-            txtLastName control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.txtFirstName">
-            <summary>
-            txtFirstName control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.drpInstitution">
-            <summary>
-            drpInstitution control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.drpDepartment">
-            <summary>
-            drpDepartment control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.drpDivision">
-            <summary>
-            drpDivision control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.btnProxySearch">
-            <summary>
-            btnProxySearch control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.btnSearchReset">
-            <summary>
-            btnSearchReset control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.btnSearchCancel">
-            <summary>
-            btnSearchCancel control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.pnlProxySearchResults">
-            <summary>
-            pnlProxySearchResults control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.gridSearchResults">
-            <summary>
-            gridSearchResults control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.litPagination">
-            <summary>
-            litPagination control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Profile.Modules.PersonalInfo.PersonalInfo.litPersonalInfo">
-            <summary>
-            litPersonalInfo control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Profile.Modules.PersonalInfo.PersonalInfo.imgPhoto">
-            <summary>
-            imgPhoto control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Profile.Modules.PropertyList.PropertyList.litPropertyList">
-            <summary>
-            litPropertyList control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditPropertyContainer.EditPropertyContainer.phControlContainer">
-            <summary>
-            phControlContainer control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.upnlEditSection">
-            <summary>
-            upnlEditSection control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.updateProgress">
-            <summary>
-            updateProgress control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.litBackLink">
-            <summary>
-            litBackLink control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.pnlSecurityOptions">
-            <summary>
-            pnlSecurityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.securityOptions">
-            <summary>
-            securityOptions control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.imgPhoto">
-            <summary>
-            imgPhoto control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.pnlUpload">
-            <summary>
-            pnlUpload control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.AsyncFileUpload1">
-            <summary>
-            AsyncFileUpload1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditProfileImage.EditProfileImage.spanUploading">
-            <summary>
-            spanUploading control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="T:Profiles.Framework.Utilities.Root">
-            <summary>
-            Used to global set the RESTful URL structure.
-            </summary>
-        </member>
-        <member name="P:Profiles.Framework.Utilities.Root.Domain">
-            <summary>
-            Static property thats used to return the base of the RESTful url to include if SSL is used or if Profiles is installed as a subweb.
-            </summary>
-        </member>
-        <member name="P:Profiles.Framework.Utilities.Root.AbsolutePath">
-            <summary>
-                AbsolutePath is used to parse out the tab names for building what tab is displayed from the PresentationXML based on the RESTful URL
-                
-                Example:
-                    http://domain.com/profile/person/32213/concepts/details
-                        The end of the URL will contain the tab name "Details" and cause the tabs to be built and the correct module to be rendered for Details.
-            
-            
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "T:Profiles.Framework.Template" -->
-        <member name="F:Profiles.Framework.Template.Head1">
-            <summary>
-            Head1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.head">
-            <summary>
-            head control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.form1">
-            <summary>
-            form1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.toolkitScriptMaster">
-            <summary>
-            toolkitScriptMaster control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divProfilesHeader">
-            <summary>
-            divProfilesHeader control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.ContentHeader">
-            <summary>
-            ContentHeader control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.rptHeader">
-            <summary>
-            rptHeader control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divProfilesPage">
-            <summary>
-            divProfilesPage control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.ContentActive">
-            <summary>
-            ContentActive control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.rptActive">
-            <summary>
-            rptActive control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divProfilesPageColumnRightTopLine">
-            <summary>
-            divProfilesPageColumnRightTopLine control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divPageColumnRightCenter">
-            <summary>
-            divPageColumnRightCenter control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.tblTableBody">
-            <summary>
-            tblTableBody control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.trbody">
-            <summary>
-            trbody control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divProfilesMainColumnLeft">
-            <summary>
-            divProfilesMainColumnLeft control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divProfilesContentMain">
-            <summary>
-            divProfilesContentMain control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.litBackLink">
-            <summary>
-            litBackLink control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.litPageTitle">
-            <summary>
-            litPageTitle control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.litPageSubTitle">
-            <summary>
-            litPageSubTitle control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.rptPage">
-            <summary>
-            rptPage control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.litPageDescription">
-            <summary>
-            litPageDescription control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.litTabs">
-            <summary>
-            litTabs control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.ContentMain">
-            <summary>
-            ContentMain control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.rptMain">
-            <summary>
-            rptMain control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.tdProfilesMainColumnRight">
-            <summary>
-            tdProfilesMainColumnRight control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.ContentPassive">
-            <summary>
-            ContentPassive control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.rptPassive">
-            <summary>
-            rptPassive control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.divProfilesPageColumnRightBottom">
-            <summary>
-            divProfilesPageColumnRightBottom control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.ContentFooter">
-            <summary>
-            ContentFooter control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Template.rptFooter">
-            <summary>
-            rptFooter control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="M:Profiles.Framework.Template.LoadAssets">
-            <summary>
-            Used to set the link for css/js client Assets
-            </summary>
-        </member>
-        <member name="M:Profiles.Framework.Template.DrawTabs">
-            <summary>
-            Draws the Tabs dispaly based on the presentation xml and the restful URL pattern.
-            </summary>
-        </member>
-        <member name="M:Profiles.Framework.Template.DrawModule(System.Object,System.Web.UI.WebControls.RepeaterItemEventArgs)">
-            <summary>
-            Each repeater on the master page will fire this event when its bound with presentation xml data.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Profiles.Framework.Template.BindRepeaterToPanel(System.Web.UI.WebControls.Repeater@,System.Collections.Generic.List{Profiles.Framework.Utilities.Panel})">
-            <summary>
-            Used to bind a repeater for a given Panel to a List of Modules.  Each panel is defined by a type.  Each type can be assigned
-            one or more modules. 
-            </summary>
-            <param name="repeater">A repeater control is passed by ref to this method.</param>
-            <param name="paneltype">The type of the Panel as defined in the PresentationXML //Panel/@Type attribute</param>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.litSearchURL">
-            <summary>
-            litSearchURL control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.litNodeURI">
-            <summary>
-            litNodeURI control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.litPersonURI">
-            <summary>
-            litPersonURI control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.gvConnectionDetails">
-            <summary>
-            gvConnectionDetails control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.pnlIndirectConnection">
-            <summary>
-            pnlIndirectConnection control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.litSubjectName">
-            <summary>
-            litSubjectName control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.SearchConnection.gvIndirectConnectionDetails">
-            <summary>
-            gvIndirectConnectionDetails control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.NetworkDetails.NetworkDetails.litNetworkDetails">
-            <summary>
-            litNetworkDetails control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
         </member>
         <member name="F:Profiles.Search.Modules.MiniSearch.MiniSearch.trInstitution">
             <summary>
@@ -1622,151 +961,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Search.Modules.EverythingResults.EverythingResults.litEverythingResults">
-            <summary>
-            litEverythingResults control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="M:Profiles.Framework.Utilities.XslHelper.TransformInMemory(System.String,System.Xml.Xsl.XsltArgumentList,System.String)">
-            <summary>
-            This method transforms the XSLT/XML in RAM and is much faster than the asp:XML server control.
-            </summary>
-            <param name="xsltpath"></param>
-            <param name="args"></param>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="F:Profiles.Framework.Modules.HTMLBlock.HTMLBlock.lblHTMLBlock">
-            <summary>
-            lblHTMLBlock control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.trInstitution">
-            <summary>
-            trInstitution control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.litInstitution">
-            <summary>
-            litInstitution control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.trDepartment">
-            <summary>
-            trDepartment control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.litDepartment">
-            <summary>
-            litDepartment control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.trDivision">
-            <summary>
-            trDivision control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.litDivision">
-            <summary>
-            litDivision control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.PersonSearch.PersonSearch.ctcFirst">
-            <summary>
-            ctcFirst control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Search.Modules.EverythingPassiveResults.EverythingPassiveResults.litEverythingPassiveResults">
-            <summary>
-            litEverythingPassiveResults control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.pnlMyNetwork">
-            <summary>
-            pnlMyNetwork control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.gvActiveNetwork">
-            <summary>
-            gvActiveNetwork control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.litActiveNetworkDetails">
-            <summary>
-            litActiveNetworkDetails control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.pnlSetActiveNetworks">
-            <summary>
-            pnlSetActiveNetworks control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Framework.Modules.DefaultMenu.SetActiveNetworks.rptRelationshipTypes">
-            <summary>
-            rptRelationshipTypes control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Edit.Modules.EditPropertyList.EditPropertyList.litBackLink">
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.litBackLink">
             <summary>
             litBackLink control.
             </summary>
@@ -1775,18 +970,117 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditPropertyList.EditPropertyList.repPropertyGroups">
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.upnlEditSection">
             <summary>
-            repPropertyGroups control.
+            upnlEditSection control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditPropertyList.EditPropertyList.litSecurityKey">
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.hiddenSubjectID">
             <summary>
-            litSecurityKey control.
+            hiddenSubjectID control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.updateProgress">
+            <summary>
+            updateProgress control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.gvMyProxies">
+            <summary>
+            gvMyProxies control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.imgAdd">
+            <summary>
+            imgAdd control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.lnkAddProxyTmp">
+            <summary>
+            lnkAddProxyTmp control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.gvWhoCanIEdit">
+            <summary>
+            gvWhoCanIEdit control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.ManageProxies.ManageProxies.gvYouCanEdit">
+            <summary>
+            gvYouCanEdit control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Profile.Modules.PersonalInfo.PersonalInfo.litPersonalInfo">
+            <summary>
+            litPersonalInfo control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Profile.Modules.PersonalInfo.PersonalInfo.imgPhoto">
+            <summary>
+            imgPhoto control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Modules.RDFLink.RDFLink.lblRDFLink">
+            <summary>
+            lblRDFLink control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchOptions.SearchOptions.litModifySearch">
+            <summary>
+            litModifySearch control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchOptions.SearchOptions.litSearchOtherInstitutions">
+            <summary>
+            litSearchOtherInstitutions control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -2828,48 +2122,184 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="T:EmailImg.TextImage">
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.DefaultMenu.panelMenu">
             <summary>
-            Summary description for CaptchaImage.
-            </summary>
-        </member>
-        <member name="F:Profiles.Search.Modules.GetTopSearchPhrase.GetTopSearchPhrase.litDescription">
-            <summary>
-            litDescription control.
+            panelMenu control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Search.Modules.GetTopSearchPhrase.GetTopSearchPhrase.litTopSearchPhrase">
+        <member name="F:Profiles.Framework.Modules.DefaultMenu.DefaultMenu.ActiveNetworkRelationshipTypes">
             <summary>
-            litTopSearchPhrase control.
+            ActiveNetworkRelationshipTypes control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.upnlEditSection">
+        <member name="F:Profiles.Framework.Modules.CategoryList.CategoryList.litCategoryList">
             <summary>
-            upnlEditSection control.
+            litCategoryList control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.updateProgress">
+        <member name="T:Profiles.Framework.Utilities.URLResolve">
             <summary>
-            updateProgress control.
+            This class is used to store the state of the REST URL Resolve process called by the REST.aspx.cs file.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Profiles.Framework.Template" -->
+        <member name="F:Profiles.Framework.Template.Head1">
+            <summary>
+            Head1 control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.litBackLink">
+        <member name="F:Profiles.Framework.Template.head">
+            <summary>
+            head control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.toolkitScriptMaster">
+            <summary>
+            toolkitScriptMaster control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divProfilesHeader">
+            <summary>
+            divProfilesHeader control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.ContentHeader">
+            <summary>
+            ContentHeader control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.rptHeader">
+            <summary>
+            rptHeader control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divProfilesPage">
+            <summary>
+            divProfilesPage control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.ContentActive">
+            <summary>
+            ContentActive control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.rptActive">
+            <summary>
+            rptActive control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divProfilesPageColumnRightTopLine">
+            <summary>
+            divProfilesPageColumnRightTopLine control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divPageColumnRightCenter">
+            <summary>
+            divPageColumnRightCenter control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.tblTableBody">
+            <summary>
+            tblTableBody control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.trbody">
+            <summary>
+            trbody control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divProfilesMainColumnLeft">
+            <summary>
+            divProfilesMainColumnLeft control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divProfilesContentMain">
+            <summary>
+            divProfilesContentMain control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.litBackLink">
             <summary>
             litBackLink control.
             </summary>
@@ -2878,16 +2308,451 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.pnlSecurityOptions">
+        <member name="F:Profiles.Framework.Template.litPageTitle">
             <summary>
-            pnlSecurityOptions control.
+            litPageTitle control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.securityOptions">
+        <member name="F:Profiles.Framework.Template.litPageSubTitle">
+            <summary>
+            litPageSubTitle control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.rptPage">
+            <summary>
+            rptPage control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.litPageDescription">
+            <summary>
+            litPageDescription control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.litTabs">
+            <summary>
+            litTabs control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.ContentMain">
+            <summary>
+            ContentMain control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.rptMain">
+            <summary>
+            rptMain control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.tdProfilesMainColumnRight">
+            <summary>
+            tdProfilesMainColumnRight control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.ContentPassive">
+            <summary>
+            ContentPassive control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.rptPassive">
+            <summary>
+            rptPassive control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.divProfilesPageColumnRightBottom">
+            <summary>
+            divProfilesPageColumnRightBottom control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.ContentFooter">
+            <summary>
+            ContentFooter control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Framework.Template.rptFooter">
+            <summary>
+            rptFooter control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Profiles.Framework.Template.LoadAssets">
+            <summary>
+            Used to set the link for css/js client Assets
+            </summary>
+        </member>
+        <member name="M:Profiles.Framework.Template.DrawTabs">
+            <summary>
+            Draws the Tabs dispaly based on the presentation xml and the restful URL pattern.
+            </summary>
+        </member>
+        <member name="M:Profiles.Framework.Template.DrawModule(System.Object,System.Web.UI.WebControls.RepeaterItemEventArgs)">
+            <summary>
+            Each repeater on the master page will fire this event when its bound with presentation xml data.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Profiles.Framework.Template.BindRepeaterToPanel(System.Web.UI.WebControls.Repeater@,System.Collections.Generic.List{Profiles.Framework.Utilities.Panel})">
+            <summary>
+            Used to bind a repeater for a given Panel to a List of Modules.  Each panel is defined by a type.  Each type can be assigned
+            one or more modules. 
+            </summary>
+            <param name="repeater">A repeater control is passed by ref to this method.</param>
+            <param name="paneltype">The type of the Panel as defined in the PresentationXML //Panel/@Type attribute</param>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.litSearchURL">
+            <summary>
+            litSearchURL control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.litNodeURI">
+            <summary>
+            litNodeURI control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.litPersonURI">
+            <summary>
+            litPersonURI control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.gvConnectionDetails">
+            <summary>
+            gvConnectionDetails control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.pnlIndirectConnection">
+            <summary>
+            pnlIndirectConnection control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.litSubjectName">
+            <summary>
+            litSubjectName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.SearchConnection.gvIndirectConnectionDetails">
+            <summary>
+            gvIndirectConnectionDetails control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Profiles.Login.Utilities.DataIO.UserLogin(Profiles.Login.Utilities.User@)">
+            <summary>
+            For User Authentication 
+            </summary>
+            <param name="user"></param>
+            <param name="session"></param>
+        </member>
+        <member name="M:Profiles.Login.Utilities.DataIO.UserLogout">
+            <summary>
+            For User Authentication 
+            </summary>
+            <param name="user"></param>
+            <param name="session"></param>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.litBackLink">
+            <summary>
+            litBackLink control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.pnlProxySearch">
+            <summary>
+            pnlProxySearch control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.txtLastName">
+            <summary>
+            txtLastName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.txtFirstName">
+            <summary>
+            txtFirstName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.drpInstitution">
+            <summary>
+            drpInstitution control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.drpDepartment">
+            <summary>
+            drpDepartment control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.drpDivision">
+            <summary>
+            drpDivision control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.btnProxySearch">
+            <summary>
+            btnProxySearch control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.btnSearchReset">
+            <summary>
+            btnSearchReset control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.btnSearchCancel">
+            <summary>
+            btnSearchCancel control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.pnlProxySearchResults">
+            <summary>
+            pnlProxySearchResults control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.gridSearchResults">
+            <summary>
+            gridSearchResults control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Proxy.Modules.SearchProxies.SearchProxies.litPagination">
+            <summary>
+            litPagination control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Profile.Modules.Publication.Publication.litPublication">
+            <summary>
+            litPublication control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditPropertyList.EditPropertyList.litBackLink">
+            <summary>
+            litBackLink control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditPropertyList.EditPropertyList.repPropertyGroups">
+            <summary>
+            repPropertyGroups control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.EditPropertyList.EditPropertyList.litSecurityKey">
+            <summary>
+            litSecurityKey control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="T:Profiles.Framework.Utilities.CustomParse">
+            <summary>
+            This class is used to parse string data for both XmlNode and XmlDocument data.
+            
+            Parameter: string custom - contains an XPath query imbeded within a string value. The XPath will be contained in Triple brackets. {{{XPath}}} 
+                For Example:
+                    {{{ XPath }}} string
+                
+                    {{{//Profile/@EntityName}}} | Harvard Catalyst  
+                    Concepts  ({{{//Profile/NetworkList/Network[@RelationshipType="Researches"]/@FullCount}}})
+                    
+            Parameter: XmlNode/XmlDocument - cotains xml based data used to apply to the custom XPath parameter.  XmlNode is part of a Network or Connection list loop call, XmlDocument will be used as part of a Profile data set
+                    but is not restricted to just Profile data.
+                        
+            
+            
+            </summary>
+        </member>
+        <member name="F:Profiles.Framework.Modules.HTMLBlock.HTMLBlock.lblHTMLBlock">
+            <summary>
+            lblHTMLBlock control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Search.Modules.EverythingResults.EverythingResults.litEverythingResults">
+            <summary>
+            litEverythingResults control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Profiles.Framework.Utilities.XslHelper.TransformInMemory(System.String,System.Xml.Xsl.XsltArgumentList,System.String)">
+            <summary>
+            This method transforms the XSLT/XML in RAM and is much faster than the asp:XML server control.
+            </summary>
+            <param name="xsltpath"></param>
+            <param name="args"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.upnlEditSection">
+            <summary>
+            upnlEditSection control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.updateProgress">
+            <summary>
+            updateProgress control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.litBackLink">
+            <summary>
+            litBackLink control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DefaultCustomEdit.DefaultCustomEdit.securityOptions">
             <summary>
             securityOptions control.
             </summary>
@@ -2896,9 +2761,57 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:Profiles.Edit.Modules.EditMailingAddress.EditMailingAddress.litMailingAddress">
+        <member name="M:Profiles.Search.Utilities.DataIO.GetDivisions">
             <summary>
-            litMailingAddress control.
+            To return the list of all the Divisions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Profiles.Search.Utilities.DataIO.GetInstitutions">
+            <summary>
+            To return the list of all the Institutions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Profiles.Search.Utilities.DataIO.GetDepartments">
+            <summary>
+            To return the list of all the Departments
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Profiles.Search.Utilities.DataIO.GetPersonTypes">
+            <summary>
+            Get a list of person types from the database.
+            Logically reorganized to be in the correct format for the ComboTreeCheck control
+            </summary>
+            <returns>DataSet</returns>
+        </member>
+        <member name="T:Profiles.Framework.Utilities.Tab">
+            <summary>
+            This class is used to hold the state and process the HTML for tabs that are defined Panels of type="main"
+            </summary>
+        </member>
+        <member name="F:Profiles.Profile.Modules.PersonPublications.rpPublication">
+            <summary>
+            rpPublication control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Profile.Modules.NetworkBrowser.NetworkBrowser.lblProfileName">
+            <summary>
+            lblProfileName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Profile.Modules.NetworkBrowser.NetworkBrowser.divSwfScript">
+            <summary>
+            divSwfScript control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -2961,83 +2874,30 @@
             This class processes the event that RESTful path is requested and matches the routes defined in the RegisterRoutes method of this file.
             </summary>
         </member>
-        <member name="F:Profiles.Framework.Modules.PassiveTextBlock.PassiveTextBlock.litPassiveTextBlock">
+        <member name="T:Profiles.Framework.Utilities.Root">
             <summary>
-            litPassiveTextBlock control.
+            Used to global set the RESTful URL structure.
             </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
         </member>
-        <member name="T:Profiles.Framework.Utilities.CustomParse">
+        <member name="P:Profiles.Framework.Utilities.Root.Domain">
             <summary>
-            This class is used to parse string data for both XmlNode and XmlDocument data.
-            
-            Parameter: string custom - contains an XPath query imbeded within a string value. The XPath will be contained in Triple brackets. {{{XPath}}} 
-                For Example:
-                    {{{ XPath }}} string
+            Static property thats used to return the base of the RESTful url to include if SSL is used or if Profiles is installed as a subweb.
+            </summary>
+        </member>
+        <member name="P:Profiles.Framework.Utilities.Root.AbsolutePath">
+            <summary>
+                AbsolutePath is used to parse out the tab names for building what tab is displayed from the PresentationXML based on the RESTful URL
                 
-                    {{{//Profile/@EntityName}}} | Harvard Catalyst  
-                    Concepts  ({{{//Profile/NetworkList/Network[@RelationshipType="Researches"]/@FullCount}}})
-                    
-            Parameter: XmlNode/XmlDocument - cotains xml based data used to apply to the custom XPath parameter.  XmlNode is part of a Network or Connection list loop call, XmlDocument will be used as part of a Profile data set
-                    but is not restricted to just Profile data.
-                        
+                Example:
+                    http://domain.com/profile/person/32213/concepts/details
+                        The end of the URL will contain the tab name "Details" and cause the tabs to be built and the correct module to be rendered for Details.
             
             
             </summary>
         </member>
-        <member name="T:Profiles.Framework.Utilities.Session">
+        <member name="F:Profiles.Framework.Modules.ListView.ListView.litListView">
             <summary>
-                This class stores the Profiles custom session state
-            
-            </summary>
-        </member>
-        <member name="T:Profiles.Framework.Utilities.SessionManagement">
-            <summary>
-                This Class is used to manage the custom Profiles session data and processes
-                
-            !!!!!!!!!!!
-            
-                    I COMMENTED OUT THIS AND THE SESSION.DATAIO STUFF AS WELL DEALING WITH SESSION UNTILL WE GET THE RDF DESIGN WORKED OUT.
-            
-            
-            
-            
-            </summary>
-        </member>
-        <member name="M:Profiles.Framework.Utilities.SessionManagement.Session">
-            <summary>
-            Public method used to get the custom Profiles session object.  The object is stored in the current users session and can be accessed with the "PROFILES_SESSION" key.
-            
-            If the session does not exist then this method will create the session by calling this.SessionCreate();
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Profiles.Framework.Utilities.SessionManagement.SessionCreate">
-            <summary>
-                Public method used to create an instance of the custom Profiles session object.
-            </summary>
-        </member>
-        <member name="M:Profiles.Framework.Utilities.SessionManagement.SessionGetInfo">
-            <summary>
-            
-            </summary>
-            <returns>Current Framework.Session object from the database.</returns>
-        </member>
-        <member name="F:Profiles.Profile.Modules.NetworkBrowser.NetworkBrowser.lblProfileName">
-            <summary>
-            lblProfileName control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:Profiles.Profile.Modules.NetworkBrowser.NetworkBrowser.divSwfScript">
-            <summary>
-            divSwfScript control.
+            litListView control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -3079,14 +2939,154 @@
             <param name="plainText"></param>
             <returns></returns>
         </member>
-        <member name="F:Profiles.Error.Modules.ErrorMessage.litError">
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.litBackLink">
             <summary>
-            litError control.
+            litBackLink control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.upnlEditSection">
+            <summary>
+            upnlEditSection control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.hiddenSubjectID">
+            <summary>
+            hiddenSubjectID control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.updateProgress">
+            <summary>
+            updateProgress control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.Literal1">
+            <summary>
+            Literal1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.securityOptions">
+            <summary>
+            securityOptions control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.imbAddArror">
+            <summary>
+            imbAddArror control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnEditProperty">
+            <summary>
+            btnEditProperty control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.lblNoProperty">
+            <summary>
+            lblNoProperty control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.RptrEditProperty">
+            <summary>
+            RptrEditProperty control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.pnlInsertProperty">
+            <summary>
+            pnlInsertProperty control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.txtLabel">
+            <summary>
+            txtLabel control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnInsertProperty">
+            <summary>
+            btnInsertProperty control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnInsertProperty2">
+            <summary>
+            btnInsertProperty2 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.btnInsertCancel">
+            <summary>
+            btnInsertCancel control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Profiles.Edit.Modules.DisplayPropertyToEdit.DisplayPropertyToEdit.GridViewProperty">
+            <summary>
+            GridViewProperty control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="T:EmailImg.TextImage">
+            <summary>
+            Summary description for CaptchaImage.
+            </summary>
         </member>
     </members>
 </doc>

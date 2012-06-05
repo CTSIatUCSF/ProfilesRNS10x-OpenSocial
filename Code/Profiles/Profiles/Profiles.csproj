@@ -85,7 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\Default.aspx.cs">
@@ -108,6 +111,13 @@
     </Compile>
     <Compile Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx.designer.cs">
       <DependentUpon>MyNetwork.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Modules\ShibLogin\ShibLogin.ascx.cs">
+      <DependentUpon>ShibLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Modules\ShibLogin\ShibLogin.ascx.designer.cs">
+      <DependentUpon>ShibLogin.ascx</DependentUpon>
     </Compile>
     <Compile Include="ProfileDetails.aspx.cs">
       <DependentUpon>ProfileDetails.aspx</DependentUpon>
