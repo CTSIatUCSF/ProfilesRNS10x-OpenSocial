@@ -79,7 +79,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     else
                         redirect += "&redirectto=" + Request.QueryString["redirectto"].ToString();
 
-                    Response.Redirect(ConfigurationManager.AppSettings["ShibbolethLoginURL"].ToString().Trim() +
+                    Response.Redirect(ConfigurationManager.AppSettings["Shibboleth.LoginURL"].ToString().Trim() +
                         HttpUtility.UrlEncode(redirect));
                 }
 

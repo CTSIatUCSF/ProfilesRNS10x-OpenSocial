@@ -86,6 +86,15 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
+    <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ORNG\CSS\gadgets.css" />
+    <Content Include="ORNG\Images\icon_squareArrow.gif" />
+    <Content Include="ORNG\Images\icon_squareDownArrow.gif" />
+    <Content Include="ORNG\JavaScript\shindig.js" />
+    <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
+    <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -119,6 +128,18 @@
     <Compile Include="Login\Modules\ShibLogin\ShibLogin.ascx.designer.cs">
       <DependentUpon>ShibLogin.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ORNG\Modules\Gadgets\Gadgets.ascx.cs">
+      <DependentUpon>Gadgets.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ORNG\Modules\Gadgets\Gadgets.ascx.designer.cs">
+      <DependentUpon>Gadgets.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ORNG\Utilities\DataIO.cs" />
+    <Compile Include="ORNG\Utilities\GadgetSpec.cs" />
+    <Compile Include="ORNG\Utilities\GadgetViewRequirements.cs" />
+    <Compile Include="ORNG\Utilities\OpenSocialManager.cs" />
+    <Compile Include="ORNG\Utilities\PreparedGadget.cs" />
     <Compile Include="ProfileDetails.aspx.cs">
       <DependentUpon>ProfileDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -673,7 +694,9 @@
     <Content Include="Login\Images\loginButton.jpg" />
     <Content Include="Login\Modules\Login\Login.ascx" />
     <Content Include="Login\Modules\ModuleCatalogue.xml" />
-    <Content Include="Login\PresentationXML\LoginFormPresentation.xml" />
+    <Content Include="Login\PresentationXML\LoginFormPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Profile\Modules\PassiveHead\PassiveHead.ascx" />
     <Content Include="Profile\Modules\PersonPublications\PersonPublications.ascx" />
     <Content Include="Profile\Modules\PropertyList\images\minusSign.gif" />
