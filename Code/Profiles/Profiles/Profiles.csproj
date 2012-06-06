@@ -94,7 +94,10 @@
     <Content Include="ORNG\Images\icon_squareDownArrow.gif" />
     <Content Include="ORNG\JavaScript\shindig.js" />
     <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
-    <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
+    <Content Include="ORNG\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ORNG\XSLT\Gadgets.xslt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -862,7 +865,7 @@
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>55956</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <DevelopmentServerVPath>/profiles/</DevelopmentServerVPath>
           <IISUrl>http://localhost/Profiles</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>

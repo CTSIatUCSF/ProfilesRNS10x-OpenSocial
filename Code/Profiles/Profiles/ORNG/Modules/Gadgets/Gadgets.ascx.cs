@@ -33,7 +33,7 @@ namespace Profiles.ORNG.Modules.Gadgets
         {
             if (om.IsVisible())
             {
-                DrawGadgetsModule();
+                DrawProfilesModule();
             }
         }
 
@@ -42,40 +42,9 @@ namespace Profiles.ORNG.Modules.Gadgets
         public Gadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
         {
             om = new Profiles.ORNG.Utilities.OpenSocialManager(Request.QueryString["Subject"], Page, false);
-            if (om.IsVisible())
-            {
-                LoadAssets();
-            }
         }
 
-
-        private void LoadAssets()
-        {
-            HtmlLink gadgetscss = new HtmlLink();
-            gadgetscss.Href = Root.Domain + "/ORNG/CSS/gadgets.css";
-            gadgetscss.Attributes["rel"] = "stylesheet";
-            gadgetscss.Attributes["type"] = "text/css";
-            gadgetscss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(gadgetscss);
-
-            HtmlGenericControl containerjs = new HtmlGenericControl("script");
-            containerjs.Attributes.Add("type", "text/javascript");
-            containerjs.Attributes.Add("src", om.GetContainerJavascriptSrc());
-            Page.Header.Controls.Add(containerjs);
-
-            HtmlGenericControl gadgetjs = new HtmlGenericControl("script");
-            gadgetjs.Attributes.Add("type", "text/javascript");
-            gadgetjs.InnerHtml = om.GetGadgetJavascipt();
-            gadgetjs.Attributes.Add("src", om.GetContainerJavascriptSrc());
-            Page.Header.Controls.Add(gadgetjs);
-
-            HtmlGenericControl shindigjs = new HtmlGenericControl("script");
-            shindigjs.Attributes.Add("type", "text/javascript");
-            shindigjs.Attributes.Add("src", Root.Domain + "/ORNG/JavaScript/shindig.js");
-            Page.Header.Controls.Add(shindigjs);
-        }
-
-        public void DrawGadgetsModule()
+        public void DrawProfilesModule()
         {
             litGadget.Text = "<div id=\"" + base.GetModuleParamString("DivId") + "\" class=\"gadgets-gadget-parent\"></div>";
         }

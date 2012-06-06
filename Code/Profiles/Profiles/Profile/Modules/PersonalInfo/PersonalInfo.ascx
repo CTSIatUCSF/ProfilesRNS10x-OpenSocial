@@ -10,3 +10,7 @@
         </td>
     </tr>
 </table>
+<%-- Profiles OpenSocial Extension by UCSF --%>    
+<asp:Panel ID="pnlOpenSocial" runat="server" Visible="false">
+    <div id="gadgets-view" class="gadgets-gadget-parent"></div>
+</asp:Panel>

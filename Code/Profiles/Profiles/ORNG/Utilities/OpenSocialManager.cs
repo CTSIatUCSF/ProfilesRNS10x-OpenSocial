@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.Script.Serialization;
 using System.Web.UI.HtmlControls;
 using System.Text;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.ORNG.Utilities
 {
@@ -21,7 +22,7 @@ namespace Profiles.ORNG.Utilities
         public static string OPENSOCIAL_GADGETS = "OPENSOCIAL_GADGETS";
 
         public static string JSON_PERSONID_CHANNEL = "JSONPersonIds";
-        public static string JSON_PMID_CHANNEL = "JSONPubMedIds";
+        private static string OPENSOCIAL_ASSETS = "OPENSOCIAL_ASSETS";
 
         #region "LocalVars"
 
@@ -32,6 +33,7 @@ namespace Profiles.ORNG.Utilities
         internal bool isDebug = false;
         internal bool noCache = false;
         private string pageName;
+        private Page page;
 
         #endregion
 
@@ -41,6 +43,7 @@ namespace Profiles.ORNG.Utilities
         {
             this.isDebug = page.Session != null && page.Session[OPENSOCIAL_DEBUG] != null && (bool)page.Session[OPENSOCIAL_DEBUG];
             this.noCache = page.Session != null && page.Session[OPENSOCIAL_NOCACHE] != null && (bool)page.Session[OPENSOCIAL_NOCACHE];
+            this.page = page;
             this.pageName = page.AppRelativeVirtualPath.Substring(2);
 
             if (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] == null)
@@ -60,6 +63,11 @@ namespace Profiles.ORNG.Utilities
             {
                 Profiles.Framework.Utilities.SessionManagement sm = new Profiles.Framework.Utilities.SessionManagement();
                 viewerId = sm.Session().PersonURI;
+                if (viewerId != null && viewerId.Trim().Length == 0)
+                {
+                    viewerId = null;
+                }
+
             }
 
             bool gadgetLogin = page.AppRelativeVirtualPath.EndsWith("gadgetlogin.aspx");
@@ -154,15 +162,9 @@ namespace Profiles.ORNG.Utilities
             // sort the gadgets
             gadgets.Sort();
 
-            if (gadgets.Count != 0)
+            if (IsVisible())
             {
-                // trigger the javascript to render gadgets
-                HtmlGenericControl body = (HtmlGenericControl)page.Master.FindControl("body");
-                if (body == null)
-                {
-                    body = (HtmlGenericControl)page.Master.Master.FindControl("body");
-                }
-                body.Attributes.Add("onload", "my.init();");
+                LoadAssets();
             }
         }
 
@@ -396,16 +398,53 @@ namespace Profiles.ORNG.Utilities
         }
         #endregion
 
-        public string GetContainerJavascriptSrc()
+        private void LoadAssets()
+        {
+            // Only do this once per page!  Store in Page.Items
+            if (page.Items.Contains(OPENSOCIAL_ASSETS))
+            {
+                return;
+            }
+            page.Items.Add(OPENSOCIAL_ASSETS, OPENSOCIAL_ASSETS);
+
+            // trigger the javascript to render gadgets
+            HtmlGenericControl body = (HtmlGenericControl)page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("onload", "my.init();");
+
+            HtmlLink gadgetscss = new HtmlLink();
+            gadgetscss.Href = Root.Domain + "/ORNG/CSS/gadgets.css";
+            gadgetscss.Attributes["rel"] = "stylesheet";
+            gadgetscss.Attributes["type"] = "text/css";
+            gadgetscss.Attributes["media"] = "all";
+            page.Header.Controls.Add(gadgetscss);
+
+            HtmlGenericControl containerjs = new HtmlGenericControl("script");
+            containerjs.Attributes.Add("type", "text/javascript");
+            containerjs.Attributes.Add("src", GetContainerJavascriptSrc());
+            page.Header.Controls.Add(containerjs);
+
+            HtmlGenericControl gadgetjs = new HtmlGenericControl("script");
+            gadgetjs.Attributes.Add("type", "text/javascript");
+            gadgetjs.InnerHtml = GetGadgetJavascipt();
+            page.Header.Controls.Add(gadgetjs);
+
+            HtmlGenericControl shindigjs = new HtmlGenericControl("script");
+            shindigjs.Attributes.Add("type", "text/javascript");
+            shindigjs.Attributes.Add("src", Root.Domain + "/ORNG/JavaScript/shindig.js");
+            page.Header.Controls.Add(shindigjs);
+        }
+
+        private string GetContainerJavascriptSrc()
         {
             return ConfigurationManager.AppSettings["OpenSocial.ShindigURL"].ToString().Trim() + "/gadgets/js/core:dynamic-height:osapi:pubsub:rpc:views:rdf:shindig-container.js?c=1" +
                 (isDebug ? "&debug=1" : "");
         }
 
-        public string GetGadgetJavascipt()
+        private string GetGadgetJavascipt()
         {
-            string gadgetScriptText = "var my = {};" + Environment.NewLine +
-                "my.gadgetSpec = function(appId, name, url, secureToken, view, closed_width, open_width, start_closed, chrome_id, visible_scope) {" + Environment.NewLine +
+            string gadgetScriptText = Environment.NewLine + 
+                    "var my = {};" + Environment.NewLine +
+                    "my.gadgetSpec = function(appId, name, url, secureToken, view, closed_width, open_width, start_closed, chrome_id, visible_scope) {" + Environment.NewLine +
                     "this.appId = appId;" + Environment.NewLine +
                     "this.name = name;" + Environment.NewLine +
                     "this.url = url;" + Environment.NewLine +
