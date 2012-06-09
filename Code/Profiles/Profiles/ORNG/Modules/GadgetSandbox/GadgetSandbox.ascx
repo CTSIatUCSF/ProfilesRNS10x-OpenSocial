@@ -37,7 +37,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Password</b>
+                                        <b>Sandbox Password</b>
                                     </td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtPassword" value="" TextMode="Password" MaxLength="25"

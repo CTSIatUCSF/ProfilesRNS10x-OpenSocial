@@ -38,13 +38,9 @@ namespace Profiles.ORNG.Utilities
             return sqldr;
         }
 
-        public SqlDataReader GetGadgets(string requestAppId)
+        public SqlDataReader GetGadgets()
         {
             string sql = "select appId, name, url, channels, enabled from shindig_apps";
-            if (requestAppId != null)
-            {
-                sql += " where appId = " + requestAppId;
-            }
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

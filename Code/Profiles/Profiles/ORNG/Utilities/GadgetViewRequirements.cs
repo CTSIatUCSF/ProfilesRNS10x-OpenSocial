@@ -9,7 +9,7 @@ namespace Profiles.ORNG.Utilities
     {
         private string page;
         private char viewerReq;  // U for User or null for no requirment
-        private char ownerReq;   // R for Registered or null for no requirement
+        private char ownerReq;   // R for Registered or S for viewer must equal owner or null for no requirement
         private string view;
         private int closedWidth;
         private int openWidth;

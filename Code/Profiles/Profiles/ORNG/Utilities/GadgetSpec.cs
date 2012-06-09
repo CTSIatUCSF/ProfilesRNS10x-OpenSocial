@@ -4,57 +4,79 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 
+using Profiles.Framework.Utilities;
 
 namespace Profiles.ORNG.Utilities
 {
     public class GadgetSpec
     {
+
+        private static string GADGET_VIEW_REQ_KEY_PRE = "ORNG.GADGET_VIEW_REQ_KEY_";
+
         private string openSocialGadgetURL;
         private string name;
         private int appId = 0;
         private List<string> channels = new List<string>();
         private bool fromSandbox = false;
-        private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
+        private Dictionary<string, GadgetViewRequirements> viewRequirements;
+        bool enabled;
+        bool useCache;
 
         // For preloading
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels)
+        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool enabled, bool useCache)
         {
             this.appId = appId;
             this.name = name;
             this.openSocialGadgetURL = openSocialGadgetURL;
             this.channels.AddRange(channels);
+            this.enabled = enabled;
+            this.useCache = useCache;
         }
 
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string channelsStr)
-            : this(appId, name, openSocialGadgetURL, channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0])
+        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string channelsStr, bool enabled, bool useCache)
+            : this(appId, name, openSocialGadgetURL, channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0], enabled, useCache)
         {
         }
 
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool fromSandbox)
-            : this(appId, name, openSocialGadgetURL, channels)
+        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool fromSandbox, bool enabled, bool useCache)
+            : this(appId, name, openSocialGadgetURL, channels, enabled, useCache)
         {
             this.fromSandbox = fromSandbox;
             // Load gadgets from the DB first
             if (!fromSandbox)
             {
-                Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-
-                SqlDataReader dr = data.GetGadgetViewRequirements(appId);
-                while (dr.Read())
+                if (useCache) 
                 {
-                    viewRequirements.Add(dr[0].ToString(), new GadgetViewRequirements(dr[0].ToString(),
-                            dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
-                            dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
-                            dr[3].ToString(),
-                            dr.IsDBNull(4) ? '0' : Convert.ToInt32(dr[4]),
-                            dr.IsDBNull(5) ? '0' : Convert.ToInt32(dr[5]),
-                            dr.IsDBNull(6) ? true : Convert.ToBoolean(dr[6]),
-                            dr[7].ToString(),
-                            dr.IsDBNull(8) ? Int32.MaxValue : Convert.ToInt32(dr[8])));
+                    viewRequirements = (Dictionary<string, GadgetViewRequirements>)Cache.FetchObject(GADGET_VIEW_REQ_KEY_PRE + appId);
                 }
 
-                if (!dr.IsClosed)
-                    dr.Close();
+                if (viewRequirements == null)
+                {
+                    viewRequirements = new Dictionary<string, GadgetViewRequirements>();
+
+                    Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
+                    SqlDataReader dr = data.GetGadgetViewRequirements(appId);
+                    while (dr.Read())
+                    {
+                        viewRequirements.Add(dr[0].ToString(), new GadgetViewRequirements(dr[0].ToString(),
+                                dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
+                                dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
+                                dr[3].ToString(),
+                                dr.IsDBNull(4) ? '0' : Convert.ToInt32(dr[4]),
+                                dr.IsDBNull(5) ? '0' : Convert.ToInt32(dr[5]),
+                                dr.IsDBNull(6) ? true : Convert.ToBoolean(dr[6]),
+                                dr[7].ToString(),
+                                dr.IsDBNull(8) ? Int32.MaxValue : Convert.ToInt32(dr[8])));
+                    }
+
+                    if (!dr.IsClosed)
+                        dr.Close();
+
+                    if (useCache)
+                    {
+                        Cache.Set(GADGET_VIEW_REQ_KEY_PRE + appId, viewRequirements);
+                    }
+                }
             }
         }
 
@@ -126,6 +148,7 @@ namespace Profiles.ORNG.Utilities
             return show;
         }
 
+        // Bad idea to cache this
         public bool IsRegisteredTo(string personId)
         {
             Int32 count = 0;
@@ -147,6 +170,11 @@ namespace Profiles.ORNG.Utilities
         public bool FromSandbox()
         {
             return fromSandbox;
+        }
+
+        public bool IsEnabled()
+        {
+            return enabled;
         }
 
         // who sees it?  Return the viewerReq for the ProfileDetails page
