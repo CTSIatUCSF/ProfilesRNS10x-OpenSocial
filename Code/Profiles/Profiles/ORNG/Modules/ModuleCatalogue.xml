@@ -13,5 +13,6 @@ For details, see: LICENSE.txt
 <ModuleList>
   <Module ModulePath="Modules" NameSpace="Gadgets" FileName="Gadgets.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchGadgets" FileName="SearchGadgets.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="GadgetSandbox" FileName="GadgetSandbox.ascx" Enabled="true"/>  
 </ModuleList>
 

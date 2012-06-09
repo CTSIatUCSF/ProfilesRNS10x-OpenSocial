@@ -42,7 +42,7 @@ namespace Profiles.ORNG.Utilities
 
         public static OpenSocialManager GetOpenSocialManager(string ownerId, Page page, bool editMode)
         {
-            // synchronize?
+            // synchronize?  From the debugger this seems to be single threaded, so synchronization is not needed
             if (page.Items.Contains(OPENSOCIAL_MANAGER))
             {
                 int currentCount = (int)page.Items[OPENSOCIAL_PAGE_REQUESTS];
@@ -88,7 +88,7 @@ namespace Profiles.ORNG.Utilities
 
             }
 
-            bool gadgetLogin = page.AppRelativeVirtualPath.EndsWith("gadgetlogin.aspx");
+            bool gadgetLogin ="ORNG/Default.aspx".Equals(pageName);
             String requestAppId = page.Request.QueryString["appId"];
 
             Dictionary<string, GadgetSpec> dbApps = new Dictionary<string, GadgetSpec>();
@@ -112,7 +112,7 @@ namespace Profiles.ORNG.Utilities
                 dr.Close();
 
             // Add manual gadgets if there are any
-            // Note that this block of code only gets executed after someone logs in with gadgetlogin.aspx!
+            // Note that this block of code only gets executed after someone logs in with GadgetSandbox.aspx!
             int moduleId = 0;
             if (page.Session != null && (string)page.Session[OPENSOCIAL_GADGETS] != null)
             {

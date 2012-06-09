@@ -91,6 +91,11 @@
     </Content>
     <Content Include="ORNG\CSS\gadgets.css" />
     <Content Include="ORNG\GadgetDetails.aspx" />
+    <Content Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx" />
+    <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ORNG\Default.aspx" />
     <Content Include="ORNG\Images\icon_squareArrow.gif" />
     <Content Include="ORNG\Images\icon_squareDownArrow.gif" />
     <Content Include="ORNG\JavaScript\shindig.js" />
@@ -141,6 +146,17 @@
     </Compile>
     <Compile Include="ORNG\GadgetDetails.aspx.designer.cs">
       <DependentUpon>GadgetDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx.cs">
+      <DependentUpon>GadgetSandbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx.designer.cs">
+      <DependentUpon>GadgetSandbox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ORNG\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx.cs">
       <DependentUpon>SearchGadgets.ascx</DependentUpon>

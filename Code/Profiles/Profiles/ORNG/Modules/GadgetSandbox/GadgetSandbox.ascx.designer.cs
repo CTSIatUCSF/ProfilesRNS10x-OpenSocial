@@ -7,37 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.ORNG {
+namespace Profiles.ORNG.Modules.GadgetSandbox {
     
     
-    public partial class GadgetDetails {
+    public partial class GadgetSandbox {
         
         /// <summary>
-        /// ltHeader control.
+        /// txtUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltHeader;
-        
-        /// <summary>
-        /// pnlProxySearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlProxySearch;
-        
-        /// <summary>
-        /// txtPersonId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPersonId;
+        protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
         /// txtPassword control.
@@ -76,21 +58,21 @@ namespace Profiles.ORNG {
         protected global::System.Web.UI.WebControls.CheckBox chkUseCache;
         
         /// <summary>
-        /// btnGadgetLogin control.
+        /// cmdSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGadgetLogin;
+        protected global::System.Web.UI.WebControls.ImageButton cmdSubmit;
         
         /// <summary>
-        /// litGridHeader control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litGridHeader;
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }
