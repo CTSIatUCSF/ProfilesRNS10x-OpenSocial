@@ -90,42 +90,25 @@ namespace Profiles.ORNG.Utilities
 
             }
 
-            bool gadgetLogin ="ORNG/Default.aspx".Equals(pageName);
             string requestAppId = page.Request.QueryString["appId"];
 
-            Dictionary<string, GadgetSpec> allDBGadgets = GetAllDBGadgets();
-            Dictionary<string, GadgetSpec> potentialGadgets = new Dictionary<string, GadgetSpec>();
+            Dictionary<string, GadgetSpec> allDBGadgets = GetAllDBGadgets(!noCache);
 
-            foreach(KeyValuePair<string, GadgetSpec> kvp in allDBGadgets)
+            // if someone used the sandbox to log in, grab those gadgets refreshed from the DB
+            if (page.Session != null && (string)page.Session[OPENSOCIAL_GADGETS] != null)
             {
-                string gadgetFileName = kvp.Key;
-                GadgetSpec spec = kvp.Value;
-
-                if ((requestAppId == null && spec.IsEnabled()) || spec.GetAppId() == Convert.ToInt32(requestAppId))
-                {
-                    potentialGadgets.Add(gadgetFileName, spec);
-                }
+                gadgets = GetSandboxGadgets(allDBGadgets, requestAppId);
             }
-
-            gadgets = GetSandboxGadgets(allDBGadgets, requestAppId);
-
-            // if no sandbox gadgets were added, use the ones from the DB
-            if (gadgets.Count == 0)
+            else
             {
-                // Load DB gadgets
-                if (gadgetLogin)
+                foreach (GadgetSpec gadgetSpec in allDBGadgets.Values)
                 {
-                    potentialGadgets = allDBGadgets;
-                }
-                foreach (KeyValuePair<string, GadgetSpec> pair in potentialGadgets)
-                {
-                    GadgetSpec gadget = new GadgetSpec(pair.Value.GetAppId(), pair.Value.GetName(), pair.Value.GetGadgetURL(), pair.Value.GetChannels(), false, !noCache);
                     // only add ones that are visible in this context!
                     int moduleId = 0;
-                    if (gadgetLogin || gadget.Show(viewerId, ownerId, GetPageName()))
+                    if (((requestAppId == null && gadgetSpec.IsEnabled()) || gadgetSpec.GetAppId() == Convert.ToInt32(requestAppId)) && gadgetSpec.Show(viewerId, ownerId, GetPageName()))
                     {
-                        String securityToken = SocketSendReceive(viewerId, ownerId, "" + gadget.GetAppId());
-                        gadgets.Add(new PreparedGadget(gadget, this, moduleId++, securityToken));
+                        String securityToken = SocketSendReceive(viewerId, ownerId, "" + gadgetSpec.GetAppId());
+                        gadgets.Add(new PreparedGadget(gadgetSpec, this, moduleId++, securityToken));
                     }
                 }
             }
@@ -133,7 +116,7 @@ namespace Profiles.ORNG.Utilities
             gadgets.Sort();
         }
 
-        private string GetGadgetFileNameFromURL(string url)
+        private static string GetGadgetFileNameFromURL(string url)
         {
             string[] urlbits = url.ToString().Split('/');
             return urlbits[urlbits.Length - 1];
@@ -449,10 +432,10 @@ namespace Profiles.ORNG.Utilities
             return gadgetScriptText;
         }
 
-        private Dictionary<string, GadgetSpec> GetAllDBGadgets()
+        public static Dictionary<string, GadgetSpec> GetAllDBGadgets(bool useCache)
         {
             // check cache first
-            Dictionary<string, GadgetSpec> dbApps = noCache ? null : (Dictionary<string, GadgetSpec>)Cache.FetchObject(GADGET_SPEC_KEY);
+            Dictionary<string, GadgetSpec> dbApps = useCache ? (Dictionary<string, GadgetSpec>)Cache.FetchObject(GADGET_SPEC_KEY) : null;
             if (dbApps == null)
             {
                 dbApps = new Dictionary<string, GadgetSpec>();
@@ -460,7 +443,7 @@ namespace Profiles.ORNG.Utilities
                 SqlDataReader dr = data.GetGadgets();
                 while (dr.Read())
                 {
-                    GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), Convert.ToBoolean(dr[4]), !noCache);
+                    GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), Convert.ToBoolean(dr[4]), useCache);
                     string gadgetFileName = GetGadgetFileNameFromURL(dr[2].ToString());
                     dbApps.Add(gadgetFileName, spec);
                 }
@@ -468,7 +451,7 @@ namespace Profiles.ORNG.Utilities
                     dr.Close();
 
                 // add to cache unless noCache is turned on 
-                if (!noCache)
+                if (useCache)
                 {
                     Cache.Set(GADGET_SPEC_KEY, dbApps);
                 }
@@ -479,51 +462,49 @@ namespace Profiles.ORNG.Utilities
 
         private List<PreparedGadget>  GetSandboxGadgets(Dictionary<string, GadgetSpec> allDBGadgets, string requestAppId)
         {
+            List<PreparedGadget> sandboxGadgets = new List<PreparedGadget>();
             // Add sandbox gadgets if there are any
             // Note that this block of code only gets executed after someone logs in with GadgetSandbox.aspx!
-            List<PreparedGadget> sandboxGadgets = new List<PreparedGadget>();
-            if (page.Session != null && (string)page.Session[OPENSOCIAL_GADGETS] != null)
+            String openSocialGadgetURLS = (string)page.Session[OPENSOCIAL_GADGETS];
+            String[] urls = openSocialGadgetURLS.Split(Environment.NewLine.ToCharArray());
+            for (int i = 0; i < urls.Length; i++)
             {
-                String openSocialGadgetURLS = (string)page.Session[OPENSOCIAL_GADGETS];
-                String[] urls = openSocialGadgetURLS.Split(Environment.NewLine.ToCharArray());
-                for (int i = 0; i < urls.Length; i++)
+                String openSocialGadgetURL = urls[i];
+                if (openSocialGadgetURL.Length == 0)
+                    continue;
+                int appId = 0;  // if URL matches one in the DB, use DB provided appId, otherwise generate one
+                string gadgetFileName = GetGadgetFileNameFromURL(openSocialGadgetURL);
+                string name = gadgetFileName;
+                string[] channels = new string[0];
+                bool sandboxOnly = true;
+                // see if we have a gadget with the same file name in the DB, if so use its configuration
+                if (allDBGadgets.ContainsKey(gadgetFileName))
                 {
-                    String openSocialGadgetURL = urls[i];
-                    if (openSocialGadgetURL.Length == 0)
-                        continue;
-                    int appId = 0;  // if URL matches one in the DB, use DB provided appId, otherwise generate one
-                    string gadgetFileName = GetGadgetFileNameFromURL(openSocialGadgetURL);
-                    string name = gadgetFileName;
-                    string[] channels = new string[0];
-                    bool sandboxOnly = true;
-                    if (allDBGadgets.ContainsKey(gadgetFileName))
+                    appId = allDBGadgets[gadgetFileName].GetAppId();
+                    name = allDBGadgets[gadgetFileName].GetName();
+                    channels = allDBGadgets[gadgetFileName].GetChannels();
+                    sandboxOnly = false;
+                }
+                else
+                {
+                    CharEnumerator ce = openSocialGadgetURL.GetEnumerator();
+                    while (ce.MoveNext())
                     {
-                        appId = allDBGadgets[gadgetFileName].GetAppId();
-                        name = allDBGadgets[gadgetFileName].GetName();
-                        channels = allDBGadgets[gadgetFileName].GetChannels();
-                        sandboxOnly = false;
+                        appId += (int)ce.Current;
                     }
-                    else
-                    {
-                        CharEnumerator ce = openSocialGadgetURL.GetEnumerator();
-                        while (ce.MoveNext())
-                        {
-                            appId += (int)ce.Current;
-                        }
-                    }
-                    // if they asked for a specific one, only let it in
-                    if (requestAppId != null && Convert.ToInt32(requestAppId) != appId)
-                    {
-                        continue;
-                    }
-                    GadgetSpec gadgetSpec = new GadgetSpec(appId, name, openSocialGadgetURL, channels, sandboxOnly, true, !noCache);
-                    // only add ones that are visible in this context!
-                    int moduleId = 0;
-                    if (sandboxOnly || gadgetSpec.Show(viewerId, ownerId, page.AppRelativeVirtualPath.Substring(2)))
-                    {
-                        String securityToken = SocketSendReceive(viewerId, ownerId, "" + gadgetSpec.GetAppId());
-                        sandboxGadgets.Add(new PreparedGadget(gadgetSpec, this, moduleId++, securityToken));
-                    }
+                }
+                // if they asked for a specific one, only let it in
+                if (requestAppId != null && Convert.ToInt32(requestAppId) != appId)
+                {
+                    continue;
+                }
+                GadgetSpec gadgetSpec = new GadgetSpec(appId, name, openSocialGadgetURL, channels, sandboxOnly, true, !noCache);
+                // only add ones that are visible in this context!
+                int moduleId = 0;
+                if (sandboxOnly || gadgetSpec.Show(viewerId, ownerId, page.AppRelativeVirtualPath.Substring(2)))
+                {
+                    String securityToken = SocketSendReceive(viewerId, ownerId, "" + gadgetSpec.GetAppId());
+                    sandboxGadgets.Add(new PreparedGadget(gadgetSpec, this, moduleId++, securityToken));
                 }
             }
             return sandboxGadgets;

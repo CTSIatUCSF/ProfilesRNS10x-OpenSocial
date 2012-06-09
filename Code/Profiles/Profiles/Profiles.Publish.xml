@@ -102,7 +102,7 @@
     <file relUrl="Framework/Images/passive_top_right.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Profile/Modules/NetworkBrowser/network_browser.swf" publishTime="05/25/2012 13:28:30" />
     <file relUrl="Framework/Images/passive_back_alt.gif" publishTime="03/06/2012 14:35:52" />
-    <file relUrl="bin/Profiles.dll" publishTime="06/09/2012 11:48:59" />
+    <file relUrl="bin/Profiles.dll" publishTime="06/09/2012 16:43:56" />
     <file relUrl="SPARQL/Search/PresentationXML/SearchResultsConnectionPresentation.xml" publishTime="05/09/2012 11:07:42" />
     <file relUrl="Profile/Modules/NetworkBrowser/JavaScript/networkBrowserClass.js" publishTime="05/24/2012 21:17:54" />
     <file relUrl="ActiveNetwork/PresentationXML/MyNetwork.xml" publishTime="04/27/2012 11:04:48" />
@@ -115,7 +115,7 @@
     <file relUrl="Framework/CSS/profiles.css" publishTime="05/24/2012 23:32:54" />
     <file relUrl="SPARQL/Search/PresentationXML/SearchResultsEverythingPresentation.xml" publishTime="06/08/2012 13:54:10" />
     <file relUrl="Proxy/Modules/SearchProxies/SearchProxies.ascx" publishTime="05/24/2012 21:17:54" />
-    <file relUrl="bin/Profiles.XML" publishTime="06/09/2012 11:48:59" />
+    <file relUrl="bin/Profiles.XML" publishTime="06/09/2012 16:43:56" />
     <file relUrl="Profile/Modules/PropertyList/PropertyList.ascx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Proxy/Default.aspx" publishTime="05/16/2012 15:08:30" />
     <file relUrl="Profile/Modules/NetworkBrowser/scriptaculous/lib/prototype.js" publishTime="03/06/2012 14:35:54" />
@@ -186,7 +186,7 @@
     <file relUrl="ProfileDetails.aspx" publishTime="05/24/2012 22:16:30" />
     <file relUrl="Framework/JavaScript/jquery-ui-1.8.13.custom.min.js" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Modules/EditMailingAddress/EditMailingAddress.ascx" publishTime="05/25/2012 13:23:42" />
-    <file relUrl="bin/Profiles.pdb" publishTime="06/09/2012 11:48:59" />
+    <file relUrl="bin/Profiles.pdb" publishTime="06/09/2012 16:43:56" />
     <file relUrl="Framework/Images/icon_alert.gif" publishTime="04/05/2012 10:49:12" />
     <file relUrl="Framework/Images/icon_profile.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="DIRECT/CSS/Direct.css" publishTime="12/07/2011 14:43:04" />

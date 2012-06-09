@@ -30,7 +30,6 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
     {
         Framework.Utilities.SessionManagement sm;
         string sandboxPassword = String.Empty;
-        OpenSocialManager om;
 
         protected void Page_Load(object sender, EventArgs e)
         {           
@@ -45,7 +44,7 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
                 else
                 {
                     string gadgetURLs = "";
-                    foreach (PreparedGadget gadget in om.GetVisibleGadgets())
+                    foreach (GadgetSpec gadget in OpenSocialManager.GetAllDBGadgets(false).Values)
                     {
                         gadgetURLs += gadget.GetGadgetURL() + Environment.NewLine;
                     }
@@ -62,7 +61,6 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
            sandboxPassword = ConfigurationManager.AppSettings["OpenSocial.SandboxPassword"].ToString().Trim();
            if (sandboxPassword != null && sandboxPassword.Length > 0)
            {
-               om = OpenSocialManager.GetOpenSocialManager(null, Page, false);
                LoadAssets();
            }
         }

@@ -17,33 +17,28 @@ namespace Profiles.ORNG.Utilities
         private string name;
         private int appId = 0;
         private List<string> channels = new List<string>();
-        private bool fromSandbox = false;
+        private bool sandboxOnly = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements;
-        bool enabled;
-        bool useCache;
+        private bool enabled;
+        private bool useCache;
 
-        // For preloading
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool enabled, bool useCache)
+        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string channelsStr, bool enabled, bool useCache)
+            : this(appId, name, openSocialGadgetURL, channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0], false, enabled, useCache)
+        {
+        }
+
+        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool sandboxOnly, bool enabled, bool useCache)
         {
             this.appId = appId;
             this.name = name;
             this.openSocialGadgetURL = openSocialGadgetURL;
             this.channels.AddRange(channels);
+            this.sandboxOnly = sandboxOnly;
             this.enabled = enabled;
             this.useCache = useCache;
-        }
 
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string channelsStr, bool enabled, bool useCache)
-            : this(appId, name, openSocialGadgetURL, channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0], enabled, useCache)
-        {
-        }
-
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool fromSandbox, bool enabled, bool useCache)
-            : this(appId, name, openSocialGadgetURL, channels, enabled, useCache)
-        {
-            this.fromSandbox = fromSandbox;
-            // Load gadgets from the DB first
-            if (!fromSandbox)
+            // if it's sandboxOnly, you will not find view requirements in the DB
+            if (!sandboxOnly)
             {
                 if (useCache) 
                 {
@@ -102,7 +97,7 @@ namespace Profiles.ORNG.Utilities
 
         public bool ListensTo(string channel)
         {   // if fromSandbox just say yes, we don't care about performance in this situation
-            return fromSandbox || channels.Contains(channel);
+            return sandboxOnly || channels.Contains(channel);
         }
 
         public GadgetViewRequirements GetGadgetViewRequirements(String page)
@@ -169,7 +164,7 @@ namespace Profiles.ORNG.Utilities
 
         public bool FromSandbox()
         {
-            return fromSandbox;
+            return sandboxOnly;
         }
 
         public bool IsEnabled()
