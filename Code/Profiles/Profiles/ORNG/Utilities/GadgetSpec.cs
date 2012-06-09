@@ -152,7 +152,7 @@ namespace Profiles.ORNG.Utilities
         // who sees it?  Return the viewerReq for the ProfileDetails page
         public char GetVisibleScope()
         {
-            GadgetViewRequirements req = GetGadgetViewRequirements("ProfileDetails.aspx");
+            GadgetViewRequirements req = GetGadgetViewRequirements("Profile/Display.aspx");
             return req != null ? req.GetViewerReq() : ' ';
         }
     }

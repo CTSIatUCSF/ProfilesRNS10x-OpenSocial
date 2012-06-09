@@ -284,8 +284,8 @@ ProfilesGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
     // remove appId if present
     url = my.removeParameterFromURL(url, 'appId');
     
-    // Add appId if the URL Template begins with the word 'gadget'
-    if (urlTemplate.toLowerCase().indexOf('gadget') == 0) {
+    // Add appId if the URL Template begins with the word 'gadget' or 'orng/gadget'
+    if (urlTemplate.toLowerCase().indexOf('gadget') == 0 || urlTemplate.toLowerCase().indexOf('orng/gadget') == 0) {
         var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(this.f);
         var appId = my.gadgets[moduleId].appId;
         url += (url.indexOf('?') != url.length - 1 ? '&' : '') + 'appId=' + appId;    
@@ -298,7 +298,7 @@ ProfilesGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
 		}
 	}
 	if (url && document.location.href.indexOf(url) == -1) {
-		document.location.href = url;
+	    document.location.href = '/' + location.pathname.split('/')[1] + '/' + url;
 	}
 };
 
@@ -370,7 +370,7 @@ ProfilesGadget.prototype.handleToggle = function() {
       //OPEN
       gadgetContent.parentNode.style.width = (my.gadgets[this.id].open_width || 600) + 'px';
       gadgetContent.style.display = ''; 
-      gadgetImg.src = '/' + location.pathname.split('/')[1] + '/themes/opensocial/images/openSocial/icon_squareDownArrow.gif';
+      gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareDownArrow.gif';
       // refresh if certain features require so
       //if (this.hasFeature('dynamic-height')) {
 	  if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
@@ -396,7 +396,7 @@ ProfilesGadget.prototype.handleToggle = function() {
       //CLOSE
       gadgetContent.parentNode.style.width = (my.gadgets[this.id].closed_width || 600) + 'px';
       gadgetContent.style.display = 'none'; 
-      gadgetImg.src = '/' + location.pathname.split('/')[1] + '/themes/opensocial/images/openSocial/icon_squareArrow.gif';
+      gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareArrow.gif';
  	  if (my.gadgets[this.id].view == 'home') {
       	// record in google analytics     
         _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE_IN_EDIT', 'profile_edit_view']);  
@@ -411,7 +411,7 @@ ProfilesGadget.prototype.handleToggle = function() {
 
 ProfilesGadget.prototype.getTitleBarContent = function(continuation) {
   if (my.gadgets[this.id].view == 'canvas') {
-    document.getElementById("gadgets-title").innerHTML = (this.title ? this.title : 'Gadget');
+    //document.getElementById("gadgets-title").innerHTML = (this.title ? this.title : 'Gadget');
     continuation('<span class="gadgets-gadget-canvas-title"></span>');
   }
   else {
@@ -421,7 +421,7 @@ ProfilesGadget.prototype.getTitleBarContent = function(continuation) {
       this.cssClassTitleButtonBar + '">' + 
       '<a href="#" onclick="shindig.container.getGadget(' + this.id +
       ').handleToggle();return false;" class="' + this.cssClassTitleButton +
-      '"><img id="gadgets-gadget-title-image-' + this.id + '" src="/' + location.pathname.split('/')[1] + '/themes/opensocial/images/openSocial/icon_squareDownArrow.gif"/></a></span> <span id="' +
+      '"><img id="gadgets-gadget-title-image-' + this.id + '" src="/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareDownArrow.gif"/></a></span> <span id="' +
       this.getIframeId() + '_title" class="' + this.cssClassTitle + '">' + 
   	  '<a href="#" onclick="shindig.container.getGadget(' + this.id + ').handleToggle();return false;">' + 
 	  (this.title ? this.title : 'Gadget') + '</a>' + '</span><span id="' + 

@@ -25,9 +25,9 @@ using System.Web.UI.HtmlControls;
 using Profiles.Framework.Utilities;
 using Profiles.Search.Utilities;
 
-namespace Profiles.Login
+namespace Profiles.ORNG
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class GadgetDetails : System.Web.UI.Page
     {
         Profiles.Framework.Template masterpage;
 
@@ -56,9 +56,8 @@ namespace Profiles.Login
         {
             string presentationxml = string.Empty;
             
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Login/PresentationXML/LoginFormPresentation.xml");
+            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/ORNG/PresentationXML/GadgetDetailsPresentation.xml");
             
-
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);
             Framework.Utilities.DebugLogging.Log(presentationxml);

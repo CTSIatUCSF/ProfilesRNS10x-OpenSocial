@@ -13,6 +13,7 @@ using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
 using Profiles.Profile.Utilities;
+using Profiles.ORNG.Utilities;
 
 namespace Profiles.Profile.Modules.PersonalInfo
 {
@@ -67,10 +68,10 @@ namespace Profiles.Profile.Modules.PersonalInfo
 
             // Profiles OpenSocial Extension by UCSF
             string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
-            Profiles.ORNG.Utilities.OpenSocialManager om = 
-                new Profiles.ORNG.Utilities.OpenSocialManager(uri, Page, false);
+            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, false);
             if (om.IsVisible())
             {
+                om.LoadAssets();
                 pnlOpenSocial.Visible = true;
             }
 

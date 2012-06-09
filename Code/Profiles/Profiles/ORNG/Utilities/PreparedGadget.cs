@@ -71,15 +71,15 @@ namespace Profiles.ORNG.Utilities
                 return reqs.GetView();
             }
             // default behavior that will get invoked when there is no reqs.  Useful for sandbox gadgets
-            else if (helper.GetPageName().Equals("ProfileEdit.aspx"))
+            else if (helper.GetPageName().Equals("edit/default.aspx"))
             {
                 return "home";
             }
-            else if (helper.GetPageName().Equals("ProfileDetails.aspx"))
+            else if (helper.GetPageName().Equals("Profile/Display.aspx"))
             {
                 return "profile";
             }
-            else if (helper.GetPageName().Equals("GadgetDetails.aspx"))
+            else if (helper.GetPageName().Equals("ORNG/GadgetDetails.aspx"))
             {
                 return "canvas";
             }
@@ -124,19 +124,19 @@ namespace Profiles.ORNG.Utilities
             {
                 return "gadgets-tools";
             }
-            else if (helper.GetPageName().Equals("ProfileEdit.aspx"))
+            else if (helper.GetPageName().Equals("edit/default.aspx"))
             {
                 return "gadgets-edit";
             }
-            else if (helper.GetPageName().Equals("ProfileDetails.aspx"))
+            else if (helper.GetPageName().Equals("Profile/Display.aspx"))
             {
                 return "gadgets-view";
             }
-            else if (helper.GetPageName().Equals("GadgetDetails.aspx"))
+            else if (helper.GetPageName().Equals("ORNG/GadgetDetails.aspx"))
             {
                 return "gadgets-detail";
             }
-            else if (helper.GetPageName().Equals("Search.aspx"))
+            else if (helper.GetPageName().Equals("search/default.aspx"))
             {
                 return "gadgets-search";
             }
@@ -153,7 +153,7 @@ namespace Profiles.ORNG.Utilities
 
         public string CanvasURL
         {
-            get { return "~/GadgetDetails.aspx?appId=" + GetAppId() + "&Person=" + HttpUtility.UrlEncode(helper.ownerId); }
+            get { return "~/ORNG/GadgetDetails.aspx?appId=" + GetAppId() + "&Person=" + HttpUtility.UrlEncode(helper.ownerId); }
         }
 
         public int AppId

@@ -1,9 +1,9 @@
 ﻿ <Presentation PresentationClass="network">
   <PageOptions Columns="3"/>
   <WindowName>Search Results</WindowName>  
-  <PageTitle>Search Results ({{{rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageTitle>
-  <PageBackLinkName>More Search Options</PageBackLinkName>
-  <PageBackLinkURL>~/search/all</PageBackLinkURL>
+  <PageTitle>Search Results ({{{rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageTitle>   
+   <PageBackLinkName>More Search Options</PageBackLinkName>
+  <PageBackLinkURL>~/search/people</PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
   <PageDescription></PageDescription> 
   <PanelList>
@@ -12,18 +12,30 @@
     <Panel Type="active">
       <Module ID="MiniSearch"  />
       <Module ID="DefaultMenu"  />
+      <Module ID="Gadgets" >
+        <ParamList>
+          <Param Name="HTML">
+            <div id="gadgets-tools" class="gadgets-gadget-parent"></div>
+          </Param>
+        </ParamList>
+      </Module>
     </Panel>
     <Panel Type="main" TabType="fixed" TabSort="0" >
       <Module ID="EverythingResults">        
       </Module>
+      <Module ID="SearchGadgets"/>
     </Panel>
     <Panel Type="passive">
       <Module ID="SearchCriteria"></Module>
       <Module ID="SearchOptions"></Module>
-      <Module ID="EverythingPassiveResults">
-      </Module>      
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+            <div id="divItemDetails"></div>
+          </Param>          
+        </ParamList>        
+      </Module>
     </Panel>
     <Panel type="footer" />
   </PanelList>  
 </Presentation>
-

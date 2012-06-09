@@ -21,13 +21,14 @@ using System.Web.UI.HtmlControls;
 
 using Profiles.Login.Utilities;
 using Profiles.Framework.Utilities;
+using Profiles.ORNG.Utilities;
 
 namespace Profiles.ORNG.Modules.Gadgets
 {
     public partial class Gadgets : BaseModule
     {
 
-        Profiles.ORNG.Utilities.OpenSocialManager om;
+        OpenSocialManager om;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,13 +41,15 @@ namespace Profiles.ORNG.Modules.Gadgets
 
         public Gadgets() { }
         public Gadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
+            : base(pagedata, moduleparams, pagenamespaces)
         {
-            om = new Profiles.ORNG.Utilities.OpenSocialManager(Request.QueryString["Subject"], Page, false);
+            om = OpenSocialManager.GetOpenSocialManager(Request.QueryString["Subject"], Page, false);
         }
 
         public void DrawProfilesModule()
         {
-            litGadget.Text = "<div id=\"" + base.GetModuleParamString("DivId") + "\" class=\"gadgets-gadget-parent\"></div>";
+            om.LoadAssets();
+            litGadget.Text = base.GetModuleParamXml("HTML").InnerXml;
         }
 
     }

@@ -1,0 +1,32 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>Gadget Details</WindowName>
+  <PageTitle>Gadget Details</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MiniSearch"  />
+      <Module ID="DefaultMenu">
+      </Module>
+    </Panel>
+    <Panel Name="" Alias="" Type="main" TabType="default" TabSort="0" >
+      <Module ID="Gadgets" >
+        <ParamList>
+          <Param Name="HTML">
+            <script type="text/javascript" language="javascript">
+              my.current_view = "profile";
+            </script>
+            <div id="gadgets-detail" class="gadgets-gadget-parent"></div>
+          </Param>
+        </ParamList>
+      </Module>
+    </Panel>
+    <Panel type="footer" />
+  </PanelList>
+</Presentation>
+

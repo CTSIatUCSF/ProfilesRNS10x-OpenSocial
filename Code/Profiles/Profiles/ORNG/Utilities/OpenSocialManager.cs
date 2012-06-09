@@ -22,7 +22,8 @@ namespace Profiles.ORNG.Utilities
         public static string OPENSOCIAL_GADGETS = "OPENSOCIAL_GADGETS";
 
         public static string JSON_PERSONID_CHANNEL = "JSONPersonIds";
-        private static string OPENSOCIAL_ASSETS = "OPENSOCIAL_ASSETS";
+        private static string OPENSOCIAL_MANAGER = "OPENSOCIAL_MANAGER";
+        private static string OPENSOCIAL_PAGE_REQUESTS = "OPENSOCIAL_PAGE_REQUESTS";
 
         #region "LocalVars"
 
@@ -39,7 +40,24 @@ namespace Profiles.ORNG.Utilities
 
         #region InitPage Helpers
 
-        public OpenSocialManager(string ownerId, Page page, bool editMode)
+        public static OpenSocialManager GetOpenSocialManager(string ownerId, Page page, bool editMode)
+        {
+            // synchronize?
+            if (page.Items.Contains(OPENSOCIAL_MANAGER))
+            {
+                int currentCount = (int)page.Items[OPENSOCIAL_PAGE_REQUESTS];
+                page.Items[OPENSOCIAL_PAGE_REQUESTS] = ++currentCount;
+            }
+            else
+            {
+                page.Items.Add(OPENSOCIAL_MANAGER, new OpenSocialManager(ownerId, page, editMode));
+                page.Items.Add(OPENSOCIAL_PAGE_REQUESTS, 1);
+            }
+            return (OpenSocialManager)page.Items[OPENSOCIAL_MANAGER];
+        }
+
+        
+        private OpenSocialManager(string ownerId, Page page, bool editMode)
         {
             this.isDebug = page.Session != null && page.Session[OPENSOCIAL_DEBUG] != null && (bool)page.Session[OPENSOCIAL_DEBUG];
             this.noCache = page.Session != null && page.Session[OPENSOCIAL_NOCACHE] != null && (bool)page.Session[OPENSOCIAL_NOCACHE];
@@ -161,11 +179,6 @@ namespace Profiles.ORNG.Utilities
             }
             // sort the gadgets
             gadgets.Sort();
-
-            if (IsVisible())
-            {
-                LoadAssets();
-            }
         }
 
         private string GetGadgetFileNameFromURL(string url)
@@ -285,9 +298,9 @@ namespace Profiles.ORNG.Utilities
 
         public bool IsVisible()
         {
-            // always have turned on for ProfileDetails.aspx because we want to generate the "profile was viewed" in Javascript (bot proof) 
+            // always have turned on for Profile/Display.aspx because we want to generate the "profile was viewed" in Javascript (bot proof) 
             // regardless of any gadgets being visible, and we need this to be True for the shindig javascript libraries to load
-            return (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] != null && (GetVisibleGadgets().Count > 0) || GetPageName().Equals("ProfileDetails.aspx"));
+            return (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] != null && (GetVisibleGadgets().Count > 0) || GetPageName().Equals("Profile/Display.aspx"));
         }
 
         public List<PreparedGadget> GetVisibleGadgets()
@@ -398,14 +411,17 @@ namespace Profiles.ORNG.Utilities
         }
         #endregion
 
-        private void LoadAssets()
+        public void LoadAssets()
         {
-            // Only do this once per page!  Store in Page.Items
-            if (page.Items.Contains(OPENSOCIAL_ASSETS))
+            // Only do this once per page, and do it only for the last request!
+            // should synchronize
+            int currentCount = (int)page.Items[OPENSOCIAL_PAGE_REQUESTS];
+            page.Items[OPENSOCIAL_PAGE_REQUESTS] = --currentCount;
+
+            if (!IsVisible() || currentCount > 0)
             {
                 return;
             }
-            page.Items.Add(OPENSOCIAL_ASSETS, OPENSOCIAL_ASSETS);
 
             // trigger the javascript to render gadgets
             HtmlGenericControl body = (HtmlGenericControl)page.Master.FindControl("bodyMaster");

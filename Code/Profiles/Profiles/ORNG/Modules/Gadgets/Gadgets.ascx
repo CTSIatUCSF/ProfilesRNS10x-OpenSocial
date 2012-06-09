@@ -12,4 +12,4 @@
  --%>
 
 <%-- Profiles OpenSocial Extension by UCSF --%>   
-<asp:Literal runat="server" ID="litGadget"></asp:Label>
+<asp:Literal runat="server" ID="litGadget"></asp:Literal>
