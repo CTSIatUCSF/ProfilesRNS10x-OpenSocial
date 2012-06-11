@@ -10,67 +10,46 @@ namespace Profiles.ORNG.Utilities
 {
     public class GadgetSpec
     {
-
-        private static string GADGET_VIEW_REQ_KEY_PRE = "ORNG.GADGET_VIEW_REQ_KEY_";
-
-        private string openSocialGadgetURL;
-        private string name;
         private int appId = 0;
+        private string name;
+        private string openSocialGadgetURL;
         private List<string> channels = new List<string>();
+        private bool enabled;
         private bool sandboxOnly = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements;
-        private bool enabled;
-        private bool useCache;
 
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string channelsStr, bool enabled, bool useCache)
-            : this(appId, name, openSocialGadgetURL, channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0], false, enabled, useCache)
-        {
-        }
-
-        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool sandboxOnly, bool enabled, bool useCache)
+        public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool enabled, bool sandboxOnly)
         {
             this.appId = appId;
             this.name = name;
             this.openSocialGadgetURL = openSocialGadgetURL;
             this.channels.AddRange(channels);
-            this.sandboxOnly = sandboxOnly;
             this.enabled = enabled;
-            this.useCache = useCache;
+            this.sandboxOnly = sandboxOnly;
 
             // if it's sandboxOnly, you will not find view requirements in the DB
             if (!sandboxOnly)
             {
-                if (useCache) 
+                viewRequirements = new Dictionary<string, GadgetViewRequirements>();
+
+                Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
+                SqlDataReader dr = data.GetGadgetViewRequirements(appId);
+                while (dr.Read())
                 {
-                    viewRequirements = (Dictionary<string, GadgetViewRequirements>)Cache.FetchObject(GADGET_VIEW_REQ_KEY_PRE + appId);
+                    viewRequirements.Add(dr[0].ToString(), new GadgetViewRequirements(dr[0].ToString(),
+                            dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
+                            dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
+                            dr[3].ToString(),
+                            dr.IsDBNull(4) ? '0' : Convert.ToInt32(dr[4]),
+                            dr.IsDBNull(5) ? '0' : Convert.ToInt32(dr[5]),
+                            dr.IsDBNull(6) ? true : Convert.ToBoolean(dr[6]),
+                            dr[7].ToString(),
+                            dr.IsDBNull(8) ? Int32.MaxValue : Convert.ToInt32(dr[8])));
                 }
 
-                if (viewRequirements == null)
+                if (!dr.IsClosed)
                 {
-                    viewRequirements = new Dictionary<string, GadgetViewRequirements>();
-
-                    Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-                    SqlDataReader dr = data.GetGadgetViewRequirements(appId);
-                    while (dr.Read())
-                    {
-                        viewRequirements.Add(dr[0].ToString(), new GadgetViewRequirements(dr[0].ToString(),
-                                dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
-                                dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
-                                dr[3].ToString(),
-                                dr.IsDBNull(4) ? '0' : Convert.ToInt32(dr[4]),
-                                dr.IsDBNull(5) ? '0' : Convert.ToInt32(dr[5]),
-                                dr.IsDBNull(6) ? true : Convert.ToBoolean(dr[6]),
-                                dr[7].ToString(),
-                                dr.IsDBNull(8) ? Int32.MaxValue : Convert.ToInt32(dr[8])));
-                    }
-
-                    if (!dr.IsClosed)
-                        dr.Close();
-
-                    if (useCache)
-                    {
-                        Cache.Set(GADGET_VIEW_REQ_KEY_PRE + appId, viewRequirements);
-                    }
+                    dr.Close();
                 }
             }
         }

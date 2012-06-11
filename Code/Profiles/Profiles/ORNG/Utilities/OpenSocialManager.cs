@@ -25,7 +25,7 @@ namespace Profiles.ORNG.Utilities
         private static string OPENSOCIAL_MANAGER = "OPENSOCIAL_MANAGER";
         private static string OPENSOCIAL_PAGE_REQUESTS = "OPENSOCIAL_PAGE_REQUESTS";
 
-        private static string GADGET_SPEC_KEY = "ORNG.GADGET_SPEC_KEY";
+        public static string GADGET_SPEC_KEY = "ORNG.GADGET_SPEC_KEY";
 
         #region "LocalVars"
 
@@ -443,7 +443,9 @@ namespace Profiles.ORNG.Utilities
                 SqlDataReader dr = data.GetGadgets();
                 while (dr.Read())
                 {
-                    GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), Convert.ToBoolean(dr[4]), useCache);
+                    String channelsStr = dr[3].ToString();
+                    String[] channels = channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0];
+                    GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), channels, Convert.ToBoolean(dr[4]), false);
                     string gadgetFileName = GetGadgetFileNameFromURL(dr[2].ToString());
                     dbApps.Add(gadgetFileName, spec);
                 }
@@ -498,7 +500,7 @@ namespace Profiles.ORNG.Utilities
                 {
                     continue;
                 }
-                GadgetSpec gadgetSpec = new GadgetSpec(appId, name, openSocialGadgetURL, channels, sandboxOnly, true, !noCache);
+                GadgetSpec gadgetSpec = new GadgetSpec(appId, name, openSocialGadgetURL, channels, true, sandboxOnly);
                 // only add ones that are visible in this context!
                 int moduleId = 0;
                 if (sandboxOnly || gadgetSpec.Show(viewerId, ownerId, page.AppRelativeVirtualPath.Substring(2)))

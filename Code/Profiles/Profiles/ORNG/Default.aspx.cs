@@ -24,6 +24,7 @@ using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
 using Profiles.Search.Utilities;
+using Profiles.ORNG.Utilities;
 
 namespace Profiles.ORNG
 {
@@ -33,6 +34,10 @@ namespace Profiles.ORNG
 
         public void Page_Load(object sender, EventArgs e)
         {
+            if (Request.RawUrl.ToLower().Contains("clearcache"))
+            {
+                Cache.Remove(OpenSocialManager.GADGET_SPEC_KEY);
+            }
             masterpage = (Framework.Template)base.Master;
 
             LoadPresentationXML();
