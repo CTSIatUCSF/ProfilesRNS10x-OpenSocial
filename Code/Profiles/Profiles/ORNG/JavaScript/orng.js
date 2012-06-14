@@ -1,5 +1,5 @@
 /*
-    Profiles Shindig Helper functions for gadget-to-container commands
+    Orng Shindig Helper functions for gadget-to-container commands
 
  */
  
@@ -245,12 +245,12 @@ my.generateGadgets = function(metadata) {
 
 my.init = function() {
     // overwrite this RPC function.  Do it at this level so that rpc.f (this.f) is accessible for getting module ID
-//    gadgets.rpc.register('requestNavigateTo', doProfilesNavigation);
+//    gadgets.rpc.register('requestNavigateTo', doOrngNavigation);
 
-    shindig.container.gadgetClass = ProfilesGadget;
-    shindig.container.layoutManager = new ProfilesLayoutManager();    
+    shindig.container.gadgetClass = OrngGadget;
+    shindig.container.layoutManager = new OrngLayoutManager();    
     shindig.container.setNoCache(my.noCache);
-    shindig.container.gadgetService = new ProfilesGadgetService();
+    shindig.container.gadgetService = new OrngGadgetService();
 
     // since we render multiple views, we need to do somethign fancy by swapping out this value in getIframeUrl
     shindig.container.setView('REPLACE_THIS_VIEW');
@@ -267,15 +267,15 @@ my.init = function() {
     }
 };
 
-// ProfilesGadgetService
+// OrngGadgetService
 
-ProfilesGadgetService = function() {
+OrngGadgetService = function() {
     shindig.IfrGadgetService.call(this);
 };
 
-ProfilesGadgetService.inherits(shindig.IfrGadgetService);
+OrngGadgetService.inherits(shindig.IfrGadgetService);
 
-ProfilesGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
+OrngGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
     var urlTemplate = gadgets.config.get('views')[view].urlTemplate;
     var url = urlTemplate || 'OpenSocial.aspx?';
 
@@ -302,9 +302,9 @@ ProfilesGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
 	}
 };
 
-// ProfilesGadget
+// OrngGadget
 
-ProfilesGadget = function(opt_params) {
+OrngGadget = function(opt_params) {
     shindig.Gadget.call(this, opt_params);
     this.debug = my.debug;
     this.serverBase_ = my.openSocialURL + "/gadgets/";
@@ -322,13 +322,13 @@ ProfilesGadget = function(opt_params) {
     }
 };
 
-ProfilesGadget.inherits(shindig.BaseIfrGadget);
+OrngGadget.inherits(shindig.BaseIfrGadget);
 
-ProfilesGadget.prototype.setMetadata = function(metadata) {
+OrngGadget.prototype.setMetadata = function(metadata) {
    this.metadata = metadata;
 };
 
-ProfilesGadget.prototype.hasFeature = function(feature) {
+OrngGadget.prototype.hasFeature = function(feature) {
     for (var i = 0; i < this.metadata.features.length; i++) {
         if (this.metadata.features[i] == feature) {
             return true;
@@ -337,7 +337,7 @@ ProfilesGadget.prototype.hasFeature = function(feature) {
     return false;
 };
 
-ProfilesGadget.prototype.getAdditionalParams = function() {
+OrngGadget.prototype.getAdditionalParams = function() {
    var params = '';
    for (var key in my.gadgets[this.id].additionalParams) {
    	params += '&' + key + '=' + my.gadgets[this.id].additionalParams[key];
@@ -345,7 +345,7 @@ ProfilesGadget.prototype.getAdditionalParams = function() {
    return params;
 };
 
-ProfilesGadget.prototype.finishRender = function(chrome) {
+OrngGadget.prototype.finishRender = function(chrome) {
   window.frames[this.getIframeId()].location = this.getIframeUrl();
   if (my.gadgets[this.id].start_closed) {
     this.handleToggle();
@@ -356,12 +356,12 @@ ProfilesGadget.prototype.finishRender = function(chrome) {
   }
 };
 
-ProfilesGadget.prototype.getIframeUrl = function() {
+OrngGadget.prototype.getIframeUrl = function() {
     var url = this.originalGetIframeUrl();
     return url.replace('REPLACE_THIS_VIEW', my.gadgets[this.id].view);
 };
 
-ProfilesGadget.prototype.handleToggle = function() {
+OrngGadget.prototype.handleToggle = function() {
   var gadgetIframe = document.getElementById(this.getIframeId());
   if (gadgetIframe) {
     var gadgetContent = gadgetIframe.parentNode;
@@ -409,7 +409,7 @@ ProfilesGadget.prototype.handleToggle = function() {
   }
 };
 
-ProfilesGadget.prototype.getTitleBarContent = function(continuation) {
+OrngGadget.prototype.getTitleBarContent = function(continuation) {
   if (my.gadgets[this.id].view == 'canvas') {
     //document.getElementById("gadgets-title").innerHTML = (this.title ? this.title : 'Gadget');
     continuation('<span class="gadgets-gadget-canvas-title"></span>');
@@ -429,8 +429,8 @@ ProfilesGadget.prototype.getTitleBarContent = function(continuation) {
   }
 };
 
-// ProfilesLayoutManager.  Creates a FloatLeftLayoutManager for every chromeId in our gadgets
-ProfilesLayoutManager = function() {
+// OrngLayoutManager.  Creates a FloatLeftLayoutManager for every chromeId in our gadgets
+OrngLayoutManager = function() {
   shindig.LayoutManager.call(this);
   // find out what chromeId's are being used, create a FloatLeftLayoutManager for each
   this.layoutManagers = {};
@@ -442,8 +442,8 @@ ProfilesLayoutManager = function() {
   }
 };
 
-ProfilesLayoutManager.inherits(shindig.LayoutManager);
+OrngLayoutManager.inherits(shindig.LayoutManager);
 
-ProfilesLayoutManager.prototype.getGadgetChrome = function(gadget) {
+OrngLayoutManager.prototype.getGadgetChrome = function(gadget) {
   return this.layoutManagers[my.gadgets[gadget.id].chrome_id].getGadgetChrome(gadget);
 };

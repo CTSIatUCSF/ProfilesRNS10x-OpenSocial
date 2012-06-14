@@ -381,7 +381,7 @@ namespace Profiles.ORNG.Utilities
 
             HtmlGenericControl shindigjs = new HtmlGenericControl("script");
             shindigjs.Attributes.Add("type", "text/javascript");
-            shindigjs.Attributes.Add("src", Root.Domain + "/ORNG/JavaScript/shindig.js");
+            shindigjs.Attributes.Add("src", Root.Domain + "/ORNG/JavaScript/orng.js");
             page.Header.Controls.Add(shindigjs);
         }
 
