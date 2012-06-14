@@ -16,7 +16,7 @@ namespace Profiles.ORNG.Utilities
         private List<string> channels = new List<string>();
         private bool enabled;
         private bool sandboxOnly = false;
-        private Dictionary<string, GadgetViewRequirements> viewRequirements;
+        private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
 
         public GadgetSpec(int appId, string name, string openSocialGadgetURL, string[] channels, bool enabled, bool sandboxOnly)
         {
@@ -30,8 +30,6 @@ namespace Profiles.ORNG.Utilities
             // if it's sandboxOnly, you will not find view requirements in the DB
             if (!sandboxOnly)
             {
-                viewRequirements = new Dictionary<string, GadgetViewRequirements>();
-
                 Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
                 SqlDataReader dr = data.GetGadgetViewRequirements(appId);
                 while (dr.Read())

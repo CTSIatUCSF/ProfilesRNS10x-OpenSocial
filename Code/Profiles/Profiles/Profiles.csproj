@@ -485,82 +485,82 @@
       <DependentUpon>SearchProxies.ascx</DependentUpon>
     </Compile>
     <Compile Include="Proxy\Utilities\DataIO.cs" />
-    <Compile Include="SPARQL\Search\data.aspx.cs">
+    <Compile Include="Search\data.aspx.cs">
       <DependentUpon>data.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\data.aspx.designer.cs">
+    <Compile Include="Search\data.aspx.designer.cs">
       <DependentUpon>data.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\EverythingPassiveResults\EverythingPassiveResults.ascx.cs">
+    <Compile Include="Search\Modules\EverythingPassiveResults\EverythingPassiveResults.ascx.cs">
       <DependentUpon>EverythingPassiveResults.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\EverythingPassiveResults\EverythingPassiveResults.ascx.designer.cs">
+    <Compile Include="Search\Modules\EverythingPassiveResults\EverythingPassiveResults.ascx.designer.cs">
       <DependentUpon>EverythingPassiveResults.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\EverythingResults\EverythingResults.ascx.cs">
+    <Compile Include="Search\Modules\EverythingResults\EverythingResults.ascx.cs">
       <DependentUpon>EverythingResults.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\EverythingResults\EverythingResults.ascx.designer.cs">
+    <Compile Include="Search\Modules\EverythingResults\EverythingResults.ascx.designer.cs">
       <DependentUpon>EverythingResults.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\GetTopSearchPhrase\GetTopSearchPhrase.ascx.cs">
+    <Compile Include="Search\Modules\GetTopSearchPhrase\GetTopSearchPhrase.ascx.cs">
       <DependentUpon>GetTopSearchPhrase.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\GetTopSearchPhrase\GetTopSearchPhrase.ascx.designer.cs">
+    <Compile Include="Search\Modules\GetTopSearchPhrase\GetTopSearchPhrase.ascx.designer.cs">
       <DependentUpon>GetTopSearchPhrase.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\MiniSearch\MiniSearch.ascx.cs">
+    <Compile Include="Search\Modules\MiniSearch\MiniSearch.ascx.cs">
       <DependentUpon>MiniSearch.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\MiniSearch\MiniSearch.ascx.designer.cs">
+    <Compile Include="Search\Modules\MiniSearch\MiniSearch.ascx.designer.cs">
       <DependentUpon>MiniSearch.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\PersonSearch\ComboTreeCheck.ascx.cs">
+    <Compile Include="Search\Modules\PersonSearch\ComboTreeCheck.ascx.cs">
       <DependentUpon>ComboTreeCheck.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\PersonSearch\PersonSearch.ascx.cs">
+    <Compile Include="Search\Modules\PersonSearch\PersonSearch.ascx.cs">
       <DependentUpon>PersonSearch.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\PersonSearch\PersonSearch.ascx.designer.cs">
+    <Compile Include="Search\Modules\PersonSearch\PersonSearch.ascx.designer.cs">
       <DependentUpon>PersonSearch.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchConnection\SearchConnection.ascx.cs">
+    <Compile Include="Search\Modules\SearchConnection\SearchConnection.ascx.cs">
       <DependentUpon>SearchConnection.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchConnection\SearchConnection.ascx.designer.cs">
+    <Compile Include="Search\Modules\SearchConnection\SearchConnection.ascx.designer.cs">
       <DependentUpon>SearchConnection.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchCriteria\SearchCriteria.ascx.cs">
+    <Compile Include="Search\Modules\SearchCriteria\SearchCriteria.ascx.cs">
       <DependentUpon>SearchCriteria.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchCriteria\SearchCriteria.ascx.designer.cs">
+    <Compile Include="Search\Modules\SearchCriteria\SearchCriteria.ascx.designer.cs">
       <DependentUpon>SearchCriteria.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchEverything\SearchEverything.ascx.cs">
+    <Compile Include="Search\Modules\SearchEverything\SearchEverything.ascx.cs">
       <DependentUpon>SearchEverything.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchEverything\SearchEverything.ascx.designer.cs">
+    <Compile Include="Search\Modules\SearchEverything\SearchEverything.ascx.designer.cs">
       <DependentUpon>SearchEverything.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchOptions\SearchOptions.ascx.cs">
+    <Compile Include="Search\Modules\SearchOptions\SearchOptions.ascx.cs">
       <DependentUpon>SearchOptions.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Modules\SearchOptions\SearchOptions.ascx.designer.cs">
+    <Compile Include="Search\Modules\SearchOptions\SearchOptions.ascx.designer.cs">
       <DependentUpon>SearchOptions.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Utilities\CacheWrapper.cs" />
-    <Compile Include="SPARQL\Search\Utilities\SearchDropDowns.cs" />
+    <Compile Include="Search\Utilities\CacheWrapper.cs" />
+    <Compile Include="Search\Utilities\SearchDropDowns.cs" />
     <Compile Include="SPARQL\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -648,14 +648,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Default.aspx.cs">
+    <Compile Include="Search\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SPARQL\Search\Default.aspx.designer.cs">
+    <Compile Include="Search\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SPARQL\Search\Utilities\DataIO.cs" />
+    <Compile Include="Search\Utilities\DataIO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\CSS\about.css" />
@@ -782,28 +782,28 @@
     <Content Include="Proxy\Modules\SearchProxies\SearchProxies.ascx" />
     <Content Include="Proxy\PresentationXML\ManageProxies.xml" />
     <Content Include="Proxy\PresentationXML\SearchProxies.xml" />
-    <Content Include="SPARQL\Search\CSS\comboTreeCheck.css" />
-    <Content Include="SPARQL\Search\CSS\search.css" />
-    <Content Include="SPARQL\Search\data.aspx" />
-    <Content Include="SPARQL\Search\JavaScript\comboTreeCheck.js" />
-    <Content Include="SPARQL\Search\Modules\EverythingPassiveResults\EverythingPassiveResults.ascx" />
-    <Content Include="SPARQL\Search\Modules\EverythingPassiveResults\EverythingPassiveResults.xslt" />
-    <Content Include="SPARQL\Search\Modules\EverythingResults\PeopleResults.xslt" />
-    <Content Include="SPARQL\Search\Modules\EverythingResults\EverythingResults.ascx" />
-    <Content Include="SPARQL\Search\Modules\GetTopSearchPhrase\GetTopSearchPhrase.ascx" />
-    <Content Include="SPARQL\Search\Modules\MiniSearch\MiniSearch.ascx" />
-    <Content Include="SPARQL\Search\Modules\ModuleCatalogue.xml" />
-    <Content Include="SPARQL\Search\Modules\PersonSearch\ComboTreeCheck.ascx" />
-    <Content Include="SPARQL\Search\Modules\PersonSearch\PersonSearch.ascx" />
-    <Content Include="SPARQL\Search\Modules\SearchConnection\SearchConnection.ascx" />
-    <Content Include="SPARQL\Search\Modules\SearchCriteria\SearchCriteria.ascx" />
-    <Content Include="SPARQL\Search\Modules\SearchEverything\SearchEverything.ascx" />
-    <Content Include="SPARQL\Search\Modules\SearchOptions\SearchOptions.ascx" />
-    <Content Include="SPARQL\Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
-    <Content Include="SPARQL\Search\PresentationXML\SearchResultsPersonPresentation.xml" />
-    <Content Include="SPARQL\Search\PresentationXML\SearchFormPresentation.xml" />
-    <Content Include="SPARQL\Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
-    <Content Include="SPARQL\Search\Modules\EverythingResults\EverythingResults.xslt" />
+    <Content Include="Search\CSS\comboTreeCheck.css" />
+    <Content Include="Search\CSS\search.css" />
+    <Content Include="Search\data.aspx" />
+    <Content Include="Search\JavaScript\comboTreeCheck.js" />
+    <Content Include="Search\Modules\EverythingPassiveResults\EverythingPassiveResults.ascx" />
+    <Content Include="Search\Modules\EverythingPassiveResults\EverythingPassiveResults.xslt" />
+    <Content Include="Search\Modules\EverythingResults\PeopleResults.xslt" />
+    <Content Include="Search\Modules\EverythingResults\EverythingResults.ascx" />
+    <Content Include="Search\Modules\GetTopSearchPhrase\GetTopSearchPhrase.ascx" />
+    <Content Include="Search\Modules\MiniSearch\MiniSearch.ascx" />
+    <Content Include="Search\Modules\ModuleCatalogue.xml" />
+    <Content Include="Search\Modules\PersonSearch\ComboTreeCheck.ascx" />
+    <Content Include="Search\Modules\PersonSearch\PersonSearch.ascx" />
+    <Content Include="Search\Modules\SearchConnection\SearchConnection.ascx" />
+    <Content Include="Search\Modules\SearchCriteria\SearchCriteria.ascx" />
+    <Content Include="Search\Modules\SearchEverything\SearchEverything.ascx" />
+    <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
+    <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
+    <Content Include="Search\Modules\EverythingResults\EverythingResults.xslt" />
     <Content Include="SPARQL\PresentationXML\SPARQLPresentation.xml" />
     <Content Include="SPARQL\Default.aspx" />
     <Content Include="SPARQL\Modules\SPARQLQuery\SPARQLQuery.ascx" />
@@ -872,8 +872,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="SPARQL\Search\Default.aspx" />
-    <Content Include="SPARQL\Search\Images\search.jpg" />
+    <Content Include="Search\Default.aspx" />
+    <Content Include="Search\Images\search.jpg" />
     <Content Include="SPARQL\Modules\ModuleCatalogue.xml" />
   </ItemGroup>
   <ItemGroup>
