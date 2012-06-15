@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="Z:\profiles_100" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="FileCode" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="False">
+  <publishProfile publishUrl="Z:\profiles_100" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="FileCode" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Framework/Images/banner_generic.jpg" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Modules/NetworkDetails/NetworkDetails.ascx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Profile/XSLT/Awards.xslt" publishTime="03/06/2012 20:09:26" />
@@ -12,7 +12,6 @@
     <file relUrl="Framework/Images/sort_asc.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Images/select_d.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/CSS/jquery-ui-1.8.13.custom.css" publishTime="03/06/2012 14:35:52" />
-    <file relUrl="ORNG/JavaScript/shindig.js" publishTime="06/09/2012 07:39:05" />
     <file relUrl="Profile/Modules/PersonalInfo/PersonalInfo.ascx" publishTime="06/06/2012 12:40:11" />
     <file relUrl="DIRECT/DIRECT.xml" publishTime="06/01/2012 13:23:14" />
     <file relUrl="Framework/Images/connection_center.gif" publishTime="03/06/2012 14:35:52" />
@@ -41,9 +40,10 @@
     <file relUrl="Search/Images/search.jpg" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Framework/Images/connection_left.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Images/arrow_prev_d.gif" publishTime="03/06/2012 14:35:52" />
+    <file relUrl="Framework/Images/arrow_next.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="bin/AjaxControlToolkit.dll" publishTime="11/16/2011 14:26:04" />
     <file relUrl="Profile/Modules/NetworkBrowser/Images/yui-loading.gif" publishTime="03/06/2012 14:35:54" />
-    <file relUrl="Framework/Images/tab_a_left.gif" publishTime="03/06/2012 14:35:52" />
+    <file relUrl="ORNG/CSS/gadgets.css" publishTime="06/05/2012 13:57:32" />
     <file relUrl="Search/JavaScript/comboTreeCheck.js" publishTime="05/24/2012 22:15:08" />
     <file relUrl="REST.aspx" publishTime="01/03/2012 10:22:32" />
     <file relUrl="Search/PresentationXML/SearchResultsPersonPresentation.xml" publishTime="06/08/2012 13:54:00" />
@@ -55,7 +55,7 @@
     <file relUrl="Framework/Images/info3.png" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Modules/SecurityOptions/SecurityOptions.ascx" publishTime="05/24/2012 20:35:52" />
     <file relUrl="Framework/JavaScript/ui.dropdownchecklist.js" publishTime="03/06/2012 14:35:52" />
-    <file relUrl="Error/Modules/ModuleCatalogue.xml" publishTime="01/03/2012 10:22:38" />
+    <file relUrl="Framework/Images/tab_a_left.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Images/info.png" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Images/arrow_next_d.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Images/Button_Save.gif" publishTime="05/24/2012 22:28:34" />
@@ -63,7 +63,7 @@
     <file relUrl="Error/PresentationXML/ErrorPresentation.xml" publishTime="01/04/2012 13:14:18" />
     <file relUrl="Profile/Modules/NetworkBrowser/scriptaculous/src/unittest.js" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Framework/Images/tab_a_center.gif" publishTime="03/06/2012 14:35:52" />
-    <file relUrl="Framework/Images/arrow_next.gif" publishTime="03/06/2012 14:35:52" />
+    <file relUrl="ORNG/JavaScript/orng.js" publishTime="06/14/2012 15:16:23" />
     <file relUrl="Framework/JavaScript/jquery-1.6.1.min.js" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Modules/PassiveTextBlock/PassiveTextBlock.ascx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="ApplicationModuleCatalogue.xml" publishTime="06/05/2012 19:11:26" />
@@ -76,9 +76,10 @@
     <file relUrl="Framework/Modules/ListView/SortIntermediate.xslt" publishTime="03/06/2012 14:35:52" />
     <file relUrl="bin/log4net.dll" publishTime="11/23/2011 12:36:56" />
     <file relUrl="Search/Default.aspx" publishTime="03/06/2012 14:35:54" />
+    <file relUrl="Error/Modules/ErrorMessage/ErrorMessage.ascx" publishTime="09/07/2011 13:07:54" />
     <file relUrl="Framework/Images/tab_d_center.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Modules/DefaultMenu/DefaultMenu.ascx" publishTime="05/24/2012 22:15:08" />
-    <file relUrl="Web.config" publishTime="06/14/2012 12:07:26" />
+    <file relUrl="Web.config" publishTime="06/14/2012 16:38:31" />
     <file relUrl="Framework/Modules/PassiveNetworkList/PassiveNetworkList.xslt" publishTime="05/23/2012 20:41:32" />
     <file relUrl="Edit/XSLT/Award.xslt" publishTime="03/04/2012 20:46:00" />
     <file relUrl="About/Default.aspx" publishTime="01/03/2012 10:22:40" />
@@ -98,7 +99,7 @@
     <file relUrl="Profile/Modules/NetworkBrowser/network_browser.swf" publishTime="05/25/2012 13:28:30" />
     <file relUrl="Framework/Modules/ListView/ListView.xslt" publishTime="05/09/2012 16:27:06" />
     <file relUrl="Framework/Images/passive_back_alt.gif" publishTime="03/06/2012 14:35:52" />
-    <file relUrl="bin/Profiles.dll" publishTime="06/14/2012 12:36:59" />
+    <file relUrl="bin/Profiles.dll" publishTime="06/15/2012 12:50:57" />
     <file relUrl="Profile/Modules/NetworkBrowser/JavaScript/networkBrowserClass.js" publishTime="05/24/2012 21:17:54" />
     <file relUrl="ActiveNetwork/PresentationXML/MyNetwork.xml" publishTime="04/27/2012 11:04:48" />
     <file relUrl="Framework/Modules/CategoryList/CategoryList.ascx" publishTime="03/06/2012 14:35:52" />
@@ -109,7 +110,7 @@
     <file relUrl="Profile/Display.aspx" publishTime="05/15/2012 19:23:20" />
     <file relUrl="Framework/CSS/profiles.css" publishTime="05/24/2012 23:32:54" />
     <file relUrl="Proxy/Modules/SearchProxies/SearchProxies.ascx" publishTime="05/24/2012 21:17:54" />
-    <file relUrl="bin/Profiles.XML" publishTime="06/14/2012 12:36:59" />
+    <file relUrl="bin/Profiles.XML" publishTime="06/15/2012 12:50:56" />
     <file relUrl="Search/PresentationXML/SearchFormPresentation.xml" publishTime="05/09/2012 15:59:34" />
     <file relUrl="Search/Modules/EverythingPassiveResults/EverythingPassiveResults.ascx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Proxy/Default.aspx" publishTime="05/16/2012 15:08:30" />
@@ -118,12 +119,12 @@
     <file relUrl="Profile/XSLT/OtherPositions.xslt" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Framework/Images/icon_roundArrow.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="ActiveNetwork/Modules/ModuleCatalogue.xml" publishTime="04/27/2012 11:53:06" />
+    <file relUrl="Error/Modules/ModuleCatalogue.xml" publishTime="01/03/2012 10:22:38" />
     <file relUrl="Framework/Images/info2.png" publishTime="03/06/2012 14:35:52" />
     <file relUrl="ORNG/GadgetDetails.aspx" publishTime="06/08/2012 13:30:41" />
     <file relUrl="Search/Modules/EverythingPassiveResults/EverythingPassiveResults.xslt" publishTime="05/22/2012 21:05:16" />
     <file relUrl="Framework/Images/passive_backtile.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Modules/EditPropertyList/EditPropertyList.ascx" publishTime="06/08/2012 11:23:57" />
-    <file relUrl="Edit/Images/Icon_Edit.gif" publishTime="05/24/2012 22:28:34" />
     <file relUrl="Framework/Modules/HTMLBlock/HTMLBlock.ascx" publishTime="03/06/2012 14:35:52" />
     <file relUrl="ORNG/PresentationXML/GadgetDetailsPresentation.xml" publishTime="06/09/2012 08:28:07" />
     <file relUrl="Login/Modules/ShibLogin/ShibLogin.ascx" publishTime="06/04/2012 12:35:31" />
@@ -146,7 +147,6 @@
     <file relUrl="Framework/Modules/CategoryList/CategoryList.xslt" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Images/icons_blank.gif" publishTime="04/18/2012 22:14:02" />
     <file relUrl="Search/CSS/search.css" publishTime="03/06/2012 14:35:54" />
-    <file relUrl="ORNG/CSS/gadgets.css" publishTime="06/05/2012 13:57:32" />
     <file relUrl="SPARQL/Default.aspx" publishTime="01/03/2012 10:22:32" />
     <file relUrl="Framework/Images/passive_back.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Profile/Modules/GoogleMap/GoogleMap.ascx" publishTime="03/19/2012 11:33:04" />
@@ -183,7 +183,7 @@
     <file relUrl="ProfileDetails.aspx" publishTime="05/24/2012 22:16:30" />
     <file relUrl="Framework/JavaScript/jquery-ui-1.8.13.custom.min.js" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Modules/EditMailingAddress/EditMailingAddress.ascx" publishTime="05/25/2012 13:23:42" />
-    <file relUrl="bin/Profiles.pdb" publishTime="06/14/2012 12:36:59" />
+    <file relUrl="bin/Profiles.pdb" publishTime="06/15/2012 12:50:56" />
     <file relUrl="Framework/Images/icon_alert.gif" publishTime="04/05/2012 10:49:12" />
     <file relUrl="Framework/Images/icon_profile.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="DIRECT/CSS/Direct.css" publishTime="12/07/2011 14:43:04" />
@@ -223,14 +223,14 @@
     <file relUrl="Search/Modules/SearchConnection/SearchConnection.ascx" publishTime="05/01/2012 13:57:38" />
     <file relUrl="SPARQL/Modules/SPARQLQuery/SPARQLQuery.ascx" publishTime="04/26/2012 13:54:10" />
     <file relUrl="Profile/Modules/SameDepartment/SameDepartment.ascx" publishTime="05/22/2012 13:17:56" />
-    <file relUrl="Error/Modules/ErrorMessage/ErrorMessage.ascx" publishTime="09/07/2011 13:07:54" />
+    <file relUrl="Edit/Images/Icon_Edit.gif" publishTime="05/24/2012 22:28:34" />
     <file relUrl="Search/PresentationXML/SearchResultsEverythingPresentation.xml" publishTime="06/08/2012 13:54:10" />
     <file relUrl="Profile/Modules/PersonalInfo/EmailHandler.ashx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Profile/Modules/PropertyList/images/minusSign.gif" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Edit/Modules/ModuleCatalogue.xml" publishTime="05/24/2012 10:33:22" />
     <file relUrl="Profile/Modules/NetworkBrowser/scriptaculous/src/scriptaculous.js" publishTime="03/06/2012 14:35:54" />
   </publishProfile>
-  <publishProfile publishUrl="localhost" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/profiles" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="LocalhostCode" publishMethod="MSDeploy" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+  <publishProfile publishUrl="localhost" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/profiles" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="LocalhostCode" publishMethod="MSDeploy" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="False">
     <file relUrl="Framework/Images/banner_generic.jpg" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Modules/NetworkDetails/NetworkDetails.ascx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Profile/XSLT/Awards.xslt" publishTime="03/06/2012 20:09:26" />
@@ -247,6 +247,7 @@
     <file relUrl="DIRECT/DIRECT.xml" publishTime="06/01/2012 13:23:14" />
     <file relUrl="Framework/Images/connection_center.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Modules/PassiveTextBlock/PassiveTextBlock.xslt" publishTime="03/06/2012 14:35:54" />
+    <file relUrl="SPARQL/Modules/SPARQLQuery/SPARQLQuery.ascx" publishTime="04/26/2012 13:54:10" />
     <file relUrl="SPARQL/Search/Modules/EverythingResults/PeopleResults.xslt" publishTime="06/01/2012 00:22:16" />
     <file relUrl="Framework/Images/tab_d_right.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Profile/Modules/Publication/Publication.xslt" publishTime="05/21/2012 14:47:38" />
@@ -331,7 +332,7 @@
     <file relUrl="Profile/Modules/NetworkBrowser/JavaScript/networkBrowserClass.js" publishTime="05/24/2012 21:17:54" />
     <file relUrl="ActiveNetwork/PresentationXML/MyNetwork.xml" publishTime="04/27/2012 11:04:48" />
     <file relUrl="SPARQL/Search/Images/search.jpg" publishTime="03/06/2012 14:35:54" />
-    <file relUrl="Edit/Modules/DisplayPropertyToEdit/DisplayPropertyToEdit.ascx" publishTime="05/25/2012 13:23:50" />
+    <file relUrl="SPARQL/Search/Modules/SearchConnection/SearchConnection.ascx" publishTime="05/01/2012 13:57:38" />
     <file relUrl="Edit/Modules/EditPropertyContainer/EditPropertyContainer.ascx" publishTime="04/26/2012 13:54:10" />
     <file relUrl="Login/PresentationXML/ShibbolethLoginPresentation.xml" publishTime="06/05/2012 10:43:45" />
     <file relUrl="DIRECT/Modules/ModuleCatalogue.xml" publishTime="01/03/2012 10:22:38" />
@@ -346,7 +347,6 @@
     <file relUrl="Profile/XSLT/OtherPositions.xslt" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Framework/Images/icon_roundArrow.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="ActiveNetwork/Modules/ModuleCatalogue.xml" publishTime="04/27/2012 11:53:06" />
-    <file relUrl="Profile/XSLT/Narrative.xslt" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Framework/Images/info2.png" publishTime="03/06/2012 14:35:52" />
     <file relUrl="ORNG/GadgetDetails.aspx" publishTime="06/08/2012 13:30:41" />
     <file relUrl="Error/PresentationXML/ErrorPresentation.xml" publishTime="01/04/2012 13:14:18" />
@@ -357,9 +357,9 @@
     <file relUrl="ORNG/PresentationXML/GadgetDetailsPresentation.xml" publishTime="06/09/2012 08:28:07" />
     <file relUrl="Login/Modules/ShibLogin/ShibLogin.ascx" publishTime="06/04/2012 12:35:31" />
     <file relUrl="Edit/default.aspx" publishTime="04/05/2012 13:30:32" />
+    <file relUrl="Framework/Images/tab_d_left.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Edit/Modules/EditAwardOrHonor/EditAwardOrHonor.ascx" publishTime="05/25/2012 13:20:36" />
     <file relUrl="Framework/Images/tab_back.gif" publishTime="03/06/2012 14:35:52" />
-    <file relUrl="SPARQL/Search/Modules/SearchConnection/SearchConnection.ascx" publishTime="05/01/2012 13:57:38" />
     <file relUrl="Proxy/Modules/ModuleCatalogue.xml" publishTime="04/25/2012 20:30:52" />
     <file relUrl="Framework/Images/sort_desc.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Images/arrow_prev.gif" publishTime="03/06/2012 14:35:52" />
@@ -386,7 +386,7 @@
     <file relUrl="Profile/Modules/NetworkBrowser/scriptaculous/src/builder.js" publishTime="03/06/2012 14:35:54" />
     <file relUrl="SPARQL/Search/Modules/SearchOptions/SearchOptions.ascx" publishTime="05/22/2012 21:12:06" />
     <file relUrl="SPARQL/Search/Modules/EverythingResults/EverythingResults.xslt" publishTime="05/16/2012 10:45:32" />
-    <file relUrl="Framework/Images/tab_d_left.gif" publishTime="03/06/2012 14:35:52" />
+    <file relUrl="Profile/XSLT/Narrative.xslt" publishTime="03/06/2012 14:35:54" />
     <file relUrl="ActiveNetwork/Default.aspx" publishTime="04/27/2012 11:01:16" />
     <file relUrl="Framework/Images/passive_top.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Modules/HelloWorld/helloworld.ascx" publishTime="03/06/2012 14:35:52" />
@@ -395,7 +395,7 @@
     <file relUrl="Framework/Images/active_top.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Profile/Profile.aspx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="ORNG/Modules/SearchGadgets/SearchGadgets.ascx" publishTime="06/08/2012 12:29:34" />
-    <file relUrl="Edit/Modules/EditPublications/EditPublications.ascx" publishTime="06/01/2012 07:11:36" />
+    <file relUrl="Login/Modules/Login/Login.ascx" publishTime="05/24/2012 15:54:16" />
     <file relUrl="SPARQL/Search/Default.aspx" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Framework/Modules/NetworkDetails/NetworkDetails.xslt" publishTime="03/06/2012 14:35:54" />
     <file relUrl="Profile/Modules/PersonalInfo/PersonInfo.xslt" publishTime="05/24/2012 15:17:10" />
@@ -437,7 +437,7 @@
     <file relUrl="Framework/Modules/ApplyXSLT/ApplyXSLT.ascx" publishTime="03/06/2012 14:35:52" />
     <file relUrl="Framework/Images/blank.gif" publishTime="03/06/2012 14:35:52" />
     <file relUrl="ApplicationModuleCatalogue.xml" publishTime="06/05/2012 19:11:26" />
-    <file relUrl="Login/Modules/Login/Login.ascx" publishTime="05/24/2012 15:54:16" />
+    <file relUrl="Edit/Modules/EditPublications/EditPublications.ascx" publishTime="06/01/2012 07:11:36" />
     <file relUrl="ORNG/PresentationXML/SandboxFormPresentation.xml" publishTime="06/09/2012 09:07:28" />
     <file relUrl="Framework/Modules/PropertyListRange/PropertyListRange.ascx" publishTime="04/26/2012 13:54:10" />
     <file relUrl="Login/PresentationXML/LoginFormPresentation.xml" publishTime="06/05/2012 10:40:59" />
@@ -451,7 +451,7 @@
     <file relUrl="SPARQL/PresentationXML/SPARQLPresentation.xml" publishTime="03/05/2012 16:40:40" />
     <file relUrl="ORNG/CSS/gadgets.css" publishTime="06/05/2012 13:57:32" />
     <file relUrl="ORNG/Modules/ModuleCatalogue.xml" publishTime="06/09/2012 09:06:31" />
-    <file relUrl="SPARQL/Modules/SPARQLQuery/SPARQLQuery.ascx" publishTime="04/26/2012 13:54:10" />
+    <file relUrl="Edit/Modules/DisplayPropertyToEdit/DisplayPropertyToEdit.ascx" publishTime="05/25/2012 13:23:50" />
     <file relUrl="Profile/Modules/SameDepartment/SameDepartment.ascx" publishTime="05/22/2012 13:17:56" />
     <file relUrl="Error/Modules/ErrorMessage/ErrorMessage.ascx" publishTime="09/07/2011 13:07:54" />
     <file relUrl="Profile/Modules/PersonalInfo/EmailHandler.ashx" publishTime="03/06/2012 14:35:54" />
