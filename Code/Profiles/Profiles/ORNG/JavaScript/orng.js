@@ -284,8 +284,8 @@ OrngGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
     // remove appId if present
     url = my.removeParameterFromURL(url, 'appId');
     
-    // Add appId if the URL Template begins with the word 'gadget' or 'orng/gadget'
-    if (urlTemplate.toLowerCase().indexOf('gadget') == 0 || urlTemplate.toLowerCase().indexOf('orng/gadget') == 0) {
+    // Add appId if isOnlyVisible is TRUE for this view
+    if (gadgets.config.get('views')[view].isOnlyVisible) {
         var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(this.f);
         var appId = my.gadgets[moduleId].appId;
         url += (url.indexOf('?') != url.length - 1 ? '&' : '') + 'appId=' + appId;    
@@ -348,7 +348,7 @@ OrngGadget.prototype.getAdditionalParams = function() {
 OrngGadget.prototype.finishRender = function(chrome) {
   window.frames[this.getIframeId()].location = this.getIframeUrl();
   if (my.gadgets[this.id].start_closed) {
-    this.handleToggle();
+    this.handleToggle(false);
   }
   else if (chrome) {
 	// set the gadget box width, and remember that we always render as open
@@ -361,52 +361,61 @@ OrngGadget.prototype.getIframeUrl = function() {
     return url.replace('REPLACE_THIS_VIEW', my.gadgets[this.id].view);
 };
 
-OrngGadget.prototype.handleToggle = function() {
-  var gadgetIframe = document.getElementById(this.getIframeId());
-  if (gadgetIframe) {
-    var gadgetContent = gadgetIframe.parentNode;
-    var gadgetImg = document.getElementById('gadgets-gadget-title-image-' + this.id);    
-    if (gadgetContent.style.display) {
-      //OPEN
-      gadgetContent.parentNode.style.width = (my.gadgets[this.id].open_width || 600) + 'px';
-      gadgetContent.style.display = ''; 
-      gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareDownArrow.gif';
-      // refresh if certain features require so
-      //if (this.hasFeature('dynamic-height')) {
-	  if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
-        this.refresh();
- 	    document.getElementById(this.getIframeId()).contentWindow.location.reload(true);
- 	  }
- 	  
- 	  if (my.gadgets[this.id].view == 'home') {
-      	// record in google analytics     
-        _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'OPEN_IN_EDIT', 'profile_edit_view']);  
-      }
-      else {
-        osapi.activities.create(
-		  { 	'userId': gadgets.util.getUrlParameters()['Person'],
-			    'appId': my.gadgets[this.id].appId,
-			    'activity': {'postedTime': new Date().getTime(), 'title': 'gadget viewed', 'body': my.gadgets[this.id].name + ' gadget was viewed' }
-		  }).execute(function(response){});
-      	// record in google analytics     
-        _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'OPEN']);  
-	  }
+OrngGadget.prototype.handleToggle = function (track) {
+    if (typeof (track) === 'undefined') track = true;
+    var gadgetIframe = document.getElementById(this.getIframeId());
+    if (gadgetIframe) {
+        var gadgetContent = gadgetIframe.parentNode;
+        var gadgetImg = document.getElementById('gadgets-gadget-title-image-' + this.id);
+        if (gadgetContent.style.display) {
+            //OPEN
+            gadgetContent.parentNode.style.width = (my.gadgets[this.id].open_width || 600) + 'px';
+            gadgetContent.style.display = '';
+            gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareDownArrow.gif';
+            // refresh if certain features require so
+            //if (this.hasFeature('dynamic-height')) {
+            if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
+                this.refresh();
+                document.getElementById(this.getIframeId()).contentWindow.location.reload(true);
+            }
+
+            if (my.gadgets[this.id].view == 'home') {
+                if (track) {
+                    // record in google analytics             
+                    _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'OPEN_IN_EDIT', 'profile_edit_view']);
+                }
+            }
+            else {
+                osapi.activities.create(
+		  { 'userId': gadgets.util.getUrlParameters()['Person'],
+		      'appId': my.gadgets[this.id].appId,
+		      'activity': { 'postedTime': new Date().getTime(), 'title': 'gadget viewed', 'body': my.gadgets[this.id].name + ' gadget was viewed' }
+		  }).execute(function (response) { });
+                // record in google analytics     
+                if (track) {
+                    _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'OPEN']);
+                }
+            }
+        }
+        else {
+            //CLOSE
+            gadgetContent.parentNode.style.width = (my.gadgets[this.id].closed_width || 600) + 'px';
+            gadgetContent.style.display = 'none';
+            gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareArrow.gif';
+            if (my.gadgets[this.id].view == 'home') {
+                if (track) {
+                    // record in google analytics     
+                    _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE_IN_EDIT', 'profile_edit_view']);
+                }
+            }
+            else {
+                if (track) {
+                    // record in google analytics     
+                    _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE']);
+                }
+            }
+        }
     }
-    else {
-      //CLOSE
-      gadgetContent.parentNode.style.width = (my.gadgets[this.id].closed_width || 600) + 'px';
-      gadgetContent.style.display = 'none'; 
-      gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareArrow.gif';
- 	  if (my.gadgets[this.id].view == 'home') {
-      	// record in google analytics     
-        _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE_IN_EDIT', 'profile_edit_view']);  
-      }
-      else {
-      	// record in google analytics     
-        _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE']);  
-      }
-    }
-  }
 };
 
 OrngGadget.prototype.getTitleBarContent = function(continuation) {

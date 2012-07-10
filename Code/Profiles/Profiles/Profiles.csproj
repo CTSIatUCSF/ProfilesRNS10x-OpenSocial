@@ -899,7 +899,7 @@
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>55956</DevelopmentServerPort>
-          <DevelopmentServerVPath>/profiles/</DevelopmentServerVPath>
+          <DevelopmentServerVPath>/profiles</DevelopmentServerVPath>
           <IISUrl>http://localhost/Profiles</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
