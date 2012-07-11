@@ -134,13 +134,13 @@ function UpadateAllCTC(controlID, expandUpdate) {
     if (l_SelectText) {
         // IE throws an error here and even it doesn't even know why...
         try {
-            l_SelectText.innerHTML = l_HeaderText;
-            l_SelectText.title = l_HeaderText;
             l_HdnSelectText.value = l_HeaderText;
-        } catch (e) {}
+            l_SelectText.title = l_HeaderText;
+            l_SelectText.innerHTML = l_HeaderText;
+        } catch (e) { }
     }
 
-    if (l_HdnSelectText.value == "") {
+    if (l_HeaderText == "") {
         $('#selOtherOptions')[0].children[0].innerHTML = "&nbsp;&nbsp;-- Select Options --&nbsp;&nbsp;";
     }
     else {

@@ -12,5 +12,5 @@ For details, see: LICENSE.txt-->
 
 
 <ModuleList>
-  <Module ModulePath="Modules" NameSpace="SPARQLQuery" FileName="SPARQLQuery.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SPARQLSearch" FileName="SPARQLSearch.ascx" Enabled="true"/>
 </ModuleList>

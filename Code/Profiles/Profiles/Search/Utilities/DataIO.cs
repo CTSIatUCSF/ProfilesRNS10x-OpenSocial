@@ -265,6 +265,9 @@ namespace Profiles.Search.Utilities
                 case "division":
                     sortby = this.DivisionSort(sortdirection);
                     break;
+                case "facrank":
+                    sortby = this.FacultyRankSort(sortdirection);
+                    break;
             }
 
             search.Append(sortby);
@@ -280,7 +283,7 @@ namespace Profiles.Search.Utilities
             return searchxml;
 
         }
-        public XmlDocument Search(XmlDocument searchoptions)
+        public XmlDocument Search(XmlDocument searchoptions,bool lookup)
         {
             string xmlstr = string.Empty;
             XmlDocument xmlrtn = new XmlDocument();
@@ -293,6 +296,7 @@ namespace Profiles.Search.Utilities
                 try
                 {
                     string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    
 
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand();
@@ -301,12 +305,19 @@ namespace Profiles.Search.Utilities
                     dbconnection.Open();
                     dbcommand.CommandType = CommandType.StoredProcedure;
 
-                    dbcommand.CommandText = "[RDF.Search].[GetNodes]";
+                    dbcommand.CommandText = "[Search.].[GetNodes]";
                     dbcommand.CommandTimeout = base.GetCommandTimeout();
+
+
+
+                    
 
                     dbcommand.Parameters.Add(new SqlParameter("@SearchOptions", searchoptions.OuterXml));
 
                     dbcommand.Parameters.Add(new SqlParameter("@sessionid", sessionmanagement.Session().SessionID));
+
+                    if(lookup)
+                        dbcommand.Parameters.Add(new SqlParameter("@Lookup", 1));
 
                     dbcommand.Connection = dbconnection;
 
@@ -368,7 +379,7 @@ namespace Profiles.Search.Utilities
                     dbconnection.Open();
                     dbcommand.CommandType = CommandType.StoredProcedure;
 
-                    dbcommand.CommandText = "[RDF.Search].[GetConnection]";
+                    dbcommand.CommandText = "[Search.].[GetConnection]";
                     dbcommand.CommandTimeout = base.GetCommandTimeout();
 
                     dbcommand.Parameters.Add(new SqlParameter("@SearchOptions", searchoptions.OuterXml));
@@ -525,14 +536,19 @@ namespace Profiles.Search.Utilities
 
         private string FacultyRankSort(string direction)
         {
-            string sort = "<SortBy IsDesc=\"" + (direction == "desc" ? "0" : "1") + "\" Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\" Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#hasFacultyRank\"  Property3=\"http://www.w3.org/2000/01/rdf-schema#label\"/>";
+            string sort = "<SortBy IsDesc=\"" + (direction == "desc" ? "0" : "1") + "\" Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#hasFacultyRank\"  Property2=\"http://www.w3.org/2000/01/rdf-schema#label\"/>";
             sort += "<SortBy IsDesc=\"0\" Property=\"http://xmlns.com/foaf/0.1/lastName\" />";
 
+
+            //string sort = "<SortBy IsDesc=\"" + (direction == "desc" ? "0" : "1") + "\" Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\" Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#hasFacultyRank\"  Property3=\"http://www.w3.org/2000/01/rdf-schema#label\"/>";
+            //sort += "<SortBy IsDesc=\"0\" Property=\"http://xmlns.com/foaf/0.1/lastName\" />";
+
+            
             return sort;
         }
 
 
-        public SqlDataReader GetTopSearchPhrase(string timeperiod)
+        public SqlDataReader TopSearchPhrase(string timeperiod)
         {
             SqlDataReader dbreader;
             try
@@ -546,7 +562,7 @@ namespace Profiles.Search.Utilities
                 dbconnection.Open();
                 dbcommand.CommandType = CommandType.StoredProcedure;
 
-                dbcommand.CommandText = "[RDF.Search].[GetTopSearchPhrase]";
+                dbcommand.CommandText = "[Search.].[GetTopSearchPhrase]";
                 dbcommand.CommandTimeout = base.GetCommandTimeout();
 
                 dbcommand.Parameters.Add(new SqlParameter("@TimePeriod", timeperiod));

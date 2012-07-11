@@ -148,7 +148,7 @@ namespace Profiles.Framework
             {
                 if (p.Alias != string.Empty && this.Tab != string.Empty)
                     p.DefaultTab = false;
-                else if (p.Alias != string.Empty && p.TabType == "default" && this.Tab == string.Empty)
+                else if (p.Alias != string.Empty && p.TabType == "Default" && this.Tab == string.Empty)
                     p.DefaultTab = true;
 
                 if ((p.Alias == this.Tab) || (p.DefaultTab))
@@ -429,7 +429,7 @@ namespace Profiles.Framework
                     {
                         if (f.Alias != string.Empty && this.Tab != string.Empty)
                             f.DefaultTab = false;
-                        else if (f.Alias != string.Empty && f.TabType == "default" && this.Tab == string.Empty)
+                        else if (f.Alias != string.Empty && f.TabType == "Default" && this.Tab == string.Empty)
                             f.DefaultTab = true;
 
                         if ((f.Alias == this.Tab) || (f.DefaultTab))

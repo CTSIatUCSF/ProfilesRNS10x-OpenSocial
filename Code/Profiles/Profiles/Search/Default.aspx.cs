@@ -327,7 +327,7 @@ namespace Profiles.Search
             if (nodeuri != string.Empty && nodeid != string.Empty)
                 masterpage.RDFData = data.WhySearch(xml, nodeuri, Convert.ToInt64(nodeid));
             else
-                masterpage.RDFData = data.Search(xml);
+                masterpage.RDFData = data.Search(xml,false);
 
             Framework.Utilities.DebugLogging.Log(masterpage.RDFData.OuterXml);
             masterpage.RDFNamespaces = rdfnamespaces.LoadNamespaces(masterpage.RDFData);

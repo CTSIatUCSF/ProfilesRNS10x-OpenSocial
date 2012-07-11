@@ -102,37 +102,14 @@ namespace Profiles.Edit.Modules.EditPropertyContainer
                         if (base.PresentationXML.SelectSingleNode("//PropertyList/PropertyGroup/Property[@URI='" + session.CurrentEditPredicateURI + "']").InnerXml.ToLower().Contains("<module"))
                             moduledoc = this.CustomModule;
                         else
-                            moduledoc = this.DefaultCustomEdit;
+                            moduledoc = this.EditVisibilityOnly;
                     }
                     else
-                    {
-                        // DefaultEdit
-                        //if (objecttype.ToLower() == "literal")
-                        // moduledoc = this.DefaultEditLiteral;
-                        // else
-                        // moduledoc = this.DefaultEditEntity;
+                    {           
                         if (objecttype.ToLower() == "literal")
-                            moduledoc = this.DisplayPropertyToEdit;
+                            moduledoc = this.EditDataTypeProperty;
                         else
-                            moduledoc = this.DefaultCustomEdit;
-                    }
-
-
-
-                    if (base.PresentationXML.SelectSingleNode("//PropertyList/PropertyGroup/Property[@URI='" + session.CurrentEditPredicateURI + "']").InnerXml.ToLower().Contains("<module"))
-                    {
-
-                        moduledoc = this.CustomModule;
-                    }
-                    else
-                    {
-                        //If its an entity with no custom module then call the DefaultCustomEdit module so the use will have a 
-                        //read only view of the data with the ablity to set its visibility property.
-                        if (objecttype.ToLower() == "literal")
-                            moduledoc = this.DisplayPropertyToEdit;
-                        else
-                            moduledoc = this.DefaultCustomEdit;
-
+                            moduledoc = this.DefaultEditEntity;
                     }
 
                     break;
@@ -165,26 +142,39 @@ namespace Profiles.Edit.Modules.EditPropertyContainer
         }
       
 
-        private XmlDocument DisplayPropertyToEdit
+        private XmlDocument EditDataTypeProperty
         {
             get
             {
 
                 XmlDocument module = new XmlDocument();
-                module.LoadXml("<CustomModule><Module ID=\"DisplayPropertyToEdit\" Type=\"fixed\"></Module></CustomModule>");
+                module.LoadXml("<CustomModule><Module ID=\"EditDataTypeProperty\" Type=\"fixed\"></Module></CustomModule>");
 
                 return module;
 
             }
         }
 
-        private XmlDocument DefaultCustomEdit
+        private XmlDocument EditVisibilityOnly
         {
             get
             {
 
                 XmlDocument module = new XmlDocument();
-                module.LoadXml("<CustomModule><Module ID=\"DefaultCustomEdit\" Type=\"fixed\"></Module></CustomModule>");
+                module.LoadXml("<CustomModule><Module ID=\"EditVisibilityOnly\" Type=\"fixed\"></Module></CustomModule>");
+
+                return module;
+
+            }
+        }
+
+        private XmlDocument DefaultEditEntity
+        {
+            get
+            {
+
+                XmlDocument module = new XmlDocument();
+                module.LoadXml("<CustomModule><Module ID=\"EditObjectTypeProperty\" Type=\"fixed\"></Module></CustomModule>");
 
                 return module;
 

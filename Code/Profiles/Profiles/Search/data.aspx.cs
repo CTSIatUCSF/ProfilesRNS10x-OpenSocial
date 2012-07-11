@@ -55,7 +55,7 @@ namespace Profiles.Search
 
             Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
-            return data.Search(request);
+            return data.Search(request,false);
 
         }
 

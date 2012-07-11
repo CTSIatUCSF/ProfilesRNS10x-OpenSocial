@@ -28,6 +28,7 @@ using Profiles.Profile.Utilities;
 using Profiles.Edit.Utilities;
 using Profiles.ORNG.Utilities;
 
+
 namespace Profiles.Edit.Modules.EditPropertyList
 {
     public partial class EditPropertyList : BaseModule
@@ -58,7 +59,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             this.SecurityGroups = new XmlDocument();
             this.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/display/" + this.Subject.ToString() + "'>Back to Profile</a> &gt; <b>Edit Menu</b>";
+            litBackLink.Text = "<b>Edit Menu</b>";
 
 
             foreach (XmlNode group in this.PropertyList.SelectNodes("//PropertyList/PropertyGroup"))
@@ -79,13 +80,14 @@ namespace Profiles.Edit.Modules.EditPropertyList
                         canedit = true;
                     }
 
-
                     singlesi.Add(new SecurityItem(node.ParentNode.SelectSingleNode("@Label").Value, node.SelectSingleNode("@Label").Value,
                         node.SelectSingleNode("@URI").Value,
                         Convert.ToInt32(node.SelectSingleNode("@NumberOfConnections").Value),
                         Convert.ToInt32(node.SelectSingleNode("@ViewSecurityGroup").Value),
                         this.SecurityGroups.SelectSingleNode("SecurityGroupList/SecurityGroup[@ID='" + node.SelectSingleNode("@ViewSecurityGroup").Value + "']/@Label").Value,
                         node.SelectSingleNode("@ObjectType").Value, canedit));
+
+
                 }
                 si.Add(singlesi);
             }
@@ -105,14 +107,13 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
             // Profiles OpenSocial Extension by UCSF
             string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
-           OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
+            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
             if (om.IsVisible())
             {
                 om.LoadAssets();
                 pnlOpenSocial.Visible = true;
             }
         }
-
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -146,7 +147,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 if (!si.CanEdit)
                 {
                     lockimage.Visible = true;
-                    blankimage.Visible = true;                    
+                    blankimage.Visible = true;
                 }
 
                 ddl.DataSource = this.Dropdown;
@@ -166,7 +167,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,0);");
                     e.Row.Attributes.Add("class", "evenRow");
                     blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
-                    blankimage.Attributes.Add("style","opacity:0.0;filter:alpha(opacity=0);" );
+                    blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
                 }
                 else
                 {
@@ -183,7 +184,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                         objecttype = "Literal";
                         break;
                     case "0":
-                        objecttype = "Entity";
+                        objecttype = "Entity";                       
                         break;
                 }
 
@@ -198,7 +199,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
         protected void BuildSecurityKey(List<GenericListItem> gli)
         {
             System.Text.StringBuilder table = new StringBuilder();
-                     
+
 
             table.Append("<table style='width:100%;'>");
 
@@ -227,7 +228,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             //ddlSetAll.DataSource = this.Dropdown;            
             //ddlSetAll.DataBind();
             //ddlSetAll.Enabled = false;
-    
+
             //ddlSetAll.Items.Insert(0, new ListItem("-- Select One --", String.Empty));
             //ddlSetAll.SelectedIndex = 0;
 
@@ -235,7 +236,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
         protected void ddlSetAll_IndexChanged(object sender, EventArgs e)
         {
-            GridView gv;            
+            GridView gv;
             foreach (RepeaterItem item in repPropertyGroups.Items)
             {
                 gv = (GridView)item.FindControl("grdSecurityGroups");
@@ -243,7 +244,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 foreach (GridViewRow gvr in gv.Rows)
                 {
                     this.PredicateURI = ((HiddenField)gvr.FindControl("hfPropertyURI")).Value;
-                  //  this.UpdateSecuritySetting(ddlSetAll.SelectedValue);
+                    //  this.UpdateSecuritySetting(ddlSetAll.SelectedValue);
                 }
             }
 
@@ -276,8 +277,9 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
     public class SecurityItem
     {
-        public SecurityItem(string itemlabel, string item, string itemuri, int itemcount, int privacycode,string privacylevel, string objecttype, bool canedit)
+        public SecurityItem(string itemlabel, string item, string itemuri, int itemcount, int privacycode, string privacylevel, string objecttype, bool canedit)
         {
+            
             this.ItemLabel = itemlabel;
             this.Item = item;
             this.ItemURI = itemuri;

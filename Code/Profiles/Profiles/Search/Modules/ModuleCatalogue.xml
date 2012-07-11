@@ -11,14 +11,14 @@ Code licensed under a BSD License.
 For details, see: LICENSE.txt
 -->
 <ModuleList>
-  <Module ModulePath="Modules" NameSpace="PersonSearch" FileName="PersonSearch.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SearchPerson" FileName="SearchPerson.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PersonResults" FileName="PersonResults.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchCriteria" FileName="SearchCriteria.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchOptions" FileName="SearchOptions.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="EverythingPassiveResults" FileName="EverythingPassiveResults.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="EverythingResults" FileName="EverythingResults.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SearchEverythingFacets" FileName="SearchEverythingFacets.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SearchResults" FileName="SearchResults.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="MiniSearch" FileName="MiniSearch.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="GetTopSearchPhrase" FileName="GetTopSearchPhrase.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="TopSearchPhrase" FileName="TopSearchPhrase.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchConnection" FileName="SearchConnection.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchEverything" FileName="SearchEverything.ascx" Enabled="true"/>
 </ModuleList>

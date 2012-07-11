@@ -72,4 +72,3 @@ Below are the types of content that can be included on this profile.
 <asp:Panel ID="pnlOpenSocial" runat="server" Visible="false">
     <div id="gadgets-edit" class="gadgets-gadget-parent"></div>
 </asp:Panel>
-

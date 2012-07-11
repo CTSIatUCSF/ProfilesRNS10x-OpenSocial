@@ -53,6 +53,7 @@ using System.Data;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Configuration;
 
 using SemWeb.Util;
 
@@ -164,7 +165,25 @@ namespace SemWeb.Stores {
 
 		// The constructor called by subclasses.
 		protected SQLStore(string table) {
-			this.table = table;
+            try
+            {
+                switch (ConfigurationSettings.AppSettings["SecureMode"].ToString().ToLower())
+                {
+                    case "public":
+                        table = table + ".vwPublic";
+                        break;
+                    case "private":
+                        table = table + ".vwPrivate";
+                        break;
+                    default:
+                        table = table + ".vwPrivate";
+                        break;
+                }
+            }
+            catch (Exception ex) {
+                table = table + ".vwPrivate";
+            }
+            this.table = table;
 		}
 		
 		protected string TableName { get { return table; } }

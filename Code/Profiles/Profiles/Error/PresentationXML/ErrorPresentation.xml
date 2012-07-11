@@ -11,7 +11,7 @@
     <Panel type="header"  />
     <Panel type="page" />
     <Panel Type="active">
-      <Module ID="DefaultMenu">
+      <Module ID="MainMenu">
       </Module>
     </Panel>
     <Panel Type="main" >

@@ -22,7 +22,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 
 
-namespace ProfilesSPARQLAPI.Framework
+namespace Search.Common
 {
     static public class Cache
     {

@@ -56,6 +56,7 @@ namespace Profiles.Login
         {
             string presentationxml = string.Empty;
             
+                    //presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Login/PresentationXML/LoginFormPresentation.xml");
                     presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Login/PresentationXML/ShibbolethLoginPresentation.xml");
             
 

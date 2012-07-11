@@ -11,15 +11,18 @@ Code licensed under a BSD License.
 For details, see: LICENSE.txt
 -->
 <ModuleList>
-  <Module ModulePath="Modules" NameSpace="NetworkBrowser" FileName="NetworkBrowser.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="GoogleMap" FileName="GoogleMap.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="PersonalInfo" FileName="PersonalInfo.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="ConceptConnection" FileName="ConceptConnection.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CoAuthorConnection" FileName="CoAuthorConnection.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkRadial" FileName="NetworkRadial.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkMap" FileName="NetworkMap.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewPersonGeneralInfo" FileName="CustomViewPersonGeneralInfo.ascx" Enabled="true"/>    
   <Module ModulePath="Modules" NameSpace="PropertyList" FileName="PropertyList.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="SameDepartment" FileName="SameDepartment.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="Publication" FileName="Publication.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="PassiveHead" FileName="PassiveHead.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="PersonPublications" FileName="PersonPublications.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewPersonSameDepartment" FileName="CustomViewPersonSameDepartment.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewInformationResource" FileName="CustomViewInformationResource.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PassiveHeader" FileName="PassiveHeader.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorship" FileName="CustomViewAuthorInAuthorship.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkCategories" FileName="NetworkCategories.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkList" FileName="NetworkList.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PassiveList" FileName="PassiveList.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="PassiveText" FileName="PassiveText.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkDetails" FileName="NetworkDetails.ascx" Enabled="true"/>
 </ModuleList>
 

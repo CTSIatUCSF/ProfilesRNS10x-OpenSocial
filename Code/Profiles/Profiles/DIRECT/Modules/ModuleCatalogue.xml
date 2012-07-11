@@ -11,5 +11,5 @@ Code licensed under a BSD License.
 For details, see: LICENSE.txt
 -->
 <ModuleList>
-  <Module ModulePath="Modules" NameSpace="SearchInstitutions" FileName="SearchInstitutions.ascx" Enabled="true"/>  
+  <Module ModulePath="Modules" NameSpace="DirectSearch" FileName="DirectSearch.ascx" Enabled="true"/>  
 </ModuleList>

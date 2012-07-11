@@ -239,7 +239,7 @@ namespace Profiles.Framework.Utilities
                 param[12] = new SqlParameter("@useragent", useragent);
                 param[13] = new SqlParameter("@ContentType", contenttype);
 
-                dbreader = GetSQLDataReader(GetDBCommand("", "[Ontology.].[ResolveURL]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                dbreader = GetSQLDataReader(GetDBCommand("", "[Framework.].[ResolveURL]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
                 dbreader.Read();
 
                 rtn = new URLResolve(Convert.ToBoolean(dbreader["Resolved"]), dbreader["ErrorDescription"].ToString(), dbreader["ResponseURL"].ToString(),
@@ -274,20 +274,20 @@ namespace Profiles.Framework.Utilities
         public SqlDataReader GetRESTApplications()
         {
 
-            string sql = "Select * from [Ontology.].RestPath with(nolock)";
+            string sql = "Select * from [Framework.].RestPath with(nolock)";
 
             SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
 
             return sqldr;
         }
-        public string GetRESTBaseURI()
+        public string GetRESTBasePath()
         {
             string rtn = string.Empty;
 
-            if (Framework.Utilities.Cache.FetchObject("GetRESTBaseURI") == null)
+            if (Framework.Utilities.Cache.FetchObject("GetRESTBasePath") == null)
             {
 
-                string sql = "select [value] from [ontology.].[parameter] with(nolock) where parameterid = 'basepath'";
+                string sql = "select [value] from [Framework.].[parameter] with(nolock) where parameterid = 'basepath'";
 
                 SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
 
@@ -296,7 +296,33 @@ namespace Profiles.Framework.Utilities
                     rtn = sqldr[0].ToString();
                 }
 
-                Framework.Utilities.Cache.Set("GetRESTBaseURI", rtn);
+                Framework.Utilities.Cache.Set("GetRESTBasePath", rtn, 10000);
+            }
+            else
+            {
+                rtn = (string)Framework.Utilities.Cache.FetchObject("GetRESTBasePath");
+            }
+
+            return rtn;
+        }
+
+        public string GetRESTBaseURI()
+        {
+            string rtn = string.Empty;
+
+            if (Framework.Utilities.Cache.FetchObject("GetRESTBaseURI") == null)
+            {
+
+                string sql = "select [value] from [Framework.].[parameter] with(nolock) where parameterid = 'baseuri'";
+
+                SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+
+                while (sqldr.Read())
+                {
+                    rtn = sqldr[0].ToString();
+                }
+
+                Framework.Utilities.Cache.Set("GetRESTBaseURI", rtn, 10000);
             }
             else
             {
@@ -305,7 +331,6 @@ namespace Profiles.Framework.Utilities
 
             return rtn;
         }
-
         #endregion
 
         public Int64 GetSessionSecurityGroup()
@@ -722,7 +747,7 @@ namespace Profiles.Framework.Utilities
 
                 dbreader = GetSQLDataReader(GetDBCommand("", "[user.account].[relationship.getrelationship]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
 
-                                
+
 
             }
             catch (Exception ex)

@@ -11,7 +11,7 @@
     <Panel type="page" />
     <Panel Type="active">
       <Module ID="MiniSearch"  />
-      <Module ID="DefaultMenu"  />
+      <Module ID="MainMenu"  />
       <Module ID="Gadgets" >
         <ParamList>
           <Param Name="HTML">
@@ -20,10 +20,9 @@
         </ParamList>
       </Module>
     </Panel>
-    <Panel Type="main" TabType="fixed" TabSort="0" >
-      <Module ID="EverythingResults">        
+    <Panel Type="main" TabType="Fixed" TabSort="0" >
+      <Module ID="SearchResults">        
       </Module>
-      <Module ID="SearchGadgets"/>
     </Panel>
     <Panel Type="passive">
       <Module ID="SearchCriteria"></Module>

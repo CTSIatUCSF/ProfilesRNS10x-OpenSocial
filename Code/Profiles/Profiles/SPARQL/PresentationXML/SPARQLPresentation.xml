@@ -11,10 +11,10 @@
     <Panel type="page" />
     <Panel Type="active">
       <Module ID="MiniSearch"  />
-      <Module ID="DefaultMenu"  />
+      <Module ID="MainMenu"  />
     </Panel>
     <Panel Type="main">
-      <Module ID="SPARQLQuery" />
+      <Module ID="SPARQLSearch" />
     </Panel>
     <Panel Type="passive"/>
     <Panel type="footer" />

@@ -30,13 +30,13 @@ namespace Profiles.Framework.Utilities
             {
                 DataIO data = new DataIO();
 
-                string restdomain = data.GetRESTBaseURI();
+                string restdomain = data.GetRESTBasePath();
 
                 if (HttpContext.Current.Request.IsSecureConnection)
                 {
                     restdomain = restdomain.Replace("http:", "https:");
                 }
-                          
+               // restdomain = "http://localhost:55956";
 
                 return restdomain;
             }
@@ -57,7 +57,7 @@ namespace Profiles.Framework.Utilities
         {
             get
             {
-                String url = HttpContext.Current.Request.Url.ToString().ToLower().Replace(Root.Domain, "").Replace("/default.aspx", "");
+                String url = HttpContext.Current.Request.Url.ToString().ToLower().Replace(Root.Domain.ToLower(), "").Replace("/default.aspx", "");
 
                 //string url = HttpContext.Current.Request.Url.AbsolutePath.ToLower();
 

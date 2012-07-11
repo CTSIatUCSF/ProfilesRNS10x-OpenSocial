@@ -21,6 +21,8 @@
 <input type="hidden" id="classuri" name="classuri" value="" />
 <input type="hidden" id="searchtype" name="searchtype" value="everything" />
 
+Search or browse for people, publications, concepts, and other items in Profiles.
+
 <div class="content_container">
     <div class="tabContainer" style="margin-top: 0px;">
         <div class="searchForm">

@@ -1,4 +1,17 @@
-﻿using System;
+﻿/*  
+ 
+    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
+    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
+    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
+    National Center for Research Resources and Harvard University.
+
+
+    Code licensed under a BSD License. 
+    For details, see: LICENSE.txt 
+  
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
@@ -34,10 +47,6 @@ namespace Profiles.Proxy.Modules.SearchProxies
         }
         private void DrawProfilesModule()
         {
-            
-
-            
-
             Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
             SessionManagement sm = new SessionManagement();
             string subject = sm.Session().SessionID.ToString();
@@ -45,8 +54,6 @@ namespace Profiles.Proxy.Modules.SearchProxies
 
             if (sm.Session().UserID == 0)
                 Response.Redirect(Root.Domain + "/search");
-
-
 
             litBackLink.Text = "<b>Search Proxies</b>";
 
@@ -85,8 +92,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
                 drpDepartment.SelectedIndex = drpDepartment.Items.IndexOf(drpDepartment.Items.FindByText(Request.QueryString["department"]));
                 this.Department = Request.QueryString["department"];
             }
-
-
+            
             drpDivision.DataSource = data.GetDivisions();
             drpDivision.DataTextField = "Text";
             drpDivision.DataValueField = "Value";
@@ -219,6 +225,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
             txtFirstName.Text = "";
             drpInstitution.SelectedIndex = -1;
             drpDepartment.SelectedIndex = -1;
+            drpDivision.SelectedIndex = -1;
             gridSearchResults.DataBind();
             pnlProxySearchResults.Visible = false;
         }
@@ -247,7 +254,8 @@ namespace Profiles.Proxy.Modules.SearchProxies
                         e.Row.Attributes.Add("class", "oddRow");
                     }
 
-                    e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(this.gridSearchResults, "Select$" + e.Row.RowIndex);
+                    e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink((GridView)sender, "Select$" + e.Row.RowIndex);
+                    
                     e.Row.Cells[0].Attributes.Add("style", "border-left:#999 1px solid;padding-left:6px;");
                     e.Row.Cells[1].Attributes.Add("style", "border-right:#999 1px solid;padding-left:6px;");
 

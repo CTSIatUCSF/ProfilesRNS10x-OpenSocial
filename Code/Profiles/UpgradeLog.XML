@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
 <Properties><Property Name="Solution" Value="Profiles">
-</Property><Property Name="Solution File" Value="C:\Development\ProfilesRNS10x-OpenSocial\Code\Profiles\Profiles.sln">
-</Property><Property Name="Date" Value="Monday, June 04, 2012">
-</Property><Property Name="Time" Value="11:36 AM">
+</Property><Property Name="Solution File" Value="C:\Development\ProfilesRNS101\Code\Profiles\Profiles.sln">
+</Property><Property Name="Date" Value="Tuesday, July 10, 2012">
+</Property><Property Name="Time" Value="13:40 PM">
 </Property></Properties><Event ErrorLevel="0" Project="Profiles" Source="Profiles\Profiles.csproj" Description="Project converted successfully">
 </Event><Event ErrorLevel="3" Project="Profiles" Source="Profiles\Profiles.csproj" Description="Converted">
 </Event><Event ErrorLevel="0" Project="ProfilesSPARQLAPI" Source="..\ProfilesSPARQLAPI\ProfilesSPARQLAPI\ProfilesSPARQLAPI.csproj" Description="Project converted successfully">
@@ -22,6 +22,8 @@
 </Event><Event ErrorLevel="3" Project="Connects.Profiles.Utility" Source="..\ProfilesBetaAPI\Connects.Profiles.Utility\Connects.Profiles.Utility.csproj" Description="Converted">
 </Event><Event ErrorLevel="0" Project="Connects.Profiles.Common" Source="..\ProfilesBetaAPI\Profiles.Common\Connects.Profiles.Common.csproj" Description="Project converted successfully">
 </Event><Event ErrorLevel="3" Project="Connects.Profiles.Common" Source="..\ProfilesBetaAPI\Profiles.Common\Connects.Profiles.Common.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="ProfilesSearchAPI" Source="..\ProfilesSearchAPI\ProfilesSearchAPI\ProfilesSearchAPI.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="ProfilesSearchAPI" Source="..\ProfilesSearchAPI\ProfilesSearchAPI\ProfilesSearchAPI.csproj" Description="Converted">
 </Event><Event ErrorLevel="0" Project="" Source="Profiles.sln" Description="Solution converted successfully">
 </Event><Event ErrorLevel="3" Project="" Source="Profiles.sln" Description="Converted">
 </Event><Event ErrorLevel="0" Project="Connects.Profiles.Service" Source="..\ProfilesBetaAPI\Connects.Profiles.Service\Connects.Profiles.Service.csproj" Description="Scan complete: Upgrade not required for project files.">
@@ -33,4 +35,5 @@
 </Event><Event ErrorLevel="0" Project="Profiles" Source="Profiles\Profiles.csproj" Description="Scan complete: Upgrade not required for project files.">
 </Event><Event ErrorLevel="0" Project="ProfilesSPARQLAPI" Source="..\ProfilesSPARQLAPI\ProfilesSPARQLAPI\ProfilesSPARQLAPI.csproj" Description="Scan complete: Upgrade not required for project files.">
 </Event><Event ErrorLevel="0" Project="SemWeb" Source="..\SemWeb\src\SemWeb.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="ProfilesSearchAPI" Source="..\ProfilesSearchAPI\ProfilesSearchAPI\ProfilesSearchAPI.csproj" Description="Scan complete: Upgrade not required for project files.">
 </Event></UpgradeLog>

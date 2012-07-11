@@ -72,7 +72,6 @@ namespace Profiles.Framework.Utilities
 
         public void LoadModules()
         {
-
             if (HttpRuntime.Cache["MODULES"] == null)
             {
                 XmlDocument applicationcatalogue = new XmlDocument();
@@ -93,7 +92,10 @@ namespace Profiles.Framework.Utilities
                             if (module.SelectSingleNode("@Enabled").Value == "true")
                             {
                                 modulepath = "~/" + app.SelectSingleNode("@ApplicaitonPath").Value + "/" + module.SelectSingleNode("@ModulePath").Value + "/" + module.SelectSingleNode("@NameSpace").Value + "/" + module.SelectSingleNode("@FileName").Value;
-                                _modules.Add(new Module(modulepath, module.SelectSingleNode("@NameSpace").Value, null, ""));
+                                if (this.GetModule(module.SelectSingleNode("@NameSpace").Value)==null){
+                                    _modules.Add(new Module(modulepath, module.SelectSingleNode("@NameSpace").Value, null, ""));
+                                }
+                                _modules.Add(new Module(modulepath, app.SelectSingleNode("@ApplicaitonPath").Value+"."+module.SelectSingleNode("@NameSpace").Value, null, ""));
                                 moduleparams = new List<ModuleParams>();
                             }
                         }
@@ -105,16 +107,20 @@ namespace Profiles.Framework.Utilities
                 System.Web.Caching.CacheItemRemovedCallback callback = new System.Web.Caching.CacheItemRemovedCallback(OnRemove);
                 HttpRuntime.Cache.Insert("MODULES", _modules, null, DateTime.Now.AddHours(1), TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Default, callback);
             }
-
         }
 
         //***************************************************************************************************************************************
-        public Module GetModule(string ModuleGUID)
+        public Module GetModule(string modulekey)
         {
             List<Module> modules = (List<Module>)HttpRuntime.Cache["MODULES"];
-
             Module rtnmodule = null;
-            rtnmodule = modules.Find(delegate(Module module) { return module.Key == ModuleGUID; });
+            try
+            {
+            
+                rtnmodule = modules.Find(delegate(Module module) { return module.Key == modulekey; });
+
+            }
+            catch (Exception ex) { }
 
             return rtnmodule;
         }

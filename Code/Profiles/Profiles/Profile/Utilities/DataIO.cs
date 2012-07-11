@@ -247,7 +247,7 @@ namespace Profiles.Profile.Utilities
 
         #endregion
 
-        #region "SameDepartment"
+        #region "CustomViewPersonSameDepartment"
 
         public XmlDocument GetSameDepartment(RDFTriple request)
         {
@@ -256,7 +256,7 @@ namespace Profiles.Profile.Utilities
 
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlCommand dbcommand = new SqlCommand("[Module.Beta].[GetPeopleInSameDepartment]");
+            SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewPersonSameDepartment.GetList]");
 
             SqlDataReader dbreader;
             dbconnection.Open();
@@ -418,7 +418,7 @@ namespace Profiles.Profile.Utilities
 
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlCommand dbcommand = new SqlCommand("[Module.Profile].[Person.GetPublications]");
+            SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetList]");
 
             SqlDataReader dbreader;
             dbconnection.Open();
@@ -449,7 +449,7 @@ namespace Profiles.Profile.Utilities
                 {
                     string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
                     SqlConnection dbconnection = new SqlConnection(connstr);
-                    SqlCommand dbcommand = new SqlCommand("[Module.Beta].[GetCoauthorNetwork]");
+                    SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.GetCoauthors]");
 
                     SqlDataReader dbreader;
                     dbconnection.Open();
@@ -502,19 +502,19 @@ namespace Profiles.Profile.Utilities
         public String GetGoogleKey()
         {
             XmlDocument val = new XmlDocument();
-            val.Load(Root.Domain + "/Profile/Modules/GoogleMap/config.xml");
+            val.Load(Root.Domain + "/Profile/Modules/NetworkMap/config.xml");
             string result = val.SelectSingleNode("//mapconfig/Key").InnerText;
 
             return result;
         }
-        public List<Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation> GetGoogleMapZoomLinks()
+        public List<Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation> GetGoogleMapZoomLinks()
         {
             XmlDocument vals = new XmlDocument();
-            List<Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation> linklist = new List<Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation>();
-            Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation link = new Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation();
+            List<Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation> linklist = new List<Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation>();
+            Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation link = new Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation();
             try
             {
-                vals.Load(Root.Domain + "/Profile/Modules/GoogleMap/config.xml");
+                vals.Load(Root.Domain + "/Profile/Modules/NetworkMap/config.xml");
             }
             catch (Exception e)
             {
@@ -532,9 +532,9 @@ namespace Profiles.Profile.Utilities
                 link.DefaultLevel = x.SelectSingleNode("DefaultLevel").InnerText;
 
                 linklist.Add(link);
-                link = new Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation();
+                link = new Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation();
             }
-            linklist.Sort(delegate(Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation p1, Profiles.Profile.Modules.GeoMaps.GoogleMap.GoogleMapLocation p2)
+            linklist.Sort(delegate(Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation p1, Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation p2)
             {
                 return p1.SortOrder.CompareTo(p2.SortOrder);
             });
@@ -555,7 +555,7 @@ namespace Profiles.Profile.Utilities
 
                 SqlCommand dbcommand = new SqlCommand();
                 dbcommand.CommandType = CommandType.StoredProcedure;
-                dbcommand.CommandText = "[Module.Beta].GetCoAuthorMap";
+                dbcommand.CommandText = "[Profile.Module].[NetworkMap.GetCoauthors]";
                 dbcommand.CommandTimeout = base.GetCommandTimeout();
 
                 dbcommand.Parameters.Add(new SqlParameter("@NodeID", nodeid));
@@ -587,7 +587,7 @@ namespace Profiles.Profile.Utilities
 
                 SqlCommand dbcommand = new SqlCommand();
                 dbcommand.CommandType = CommandType.StoredProcedure;
-                dbcommand.CommandText = "[Module.Beta].GetSimilarMap";
+                dbcommand.CommandText = "[Profile.Module].[NetworkMap.GetSimilarPeople]";
                 dbcommand.CommandTimeout = base.GetCommandTimeout();
 
                 dbcommand.Parameters.Add(new SqlParameter("@NodeID", nodeid));

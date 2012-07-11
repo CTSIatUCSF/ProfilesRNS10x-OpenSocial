@@ -8,13 +8,13 @@ C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPA
 C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
 C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
 C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
-C:\tt\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb

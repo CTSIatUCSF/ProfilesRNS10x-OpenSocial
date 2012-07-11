@@ -12,10 +12,10 @@
     <Panel type="header"  />
     <Panel type="page" />
     <Panel Type="active">
-      <Module ID="DefaultMenu">
+      <Module ID="MainMenu">
       </Module>
     </Panel>
-    <Panel Name="" Alias="" Type="main" TabType="default" TabSort="0">
+    <Panel Name="" Alias="" Type="main" TabType="Default" TabSort="0">
       <Module ID="SearchProxies">
       </Module>
     </Panel>

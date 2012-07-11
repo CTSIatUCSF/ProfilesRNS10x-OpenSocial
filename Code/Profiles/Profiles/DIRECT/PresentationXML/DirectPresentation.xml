@@ -10,11 +10,11 @@
     <Panel type="header" />
     <Panel type="page" />
     <Panel Type="active">
-      <Module ID="DefaultMenu">
+      <Module ID="MainMenu">
       </Module>
     </Panel>
     <Panel Type="main">
-      <Module ID="SearchInstitutions" >        
+      <Module ID="DirectSearch" >        
       </Module>
     </Panel>
     <Panel Type="passive">

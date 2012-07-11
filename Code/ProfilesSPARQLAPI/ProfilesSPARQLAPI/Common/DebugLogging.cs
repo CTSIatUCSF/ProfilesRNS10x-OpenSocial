@@ -6,7 +6,7 @@ using System.Configuration;
 using System.IO;
 
 
-namespace ProfilesSPARQLAPI.Common
+namespace Search.Common
 {
     public static class DebugLogging
     {

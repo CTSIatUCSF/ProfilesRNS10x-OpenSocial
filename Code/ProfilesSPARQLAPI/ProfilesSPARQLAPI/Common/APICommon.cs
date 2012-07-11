@@ -22,9 +22,7 @@ using System.Configuration;
 using SemWeb;
 using SemWeb.Query;
 
-using ProfilesSPARQLAPI.Framework;
-
-namespace ProfilesSPARQLAPI
+namespace Search
 {
     public class APICommon : System.Web.UI.Page
     {

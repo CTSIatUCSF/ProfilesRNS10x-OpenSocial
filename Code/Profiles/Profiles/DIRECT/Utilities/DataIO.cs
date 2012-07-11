@@ -154,7 +154,7 @@ namespace Profiles.DIRECT.Utilities
 
             try
             {
-                vals.Load(Root.Domain + "/DIRECT/Modules/SearchInstitutions/Config.xml");
+                vals.Load(Root.Domain + "/DIRECT/Modules/DirectSearch/Config.xml");
             }
             catch (Exception e)
             {
@@ -170,7 +170,7 @@ namespace Profiles.DIRECT.Utilities
 
         public SqlDataReader DirectResultset()
         { //ref List<T> ResultSet
-            string sql = "select * from [Profile.Data].[Direct.Sites] with (NOLOCK) where isactive = 1 order by SortOrder";
+            string sql = "select * from [Direct.].Sites with (NOLOCK) where isactive = 1 order by SortOrder";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
 
@@ -178,14 +178,14 @@ namespace Profiles.DIRECT.Utilities
       
         public SqlDataReader GetSitesOrderBySortOrder()
         {
-            string sql = "select * from [Profile.Data].[Direct.Sites] with (NOLOCK) where isactive = 1 order by sortorder";
+            string sql = "select * from [Direct.].Sites with (NOLOCK) where isactive = 1 order by sortorder";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetSitesOrderBySiteID()
         {
-            string sql = "select SiteID, QueryURL, newid() FSID from [Profile.Data].[Direct.Sites] with (NOLOCK) where isactive = 1 order by SiteID; select count(siteid) from [Profile.Data].[Direct.Sites]  with (NOLOCK);";
+            string sql = "select SiteID, QueryURL, newid() FSID from [Direct.].Sites with (NOLOCK) where isactive = 1 order by SiteID; select count(siteid) from [Direct.].Sites  with (NOLOCK);";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
@@ -193,7 +193,7 @@ namespace Profiles.DIRECT.Utilities
         
         public SqlDataReader GetFsID(string FsID)
         {
-            string sql = "select siteid, resultdetailsurl from [Profile.Data].[Direct.LogOutgoing] with (NOLOCK) where details = 0 and fsid = " + FsID;
+            string sql = "select siteid, resultdetailsurl from [Direct.].LogOutgoing with (NOLOCK) where details = 0 and fsid = " + FsID;
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

@@ -14,6 +14,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Data;
+using System.Web;
+using System.Net;
+using System.IO;
+using System.Text;
+
 using System.Data.SqlClient;
 using System.Xml;
 using System.Configuration;
@@ -236,6 +241,7 @@ namespace Profiles.Edit.Utilities
 
 
         }
+
         public void DeleteOnePublication(int personid, string pubid)
         {
             string skey = string.Empty;
@@ -253,15 +259,15 @@ namespace Profiles.Edit.Utilities
                 comm.Parameters.Add(new SqlParameter("PersonID", personid));
                 comm.Parameters.Add(new SqlParameter("PubID", pubid));
 
-                
+
                 comm.Connection = dbconnection;
                 comm.Connection.Open();
                 comm.CommandType = CommandType.StoredProcedure;
                 comm.CommandText = "[Profile.Data].[Publication.DeleteOnePublication]";
                 comm.ExecuteScalar();
 
-                
-                 this.UpdateEntityOnePerson(personid);
+
+                this.UpdateEntityOnePerson(personid);
 
 
             }
@@ -273,7 +279,6 @@ namespace Profiles.Edit.Utilities
 
 
         }
-
 
         public void EditCustomPublication(Hashtable parameters)
         {
@@ -497,7 +502,8 @@ namespace Profiles.Edit.Utilities
 
 
         }
-        public  byte[] ResizeImageFile(byte[] imageFile, int targetSize)
+
+        public byte[] ResizeImageFile(byte[] imageFile, int targetSize)
         {
             System.Drawing.Image original = System.Drawing.Image.FromStream(new System.IO.MemoryStream(imageFile));
             int targetH, targetW;
@@ -639,7 +645,40 @@ namespace Profiles.Edit.Utilities
             return error;
 
         }
+        public Int64 AddNewEntity(string label, string classuri)
+        {
 
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+
+            SqlParameter[] param = new SqlParameter[5];
+
+            string error = string.Empty;
+
+            dbconnection.Open();
+
+
+            param[0] = new SqlParameter("@label", label);
+            param[1] = new SqlParameter("@EntityClassURI", classuri);
+            param[2] = new SqlParameter("@ForceNewEntity", 1);
+            param[3] = new SqlParameter("@SessionID", sm.Session().SessionID);
+
+            param[4] = new SqlParameter("@NodeID", null);
+            param[4].DbType = DbType.Int64;
+            param[4].Direction = ParameterDirection.Output;
+
+
+            //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+            ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+
+            dbconnection.Close();
+
+            return Convert.ToInt64(param[4].Value.ToString());
+
+
+        }
         public bool AddLiteral(Int64 subjectid, Int64 predicateid, Int64 objectid)
         {
 
@@ -789,7 +828,7 @@ namespace Profiles.Edit.Utilities
         }
 
         public bool AddAward(Int64 subjectid, string label, string institution,
-        string startdate, string enddate)
+                    string startdate, string enddate)
         {
             bool error = false;
             try
@@ -920,7 +959,7 @@ namespace Profiles.Edit.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Module.Edit].[AwardReceipt.Store]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Edit.Module].[CustomEditAwardOrHonor.StoreItem]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
 
                 dbconnection.Close();
 
@@ -1085,6 +1124,122 @@ namespace Profiles.Edit.Utilities
 
 
         }
+        public XmlDocument GetURIRelLink(string URL,ref string passeduri)
+        {
+
+            string result = string.Empty;
+            XmlDocument rawdata = new XmlDocument();
+            string rawhtml = string.Empty;
+            XmlDocument htmlhead = new XmlDocument();
+            try
+            {
+                HttpWebRequest request = null;
+                request = (HttpWebRequest)WebRequest.Create(URL);
+                request.Method = "POST";
+                request.ContentType = "application/rdf+xml";
+                request.ContentLength = URL.Length;
+
+                using (Stream writeStream = request.GetRequestStream())
+                {
+                    UTF8Encoding encoding = new UTF8Encoding();
+                    byte[] bytes = encoding.GetBytes(URL);
+                    writeStream.Write(bytes, 0, bytes.Length);
+                }
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        using (StreamReader readStream = new StreamReader(responseStream, Encoding.UTF8))
+                        {
+                            result = readStream.ReadToEnd();
+                        }
+                    }
+                }
+
+                if (result.ToLower().Contains("<html"))
+                {
+                    string xml = result.Substring(result.ToLower().IndexOf("<head"), (result.ToLower().IndexOf("/head>") - result.ToLower().IndexOf("<head")) - 1) + "</head>";
+
+                    rawhtml = result.Substring(result.ToLower().IndexOf("<head"), (result.ToLower().IndexOf("/head>") - result.ToLower().IndexOf("<head")) - 1);
+
+                    int stopindex = 0;
+                    int startindex = rawhtml.IndexOf("alternate");
+                    for (int i = rawhtml.IndexOf("alternate"); i < rawhtml.Length; i++)
+                    {
+                        if (rawhtml.Substring(i, 2) == "/>")
+                        {
+                            stopindex = (i + 2)-startindex;
+
+                            i = rawhtml.Length;
+                        }
+                    }
+
+                    xml = rawhtml.Substring(startindex, stopindex);
+
+                    if (xml.Contains("\""))
+                    {
+                        xml = "<link rel=\"" + xml;
+
+                    }
+                    else if (xml.Contains("'"))
+                    {
+                        xml = "<link rel='" + xml;
+                    }
+                    htmlhead.LoadXml(xml.ToLower());
+
+                    //<link rel="alternate" type="application/rdf+xml" href="/individual/n25562/n25562.rdf" /> 
+
+                    string uri = htmlhead.SelectSingleNode("link/@href").Value;
+
+                    //If a prefix of the / char or ~ exists then remove them
+                    if (uri.Substring(0, 1) == "~")
+                        uri = uri.Substring(2);
+
+                    if (uri.Substring(0, 1) == "/")
+                        uri = uri.Substring(1);
+
+                    if (!uri.Contains("http"))
+                    {
+                        string[] domianparse = URL.Split('/');
+
+                        uri = domianparse[0] + "//" + domianparse[2] + "/" + uri;
+
+                    }
+
+                    passeduri = uri;
+                    if (passeduri.Contains(".rdf"))
+                    {
+                        string[] rdfparse = passeduri.Split('/');
+                        passeduri = passeduri.Replace("/" + rdfparse[rdfparse.Length-1], "");
+
+                    }
+
+                    result = this.GetURIRelLink(uri, ref passeduri).OuterXml;
+
+                }
+                else if (result.Contains("rdf:RDF"))
+                {
+                    // do nothing, let it be loaded into the rawdata xml doc below.
+                }
+                else
+                {
+                    result = "<eof/>";
+                }
+
+
+                rawdata.LoadXml(result);
+
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+            }
+
+            return rawdata;
+        }
+
+
 
 
         #region "Request and Param classes for edit of a triple"

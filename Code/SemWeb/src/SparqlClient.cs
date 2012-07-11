@@ -642,7 +642,7 @@ namespace SemWeb.Query {
 		}
 		
 		public override void Init(Variable[] variables) {
-			output.WriteStartElement("sparql", "http://www.w3.org/2005/sparql-results#");
+            output.WriteStartElement("sparql","http://www.w3.org/2007/SPARQL/results#");//http://www.w3.org/2007/SPARQL/results#
 			output.WriteStartElement("head");
 			foreach (Variable var in variables) {
 				if (var.LocalName == null) continue;

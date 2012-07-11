@@ -9,14 +9,14 @@ C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\bin\Debug\sparql-c
 C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\bin\Debug\SemWeb.Sparql.pdb
 C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\obj\Debug\SemWeb.dll
 C:\Visual Studio 2008\Projects\Profiles.OpenSource\SemWeb\src\obj\Debug\SemWeb.pdb
-C:\tt\Code\SemWeb\src\bin\Debug\SemWeb.dll
-C:\tt\Code\SemWeb\src\bin\Debug\SemWeb.pdb
-C:\tt\Code\SemWeb\src\bin\Debug\IKVM.GNU.Classpath.dll
-C:\tt\Code\SemWeb\src\bin\Debug\IKVM.Runtime.dll
-C:\tt\Code\SemWeb\src\bin\Debug\Mono.GetOptions.dll
-C:\tt\Code\SemWeb\src\bin\Debug\SemWeb.Sparql.dll
-C:\tt\Code\SemWeb\src\bin\Debug\sparql-core.dll
-C:\tt\Code\SemWeb\src\bin\Debug\SemWeb.Sparql.pdb
-C:\tt\Code\SemWeb\src\obj\Debug\ResolveAssemblyReference.cache
-C:\tt\Code\SemWeb\src\obj\Debug\SemWeb.dll
-C:\tt\Code\SemWeb\src\obj\Debug\SemWeb.pdb
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\SemWeb.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\SemWeb.pdb
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\IKVM.GNU.Classpath.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\IKVM.Runtime.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\Mono.GetOptions.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\SemWeb.Sparql.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\sparql-core.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\bin\Debug\SemWeb.Sparql.pdb
+C:\Development\ProfilesRNS101\Code\SemWeb\src\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS101\Code\SemWeb\src\obj\Debug\SemWeb.dll
+C:\Development\ProfilesRNS101\Code\SemWeb\src\obj\Debug\SemWeb.pdb

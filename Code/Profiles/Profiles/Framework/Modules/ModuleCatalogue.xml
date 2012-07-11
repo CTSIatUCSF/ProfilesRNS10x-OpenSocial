@@ -14,11 +14,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="HTMLBlock" FileName="HTMLBlock.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="ApplyXSLT" FileName="ApplyXSLT.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="HelloWorld" FileName="helloworld.ascx" Enabled="true"/>  
-  <Module ModulePath="Modules" NameSpace="CategoryList" FileName="CategoryList.ascx" Enabled="true"/>   
-  <Module ModulePath="Modules" NameSpace="ListView" FileName="ListView.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="DefaultMenu" FileName="DefaultMenu.ascx" Enabled="true"/>  
-  <Module ModulePath="Modules" NameSpace="PassiveNetworkList" FileName="PassiveNetworkList.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="PassiveTextBlock" FileName="PassiveTextBlock.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="NetworkDetails" FileName="NetworkDetails.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="PropertyListRange" FileName="PropertyListRange.ascx" Enabled="true"/>  
+  <Module ModulePath="Modules" NameSpace="MainMenu" FileName="MainMenu.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="RDFLink" FileName="RDFLink.ascx" Enabled="true"/>
+
 </ModuleList>

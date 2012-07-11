@@ -11,12 +11,16 @@ Code licensed under a BSD License.
 For details, see: LICENSE.txt
 -->
 <ModuleList>
+  <Module ModulePath="Modules" NameSpace="EditObjectTypeProperty" FileName="EditObjectTypeProperty.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="EditPropertyList" FileName="EditPropertyList.ascx" Enabled="true"/>  
   <Module ModulePath="Modules" NameSpace="EditPropertyContainer" FileName="EditPropertyContainer.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="DisplayPropertyToEdit" FileName="DisplayPropertyToEdit.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="EditAwardOrHonor" FileName="EditAwardOrHonor.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="EditPublications" FileName="EditPublications.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="DefaultCustomEdit" FileName="DefaultCustomEdit.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="EditProfileImage" FileName="EditProfileImage.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="EditMailingAddress" FileName="EditMailingAddress.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="EditDataTypeProperty" FileName="EditDataTypeProperty.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditAwardOrHonor" FileName="CustomEditAwardOrHonor.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditAuthorInAuthorship" FileName="CustomEditAuthorInAuthorship.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="EditVisibilityOnly" FileName="EditVisibilityOnly.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditMainImage" FileName="CustomEditMainImage.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditMailingAddress" FileName="CustomEditMailingAddress.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditMailingAddress" FileName="CustomEditMailingAddress.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditEmail" FileName="CustomEditEmail.ascx" Enabled="true"/>
+  
 </ModuleList>

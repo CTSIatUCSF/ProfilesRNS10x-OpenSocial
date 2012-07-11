@@ -50,7 +50,7 @@ namespace Profiles.Search.Modules
             }
 
 
-            //Need to strip the two querystring params so they fall out of the search process in the everythingresults.ascx and search/default.aspx processes.
+            //Need to strip the two querystring params so they fall out of the search process in the SearchResults.ascx and search/default.aspx processes.
             url = url.Replace("nodeuri=", "_nodeuri=");
             url = url.Replace("nodeid=", "_nodeid=");
 

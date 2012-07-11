@@ -23,7 +23,7 @@ For details, see: LICENSE.txt
   <Application ApplicaitonPath="ActiveNetwork" ModulePath="Modules" Enabled="true"/>
   <Application ApplicaitonPath="DIRECT" ModulePath="Modules" Enabled="true"/>
   <!-- Profiles OpenSocial Extension by UCSF -->
-  <Application ApplicaitonPath="ORNG" ModulePath="Modules" Enabled="true"/>  
+  <Application ApplicaitonPath="ORNG" ModulePath="Modules" Enabled="true"/>
 </ApplicationList>
 
 
