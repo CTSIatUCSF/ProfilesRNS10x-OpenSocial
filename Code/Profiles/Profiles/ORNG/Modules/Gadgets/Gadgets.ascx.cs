@@ -43,7 +43,13 @@ namespace Profiles.ORNG.Modules.Gadgets
         public Gadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            om = OpenSocialManager.GetOpenSocialManager(Request.QueryString["Subject"], Page, false);
+            // code to convert from numeric node ID to URI
+            string personId = Request.QueryString["Subject"];
+            if (Request.Url.AbsolutePath != null && Request.Url.AbsolutePath.EndsWith("/display/" + personId))
+            {
+                personId = "http://" + Request.Url.Host + Request.Url.AbsolutePath.Replace("/display/", "/profile/");
+            }
+            om = OpenSocialManager.GetOpenSocialManager(personId, Page, false);
         }
 
         public void DrawProfilesModule()

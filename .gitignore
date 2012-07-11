@@ -31,3 +31,6 @@ _ReSharper*/
 # Eric Meeks SQL Server Managment Studio
 *.sqlsuo
 Code/Profiles/Profiles/ProfilesDebuggingLog.txt
+Code/Profiles/Profiles/Profiles.Publish.xml
+Code/ProfilesSearchAPI/ProfilesSearchAPI/ProfilesSearchAPI.Publish.xml
+Code/ProfilesSPARQLAPI/ProfilesSPARQLAPI/ProfilesSPARQLAPI.Publish.xml
