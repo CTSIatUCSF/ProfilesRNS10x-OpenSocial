@@ -58,6 +58,78 @@ namespace Profiles.Framework {
         protected global::AjaxControlToolkit.ToolkitScriptManager toolkitScriptMaster;
         
         /// <summary>
+        /// navResearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink navResearch;
+        
+        /// <summary>
+        /// hypViewMyProfileNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypViewMyProfileNavbar;
+        
+        /// <summary>
+        /// hypViewMyProfileNavbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypViewMyProfileNavbar2;
+        
+        /// <summary>
+        /// hypEditMyProfileNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypEditMyProfileNavbar;
+        
+        /// <summary>
+        /// hypManageProxiesNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypManageProxiesNavbar;
+        
+        /// <summary>
+        /// hypLogoutNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypLogoutNavbar;
+        
+        /// <summary>
+        /// pnlNotLoggedInNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNotLoggedInNavbar;
+        
+        /// <summary>
+        /// hypNotLoggedInNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypNotLoggedInNavbar;
+        
+        /// <summary>
         /// divProfilesHeader control.
         /// </summary>
         /// <remarks>

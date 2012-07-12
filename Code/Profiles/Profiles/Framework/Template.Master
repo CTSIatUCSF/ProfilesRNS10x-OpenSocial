@@ -50,8 +50,58 @@
 
     </script>
 
+    <div id="header-ucsf">
+      <map name="ucsfnosearch">
+	 <area shape="rect" alt="UCSF home page" coords="38,3,84,27" href="http://www.ucsf.edu/" />
+	 <area shape="rect" alt="UCSF home page" coords="93,11,288,19" href="http://www.ucsf.edu/" />
+	 <area shape="rect" alt="About UCSF" coords="306,11,368,19" href="http://www.ucsf.edu/about_ucsf/" />
+	 <area shape="rect" alt="UCSF Medical Center" coords="387,11,498,19" href="http://www.ucsfhealth.org/" />
+      </map>
+      <img src="http://cores.ucsf.edu/assets/img/ucsfgraynosearch.gif" alt="UCSF navigation bar" width="537" height="30" usemap="#ucsfnosearch">
+    </div>
+
     <div class="institutionHeader">
-        <img src="<%=GetURLDomain()%>/Framework/Images/banner.jpg" />
+        <div id="profiles-logo">
+        <h1><a href="../">UCSF Profiles</a></h1>
+        <p>search, discover, network</p>
+        </div>
+        <div id="powered-by-block">
+          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank">Powered by CTSI</a>
+        </div>
+    </div>
+
+    <div id="suckerfish-container">
+       <div id="suckerfishmenu">
+         <div class="content">
+           <ul class="menu">
+              <li class="leaf first item-home"><asp:HyperLink ID="navResearch" runat="server" Text="Home" NavigateUrl="~/"></asp:HyperLink></li>
+              <li class="expanded"><a href="AboutUCSFProfiles.aspx">About</a>
+                 <ul class="menu">
+                     <li class="leaf first"><a href="AboutUCSFProfiles.aspx">About UCSF Profiles</a></li>
+                     <li class="leaf"><a href="HowProfilesWorks.aspx">
+                      How Profiles Works / FAQ</a></li>
+                   <li class="leaf"><a href="ForDevelopers.aspx">
+                      Use UCSF Profiles Data to <br />&nbsp;&nbsp;&nbsp;Enhance Your Website</a></li>
+                     <li class="leaf"><a href="GadgetLibrary.aspx">
+                      How UCSF Has Extended <br />&nbsp;&nbsp;&nbsp;Profiles</a></li>
+                    <li class="leaf"><a href="Help.aspx">
+                      Help</a></li>
+                  </ul>
+               </li>
+               <li><asp:HyperLink ID="hypViewMyProfileNavbar" runat="server" CssClass="SearchListLink" Visible="false">My Profile</asp:HyperLink>
+                 <ul class="menu">
+                   <li><asp:HyperLink ID="hypViewMyProfileNavbar2" runat="server" CssClass="SearchListLink" Visible="false">View</asp:HyperLink></li>
+                   <li><asp:HyperLink ID="hypEditMyProfileNavbar" runat="server" CssClass="SearchListLink" Visible="false">Edit</asp:HyperLink></li>
+                   <li><asp:HyperLink ID="hypManageProxiesNavbar" runat="server" CssClass="SearchListLink" Visible="false">Manage Proxies</asp:HyperLink></li>
+                   <li><asp:HyperLink ID="hypLogoutNavbar" runat="server" CssClass="SearchListLink" NavigateUrl="~/Logout.aspx" Visible="false">Logout</asp:HyperLink></li>
+                 </ul>
+               </li>
+               <li><asp:Panel ID="pnlNotLoggedInNavbar" runat="server" Visible="false">
+               <asp:HyperLink ID="hypNotLoggedInNavbar" runat="server" CssClass="SearchListLink" Text="Edit My Profile"></asp:HyperLink>
+               </asp:Panel></li>
+           </ul>
+         </div>
+       </div>
     </div>
     <div class="profiles">
         <center>
@@ -163,6 +213,7 @@
                 </table>
             </div>
             <div class="profilesFooter">
+                <p>The University of California Copyright &copy; 2012 The Regents of the University of California. All Rights Reserved.</p>
                 <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
                     <asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">
                         <ItemTemplate>
