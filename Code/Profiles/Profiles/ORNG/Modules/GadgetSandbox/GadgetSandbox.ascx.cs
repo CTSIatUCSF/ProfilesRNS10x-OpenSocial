@@ -74,8 +74,18 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
             user.UserName = txtUserName.Text.Trim();
             user.Password = txtUserName.Text.Trim();  // works on dev just now, need to change!
 
-            if (sandboxPassword.Equals(txtPassword.Text.Trim()) && data.UserLogin(ref user))
+            if (user.UserName.Length == 0 && user.Password.Length == 0)
             {
+                // Allow anonymous access.  Do not log in person.
+                // Add the gadgets
+                Session[OpenSocialManager.OPENSOCIAL_GADGETS] = txtGadgetURLS.Text;
+                Session[OpenSocialManager.OPENSOCIAL_DEBUG] = chkDebug.Checked;
+                Session[OpenSocialManager.OPENSOCIAL_NOCACHE] = !chkUseCache.Checked;
+                Response.Redirect(Root.Domain);
+            }
+            else if (sandboxPassword.Equals(txtPassword.Text.Trim()) && data.UserLogin(ref user))
+            {
+                // User logged in, now add the gadgets
                 // add the gadgets
                 Session[OpenSocialManager.OPENSOCIAL_GADGETS] = txtGadgetURLS.Text;
                 Session[OpenSocialManager.OPENSOCIAL_DEBUG] = chkDebug.Checked;

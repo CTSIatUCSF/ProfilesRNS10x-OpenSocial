@@ -62,30 +62,48 @@ namespace Profiles.Login.Modules.ShibLogin
                         user.Password = employeeID;
                         if (data.UserLogin(ref user))
                         {
-                            if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
-                                Response.Redirect(Root.Domain + "/edit/" + sm.Session().NodeID);
-                            else
-                                Response.Redirect(Request.QueryString["redirectto"].ToString());
-                            Response.Redirect(Root.Domain);
+                            RedirectAuthenticatedUser();
                         }
                     }
                 }
                 else if (Request.QueryString["method"].ToString() == "login")
                 {
-                    // just clicked the button, send them to shibboleth
-                    string redirect = Root.Domain + "/login/default.aspx?method=shibboleth";
-                    if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
-                        redirect += "&edit=true";
+                    // see if they already have a login session, if so don't send them to shibboleth
+                    Profiles.Framework.Utilities.SessionManagement sm = new Profiles.Framework.Utilities.SessionManagement();
+                    String viewerId = sm.Session().PersonURI;
+                    if (viewerId != null && viewerId.Trim().Length > 0)
+                    {
+                        RedirectAuthenticatedUser();
+                    }
                     else
-                        redirect += "&redirectto=" + Request.QueryString["redirectto"].ToString();
+                    {
+                        string redirect = Root.Domain + "/login/default.aspx?method=shibboleth";
+                        if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
+                            redirect += "&edit=true";
+                        else
+                            redirect += "&redirectto=" + Request.QueryString["redirectto"].ToString();
 
-                    Response.Redirect(ConfigurationManager.AppSettings["Shibboleth.LoginURL"].ToString().Trim() +
-                        HttpUtility.UrlEncode(redirect));
+                        Response.Redirect(ConfigurationManager.AppSettings["Shibboleth.LoginURL"].ToString().Trim() +
+                            HttpUtility.UrlEncode(redirect));
+                    }
                 }
 
             }
 
 
+        }
+
+        private void RedirectAuthenticatedUser()
+        {
+            if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
+            {
+                Response.Redirect(Root.Domain + "/edit/" + sm.Session().NodeID);
+            }
+            else if (Request.QueryString["redirectto"] != null)
+            {
+                Response.Redirect(Request.QueryString["redirectto"].ToString());
+            }
+            Response.Redirect(Root.Domain);
         }
 
         public ShibLogin() { }
