@@ -25,8 +25,7 @@ namespace Search.Common
                     //Each error that occurs will trigger this event.
                     try
                     {
-
-                        using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "/ProfilesDebuggingLog.txt"))
+                        using (StreamWriter w = File.AppendText(ConfigurationSettings.AppSettings["DEBUG_PATH"]))
                         {
                             // write a line of text to the file
                             w.WriteLine(DateTime.Now.ToLongDateString() + ": " + DateTime.Now.ToLongTimeString() + " " + msg);                         

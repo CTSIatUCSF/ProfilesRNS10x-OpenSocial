@@ -11,8 +11,8 @@ namespace ProfilesSearchAPI.Utilities
 {
     public class DataIO
     {
-        
-        public XmlDocument Search(SearchOptions searchoptions, bool lookup)
+
+		public XmlDocument Search(Search.SearchOptions searchoptions, bool lookup)
         {
             string xmlstr = string.Empty;
 

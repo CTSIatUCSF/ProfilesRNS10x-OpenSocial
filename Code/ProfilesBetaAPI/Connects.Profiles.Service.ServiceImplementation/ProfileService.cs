@@ -18,6 +18,7 @@ using System.ServiceModel.Activation;
 using Connects.Profiles.Service.DataContracts;
 using Connects.Profiles.Service.ServiceContracts;
 using Connects.Profiles.Utility;
+using System.Web.Script.Serialization;
 
 namespace Connects.Profiles.Service.ServiceImplementation
 {
@@ -42,17 +43,18 @@ namespace Connects.Profiles.Service.ServiceImplementation
             return new ProfileServiceAdapter().ProfileSearch(pq, isSecure);
         }
 
-        public PersonList GetPersonFromPersonId(int personId)
-
+        // UCSF
+        public PersonList ProfileDetails(string internalUsername, string FNO)
         {
-            return new ProfileServiceAdapter().GetPersonFromPersonId(personId);
+            DataIO data = new DataIO();
+            if (internalUsername != null && internalUsername.Trim().Length > 0)
+            {
+                return new ProfileServiceAdapter().GetPersonFromPersonId(data.GetPersonIdFromInternalUsername(internalUsername));
+            }
+            else
+            {
+                return new ProfileServiceAdapter().GetPersonFromPersonId(data.GetPersonIdFromFNO(FNO));
+            }
         }
-
-        public int GetPersonIdFromInternalId(string internalTag, string internalValue)
-        {
-            return new ProfileServiceAdapter().GetPersonIdFromInternalId(internalTag, internalValue);
-        }
-
-
     }
 }

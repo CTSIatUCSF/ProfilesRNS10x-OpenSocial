@@ -18,7 +18,7 @@ namespace ProfilesSearchAPI.Utilities
             {
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
                 {
-                    using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "/ProfilesDebuggingLog.txt"))
+                    using (StreamWriter w = File.AppendText(ConfigurationSettings.AppSettings["DEBUG_PATH"]))
                     {
                         // write a line of text to the file
                         w.WriteLine("\t" + msg.Trim() + " " + DateTime.Now.ToLongTimeString());

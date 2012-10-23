@@ -26,7 +26,7 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetGadgetViewRequirements(int appId)
         {
-            string sql = "select page, viewer_req, owner_req, [view], closed_width, open_width, start_closed, chromeId, display_order from [ORNG.].[AppViews] where appId = " + appId;
+            string sql = "select page, viewer_req, owner_req, [view], chromeId, opt_params, display_order from [ORNG.].[AppViews] where appId = " + appId;
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
@@ -64,7 +64,6 @@ namespace Profiles.ORNG.Utilities
             catch (Exception ex)
             {
                 //do nothing
-
             }
 
         }

@@ -14,16 +14,27 @@ using Search.Common;
 
 namespace Search
 {
-    // NOTE: If you change the class name "ProfilesSPARQLAPI" here, you must also update the reference to "ProfilesSPARQLAPI" in Web.config.
+    // NOTE: If you change the class name "ProfilesSPARQLAPI" here, you must also update the reference to "ProfilesSPARQLAPI" in Web.config.	
     public class ProfilesSPARQLAPI : IProfilesSPARQLAPI
     {
-        public XmlElement Search(queryrequest xml)
+		public object Search(queryrequest xml)
         {
             SemWeb.Query.Query query = null;
 
             string q = string.Empty;
 
-            query = new SparqlEngine(new StringReader(xml.query));
+			try
+			{
+				query = new SparqlEngine(new StringReader(xml.query));
+			}
+			catch (QueryFormatException ex)
+			{
+				var malformed = new malformedquery();
+
+				malformed.faultdetails = ex.Message;
+
+				return malformed;			
+			}
 
             // Load the data from sql server
             SemWeb.Stores.SQLStore store;
@@ -53,19 +64,8 @@ namespace Search
 
             DebugLogging.Log("End of Processing");
 
-            Type type = typeof(sparql);
-
-            //sparql qr;
-            //qr = SerializeXML.DeserializeObject(ascii.GetString(ms.ToArray()).Replace("???", ""), type) as sparql;     
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(ascii.GetString(ms.ToArray()).Replace("???", ""));
-
-            XmlElement doc = xmlDoc.DocumentElement;
-            
-            return doc;
-            
-        }
-     
+            return SerializeXML.DeserializeObject(ascii.GetString(ms.ToArray()).Replace("???", ""), typeof(sparql)) as sparql;                      
+        }    
     }
 }
 

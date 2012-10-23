@@ -42,7 +42,6 @@ namespace Profiles.Profile.Utilities
                         SqlConnection dbconnection = new SqlConnection(connstr);
                         SqlCommand dbcommand = new SqlCommand();
 
-                        SqlDataReader dbreader;
                         dbconnection.Open();
                         dbcommand.CommandType = CommandType.StoredProcedure;
 
@@ -52,6 +51,8 @@ namespace Profiles.Profile.Utilities
                         dbcommand.Parameters.Add(new SqlParameter("@subject", request.Subject));
                         dbcommand.Parameters.Add(new SqlParameter("@predicate", request.Predicate));
                         dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
+                        dbcommand.Parameters.Add(new SqlParameter("@returnXMLasStr", true));
+                        
 
                         if (request.Offset != null && request.Offset != string.Empty)
                             dbcommand.Parameters.Add(new SqlParameter("@offset", request.Offset));
@@ -68,17 +69,18 @@ namespace Profiles.Profile.Utilities
                             dbcommand.Parameters.Add(new SqlParameter("@ExpandRDFListXML", request.ExpandRDFList));
 
                         dbcommand.Connection = dbconnection;
-
-                        dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
                         Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE end GetRDFData(RDFTriple request)", request);
 
-                        while (dbreader.Read())
+                        using (var dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
                         {
-                            xmlstr += dbreader[0].ToString();
-                        }
-
-                        if (!dbreader.IsClosed)
+                            while (dbreader.Read())
+                            {
+                                xmlstr += dbreader[0].ToString();
+                            }
                             dbreader.Close();
+
+                            SqlConnection.ClearPool(dbconnection);
+                        }
 
                         xmlrtn.LoadXml(xmlstr);
 
@@ -434,6 +436,130 @@ namespace Profiles.Profile.Utilities
             return dbreader;
         }
 
+        public SqlDataReader GetProfileConnection(RDFTriple request, string storedproc)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            var db = new SqlConnection(connstr);
+
+            db.Open();
+
+            SqlCommand dbcommand = new SqlCommand(storedproc, db);
+            dbcommand.CommandType = CommandType.StoredProcedure;
+            dbcommand.CommandTimeout = base.GetCommandTimeout();
+            // Add parameters
+            dbcommand.Parameters.Add(new SqlParameter("@subject", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
+            // Return reader
+            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public DataView GetNetworkTimeline(RDFTriple request, string storedproc)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlDataAdapter dataAdapter = null;
+            DataSet dataSet = null;
+            DataView dataView = null;
+
+            var db = new SqlConnection(connstr);
+            dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject, db);
+            dataSet = new DataSet();
+            dataAdapter.Fill(dataSet);
+            dataView = new DataView(dataSet.Tables[0]);
+
+            db.Close();
+
+            return dataView;
+
+        }
+
+        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            var db = new SqlConnection(connstr);
+
+            db.Open();
+
+            SqlCommand dbcommand = new SqlCommand(storedproc, db);
+            dbcommand.CommandType = CommandType.StoredProcedure;
+            dbcommand.CommandTimeout = base.GetCommandTimeout();
+            // Add parameters
+            dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+            // Return reader
+            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public SqlDataReader GetPublicationSupportHtml(RDFTriple request, bool editMode)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            var db = new SqlConnection(connstr);
+
+            db.Open();
+
+            SqlCommand dbcommand = new SqlCommand("[Profile.Module].[Support.GetHTML]", db);
+            dbcommand.CommandType = CommandType.StoredProcedure;
+            dbcommand.CommandTimeout = base.GetCommandTimeout();
+            // Add parameters
+            dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@EditMode", (editMode) ? 1 : 0));
+            // Return reader
+            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public SqlDataReader GetConceptSimilarMesh(RDFTriple request)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            var db = new SqlConnection(connstr);
+
+            db.Open();
+
+            SqlCommand dbcommand = new SqlCommand("[Profile.Data].[Concept.Mesh.GetSimilarMesh]", db);
+            dbcommand.CommandType = CommandType.StoredProcedure;
+            dbcommand.CommandTimeout = base.GetCommandTimeout();
+            // Add parameters
+            dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+            // Return reader
+            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public SqlDataReader GetConceptTopJournal(RDFTriple request)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            var db = new SqlConnection(connstr);
+
+            db.Open();
+
+            SqlCommand dbcommand = new SqlCommand("[Profile.Data].[Concept.Mesh.GetJournals]", db);
+            dbcommand.CommandType = CommandType.StoredProcedure;
+            dbcommand.CommandTimeout = base.GetCommandTimeout();
+            // Add parameters
+            dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+            // Return reader
+            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
+        public SqlDataReader GetConceptPublications(RDFTriple request)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            var db = new SqlConnection(connstr);
+            db.Open();
+
+            SqlCommand dbcommand = new SqlCommand("[Profile.Data].[Concept.Mesh.GetPublications]", db);
+            dbcommand.CommandType = CommandType.StoredProcedure;
+            dbcommand.CommandTimeout = base.GetCommandTimeout();
+            // Add parameters
+            dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+			dbcommand.Parameters.Add(new SqlParameter("@ListType", "newest"));
+            // Return reader
+            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+        }
 
 
         #region "Network Browser"

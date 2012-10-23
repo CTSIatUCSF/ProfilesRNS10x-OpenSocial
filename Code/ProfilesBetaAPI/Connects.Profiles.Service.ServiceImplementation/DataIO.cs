@@ -484,7 +484,8 @@ namespace Connects.Profiles.Service.ServiceImplementation
                     if (secure)
                         dbcommand.CommandText = "[RDF.Search].[Private.GetNodes]";
                     else
-                        dbcommand.CommandText = "[RDF.Search].[GetNodes]";
+                        dbcommand.CommandText = "[Search.].[GetNodes]"; // UCSF
+                    //dbcommand.CommandText = "[RDF.Search].[GetNodes]";
 
 
                     dbcommand.CommandTimeout = 5000;
@@ -596,6 +597,167 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
             return xmlrtn;
 
+        }
+
+        // UCSF
+        public Int32 GetPersonIdFromInternalUsername(string internalUsername)
+        {
+            System.Text.StringBuilder sql = new System.Text.StringBuilder();
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            Int32 personId = 0;
+
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+
+            sql.AppendLine("select p.personId from [Profile.Data].Person p with(nolock) where p.internalusername = '" + internalUsername + "'");
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlCommand dbcommand = new SqlCommand();
+
+            SqlDataReader dbreader;
+            dbconnection.Open();
+            dbcommand.CommandType = CommandType.Text;
+
+            dbcommand.CommandText = sql.ToString();
+            dbcommand.CommandTimeout = 5000;
+
+            dbcommand.Connection = dbconnection;
+
+            dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            if (dbreader.Read())
+            {
+                personId = Convert.ToInt32(dbreader[0].ToString());
+            }
+
+            if (!dbreader.IsClosed)
+                dbreader.Close();
+
+            return personId;
+        }
+
+        // UCSF
+        public Int32 GetPersonIdFromFNO(string FNO)
+        {
+            System.Text.StringBuilder sql = new System.Text.StringBuilder();
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            Int32 personId = 0;
+
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+
+            sql.AppendLine("select p.PersonID from [Profile.Data].Person p join cls.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID where f.UID_USERID = '" + FNO + "'");
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlCommand dbcommand = new SqlCommand();
+
+            SqlDataReader dbreader;
+            dbconnection.Open();
+            dbcommand.CommandType = CommandType.Text;
+
+            dbcommand.CommandText = sql.ToString();
+            dbcommand.CommandTimeout = 5000;
+
+            dbcommand.Connection = dbconnection;
+
+            dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            if (dbreader.Read())
+            {
+                personId = Convert.ToInt32(dbreader[0].ToString());
+            }
+
+            if (!dbreader.IsClosed)
+                dbreader.Close();
+
+            return personId;
+        }
+
+        // UCSF
+        static readonly string PERSON = "Person";
+        static readonly string DISAMBIGUATION = "Disambiguation";
+        public string GetPublicationInclusionSource(int personId, string PMID)
+        {
+            if (PMID == null)
+            {
+                return PERSON;
+            }
+            System.Text.StringBuilder sql = new System.Text.StringBuilder();
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+
+            sql.AppendLine("select count(*) from [Profile.Data].[Publication.Person.Add] where personId = " + personId + " and PMID = " + PMID);
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlCommand dbcommand = new SqlCommand();
+
+            SqlDataReader dbreader;
+            dbconnection.Open();
+            dbcommand.CommandType = CommandType.Text;
+
+            dbcommand.CommandText = sql.ToString();
+            dbcommand.CommandTimeout = 5000;
+
+            dbcommand.Connection = dbconnection;
+
+            dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            Int32 cnt = 0;
+            if (dbreader.Read())
+            {
+                cnt = Convert.ToInt32(dbreader[0].ToString());
+            }
+
+            if (!dbreader.IsClosed)
+                dbreader.Close();
+
+            return cnt > 0 ? PERSON : DISAMBIGUATION;
+        }
+
+
+        // UCSF
+        public string ProcessDateSQL(string dateSQL)
+        {
+            System.Text.StringBuilder sql = new System.Text.StringBuilder();
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+
+            sql.AppendLine(dateSQL);
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlCommand dbcommand = new SqlCommand();
+
+            SqlDataReader dbreader;
+            dbconnection.Open();
+            dbcommand.CommandType = CommandType.Text;
+
+            dbcommand.CommandText = sql.ToString();
+            dbcommand.CommandTimeout = 5000;
+
+            dbcommand.Connection = dbconnection;
+
+            dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            string dateStr = null;
+            if (dbreader.Read())
+            {
+                dateStr = dbreader[0].ToString();
+            }
+
+            if (!dbreader.IsClosed)
+                dbreader.Close();
+
+            return dateStr != null ? Convert.ToDateTime(dateStr).ToShortDateString() : ""; 
         }
 
         public string ConvertV2ToBetaSearch(string RDFResults, string queryid, string version, bool individual)
@@ -769,7 +931,8 @@ namespace Connects.Profiles.Service.ServiceImplementation
                 returnxml.Append(this.GetPubCount(Convert.ToInt64(uri.Split('/')[uri.Split('/').Length - 1])));
                 returnxml.Append("</PublicationCount>");
                 returnxml.Append("<MatchingPublicationCount>0</MatchingPublicationCount>");  //No equlivant to new system
-                returnxml.Append("<MatchScore>" + RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:nodeID='" + person.SelectSingleNode("@rdf:nodeID", namespaces).Value + "']/prns:connectionWeight", namespaces).InnerText + "</MatchScore>");
+                if (!individual)
+                    returnxml.Append("<MatchScore>" + RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:nodeID='" + person.SelectSingleNode("@rdf:nodeID", namespaces).Value + "']/prns:connectionWeight", namespaces).InnerText + "</MatchScore>");
                 returnxml.Append("</BasicStatistics>");
 
 

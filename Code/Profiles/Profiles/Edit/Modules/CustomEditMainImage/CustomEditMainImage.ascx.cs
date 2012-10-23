@@ -52,8 +52,6 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
 
             data = new Edit.Utilities.DataIO();
 
-
-
             if (Request.QueryString["subject"] != null)
                 this.SubjectID = Convert.ToInt64(Request.QueryString["subject"]);
             else if (base.GetRawQueryStringItem("subject") != null)

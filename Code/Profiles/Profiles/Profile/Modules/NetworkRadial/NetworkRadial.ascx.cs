@@ -80,9 +80,11 @@ namespace Profiles.Profile.Modules.NetworkRadial
                "); //end AC code" +
            "</script>";
 
+			
             HtmlGenericControl script = new HtmlGenericControl("script");
             script.Attributes.Add("type", "text/javascript");
             script.InnerHtml = "window.onload = function() {" +
+				" network_browser._cfg.profile_network_path = '/"+Request.QueryString["Predicate"].ToString()+"/radial'; " +
                 " network_browser.Init('" + Root.Domain + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p='); " +
                 " network_browser.loadNetwork('" + Request.QueryString["Subject"].ToString() + "'); " +
                 "}";

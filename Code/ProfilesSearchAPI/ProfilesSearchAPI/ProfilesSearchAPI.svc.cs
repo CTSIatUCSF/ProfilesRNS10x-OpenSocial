@@ -8,6 +8,7 @@ using System.Xml;
 
 
 using ProfilesSearchAPI.Utilities;
+using System.ServiceModel.Web;
 
 namespace Search
 {
@@ -15,16 +16,18 @@ namespace Search
     public class ProfilesSearchAPI : IProfilesSearchAPI
     {
         public XmlElement Search(SearchOptions SearchOptions)
-        {            
+        {           
+
             DataIO data = new DataIO();
             XmlDocument xmlDoc = data.Search(SearchOptions, false);
               
             XmlElement doc = xmlDoc.DocumentElement;
+            WebOperationContext.Current.OutgoingResponse.ContentType = "application/rdf+xml";
+
+
             return doc;
-
        }
-
-        
+               
         
     }
 }

@@ -51,8 +51,16 @@ namespace Profiles.Edit.Modules.CustomEditEmail
             SessionManagement sm = new SessionManagement();
             base.BaseData = pagedata;
 
-            this.Email = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:email", base.Namespaces).InnerText;
 
+            if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:email", base.Namespaces) != null)
+            {
+
+                this.Email = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:email", base.Namespaces).InnerText;
+            }
+            else
+            {
+                this.Email = string.Empty;
+            }
 
             data = new Edit.Utilities.DataIO();
 

@@ -183,7 +183,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
                     if (ProfilesURL.Substring(ProfilesURL.Length - 1) != "/") { ProfilesURL += "/"; }
                     Response.Redirect(ProfilesURL + "search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + q);
 
-                                    
+
 
                     break;
                 case "incomingpreview":
@@ -195,7 +195,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
                     string searchphrase = Request["SearchPhrase"].Trim();
                     Response.Write(data.Search(searchphrase));
 
-                    break;            
+                    break;
 
                 case "outgoingcount":
 

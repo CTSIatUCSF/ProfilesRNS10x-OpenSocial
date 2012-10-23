@@ -37,7 +37,9 @@ network_browser = {
     center_id: false,
     over_node: false,
     over_edge: false,
-    _cfg: { profile_network_path: "/network/coauthors/network" },
+    _cfg: {
+		profile_network_path: "/345/radial"  // (predicate) 345 = coauthor of (i.e. /display/<<nodeid>>/network/coauthor/<<tab>>
+	},
     Init: function(baseURL) {
         if (baseURL) {
             this._cfg.baseURL = baseURL;

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service=" Connects.Profiles.Service.ServiceImplementation.CustomProfileService" Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>

@@ -54,6 +54,19 @@ namespace Profiles.Profile.Modules
             if (!reader.IsClosed)
                 reader.Close();
            
+           // Get timeline bar chart			
+           using (reader = data.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]"))
+           {
+				while(reader.Read())
+				{
+					timelineBar.Src = reader["gc"].ToString();
+				}
+				reader.Close();           
+           }
+		   
+		   // Login link
+		  loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Root.Domain + "/login/default.aspx?method=login&edit=true");
+		   
         }
 
         protected void rpPublication_OnDataBound(object sender, RepeaterItemEventArgs  e)

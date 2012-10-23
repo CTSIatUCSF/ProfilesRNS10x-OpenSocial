@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
 <Properties><Property Name="Solution" Value="Profiles">
-</Property><Property Name="Solution File" Value="C:\Development\ProfilesRNS101\Code\Profiles\Profiles.sln">
-</Property><Property Name="Date" Value="Tuesday, July 10, 2012">
-</Property><Property Name="Time" Value="13:40 PM">
+</Property><Property Name="Solution File" Value="C:\Development\ProfilesRNS102\Code\Profiles\Profiles.sln">
+</Property><Property Name="Date" Value="Thursday, September 06, 2012">
+</Property><Property Name="Time" Value="15:42 PM">
 </Property></Properties><Event ErrorLevel="0" Project="Profiles" Source="Profiles\Profiles.csproj" Description="Project converted successfully">
 </Event><Event ErrorLevel="3" Project="Profiles" Source="Profiles\Profiles.csproj" Description="Converted">
 </Event><Event ErrorLevel="0" Project="ProfilesSPARQLAPI" Source="..\ProfilesSPARQLAPI\ProfilesSPARQLAPI\ProfilesSPARQLAPI.csproj" Description="Project converted successfully">

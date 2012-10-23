@@ -84,7 +84,7 @@ namespace Profiles.Search.Modules.SearchResults
 
             Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
-            if (Request.QueryString["searchrequest"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["searchrequest"])==false)
             {
                 searchrequest = data.DecryptRequest(Request.QueryString["searchrequest"]);
                 xmlsearchrequest.LoadXml(searchrequest);
@@ -92,29 +92,36 @@ namespace Profiles.Search.Modules.SearchResults
 
             
 
-            if (Request.QueryString["searchtype"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["searchtype"])==false)
             {
                 searchtype = Request.QueryString["searchtype"];
             }
-            else if (Request.Form["searchtype"] != null)
+            else if (String.IsNullOrEmpty(Request.Form["searchtype"])==false)
             {
                 searchtype = Request.Form["searchtype"];
 
             }
 
 
-            if (Request.QueryString["searchfor"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["searchfor"])==false)
             {
                 searchfor = Request.QueryString["searchfor"];
             }
-            else if(Request.Form["txtSearchFor"] !=null)
+            else if(String.IsNullOrEmpty(Request.Form["txtSearchFor"])==false)
             {
                 searchfor = Request.Form["txtSearchFor"];
 
             }
             else if (xmlsearchrequest.ChildNodes.Count > 0)
             {
-                searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
+				try
+				{				
+					searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
+				}
+				catch(Exception)
+				{
+					// Do nothing, leave searchfor = null
+				}
             }
 
 
@@ -122,7 +129,7 @@ namespace Profiles.Search.Modules.SearchResults
             if (searchfor == null)
                 searchfor = string.Empty;
 
-            if (Request.QueryString["lname"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["lname"])==false)
                 lname = Request.QueryString["lname"];
             else
                 lname = Request.Form["txtLname"];
@@ -130,7 +137,7 @@ namespace Profiles.Search.Modules.SearchResults
             if (lname == null)
                 lname = string.Empty;
 
-            if (Request.QueryString["fname"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["fname"])==false)
                 fname = Request.QueryString["fname"];
             else
                 fname = Request.Form["txtFname"];
@@ -138,43 +145,51 @@ namespace Profiles.Search.Modules.SearchResults
             if (fname == null)
                 fname = string.Empty;
 
-            if (Request.QueryString["institution"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["institution"])==false)
                 institution = Request.QueryString["institution"];
 
-            if (Request.QueryString["department"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["department"])==false)
                 department = Request.QueryString["department"];
             
 
-            if (Request.QueryString["perpage"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["perpage"])==false)
             {
-                if (Request.QueryString["perpage"] != string.Empty)
-                    perpage = Convert.ToInt64(Request.QueryString["perpage"]);
-                else
-                    perpage = 15;
+				perpage = Convert.ToInt64(Request.QueryString["perpage"]);
+				if (!(perpage>0))
+					perpage = 15;
+
+				//if (String.IsNullOrEmpty(Request.QueryString["perpage"])==false)
+				//    perpage = Convert.ToInt64(Request.QueryString["perpage"]);
+				//else
+				//    perpage = 15;
             }
             else
             {
                 perpage = 15; //default
             }
 
-            if (Request.QueryString["offset"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["offset"])==false)
             {
-                if (Request.QueryString["offset"] != string.Empty)
-                    offset = Convert.ToInt64(Request.QueryString["offset"]);
-                else
-                    offset = 0;
+				offset = Convert.ToInt64(Request.QueryString["offset"]);
+				//if (Request.QueryString["offset"] != string.Empty)
+				//    offset = Convert.ToInt64(Request.QueryString["offset"]);
+				//else
+				//    offset = 0;
             }
             else
             {
                 offset = 0;
             }
 
-            if (Request.QueryString["page"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["page"])==false)
             {
-                if (Request.QueryString["page"] != string.Empty)
-                    page = Convert.ToInt64(Request.QueryString["page"]);
-                else
-                    page = 1;
+				page = Convert.ToInt64(Request.QueryString["page"]);
+				if (!(page > 0))
+					page = 1;
+				//if (Request.QueryString["page"] != string.Empty)
+				//    page = Convert.ToInt64(Request.QueryString["page"]);
+				//else
+				//    page = 1;
             }
             else
             {
@@ -182,7 +197,7 @@ namespace Profiles.Search.Modules.SearchResults
             }
 
 
-            if (Request.QueryString["classgroupuri"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["classgroupuri"])==false)
                 classgroupuri = HttpUtility.UrlDecode(Request.QueryString["classgroupuri"]);
             else
                 classgroupuri = HttpUtility.UrlDecode(Request.Form["classgroupuri"]);
@@ -197,7 +212,7 @@ namespace Profiles.Search.Modules.SearchResults
                 classgroupuri = string.Empty;
             }
 
-            if (Request.QueryString["classuri"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["classuri"])==false)
                 classuri = HttpUtility.UrlDecode(Request.QueryString["classuri"]);
             else
                 classuri = HttpUtility.UrlDecode(Request.Form["classuri"]);
@@ -213,16 +228,19 @@ namespace Profiles.Search.Modules.SearchResults
             }
 
 
-            if (Request.QueryString["sortby"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["sortby"])==false)
                 sort = Request.QueryString["sortby"];
 
-            if (Request.QueryString["sortdirection"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["sortdirection"])==false)
                 sortdirection = Request.QueryString["sortdirection"];
 
 
-            if (Request.QueryString["showcolumns"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["showcolumns"])==false)
             {
                 showcolumns = Convert.ToInt16(Request.QueryString["showcolumns"]);
+				if (!(showcolumns > 0))				
+					showcolumns = 1;
+				
             }
             else
             {
@@ -231,39 +249,39 @@ namespace Profiles.Search.Modules.SearchResults
 
 
 
-            if (Request.QueryString["otherfilters"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["otherfilters"])==false)
             {
                 otherfilters = Request.QueryString["otherfilters"];
 
             }
 
-            if (Request.QueryString["institutionallexcept"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["institutionallexcept"])==false)
             {
                 institutionallexcept = Request.QueryString["institutionallexcept"];
 
             }
 
 
-            if (Request.QueryString["departmentallexcept"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["departmentallexcept"])==false)
             {
                 departmentallexcept = Request.QueryString["departmentallexcept"];
 
             }
 
 
-            if (Request.QueryString["exactphrase"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["exactphrase"])==false)
             {
                 exactphrase = Request.QueryString["exactphrase"];
 
             }
 
 
-            if (Request.QueryString["division"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["division"])==false)
             {
                 division = Request.QueryString["division"];
             }
             
-            if (Request.QueryString["divisionallexcept"] != null)
+            if (String.IsNullOrEmpty(Request.QueryString["divisionallexcept"])==false)
             {
                 divisionallexcept = Request.QueryString["divisionallexcept"];
             }

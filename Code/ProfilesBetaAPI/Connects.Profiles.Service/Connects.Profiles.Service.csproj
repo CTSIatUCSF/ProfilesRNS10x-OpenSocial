@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CustomProfileService.svc" />
     <Content Include="NetworkBrowserService.svc" />
     <Content Include="ProfileService.svc" />
     <Content Include="Web.config" />
@@ -87,6 +88,28 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Connects.Profiles.Service.DataContracts\Connects.Profiles.Service.DataContracts.csproj">
+      <Project>{4E11DE8F-C111-44E4-8AF8-B66EDEC9152D}</Project>
+      <Name>Connects.Profiles.Service.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connects.Profiles.Service.ServiceContracts\Connects.Profiles.Service.ServiceContracts.csproj">
+      <Project>{D532570D-2CB9-4592-A8B5-C16712B1FACB}</Project>
+      <Name>Connects.Profiles.Service.ServiceContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connects.Profiles.Service.ServiceImplementation\Connects.Profiles.Service.ServiceImplementation.csproj">
+      <Project>{24E3696C-B69C-49C8-8276-C4003297C45D}</Project>
+      <Name>Connects.Profiles.Service.ServiceImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connects.Profiles.Utility\Connects.Profiles.Utility.csproj">
+      <Project>{27F9D353-FCCC-430E-A6A6-6864773CBCDC}</Project>
+      <Name>Connects.Profiles.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Profiles.Common\Connects.Profiles.Common.csproj">
+      <Project>{72ABCD78-6907-4F63-8C59-392C9F3CE506}</Project>
+      <Name>Connects.Profiles.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

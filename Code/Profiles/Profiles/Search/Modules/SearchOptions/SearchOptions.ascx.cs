@@ -44,7 +44,7 @@ namespace Profiles.Search.Modules.SearchOptions
 
 
              string searchfor = Request.QueryString["searchfor"];
-             litSearchOtherInstitutions.Text = "<a href='" + Root.Domain + "/direct/default.aspx?keyword=" + Request.QueryString["searchfor"] + "'>" + "Search other institutions" + "</a>";             
+             litSearchOtherInstitutions.Text = "<a href='" + Root.Domain + "/direct/default.aspx?keyword=" + Request.QueryString["searchfor"] + "'>" + "Search Other Institutions" + "</a>";             
 
          }
 

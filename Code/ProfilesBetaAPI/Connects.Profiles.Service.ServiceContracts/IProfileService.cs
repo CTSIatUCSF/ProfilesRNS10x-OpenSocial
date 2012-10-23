@@ -36,5 +36,11 @@ namespace Connects.Profiles.Service.ServiceContracts
         [WebInvoke(Method = "POST", UriTemplate="ProfileSearch")]
         PersonList ProfileSearch(Connects.Profiles.Service.DataContracts.Profiles Profiles);
 
+        // added by UCSF
+        [OperationContract(IsTerminating = false, IsInitiating = true, IsOneWay = false,
+            AsyncPattern = false, Action = "ProfileDetails")]
+        [WebGet(UriTemplate = "ProfileDetails?InternalUsername={InternalUsername}&FNO={FNO}")]
+        PersonList ProfileDetails(string InternalUsername, string FNO);
     }
+
 }

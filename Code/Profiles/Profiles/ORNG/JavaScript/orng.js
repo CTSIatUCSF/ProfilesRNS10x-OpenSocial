@@ -107,6 +107,9 @@ gadgets.pubsubrouter.init(function(id) {
           _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'go_to_profile', message]);    
           document.location.href = '/' + location.pathname.split('/')[1] + '/display/n' + message;
 	  }
+      else if (channel == 'hide') {
+          document.getElementById(sender).parentNode.parentNode.style.display = 'none';
+      }
       else if (channel == 'JSONPersonIds' || channel == 'JSONPubMedIds') {
           // do nothing, no need to alert
 	  }
@@ -211,23 +214,32 @@ my.requestGadgetMetaData = function(view, opt_callback) {
 
 my.renderableGadgets = [];
 
-my.generateGadgets = function(metadata) {
+my.generateGadgets = function (metadata) {
     // put them in moduleId order
     for (var i = 0; i < metadata.gadgets.length; i++) {
-      var moduleId = metadata.gadgets[i].moduleId;
-      // Notes by Eric.  Not sure if I should have to calculate this myself, but I will.
-      var height = metadata.gadgets[i].height;
-      var width = metadata.gadgets[i].width;
-      var viewPrefs = metadata.gadgets[i].views[my.gadgets[moduleId].view];
-      if (viewPrefs) {
-	   height = viewPrefs.preferredHeight || height;
-	   width = viewPrefs.preferredWidth || width;
-	  }
-      my.renderableGadgets[moduleId] = shindig.container.createGadget({'specUrl': metadata.gadgets[i].url, 'secureToken': my.gadgets[moduleId].secureToken,
-          'title': metadata.gadgets[i].title, 'userPrefs': metadata.gadgets[i].userPrefs, 
-	      'height': height, 'width': width, 'debug': my.debug});
-	  // set the metadata for easy access
-	  my.renderableGadgets[moduleId].setMetadata(metadata.gadgets[i]);
+        var moduleId = metadata.gadgets[i].moduleId;
+        // Notes by Eric.  Not sure if I should have to calculate this myself, but I will.
+        var height = metadata.gadgets[i].height;
+        var width = metadata.gadgets[i].width;
+        var viewPrefs = metadata.gadgets[i].views[my.gadgets[moduleId].view];
+        if (viewPrefs) {
+            height = viewPrefs.preferredHeight || height;
+            width = viewPrefs.preferredWidth || width;
+        }
+
+        var opt_params = { 'specUrl': metadata.gadgets[i].url, 'secureToken': my.gadgets[moduleId].secureToken,
+            'title': metadata.gadgets[i].title, 'userPrefs': metadata.gadgets[i].userPrefs,
+            'height': height, 'width': width, 'debug': my.debug
+        };
+
+        // do a shallow merge of the opt_params from the database.  This will overwrite anything with the same name, and we like that 
+        for (var attrname in my.gadgets[moduleId].opt_params) {
+            opt_params[attrname] = my.gadgets[moduleId].opt_params[attrname];
+        }
+
+        my.renderableGadgets[moduleId] = shindig.container.createGadget(opt_params);
+        // set the metadata for easy access
+        my.renderableGadgets[moduleId].setMetadata(metadata.gadgets[i]);
     }
     // this will be called multiple times, only render when all gadgets have been processed
     var ready = my.renderableGadgets.length == my.gadgets.length;
@@ -236,25 +248,26 @@ my.generateGadgets = function(metadata) {
             ready = false;
         }
     }
-    
+
     if (ready) {
-        shindig.container.addGadgets(my.renderableGadgets );
+        shindig.container.addGadgets(my.renderableGadgets);
         shindig.container.renderGadgets();
     }
 };
 
-my.init = function() {
+my.init = function () {
     // overwrite this RPC function.  Do it at this level so that rpc.f (this.f) is accessible for getting module ID
-//    gadgets.rpc.register('requestNavigateTo', doOrngNavigation);
+    //    gadgets.rpc.register('requestNavigateTo', doProfilesNavigation);
+    shindig.container = new ORNGContainer();
 
-    shindig.container.gadgetClass = OrngGadget;
-    shindig.container.layoutManager = new OrngLayoutManager();    
+    shindig.container.gadgetService = new ORNGGadgetService();
+    shindig.container.layoutManager = new ORNGLayoutManager();
+
     shindig.container.setNoCache(my.noCache);
-    shindig.container.gadgetService = new OrngGadgetService();
 
     // since we render multiple views, we need to do somethign fancy by swapping out this value in getIframeUrl
     shindig.container.setView('REPLACE_THIS_VIEW');
-    
+
     // do multiple times as needed if we have multiple views
     // find out what views are being used and call requestGadgetMetaData for each one
     var views = {};
@@ -267,45 +280,94 @@ my.init = function() {
     }
 };
 
-// OrngGadgetService
+//ORNGContainer
 
-OrngGadgetService = function() {
+ORNGContainer = function () {
+    shindig.IfrContainer.call(this);
+};
+
+ORNGContainer.inherits(shindig.IfrContainer);
+
+ORNGContainer.prototype.createGadget = function (opt_params) {
+    if (opt_params.gadget_class) {
+        return new window[opt_params.gadget_class](opt_params);
+    }
+    else {
+        return new ORNGGadget(opt_params);
+    }
+}
+
+// ORNGLayoutManager. 
+ORNGLayoutManager = function () {
+    shindig.LayoutManager.call(this);
+};
+
+ORNGLayoutManager.inherits(shindig.LayoutManager);
+
+ORNGLayoutManager.prototype.getGadgetChrome = function (gadget) {
+    var layoutRoot = document.getElementById(my.gadgets[gadget.id].chrome_id);
+    if (layoutRoot) {
+        var chrome = document.createElement('div');
+        chrome.className = 'gadgets-gadget-chrome';
+        layoutRoot.appendChild(chrome);
+        return chrome;
+    } else {
+        return null;
+    }
+};
+
+// ORNGGadgetService
+ORNGGadgetService = function () {
     shindig.IfrGadgetService.call(this);
 };
 
-OrngGadgetService.inherits(shindig.IfrGadgetService);
+ORNGGadgetService.inherits(shindig.IfrGadgetService);
 
-OrngGadgetService.prototype.requestNavigateTo = function(view, opt_params) {
+ORNGGadgetService.prototype.setTitle = function (title) {
+    var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(this.f);
+    if (my.gadgets[moduleId].view == 'canvas') {
+        ORNGGadgetService.setCanvasTitle(title);
+    }
+    else {
+        var element = document.getElementById(this.f + '_title');
+        element.innerHTML = my.renderableGadgets[moduleId].getTitleHtml(title);
+    }
+};
+
+ORNGGadgetService.setCanvasTitle = function (title) {
+    document.getElementById("gadgets-title").innerHTML = title.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+}
+
+ORNGGadgetService.prototype.requestNavigateTo = function (view, opt_params) {
     var urlTemplate = gadgets.config.get('views')[view].urlTemplate;
     var url = urlTemplate || 'OpenSocial.aspx?';
 
     url += window.location.search.substring(1);
-    
+
     // remove appId if present
     url = my.removeParameterFromURL(url, 'appId');
-    
-    // Add appId if isOnlyVisible is TRUE for this view
-    if (gadgets.config.get('views')[view].isOnlyVisible) {
+
+    // Add appId if the URL Template begins with the word 'Gadget'
+    if (urlTemplate.indexOf('Gadget') == 0) {
         var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(this.f);
         var appId = my.gadgets[moduleId].appId;
-        url += (url.indexOf('?') != url.length - 1 ? '&' : '') + 'appId=' + appId;    
+        url += '&appId=' + appId;
     }
 
-	if (opt_params) {
-		var paramStr = gadgets.json.stringify(opt_params);
-		if (paramStr.length > 0) {
-			url += (url.indexOf('?') != url.length  - 1 ? '&' : '') + 'appParams=' + encodeURIComponent(paramStr);
-		}
-	}
-	if (url && document.location.href.indexOf(url) == -1) {
-	    document.location.href = '/' + location.pathname.split('/')[1] + '/' + url;
-	}
+    if (opt_params) {
+        var paramStr = gadgets.json.stringify(opt_params);
+        if (paramStr.length > 0) {
+            url += '&appParams=' + encodeURIComponent(paramStr);
+        }
+    }
+    if (url && document.location.href.indexOf(url) == -1) {
+        document.location.href = url;
+    }
 };
 
-// OrngGadget
-
-OrngGadget = function(opt_params) {
-    shindig.Gadget.call(this, opt_params);
+// ORNGGadget
+ORNGGadget = function (opt_params) {
+    shindig.BaseIfrGadget.call(this, opt_params);
     this.debug = my.debug;
     this.serverBase_ = my.openSocialURL + "/gadgets/";
     var gadget = this;
@@ -317,18 +379,18 @@ OrngGadget = function(opt_params) {
             gadget['originalGetIframeUrl'] = subClass[name];
         }
         else if (name != 'finishRender') {
-          gadget[name] = subClass[name];
+            gadget[name] = subClass[name];
         }
     }
 };
 
-OrngGadget.inherits(shindig.BaseIfrGadget);
+ORNGGadget.inherits(shindig.BaseIfrGadget);
 
-OrngGadget.prototype.setMetadata = function(metadata) {
-   this.metadata = metadata;
+ORNGGadget.prototype.setMetadata = function (metadata) {
+    this.metadata = metadata;
 };
 
-OrngGadget.prototype.hasFeature = function(feature) {
+ORNGGadget.prototype.hasFeature = function (feature) {
     for (var i = 0; i < this.metadata.features.length; i++) {
         if (this.metadata.features[i] == feature) {
             return true;
@@ -337,79 +399,120 @@ OrngGadget.prototype.hasFeature = function(feature) {
     return false;
 };
 
-OrngGadget.prototype.getAdditionalParams = function() {
-   var params = '';
-   for (var key in my.gadgets[this.id].additionalParams) {
-   	params += '&' + key + '=' + my.gadgets[this.id].additionalParams[key];
-   }
-   return params;
+ORNGGadget.prototype.getAdditionalParams = function () {
+    var params = '';
+    for (var key in my.gadgets[this.id].additionalParams) {
+        params += '&' + key + '=' + my.gadgets[this.id].additionalParams[key];
+    }
+    return params;
 };
 
-OrngGadget.prototype.finishRender = function(chrome) {
-  window.frames[this.getIframeId()].location = this.getIframeUrl();
-  if (my.gadgets[this.id].start_closed) {
-    this.handleToggle(false);
-  }
-  else if (chrome) {
-	// set the gadget box width, and remember that we always render as open
-	chrome.style.width = (my.gadgets[this.id].open_width || 600) + 'px';
-  }
-};
-
-OrngGadget.prototype.getIframeUrl = function() {
+ORNGGadget.prototype.getIframeUrl = function () {
     var url = this.originalGetIframeUrl();
     return url.replace('REPLACE_THIS_VIEW', my.gadgets[this.id].view);
 };
 
-OrngGadget.prototype.handleToggle = function (track) {
-    if (typeof (track) === 'undefined') track = true;
+ORNGGadget.prototype.getTitleHtml = function (title) {
+    return title ? title.replace(/&/g, '&amp;').replace(/</g, '&lt;') : 'Gagdget';
+};
+
+ORNGGadget.prototype.getTitleBarContent = function (continuation) {
+    if (my.gadgets[this.id].view == 'canvas') {
+        ORNGGadgetService.setCanvasTitle(this.title);
+        continuation('<span class="gadgets-gadget-canvas-title"></span>');
+    }
+    else {
+        continuation(
+	      '<div id="' + this.cssClassTitleBar + '-' + this.id +
+	      '" class="' + this.cssClassTitleBar + '"><span class="' +
+	      this.cssClassTitleButtonBar + '">' +
+	      '</span> <span id="' +
+	      this.getIframeId() + '_title" class="' + this.cssClassTitle + '">' +
+	      this.getTitleHtml(this.title) + '</span><span id="' +
+		  this.getIframeId() + '_status" class="gadgets-gadget-status"></span></div>');
+    }
+};
+
+ORNGGadget.prototype.finishRender = function (chrome) {
+    window.frames[this.getIframeId()].location = this.getIframeUrl();
+    if (chrome && this.width) {
+        // set the gadget box width, and remember that we always render as open
+        chrome.style.width = this.width + 'px';
+    }
+};
+
+// ORNGToggleGadget
+ORNGToggleGadget = function (opt_params) {
+    ORNGGadget.call(this, opt_params);
+};
+
+ORNGToggleGadget.inherits(ORNGGadget);
+
+ORNGToggleGadget.prototype.handleToggle = function (track) {
     var gadgetIframe = document.getElementById(this.getIframeId());
     if (gadgetIframe) {
         var gadgetContent = gadgetIframe.parentNode;
-        var gadgetImg = document.getElementById('gadgets-gadget-title-image-' + this.id);
+        var gadgetImg = document.getElementById('gadgets-gadget-title-image-'
+				+ this.id);
         if (gadgetContent.style.display) {
             //OPEN
-            gadgetContent.parentNode.style.width = (my.gadgets[this.id].open_width || 600) + 'px';
+            if (this.width) {
+                gadgetContent.parentNode.style.width = this.width + 'px';
+            }
+
             gadgetContent.style.display = '';
-            gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareDownArrow.gif';
+            gadgetImg.src = 'Images/icon_squareDownArrow.gif';
             // refresh if certain features require so
             //if (this.hasFeature('dynamic-height')) {
             if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
                 this.refresh();
-                document.getElementById(this.getIframeId()).contentWindow.location.reload(true);
+                document.getElementById(this.getIframeId()).contentWindow.location
+						.reload(true);
             }
 
             if (my.gadgets[this.id].view == 'home') {
                 if (track) {
-                    // record in google analytics             
-                    _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'OPEN_IN_EDIT', 'profile_edit_view']);
+                    // record in google analytics     
+                    _gaq.push(['_trackEvent', my.gadgets[this.id].name,
+						'OPEN_IN_EDIT', 'profile_edit_view']);
                 }
-            }
-            else {
-                osapi.activities.create(
-		  { 'userId': gadgets.util.getUrlParameters()['Person'],
-		      'appId': my.gadgets[this.id].appId,
-		      'activity': { 'postedTime': new Date().getTime(), 'title': 'gadget viewed', 'body': my.gadgets[this.id].name + ' gadget was viewed' }
-		  }).execute(function (response) { });
-                // record in google analytics     
+            } else {
+                // only do this for user centric activities
+                if (gadgets.util.getUrlParameters()['Person'] != undefined) {
+                    osapi.activities
+							.create(
+									{
+									    'userId': gadgets.util
+												.getUrlParameters()['Person'],
+									    'appId': my.gadgets[this.id].appId,
+									    'activity': {
+									        'postedTime': new Date().getTime(),
+									        'title': 'gadget was viewed',
+									        'body': my.gadgets[this.id].name
+													+ ' gadget was viewed'
+									    }
+									}).execute(function (response) {
+									});
+                }
                 if (track) {
+                    // record in google analytics     
                     _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'OPEN']);
                 }
             }
-        }
-        else {
+        } else {
             //CLOSE
-            gadgetContent.parentNode.style.width = (my.gadgets[this.id].closed_width || 600) + 'px';
-            gadgetContent.style.display = 'none';
-            gadgetImg.src = '/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareArrow.gif';
-            if (my.gadgets[this.id].view == 'home') {
-                if (track) {
-                    // record in google analytics     
-                    _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE_IN_EDIT', 'profile_edit_view']);
-                }
+            if (this.closed_width) {
+                gadgetContent.parentNode.style.width = this.closed_width + 'px';
             }
-            else {
-                if (track) {
+
+            gadgetContent.style.display = 'none';
+            gadgetImg.src = 'Images/icon_squareArrow.gif';
+            if (track) {
+                if (my.gadgets[this.id].view == 'home') {
+                    // record in google analytics     
+                    _gaq.push(['_trackEvent', my.gadgets[this.id].name,
+							'CLOSE_IN_EDIT', 'profile_edit_view']);
+                } else {
                     // record in google analytics     
                     _gaq.push(['_trackEvent', my.gadgets[this.id].name, 'CLOSE']);
                 }
@@ -418,41 +521,47 @@ OrngGadget.prototype.handleToggle = function (track) {
     }
 };
 
-OrngGadget.prototype.getTitleBarContent = function(continuation) {
-  if (my.gadgets[this.id].view == 'canvas') {
-    //document.getElementById("gadgets-title").innerHTML = (this.title ? this.title : 'Gadget');
-    continuation('<span class="gadgets-gadget-canvas-title"></span>');
-  }
-  else {
-    continuation(
-      '<div id="' + this.cssClassTitleBar + '-' + this.id +
-      '" class="' + this.cssClassTitleBar + '"><span class="' +
-      this.cssClassTitleButtonBar + '">' + 
-      '<a href="#" onclick="shindig.container.getGadget(' + this.id +
-      ').handleToggle();return false;" class="' + this.cssClassTitleButton +
-      '"><img id="gadgets-gadget-title-image-' + this.id + '" src="/' + location.pathname.split('/')[1] + '/ORNG/Images/icon_squareDownArrow.gif"/></a></span> <span id="' +
-      this.getIframeId() + '_title" class="' + this.cssClassTitle + '">' + 
-  	  '<a href="#" onclick="shindig.container.getGadget(' + this.id + ').handleToggle();return false;">' + 
-	  (this.title ? this.title : 'Gadget') + '</a>' + '</span><span id="' + 
-	  this.getIframeId() + '_status" class="gadgets-gadget-status"></span></div>');
-  }
+ORNGToggleGadget.prototype.getTitleHtml = function (title) {
+    return '<a href="#" onclick="shindig.container.getGadget('
+		+ this.id + ').handleToggle(true);return false;">'
+		+ (title ? title.replace(/&/g, '&amp;').replace(/</g, '&lt;') : 'Gadget') + '</a>';
 };
 
-// OrngLayoutManager.  Creates a FloatLeftLayoutManager for every chromeId in our gadgets
-OrngLayoutManager = function() {
-  shindig.LayoutManager.call(this);
-  // find out what chromeId's are being used, create a FloatLeftLayoutManager for each
-  this.layoutManagers = {};
-  for (var moduleId = 0; moduleId < my.gadgets.length; moduleId++) {
-    var chromeId = my.gadgets[moduleId].chrome_id;
-    if (!this.layoutManagers[chromeId]) {
-        this.layoutManagers[chromeId] = new shindig.FloatLeftLayoutManager(chromeId);
+
+ORNGToggleGadget.prototype.getTitleBarContent = function (continuation) {
+    if (my.gadgets[this.id].view == 'canvas') {
+        ORNGGadgetService.setCanvasTitle(title);
+        continuation('<span class="gadgets-gadget-canvas-title"></span>');
+    } else {
+        continuation('<div id="'
+				+ this.cssClassTitleBar
+				+ '-'
+				+ this.id
+				+ '" class="'
+				+ this.cssClassTitleBar
+				+ '"><span class="'
+				+ this.cssClassTitleButtonBar
+				+ '">'
+				+ '<a href="#" onclick="shindig.container.getGadget('
+				+ this.id
+				+ ').handleToggle(true);return false;" class="'
+				+ this.cssClassTitleButton
+				+ '"><img id="gadgets-gadget-title-image-'
+				+ this.id
+				+ '" src="Images/icon_squareDownArrow.gif"/></a></span> <span id="'
+				+ this.getIframeId() + '_title" class="' + this.cssClassTitle
+				+ '">' + this.getTitleHtml(this.title)
+				+ '</span><span id="' + this.getIframeId()
+				+ '_status" class="gadgets-gadget-status"></span></div>');
     }
-  }
 };
 
-OrngLayoutManager.inherits(shindig.LayoutManager);
-
-OrngLayoutManager.prototype.getGadgetChrome = function(gadget) {
-  return this.layoutManagers[my.gadgets[gadget.id].chrome_id].getGadgetChrome(gadget);
+ORNGToggleGadget.prototype.finishRender = function (chrome) {
+    window.frames[this.getIframeId()].location = this.getIframeUrl();
+    if (this.start_closed) {
+        this.handleToggle(false);
+    }
+    else if (chrome && this.width) {
+        chrome.style.width = this.width + 'px';
+    }
 };

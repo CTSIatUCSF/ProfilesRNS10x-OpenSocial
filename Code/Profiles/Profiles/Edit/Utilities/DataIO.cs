@@ -52,7 +52,10 @@ namespace Profiles.Edit.Utilities
                     personid = Convert.ToInt32(reader[0]);
                 }
 
-                dbconnection.Close();
+                reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
 
             }
             catch (Exception e)
@@ -120,11 +123,15 @@ namespace Profiles.Edit.Utilities
                 dbconnection.Open();
 
                 param[0] = new SqlParameter("@personid", personid);
+                SqlCommand comm = GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.Entity.UpdateEntityOnePerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.Entity.UpdateEntityOnePerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(comm);
 
-                dbconnection.Close();
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
             catch (Exception e)
             {
@@ -228,6 +235,11 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.DeleteAllPublications]";
                 comm.ExecuteScalar();
 
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
                 if (deleteMPID)
                     this.UpdateEntityOnePerson(personid);
 
@@ -266,6 +278,10 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.DeleteOnePublication]";
                 comm.ExecuteScalar();
 
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
 
                 this.UpdateEntityOnePerson(personid);
 
@@ -308,7 +324,10 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.MyPub.UpdatePublication]";
                 comm.ExecuteScalar();
 
+                comm.Connection.Close();
 
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
 
             }
             catch (Exception e)
@@ -351,6 +370,11 @@ namespace Profiles.Edit.Utilities
                 comm.CommandType = CommandType.StoredProcedure;
                 comm.CommandText = "[Profile.Data].[Publication.MyPub.AddPublication]";
                 comm.ExecuteScalar();
+
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
 
                 this.UpdateEntityOnePerson(personid);
 
@@ -424,6 +448,10 @@ namespace Profiles.Edit.Utilities
 
                 if (!reader.IsClosed)
                     reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
             }
             catch (Exception e)
             {
@@ -486,16 +514,19 @@ namespace Profiles.Edit.Utilities
                     cmd.Parameters.Add("@Personid", SqlDbType.Int).Value = personid;
                     cmd.Parameters.Add("@Photo", SqlDbType.VarBinary).Value = image;
                     cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
                 }
 
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            if (dbconnection.State == ConnectionState.Open)
-                dbconnection.Close();
 
 
             return true;
@@ -553,9 +584,13 @@ namespace Profiles.Edit.Utilities
             snr.DataType.Value = null;
             snr.DataType.ParamOrdinal = 2;
 
+
             return this.GetNodeId(snr);
 
         }
+
+
+       
 
         public bool DeleteTriple(Int64 subjectid, Int64 predicateid, Int64 objectid)
         {
@@ -581,10 +616,17 @@ namespace Profiles.Edit.Utilities
                 param[5].DbType = DbType.Boolean;
                 param[5].Direction = ParameterDirection.Output;
 
-                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[RDF.].DeleteTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].DeleteTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
-                dbconnection.Close();
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(comm);
+
+                comm.Connection.Close();
+
+
+                if (dbconnection.State == ConnectionState.Open)
+                    dbconnection.Close();
+
 
                 error = Convert.ToBoolean(param[5].Value);
 
@@ -659,7 +701,6 @@ namespace Profiles.Edit.Utilities
 
             dbconnection.Open();
 
-
             param[0] = new SqlParameter("@label", label);
             param[1] = new SqlParameter("@EntityClassURI", classuri);
             param[2] = new SqlParameter("@ForceNewEntity", 1);
@@ -669,14 +710,17 @@ namespace Profiles.Edit.Utilities
             param[4].DbType = DbType.Int64;
             param[4].Direction = ParameterDirection.Output;
 
+            SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
             //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-            ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+            ExecuteSQLDataCommand(comm);
 
-            dbconnection.Close();
+            comm.Connection.Close();
+
+            if (dbconnection.State == ConnectionState.Open)
+                dbconnection.Close();
 
             return Convert.ToInt64(param[4].Value.ToString());
-
 
         }
         public bool AddLiteral(Int64 subjectid, Int64 predicateid, Int64 objectid)
@@ -711,6 +755,8 @@ namespace Profiles.Edit.Utilities
             return error;
 
         }
+
+     
 
         public bool MoveTripleUp(Int64 subjectid, Int64 predicateid, Int64 objectid)
         {
@@ -957,11 +1003,15 @@ namespace Profiles.Edit.Utilities
                 param[sarr.Length - 1].Direction = ParameterDirection.Output;
 
 
-
+                SqlCommand comm = GetDBCommand(ref dbconnection, "[Edit.Module].[CustomEditAwardOrHonor.StoreItem]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Edit.Module].[CustomEditAwardOrHonor.StoreItem]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(comm);
 
-                dbconnection.Close();
+
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
 
                 error = Convert.ToBoolean(param[sarr.Length - 1].Value);
 
@@ -983,20 +1033,24 @@ namespace Profiles.Edit.Utilities
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
+
             SqlParameter[] param = new SqlParameter[snr.Length];
 
             string error = string.Empty;
 
             dbconnection.Open();
 
+
             if (snr.Value != null)
                 param[snr.Value.ParamOrdinal] = new SqlParameter("@value", snr.Value.Value);
-
+      
             if (snr.Langauge != null)
                 param[snr.Langauge.ParamOrdinal] = new SqlParameter("@language", null);
 
             if (snr.DataType != null)
                 param[snr.DataType.ParamOrdinal] = new SqlParameter("@DataType", null);
+
+
 
             param[snr.Length - 3] = new SqlParameter("@SessionID", sm.Session().SessionID);
 
@@ -1008,16 +1062,23 @@ namespace Profiles.Edit.Utilities
             param[snr.Length - 1].DbType = DbType.Int64;
             param[snr.Length - 1].Direction = ParameterDirection.Output;
 
+            using (var cmd = GetDBCommand(dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            {
+                try
+                {
+                    //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                    ExecuteSQLDataCommand(cmd);
+                }
+                finally
+                {
+                    SqlConnection.ClearPool(dbconnection);
+                    cmd.Connection.Close();
+                    cmd.Dispose();
+                }
+            }
 
-            //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-            ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
-
-            dbconnection.Close();
 
             return Convert.ToInt64(param[snr.Length - 1].Value.ToString());
-
-
-
 
         }
 
@@ -1058,20 +1119,20 @@ namespace Profiles.Edit.Utilities
                 if (str.StoreInverse != null)
                     param[str.StoreInverse.ParamOrdinal] = new SqlParameter("@StoreInverse", Convert.ToInt16(str.StoreInverse.Value));
 
-
-
                 param[str.Length - 2] = new SqlParameter("@sessionID", sm.Session().SessionID);
 
                 param[str.Length - 1] = new SqlParameter("@error", null);
                 param[str.Length - 1].DbType = DbType.Boolean;
                 param[str.Length - 1].Direction = ParameterDirection.Output;
 
+                using (var cmd = GetDBCommand("", "[RDF.].GetStoreTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+                {
 
-                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[RDF.].GetStoreTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                    //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                    ExecuteSQLDataCommand(cmd);
+                    cmd.Connection.Close();
 
-                dbconnection.Close();
-
+                }
                 error = Convert.ToBoolean(param[str.Length - 1].Value);
 
 
@@ -1105,10 +1166,17 @@ namespace Profiles.Edit.Utilities
 
                 param[2] = new SqlParameter("@ViewSecurityGroup", securitygroup);
 
-                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[RDF.].SetNodePropertySecurity", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].SetNodePropertySecurity", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
-                dbconnection.Close();
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(comm);
+
+
+                comm.Connection.Close();
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
 
             }
             catch (Exception e)
@@ -1121,10 +1189,8 @@ namespace Profiles.Edit.Utilities
 
             return error;
 
-
-
         }
-        public XmlDocument GetURIRelLink(string URL,ref string passeduri)
+        public XmlDocument GetURIRelLink(string URL, ref string passeduri)
         {
 
             string result = string.Empty;
@@ -1153,7 +1219,10 @@ namespace Profiles.Edit.Utilities
                         using (StreamReader readStream = new StreamReader(responseStream, Encoding.UTF8))
                         {
                             result = readStream.ReadToEnd();
+                            readStream.Close();
                         }
+
+                        responseStream.Close();
                     }
                 }
 
@@ -1169,7 +1238,7 @@ namespace Profiles.Edit.Utilities
                     {
                         if (rawhtml.Substring(i, 2) == "/>")
                         {
-                            stopindex = (i + 2)-startindex;
+                            stopindex = (i + 2) - startindex;
 
                             i = rawhtml.Length;
                         }
@@ -1211,7 +1280,7 @@ namespace Profiles.Edit.Utilities
                     if (passeduri.Contains(".rdf"))
                     {
                         string[] rdfparse = passeduri.Split('/');
-                        passeduri = passeduri.Replace("/" + rdfparse[rdfparse.Length-1], "");
+                        passeduri = passeduri.Replace("/" + rdfparse[rdfparse.Length - 1], "");
 
                     }
 
@@ -1251,7 +1320,7 @@ namespace Profiles.Edit.Utilities
 
             public StoreTripleParam Subject { get; set; }
             public StoreTripleParam Predicate { get; set; }
-            public StoreTripleParam Object { get; set; }
+            public StoreTripleParam Object { get; set; }            
             public StoreTripleParam OldObject { get; set; }
             public StoreTripleParam MoveUpOne { get; set; }
             public StoreTripleParam MoveDownOne { get; set; }
@@ -1307,12 +1376,14 @@ namespace Profiles.Edit.Utilities
 
             public StoreNodeRequest() { }
 
-            public StoreNodeParam Value { get; set; }
+            public StoreNodeParam Value { get; set; }            
+            public StoreNodeParam Subject { get; set; }
+            public StoreNodeParam Predicate { get; set; }
             public StoreNodeParam Langauge { get; set; }
             public StoreNodeParam DataType { get; set; }
             public StoreNodeParam EntityClassURI { get; set; }
             public StoreNodeParam Label { get; set; }
-
+            
 
             public int Length
             {
@@ -1335,10 +1406,15 @@ namespace Profiles.Edit.Utilities
                     if (Label != null)
                         length++;
 
+                  
+                    if (Subject != null)
+                        length++;
+
+                    if (Predicate != null)
+                        length++;
 
                     //then add SessionID, Error and return nodeID params for the array creation
                     length = length + 3;
-
 
                     return length;
 

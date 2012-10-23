@@ -2,7 +2,7 @@
     Inherits="Profiles.Edit.Modules.CustomEditAwardOrHonor.CustomEditAwardOrHonor" %>
 <%@ Register TagName="Options" TagPrefix="security" Src="~/Edit/Modules/SecurityOptions/SecurityOptions.ascx" %>
 <asp:UpdatePanel ID="upnlEditSection" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
+    <ContentTemplate>   
         <asp:UpdateProgress ID="updateProgress" runat="server">
             <ProgressTemplate>
                 <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;

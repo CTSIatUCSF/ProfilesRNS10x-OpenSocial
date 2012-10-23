@@ -93,23 +93,10 @@ namespace Profiles.ORNG.Utilities
             }
         }
 
-        public int GetOpenWidth()
+        public string GetOptParams()
         {
             GadgetViewRequirements reqs = GetGadgetViewRequirements();
-            return reqs != null ? reqs.GetOpenWidth() : 0;
-        }
-
-        public int GetClosedWidth()
-        {
-            GadgetViewRequirements reqs = GetGadgetViewRequirements();
-            return reqs != null ? reqs.GetClosedWidth() : 0;
-        }
-
-        public bool GetStartClosed()
-        {
-            GadgetViewRequirements reqs = GetGadgetViewRequirements();
-            // if the page specific reqs are present, honor those.  Otherwise defaut to true for regular gadgets, false for sandbox gadgets
-            return reqs != null ? reqs.GetStartClosed() : !gadgetSpec.FromSandbox();
+            return reqs != null ? reqs.GetOptParams() : "{}";
         }
 
         public string GetChromeId()

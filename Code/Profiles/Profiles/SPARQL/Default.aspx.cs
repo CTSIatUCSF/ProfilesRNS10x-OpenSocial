@@ -20,6 +20,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 
 using Profiles.Framework.Utilities;
+using System.Web.UI.HtmlControls;
 
 namespace Profiles.SPARQL
 {
@@ -33,12 +34,25 @@ namespace Profiles.SPARQL
 
             masterpage.Tab = "";
             masterpage.RDFData = null;
+            LoadAssets();
             XmlDocument presentationxml = new XmlDocument();
             presentationxml.LoadXml(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/SPARQL/PresentationXML/SPARQLPresentation.xml"));
             masterpage.PresentationXML = presentationxml;
+        }
 
+        private void LoadAssets()
+        {
+            HtmlLink UCSFcss = new HtmlLink();
+            UCSFcss.Href = Root.Domain + "/SPARQL/CSS/UCSF.css";
+            UCSFcss.Attributes["rel"] = "stylesheet";
+            UCSFcss.Attributes["type"] = "text/css";
+            UCSFcss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(UCSFcss);
 
-
+            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+            UCSFjs.Attributes.Add("type", "text/javascript");
+            UCSFjs.Attributes.Add("src", Root.Domain + "/SPARQL/JavaScript/UCSF.js");
+            Page.Header.Controls.Add(UCSFjs);
         }
     }
 }

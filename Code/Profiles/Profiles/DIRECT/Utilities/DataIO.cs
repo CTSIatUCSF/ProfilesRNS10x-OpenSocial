@@ -26,7 +26,7 @@ namespace Profiles.DIRECT.Utilities
 {
     public class DataIO : Profiles.Framework.Utilities.DataIO
     {
-        
+
 
         public XmlDocument Search(XmlDocument SearchData)
         {
@@ -45,7 +45,7 @@ namespace Profiles.DIRECT.Utilities
 
                 HttpWebRequest request = null;
                 request = (HttpWebRequest)WebRequest.Create(Root.Domain + "/search/data.aspx");
-                request.Method = "POST";                
+                request.Method = "POST";
 
                 request.ContentType = "application/rdf+xml";
                 request.ContentLength = _xml.Length;
@@ -98,8 +98,8 @@ namespace Profiles.DIRECT.Utilities
         {
 
             string result = string.Empty;
-            
-            
+
+
 
             try
             {
@@ -133,7 +133,7 @@ namespace Profiles.DIRECT.Utilities
                     response.Close();
                 }
 
-               
+
             }
             catch (Exception e)
             {
@@ -142,7 +142,7 @@ namespace Profiles.DIRECT.Utilities
             }
 
 
-           
+
 
             return result;
         }
@@ -158,11 +158,11 @@ namespace Profiles.DIRECT.Utilities
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);                
+                throw new Exception(e.Message);
             }
 
             config.PopulationType = vals.SelectSingleNode("directconfig/directpopulationtype").InnerText;
-            config.Timeout = Convert.ToInt32(vals.SelectSingleNode("directconfig/querytimeout").InnerText);            
+            config.Timeout = Convert.ToInt32(vals.SelectSingleNode("directconfig/querytimeout").InnerText);
 
             return config;
         }
@@ -175,7 +175,7 @@ namespace Profiles.DIRECT.Utilities
             return sqldr;
 
         }
-      
+
         public SqlDataReader GetSitesOrderBySortOrder()
         {
             string sql = "select * from [Direct.].Sites with (NOLOCK) where isactive = 1 order by sortorder";
@@ -190,7 +190,7 @@ namespace Profiles.DIRECT.Utilities
             return sqldr;
         }
 
-        
+
         public SqlDataReader GetFsID(string FsID)
         {
             string sql = "select siteid, resultdetailsurl from [Direct.].LogOutgoing with (NOLOCK) where details = 0 and fsid = " + FsID;
@@ -198,7 +198,7 @@ namespace Profiles.DIRECT.Utilities
             return sqldr;
         }
 
-             
+
 
 
     }

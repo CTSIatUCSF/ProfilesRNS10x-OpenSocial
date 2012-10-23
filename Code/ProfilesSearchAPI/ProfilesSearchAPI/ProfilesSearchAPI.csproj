@@ -80,11 +80,11 @@
       <DependentUpon>ProfilesSearchAPI.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchOptions.cs" />
     <Compile Include="Utilities\Cache.cs" />
     <Compile Include="Utilities\DataIO.cs" />
     <Compile Include="Utilities\DebugLogging.cs" />
     <Compile Include="Utilities\Namespace.cs" />
-    <Compile Include="XSD\SearchOptions.cs" />
     <Compile Include="Utilities\SerializeXML.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,7 +111,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>22763</DevelopmentServerPort>
+          <DevelopmentServerPort>21742</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

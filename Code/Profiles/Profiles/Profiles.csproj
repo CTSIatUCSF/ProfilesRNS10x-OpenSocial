@@ -40,17 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=3.5.60501.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+    <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\temp\AjaxControlToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\GoogleOpenAuthSamples\Tasks.ASP.NET.SimpleOAuth2\bin\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json.Net35, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\GoogleOpenAuthSamples\Tasks.ASP.NET.SimpleOAuth2\bin\Newtonsoft.Json.Net35.dll</HintPath>
+      <HintPath>..\..\Catalyst\Profiles\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -80,26 +72,113 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About\AboutUCSFProfiles.aspx" />
+    <Content Include="About\CSS\UCSF.css" />
+    <Content Include="About\ForDevelopers.aspx" />
+    <Content Include="About\GadgetLibrary.aspx" />
+    <Content Include="About\Help.aspx" />
+    <Content Include="About\HowProfilesWorks.aspx" />
+    <Content Include="About\JavaScript\UCSF.js" />
+    <Content Include="About\PresentationXML\AboutUCSFProfiles.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="About\PresentationXML\ForDevelopers.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="About\PresentationXML\GadgetLibrary.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="About\PresentationXML\Help.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="About\PresentationXML\HowProfilesWorks.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ActiveNetwork\CSS\UCSF.css" />
+    <Content Include="ActiveNetwork\JavaScript\UCSF.js" />
+    <Content Include="CustomAPI\v1\EditedCount.aspx" />
+    <Content Include="CustomAPI\v1\JSONProfile.aspx" />
+    <Content Include="CustomAPI\v1\PubDate.aspx" />
+    <Content Include="CustomAPI\v1\PubXML.aspx" />
+    <Content Include="CustomAPI\v1\Statistics.aspx" />
+    <Content Include="DIRECT\CSS\UCSF.css" />
+    <Content Include="DIRECT\JavaScript\UCSF.js" />
+    <Content Include="Edit\CSS\UCSF.css" />
+    <Content Include="Edit\JavaScript\UCSF.js" />
+    <Content Include="Error\CSS\UCSF.css" />
+    <Content Include="Error\JavaScript\UCSF.js" />
+    <Content Include="Error\UCSFErrorPage.aspx" />
+    <Content Include="Error\PresentationXML\UCSFErrorPage.xml" />
+    <Content Include="Framework\CSS\UCSF.css" />
+    <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />
+    <Content Include="Login\CSS\UCSF.css" />
+    <Content Include="Login\JavaScript\UCSF.js" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
     <Content Include="ORNG\CSS\gadgets.css" />
+    <Content Include="ORNG\CSS\UCSF.css" />
     <Content Include="ORNG\Default.aspx" />
     <Content Include="ORNG\GadgetDetails.aspx" />
     <Content Include="ORNG\Images\icon_squareArrow.gif" />
     <Content Include="ORNG\Images\icon_squareDownArrow.gif" />
     <Content Include="ORNG\JavaScript\orng.js" />
+    <Content Include="ORNG\JavaScript\UCSF.js" />
     <Content Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx" />
     <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
     <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
     <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
+    <Content Include="Profile\CSS\UCSF.css" />
+    <Content Include="Profile\JavaScript\UCSF.js" />
+    <Content Include="Profile\Modules\HTMLBlockLineBreaks\HTMLBlockLineBreaks.ascx" />
+    <Content Include="Proxy\CSS\UCSF.css" />
+    <Content Include="Proxy\JavaScript\UCSF.js" />
+    <Content Include="Search\CSS\UCSF.css" />
+    <Content Include="Search\JavaScript\UCSF.js" />
+    <Content Include="SPARQL\CSS\UCSF.css" />
+    <Content Include="SPARQL\JavaScript\UCSF.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About\AboutUCSFProfiles.aspx.cs">
+      <DependentUpon>AboutUCSFProfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\AboutUCSFProfiles.aspx.designer.cs">
+      <DependentUpon>AboutUCSFProfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\ForDevelopers.aspx.cs">
+      <DependentUpon>ForDevelopers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\ForDevelopers.aspx.designer.cs">
+      <DependentUpon>ForDevelopers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\GadgetLibrary.aspx.cs">
+      <DependentUpon>GadgetLibrary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\GadgetLibrary.aspx.designer.cs">
+      <DependentUpon>GadgetLibrary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\HowProfilesWorks.aspx.cs">
+      <DependentUpon>HowProfilesWorks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\HowProfilesWorks.aspx.designer.cs">
+      <DependentUpon>HowProfilesWorks.aspx</DependentUpon>
+    </Compile>
     <Compile Include="About\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -121,6 +200,29 @@
     <Compile Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx.designer.cs">
       <DependentUpon>MyNetwork.ascx</DependentUpon>
     </Compile>
+    <Compile Include="CustomAPI\Utilities\DataIO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\EditedCount.aspx.cs">
+      <DependentUpon>EditedCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\JSONProfile.aspx.cs">
+      <DependentUpon>JSONProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\PubDate.aspx.cs">
+      <DependentUpon>PubDate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\PubXML.aspx.cs">
+      <DependentUpon>PubXML.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\Statistics.aspx.cs">
+      <DependentUpon>Statistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditEmail\CustomEditEmail.ascx.cs">
       <DependentUpon>CustomEditEmail.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,6 +237,14 @@
     <Compile Include="Edit\Modules\EditObjectTypeProperty\EditObjectTypeProperty.ascx.designer.cs">
       <DependentUpon>EditObjectTypeProperty.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Error\UCSFErrorPage.aspx.cs">
+      <DependentUpon>UCSFErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\UCSFErrorPage.aspx.designer.cs">
+      <DependentUpon>UCSFErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\Utilities\StringExtensions.cs" />
     <Compile Include="Login\Modules\ShibLogin\ShibLogin.ascx.cs">
       <DependentUpon>ShibLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -326,12 +436,75 @@
     <Compile Include="Framework\Modules\MainMenu\MainMenu.ascx.designer.cs">
       <DependentUpon>MainMenu.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Profile\Modules\CoAuthorConnection\CoAuthorConnection.ascx.cs">
+      <DependentUpon>CoAuthorConnection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CoAuthorConnection\CoAuthorConnection.ascx.designer.cs">
+      <DependentUpon>CoAuthorConnection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\ConceptConnection\ConceptConnection.ascx.cs">
+      <DependentUpon>ConceptConnection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\ConceptConnection\ConceptConnection.ascx.designer.cs">
+      <DependentUpon>ConceptConnection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewConceptPublication\CustomViewConceptPublication.ascx.cs">
+      <DependentUpon>CustomViewConceptPublication.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewConceptPublication\CustomViewConceptPublication.ascx.designer.cs">
+      <DependentUpon>CustomViewConceptPublication.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewConceptSimilarMesh\CustomViewConceptSimilarMesh.ascx.cs">
+      <DependentUpon>CustomViewConceptSimilarMesh.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewConceptSimilarMesh\CustomViewConceptSimilarMesh.ascx.designer.cs">
+      <DependentUpon>CustomViewConceptSimilarMesh.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewConceptTopJournal\CustomViewConceptTopJournal.ascx.cs">
+      <DependentUpon>CustomViewConceptTopJournal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewConceptTopJournal\CustomViewConceptTopJournal.ascx.designer.cs">
+      <DependentUpon>CustomViewConceptTopJournal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\HTMLBlockLineBreaks\HTMLBlockLineBreaks.ascx.cs">
+      <DependentUpon>HTMLBlockLineBreaks.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\HTMLBlockLineBreaks\HTMLBlockLineBreaks.ascx.designer.cs">
+      <DependentUpon>HTMLBlockLineBreaks.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx.cs">
+      <DependentUpon>NetworkCluster.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx.designer.cs">
+      <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkCluster\NetworkClusterSvc.aspx.cs">
+      <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkCluster\NetworkClusterSvc.aspx.designer.cs">
+      <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.cs">
       <DependentUpon>NetworkDetails.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.designer.cs">
       <DependentUpon>NetworkDetails.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkTimeline\NetworkTimeline.ascx.cs">
+      <DependentUpon>NetworkTimeline.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkTimeline\NetworkTimeline.ascx.designer.cs">
+      <DependentUpon>NetworkTimeline.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\PassiveList\PassiveList.ascx.cs">
       <DependentUpon>PassiveList.ascx</DependentUpon>
@@ -442,6 +615,13 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewPersonSameDepartment\CustomViewPersonSameDepartment.ascx.designer.cs">
       <DependentUpon>CustomViewPersonSameDepartment.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\SimilarConnection\SimilarConnection.ascx.cs">
+      <DependentUpon>SimilarConnection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\SimilarConnection\SimilarConnection.ascx.designer.cs">
+      <DependentUpon>SimilarConnection.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -654,7 +834,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\CSS\about.css" />
-    <Content Include="About\PresentationXML\AboutPresentation.xml" />
+    <Content Include="About\PresentationXML\AboutPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ActiveNetwork\Default.aspx" />
     <Content Include="ActiveNetwork\Modules\ModuleCatalogue.xml" />
     <Content Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx" />
@@ -671,6 +853,27 @@
     <Content Include="Edit\Images\Icon_Up.gif" />
     <Content Include="Edit\Modules\CustomEditEmail\CustomEditEmail.ascx" />
     <Content Include="Edit\Modules\EditObjectTypeProperty\EditObjectTypeProperty.ascx" />
+    <Content Include="Framework\CSS\profiles-ie.css" />
+    <Content Include="Profile\Modules\CoAuthorConnection\CoAuthorConnection.ascx" />
+    <Content Include="Profile\Modules\ConceptConnection\ConceptConnection.ascx" />
+    <Content Include="Profile\Modules\CustomViewConceptPublication\CustomViewConceptPublication.ascx" />
+    <Content Include="Profile\Modules\CustomViewConceptSimilarMesh\CustomViewConceptSimilarMesh.ascx" />
+    <Content Include="Profile\Modules\CustomViewConceptTopJournal\CustomViewConceptTopJournal.ascx" />
+    <Content Include="Profile\Modules\NetworkCluster\crossdomain.xml" />
+    <Content Include="Profile\Modules\NetworkCluster\Images\yui-loading.gif" />
+    <Content Include="Profile\Modules\NetworkCluster\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx" />
+    <Content Include="Profile\Modules\NetworkCluster\NetworkClusterSvc.aspx" />
+    <Content Include="Profile\Modules\NetworkCluster\network_browser_force.swf" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\lib\prototype.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\builder.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\controls.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\dragdrop.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\effects.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\scriptaculous.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\slider.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\sound.js" />
+    <Content Include="Profile\Modules\NetworkCluster\scriptaculous\src\unittest.js" />
     <Content Include="Profile\Modules\NetworkList\SortIntermediateByWeight.xslt" />
     <Content Include="ProfileDetails.aspx" />
     <Content Include="Default.aspx" />
@@ -720,6 +923,7 @@
     <Content Include="Profile\Modules\NetworkList\SortIntermediate.xslt" />
     <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx" />
     <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.xslt" />
+    <Content Include="Profile\Modules\NetworkTimeline\NetworkTimeline.ascx" />
     <Content Include="Profile\Modules\PassiveList\PassiveList.ascx" />
     <Content Include="Profile\Modules\PassiveList\PassiveList.xslt" />
     <Content Include="Profile\Modules\PassiveText\PassiveText.ascx" />
@@ -761,6 +965,7 @@
     <Content Include="Profile\Modules\CustomViewInformationResource\CustomViewInformationResource.ascx" />
     <Content Include="Profile\Modules\CustomViewInformationResource\CustomViewInformationResource.xslt" />
     <Content Include="Profile\Modules\CustomViewPersonSameDepartment\CustomViewPersonSameDepartment.ascx" />
+    <Content Include="Profile\Modules\SimilarConnection\SimilarConnection.ascx" />
     <Content Include="Profile\Profile.aspx" />
     <Content Include="Profile\XSLT\Awards.xslt" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
@@ -769,6 +974,7 @@
     <Content Include="Profile\XSLT\Narrative.xslt" />
     <Content Include="Profile\XSLT\OtherPositions.xslt" />
     <Content Include="Profile\XSLT\Publications.xslt" />
+    <Content Include="Profile\XSLT\SimilarPeopleDetails.xslt" />
     <Content Include="Proxy\Default.aspx" />
     <Content Include="Proxy\Modules\ManageProxies\ManageProxies.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -795,9 +1001,7 @@
     <Content Include="Search\Modules\SearchEverything\SearchEverything.ascx" />
     <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
     <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
-    <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
     <Content Include="Search\Modules\SearchResults\EverythingResults.xslt" />
@@ -861,6 +1065,9 @@
     <Content Include="Framework\Modules\ApplyXSLT\ApplyXSLT.ascx" />
     <Content Include="Framework\Template.Master" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
+    <None Include="Profile\Modules\NetworkCluster\scriptaculous\CHANGELOG" />
+    <None Include="Profile\Modules\NetworkCluster\scriptaculous\MIT-LICENSE" />
+    <None Include="Profile\Modules\NetworkCluster\scriptaculous\README.rdoc" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
@@ -875,6 +1082,32 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Service.DataContracts\Connects.Profiles.Service.DataContracts.csproj">
+      <Project>{4E11DE8F-C111-44E4-8AF8-B66EDEC9152D}</Project>
+      <Name>Connects.Profiles.Service.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Service.ServiceContracts\Connects.Profiles.Service.ServiceContracts.csproj">
+      <Project>{D532570D-2CB9-4592-A8B5-C16712B1FACB}</Project>
+      <Name>Connects.Profiles.Service.ServiceContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\Connects.Profiles.Service.ServiceImplementation.csproj">
+      <Project>{24E3696C-B69C-49C8-8276-C4003297C45D}</Project>
+      <Name>Connects.Profiles.Service.ServiceImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Utility\Connects.Profiles.Utility.csproj">
+      <Project>{27F9D353-FCCC-430E-A6A6-6864773CBCDC}</Project>
+      <Name>Connects.Profiles.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Profiles.Common\Connects.Profiles.Common.csproj">
+      <Project>{72ABCD78-6907-4F63-8C59-392C9F3CE506}</Project>
+      <Name>Connects.Profiles.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesSPARQLAPI\ProfilesSPARQLAPI\ProfilesSPARQLAPI.csproj">
+      <Project>{6BA6B347-6512-4005-93F3-1C99105F8DA8}</Project>
+      <Name>ProfilesSPARQLAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ActiveNetwork\Utilities\" />

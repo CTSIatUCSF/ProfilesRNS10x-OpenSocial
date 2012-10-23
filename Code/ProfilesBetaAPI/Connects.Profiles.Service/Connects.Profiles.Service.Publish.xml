@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="Z:\api_102" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="10/17/2012 16:20:01" />
+    <file relUrl="bin/Connects.Profiles.ProfileService.dll" publishTime="10/19/2012 16:43:07" />
+    <file relUrl="bin/Connects.Profiles.Service.ServiceContracts.pdb" publishTime="10/19/2012 16:43:05" />
+    <file relUrl="ProfileService.svc" publishTime="05/31/2012 07:20:10" />
+    <file relUrl="bin/Connects.Profiles.Service.DataContracts.dll" publishTime="10/19/2012 16:43:04" />
+    <file relUrl="bin/Connects.Profiles.ProfileService.pdb" publishTime="10/19/2012 16:43:07" />
+    <file relUrl="bin/Connects.Profiles.Common.pdb" publishTime="10/19/2012 16:43:03" />
+    <file relUrl="bin/Connects.Profiles.Utility.dll" publishTime="10/19/2012 16:43:04" />
+    <file relUrl="bin/Connects.Profiles.Service.ServiceContracts.dll" publishTime="10/19/2012 16:43:05" />
+    <file relUrl="NetworkBrowserService.svc" publishTime="05/31/2012 07:20:10" />
+    <file relUrl="bin/Connects.Profiles.Utility.pdb" publishTime="10/19/2012 16:43:03" />
+    <file relUrl="bin/Connects.Profiles.Common.dll" publishTime="10/19/2012 16:43:03" />
+    <file relUrl="bin/Connects.Profiles.Service.ServiceImplementation.pdb" publishTime="10/19/2012 16:43:07" />
+    <file relUrl="CustomProfileService.svc" publishTime="10/18/2012 16:02:50" />
+    <file relUrl="bin/Connects.Profiles.Service.DataContracts.pdb" publishTime="10/19/2012 16:43:04" />
+    <file relUrl="bin/Microsoft.ServiceModel.Web.dll" publishTime="07/28/2010 10:06:00" />
+    <file relUrl="bin/Connects.Profiles.Service.ServiceImplementation.dll" publishTime="10/19/2012 16:43:07" />
+  </publishProfile>
+</publishData>

@@ -307,6 +307,8 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
             foreach (XmlNode property in this.PropertyListXML.SelectNodes("PropertyList/PropertyGroup/Property/Network/Connection"))
             {
+
+                //literalstate.Add(new LiteralState(this.SubjectID, this.PredicateID, data.GetStoreNode(property.InnerText.Trim()), property.InnerText.Trim().Replace("\r", "RRRRRRRRRR").Replace("\n", "NNNNNNNNN"), editexisting, editdelete));
                 literalstate.Add(new LiteralState(this.SubjectID, this.PredicateID, data.GetStoreNode(property.InnerText.Trim()), property.InnerText.Trim(), editexisting, editdelete));
             }
 

@@ -8,10 +8,10 @@
                     <asp:Image runat="server" ID="imgQuestion" />
                 </a>
             </div>
-        </div>
-        <div id="sdDescript" class="passiveSectionHeadDescription" style="display: none;">
-            People who are also in this person's primary department.
-        </div>
+            <div id="sdDescript" class="passiveSectionHeadDescription" style="display: none;">
+				People who are also in this person's primary department.
+			</div>
+        </div>        
         <div class="passiveSectionBody">
             <ul>
     </HeaderTemplate>

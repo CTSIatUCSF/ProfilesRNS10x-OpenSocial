@@ -76,7 +76,7 @@
                                 <asp:ImageButton ID="btnImgDeletePub" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
                                     OnClick="btnDeletePub_OnClick" />&nbsp;
                                 <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" CssClass="profileHypLinks">Delete</asp:LinkButton>
-                                &nbsp;(Remove multiple publications from your profile.)
+                                &nbsp;(Remove multiple publications from your profile)
                             </div>
                         </asp:PlaceHolder>
                     </td>
@@ -477,13 +477,12 @@
                                 <HeaderStyle HorizontalAlign="Left" CssClass="topRow" BorderStyle="Solid" BorderWidth="1px" />
                                 <RowStyle CssClass="edittable" />
                                 <Columns>
-                                    <asp:TemplateField ItemStyle-VerticalAlign="Top" ShowHeader="false" ItemStyle-HorizontalAlign="Right"
-                                        HeaderStyle-Width="5%">
+                                    <asp:TemplateField ItemStyle-VerticalAlign="Top" ShowHeader="false" ItemStyle-HorizontalAlign="Right">
                                         <ItemTemplate>
                                             <asp:Label ID="lblCounter" runat="server" Text=''></asp:Label>
                                             <asp:HiddenField ID="hdnFromPubMed" runat="server" Value='<%# Bind("FromPubMed") %>' />
                                         </ItemTemplate>
-                                        <HeaderStyle Width="5%" />
+                                        <HeaderStyle/>
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Reference" ReadOnly="true" SortExpression="Reference" />

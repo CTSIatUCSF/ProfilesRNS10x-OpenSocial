@@ -23,6 +23,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 using Profiles.Framework.Utilities;
+using System.Data.SqlTypes;
 
 namespace Profiles.Search.Utilities
 {
@@ -283,7 +284,7 @@ namespace Profiles.Search.Utilities
             return searchxml;
 
         }
-        public XmlDocument Search(XmlDocument searchoptions,bool lookup)
+        public XmlDocument Search(XmlDocument searchoptions, bool lookup)
         {
             string xmlstr = string.Empty;
             XmlDocument xmlrtn = new XmlDocument();
@@ -296,7 +297,7 @@ namespace Profiles.Search.Utilities
                 try
                 {
                     string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-                    
+
 
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand();
@@ -308,18 +309,16 @@ namespace Profiles.Search.Utilities
                     dbcommand.CommandText = "[Search.].[GetNodes]";
                     dbcommand.CommandTimeout = base.GetCommandTimeout();
 
-
-
-                    
-
                     dbcommand.Parameters.Add(new SqlParameter("@SearchOptions", searchoptions.OuterXml));
 
-                    dbcommand.Parameters.Add(new SqlParameter("@sessionid", sessionmanagement.Session().SessionID));
+                    dbcommand.Parameters.Add(new SqlParameter("@SessionId", sessionmanagement.Session().SessionID));
 
-                    if(lookup)
+                    if (lookup)
                         dbcommand.Parameters.Add(new SqlParameter("@Lookup", 1));
 
                     dbcommand.Connection = dbconnection;
+
+                    string query = dbcommand.CommandText;
 
                     dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -327,9 +326,6 @@ namespace Profiles.Search.Utilities
                     {
                         xmlstr += dbreader[0].ToString();
                     }
-
-
-
 
                     if (!dbreader.IsClosed)
                         dbreader.Close();
@@ -543,7 +539,7 @@ namespace Profiles.Search.Utilities
             //string sort = "<SortBy IsDesc=\"" + (direction == "desc" ? "0" : "1") + "\" Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\" Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#hasFacultyRank\"  Property3=\"http://www.w3.org/2000/01/rdf-schema#label\"/>";
             //sort += "<SortBy IsDesc=\"0\" Property=\"http://xmlns.com/foaf/0.1/lastName\" />";
 
-            
+
             return sort;
         }
 
@@ -703,14 +699,14 @@ namespace Profiles.Search.Utilities
                 {
 
                     string sql = "EXEC [Profile.Data].[Person.GetFilters]";
-
-                    da = new SqlDataAdapter(sql, this.GetDBConnection(""));
+                    SqlConnection conn = this.GetDBConnection("");
+                    da = new SqlDataAdapter(sql, conn);
 
                     da.Fill(ds, "Table");
                     //Defaulted this to be one hour
                     Framework.Utilities.Cache.Set("GetFilters", ds, 3600);
 
-
+                    conn.Close();
 
                 }
                 catch (Exception e)

@@ -66,7 +66,7 @@
           </form>
         </div>
         <br/>
-        <div style="width:180px;background-color:#F7F3EF;border:1px solid #999999;font-size:11px;padding:1px;text-align:center">
+        <div style="width:180px;background-color:#F7F3EF;border:1px solid #999999;font-size:11px;padding:1px;text-align:center;">
           Click the <b>Why</b> column to see why a person matched the search.
         </div>
         <br></br>

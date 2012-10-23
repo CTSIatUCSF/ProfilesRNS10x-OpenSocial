@@ -72,15 +72,16 @@ function doListTableRowOver(x) {
     
     //x.className = 'overRow';
     x.style.backgroundColor = '#5A719C';
-    x.style.color = '#FFF';   
-    x.style.cursor ='pointer'; 
+    x.style.color = '#FFF';
+    x.style.cursor = 'pointer';    
     for (var i = 0; i < x.childNodes.length; i++) {
-        if (x.childNodes[i].childNodes.length > 0) {
-            if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-                x.childNodes[i].childNodes[0].style.color = '#FFF';
-            }
+    	if (x.childNodes[i].childNodes.length > 0) {
+    		if (x.childNodes[i].children[0] != undefined)
+    			if (x.childNodes[i].children[0].className == 'listTableLink') {
+    				x.childNodes[i].children[0].style.color = '#FFF';
+				}
         }
-    }
+    }    
 }
 
 function doListTableRowOut(x, eo) {
@@ -94,10 +95,11 @@ function doListTableRowOut(x, eo) {
     }
     x.style.color = '';
     for (var i = 0; i < x.childNodes.length; i++) {
-        if (x.childNodes[i].childNodes.length > 0) {
-            if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-                x.childNodes[i].childNodes[0].style.color = '#36C';
-            }
+    	if (x.childNodes[i].childNodes.length > 0) {
+    		if (x.childNodes[i].children[0] != undefined)
+				if (x.childNodes[i].children[0].className == 'listTableLink') {
+            		x.childNodes[i].children[0].style.color = '#36C';
+				}
         }
     }
 }

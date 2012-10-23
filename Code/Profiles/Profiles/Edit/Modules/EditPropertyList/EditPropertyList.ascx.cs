@@ -28,7 +28,6 @@ using Profiles.Profile.Utilities;
 using Profiles.Edit.Utilities;
 using Profiles.ORNG.Utilities;
 
-
 namespace Profiles.Edit.Modules.EditPropertyList
 {
     public partial class EditPropertyList : BaseModule
@@ -206,7 +205,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             foreach (GenericListItem item in gli)
             {
                 table.Append("<tr style='height:25px;'>");
-                table.Append("<td style='padding-left:6px;width:55px;white-space:nowrap'>");
+                table.Append("<td style='padding-left:6px;white-space:nowrap'>");
                 table.Append("<p align='right'>");
                 table.Append("<b>");
                 table.Append(item.Text);

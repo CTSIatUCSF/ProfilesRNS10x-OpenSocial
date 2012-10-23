@@ -62,7 +62,7 @@ Below are the types of content that can be included on this profile.
                     </tr>
                 </table>
             </div>
-            <div style='border-left: solid 1px #ccc; border-right: solid 1px #ccc; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc; width:100%'>
+            <div style='border: solid 1px #ccc; margin-bottom: 2px; width:100%'>
                 <asp:Literal runat="server" ID="litSecurityKey"></asp:Literal>
             </div>
         </td>

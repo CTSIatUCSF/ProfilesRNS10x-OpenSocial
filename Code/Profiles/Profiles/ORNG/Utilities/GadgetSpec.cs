@@ -38,13 +38,10 @@ namespace Profiles.ORNG.Utilities
                             dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
                             dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
                             dr[3].ToString(),
-                            dr.IsDBNull(4) ? '0' : Convert.ToInt32(dr[4]),
-                            dr.IsDBNull(5) ? '0' : Convert.ToInt32(dr[5]),
-                            dr.IsDBNull(6) ? true : Convert.ToBoolean(dr[6]),
-                            dr[7].ToString(),
-                            dr.IsDBNull(8) ? Int32.MaxValue : Convert.ToInt32(dr[8])));
+                            dr[4].ToString(),
+                            dr[5].ToString(),
+                            dr.IsDBNull(6) ? Int32.MaxValue : Convert.ToInt32(dr[6])));
                 }
-
                 if (!dr.IsClosed)
                 {
                     dr.Close();

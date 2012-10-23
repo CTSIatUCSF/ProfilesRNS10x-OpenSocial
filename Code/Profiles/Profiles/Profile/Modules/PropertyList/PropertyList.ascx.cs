@@ -132,13 +132,11 @@ namespace Profiles.Profile.Modules.PropertyList
                                     itembuffer.Append("</div>");
                                     itembuffer.Append("<div class='PropertyGroupData'>");
                                     itembuffer.Append("<div id='" + propertyitem.SelectSingleNode("@URI").Value + "'>");
-
                                     
                                     foreach(XmlNode node in propertyitem.SelectNodes("CustomModule")){
                                         hasitems = true;
                                         itembuffer.Append(base.RenderCustomControl(node.OuterXml,base.BaseData));
                                     }
-
 
                                     itembuffer.Append("</div></div></div>");
 

@@ -5,18 +5,21 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Search
 {
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
-    [System.Xml.Serialization.XmlRootAttribute(ElementName = "query-request", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
-    [DataContract(Namespace = "", Name = "query-request")]
+	/// [DataContract(Namespace = "", Name = "query-request")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
+	//[System.Xml.Serialization.XmlRootAttribute(ElementName = "query-request", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]		
+	[Serializable]
+	[XmlType(TypeName="query-request", Namespace="http://www.w3.org/2007/SPARQL/protocol-types#")]
     public partial class queryrequest : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -27,8 +30,7 @@ namespace Search
         private string[] namedgraphuriField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [DataMember]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)] 			
         public string query
         {
             get
@@ -43,8 +45,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("default-graph-uri", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "anyURI")]
-        [DataMember]
+        [System.Xml.Serialization.XmlElementAttribute("default-graph-uri", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "anyURI")]		
         public string[] defaultgraphuri
         {
             get
@@ -59,8 +60,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("named-graph-uri", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "anyURI")]
-        [DataMember]
+        [System.Xml.Serialization.XmlElementAttribute("named-graph-uri", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "anyURI")]		
         public string[] namedgraphuri
         {
             get
@@ -85,14 +85,14 @@ namespace Search
             }
         }
     }
+	
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
-    [System.Xml.Serialization.XmlRootAttribute("query-result", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
-    [DataContract(Namespace = "", Name = "queryresult")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	[System.SerializableAttribute()]
+	[System.Diagnostics.DebuggerStepThroughAttribute()]
+	[System.ComponentModel.DesignerCategoryAttribute("code")]
+	[System.Xml.Serialization.XmlRootAttribute("query-result", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]	
     public partial class queryresult : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -127,13 +127,12 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute( AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#", IncludeInSchema = false)]
-    [System.Xml.Serialization.XmlRootAttribute("sparql", Namespace = "http://www.w3.org/2007/SPARQL/results#", IsNullable = false)]
-    [DataContract(Namespace = "http://www.w3.org/2007/SPARQL/results#", Name = "sparql")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	[System.SerializableAttribute()]
+	[System.Diagnostics.DebuggerStepThroughAttribute()]
+	[System.ComponentModel.DesignerCategoryAttribute("code")]
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#", IncludeInSchema = false)]
+	[System.Xml.Serialization.XmlRootAttribute("sparql", Namespace = "http://www.w3.org/2007/SPARQL/results#", IsNullable = false)] 
     public partial class sparql : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -156,20 +155,20 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("boolean", typeof(bool))]
-        [System.Xml.Serialization.XmlElementAttribute("results", typeof(results))]
-        public object Item
-        {
-            get
-            {
-                return this.itemField;
-            }
-            set
-            {
-                this.itemField = value;
-                this.RaisePropertyChanged("Item");
-            }
-        }
+		[System.Xml.Serialization.XmlElementAttribute("boolean", typeof(bool))]
+		[System.Xml.Serialization.XmlElementAttribute("results", typeof(results))]
+		public object Item
+		{
+			get
+			{
+				return this.itemField;
+			}
+			set
+			{
+				this.itemField = value;
+				this.RaisePropertyChanged("Item");
+			}
+		}
 
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 
@@ -184,12 +183,12 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
-    [DataContract(Namespace = "", Name = "head")]
+	/// [DataContract(Namespace = "", Name = "head")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
     public partial class head : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -198,7 +197,7 @@ namespace Search
         private linkCollection linkField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("variable")]
+		[XmlElement]
         public variableCollection variable
         {
             get
@@ -213,7 +212,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("link")]
+		[XmlElement]
         public linkCollection link
         {
             get
@@ -240,19 +239,19 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
-    [DataContract(Namespace = "", Name = "variable")]
+	/// [DataContract(Namespace = "", Name = "variable")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]	
     public partial class variable : object, System.ComponentModel.INotifyPropertyChanged
     {
 
         private string nameField;
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NMTOKEN")]
+        /// <remarks/>		
+		[XmlAttribute(AttributeName="name", DataType="NMTOKEN")]
         public string name
         {
             get
@@ -279,18 +278,18 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
     public partial class link : object, System.ComponentModel.INotifyPropertyChanged
     {
 
         private string hrefField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+		[XmlAttribute(AttributeName = "href", DataType = "anyURI")]
         public string href
         {
             get
@@ -317,11 +316,11 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
     public partial class results : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -355,11 +354,11 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
     public partial class result : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -368,7 +367,7 @@ namespace Search
         private string indexField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("binding")]
+        [System.Xml.Serialization.XmlElementAttribute("binding")]		
         public bindingCollection binding
         {
             get
@@ -383,7 +382,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "positiveInteger")]
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "positiveInteger")]		
         public string index
         {
             get
@@ -410,11 +409,11 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
     public partial class binding : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -428,7 +427,7 @@ namespace Search
         [System.Xml.Serialization.XmlElementAttribute("bnode", typeof(string))]
         [System.Xml.Serialization.XmlElementAttribute("literal", typeof(literal))]
         [System.Xml.Serialization.XmlElementAttribute("uri", typeof(string))]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]		
         public object Item
         {
             get
@@ -458,7 +457,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NMTOKEN")]
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NMTOKEN")]		
         public string name
         {
             get
@@ -485,11 +484,11 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/results#")]
     public partial class literal : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -499,7 +498,7 @@ namespace Search
 
         private StringCollection textField;
 
-        /// <remarks/>
+        /// <remarks/>		
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
         public string datatype
         {
@@ -515,7 +514,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]		
         public string lang
         {
             get
@@ -530,7 +529,7 @@ namespace Search
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlTextAttribute()]		
         public StringCollection Text
         {
             get
@@ -557,9 +556,9 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2007/SPARQL/results#", IncludeInSchema = false)]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2007/SPARQL/results#", IncludeInSchema = false)]
     public enum ItemChoiceType
     {
 
@@ -574,12 +573,14 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
-    [System.Xml.Serialization.XmlRootAttribute("malformed-query", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
+	//[System.Xml.Serialization.XmlRootAttribute("malformed-query", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
+	[Serializable]
+	[XmlType(TypeName = "malformed-query")]
     public partial class malformedquery : object, System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -613,13 +614,13 @@ namespace Search
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
-    [System.Xml.Serialization.XmlRootAttribute("query-request-refused", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
-    public partial class queryrequestrefused : object, System.ComponentModel.INotifyPropertyChanged
+	//[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+	//[System.SerializableAttribute()]
+	//[System.Diagnostics.DebuggerStepThroughAttribute()]
+	//[System.ComponentModel.DesignerCategoryAttribute("code")]
+	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#")]
+	//[System.Xml.Serialization.XmlRootAttribute("query-request-refused", Namespace = "http://www.w3.org/2007/SPARQL/protocol-types#", IsNullable = false)]
+	public partial class queryrequestrefused : object, System.ComponentModel.INotifyPropertyChanged
     {
 
         private string faultdetailsField;

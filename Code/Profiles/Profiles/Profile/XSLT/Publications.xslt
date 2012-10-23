@@ -3,7 +3,7 @@
   <xsl:template match="/">
     <xsl:if test="rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://vivoweb.org/ontology/core#InformationResource']">
       <div class="sectionHeader">Publications</div>
-      <ul style="list-style-type:decimal">
+      <ol>
         <xsl:for-each select="rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://vivoweb.org/ontology/core#InformationResource']">
           <!-- year part -->
           <xsl:sort select="prns:year" data-type="number" order="descending"/>
@@ -32,7 +32,7 @@
             </li>
           </div>
         </xsl:for-each>
-      </ul>
+      </ol>
     </xsl:if>
   </xsl:template>
 </xsl:stylesheet>

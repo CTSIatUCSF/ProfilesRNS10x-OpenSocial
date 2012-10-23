@@ -149,6 +149,9 @@ form
 	overflow: hidden;
 	padding: 0px;
 	margin: 0px;
+	/* nudge border up and to left */
+	margin-left: -1px;
+	margin-top: -2px;
 }
 .profiles .profilesPageColumnRightCenter
 {
@@ -258,6 +261,8 @@ form
 {
 	padding: 1px 8px;
 }
+
+
 .profiles .profilesContentActive ul
 {
 	list-style-type: none;
@@ -593,12 +598,12 @@ form
 
 .listTable
 {
-	margin: 0px;
+	margin: 0px;	
 }
 .listTable table
 {
 	border-collapse: collapse;
-	width: 605px;
+	width: 602px;
 	border: 1px solid #999;
 }
 .listTable tr
@@ -634,7 +639,7 @@ form
 }
 .listTable td div
 {
-	white-space: nowrap;
+	/*white-space: nowrap; Removed as long text forces table width to be larger than intended. */ 
 	overflow: hidden;
 }
 .listTable .alignLeft
@@ -675,6 +680,9 @@ form
 	border-right: solid 1px #999;
 	border-bottom: solid 1px #999;
 	padding: 6px;
+	/* Align with results table */
+	margin-left: 1px;
+	width: 588px;
 }
 .listTablePagination table
 {
@@ -795,14 +803,14 @@ form
 	padding: 0px 0px;
 }
 .connectionLine
-{
+{	
 	background-image: url('../Images/connection_center.gif');
 	height: 5px;
 	overflow: hidden;
 	padding: 0px;
 }
 .connectionLine div
-{
+{	
 	height: 5px;
 	overflow: hidden;
 }

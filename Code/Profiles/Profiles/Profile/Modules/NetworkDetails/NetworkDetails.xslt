@@ -4,8 +4,7 @@
   <xsl:output method="html"/>
   <xsl:key name="EntityList" match="Profile" use="@EntityID"/>
   <xsl:template match="/">
-    <html>
-      <head>
+  
         <script type="text/javascript">
           var hasClickedListTable = false;
           function doListTableRowOver(x) {
@@ -49,12 +48,9 @@
           hasClickedListTable = true;
           }-->
 
-		</script>
-      </head>
-      <script>
-		  function doKeywordSelect(x) {
+	
+		  function doKeywordSelect(x) {		  
 		  
-		  alert(x);
 		  return null;
 		  if (!hasClickedListTable) { document.location = '/profile/concept/' + x;}
 		  }
@@ -83,10 +79,11 @@
 						<xsl:otherwise>
 							<th>
 								<xsl:value-of select="."/>
-							</th>	
+							</th>							
 						</xsl:otherwise>
 					</xsl:choose>                  
                 </xsl:for-each>
+				  
               </tr>
             </xsl:for-each>
             <xsl:for-each select="DetailTable/Row[@type='data'] ">
@@ -156,6 +153,6 @@
           </tbody>
         </table>
       </div>
-    </html>
+    
   </xsl:template>
 </xsl:stylesheet>

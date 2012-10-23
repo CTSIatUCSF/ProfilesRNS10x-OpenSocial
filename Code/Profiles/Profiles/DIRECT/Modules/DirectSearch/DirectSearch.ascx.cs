@@ -15,15 +15,16 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 {
     public partial class DirectSearch : System.Web.UI.UserControl
     {
-        string KeywordString = string.Empty;        
+        string KeywordString = string.Empty;
         string directwaitingimageURL = Root.Domain + "/DIRECT/images/yui-loading.gif";
 
 
 
         public DirectSearch() { }
-        public DirectSearch(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces) {
+        public DirectSearch(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
+        {
 
-        
+
         }
 
         private void LoadAssets()
@@ -42,7 +43,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
         {
             if (Request.QueryString["stop"] == null)
             {
-               // GetResultXMLDocument();
+                // GetResultXMLDocument();
 
                 Int64 rnd = 0;
                 Random r = new Random();
@@ -102,7 +103,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
             sb.Append(DrawListTableStart(6, 18, "Institution|Matches", "|", "|", "450|150", "l|c"));
             Int64 OddRow = 0;
 
-           DIRECT.Utilities.DataIO oDataIO = new Profiles.DIRECT.Utilities.DataIO();
+            DIRECT.Utilities.DataIO oDataIO = new Profiles.DIRECT.Utilities.DataIO();
             SqlDataReader dr = oDataIO.DirectResultset();
 
             while (dr.Read())
@@ -115,7 +116,9 @@ namespace Profiles.DIRECT.Modules.DirectSearch
                     "l|c"));
                 jsAddSites.AppendLine("var t = {}; t.SiteID = " + dr["SiteID"] + "; t.ResultPopType = ''; t.ResultDetailsURL = ''; t.FSID = ''; fsObject.push(t);");
             }
-            dr.Dispose();
+            dr.Close();
+            try { dr.Dispose(); }
+            catch (Exception ex) { }
             sb.Append(DrawListTableEnd());
 
             sb.Append("<script>");
@@ -127,7 +130,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
         string DrawListTableStart(Int64 marginTop, Int64 marginBottom, string tempColName, string tempColUrl, string tempColIcon, string tempColWidth, string tempColJustify)
         {
-            Int64 i = 0;            
+            Int64 i = 0;
             string[] ColNames = tempColName.Split('|');
             string[] ColUrls = tempColUrl.Split('|');
             string[] ColIcons = tempColIcon.Split('|');
@@ -163,7 +166,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
                 sb.Append(ColNames[i]);
 
                 if (ColIcons[i] == "1")
-                    sb.Append("<img src='" + Root.Domain  + "/framework/images/sort_asc.gif' alt='Sort Descending'/>");
+                    sb.Append("<img src='" + Root.Domain + "/framework/images/sort_asc.gif' alt='Sort Descending'/>");
 
                 if (ColIcons[i] == "2")
                     sb.Append("<img src='" + Root.Domain + "/framework/images/sort_desc.gif' alt='Sort Ascending'/>");
@@ -254,7 +257,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
         public string DirectServiceURL()
         {
-            return Root.Domain + "/DIRECT/Modules/DirectSearch/DirectService.aspx";            
+            return Root.Domain + "/DIRECT/Modules/DirectSearch/DirectService.aspx";
         }
         public string DirectWaitingImageURL()
         {

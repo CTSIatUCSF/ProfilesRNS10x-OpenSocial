@@ -116,11 +116,26 @@ namespace Profiles.Search
             jsscript.Attributes.Add("src", Root.Domain + "/Search/JavaScript/comboTreeCheck.js");
             Page.Header.Controls.Add(jsscript);
 
+			// Inject script into HEADER
+			Literal script = new Literal();
+			script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
+			Page.Header.Controls.Add(script);
 
-            Response.Write("<script>var _path = \"" + Root.Domain + "\";</script>");
+            //Response.Write("<script>var _path = \"" + Root.Domain + "\";</script>");
 
+            HtmlLink UCSFcss = new HtmlLink();
+            UCSFcss.Href = Root.Domain + "/Search/CSS/UCSF.css";
+            UCSFcss.Attributes["rel"] = "stylesheet";
+            UCSFcss.Attributes["type"] = "text/css";
+            UCSFcss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(UCSFcss);
 
+            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+            UCSFjs.Attributes.Add("type", "text/javascript");
+            UCSFjs.Attributes.Add("src", Root.Domain + "/Search/JavaScript/UCSF.js");
+            Page.Header.Controls.Add(UCSFjs);
         }
+
         //Need to process this at the page level for the framework data
         //to process the presentation XML
         public void LoadRDFSearchResults()
@@ -153,47 +168,37 @@ namespace Profiles.Search
 
             string division = string.Empty;
             string divisionallexcept = string.Empty;
+						
+            if (Request.QueryString["searchtype"].IsNullOrEmpty()==false)
+				searchtype = Request.QueryString["searchtype"];
+            
+			//else if (Request.Form["searchtype"] != null)
+			//{
+			//    searchtype = Request.Form["searchtype"];
+			//}
 
-
-            if (Request.QueryString["searchtype"] != null)
-            {
-                searchtype = Request.QueryString["searchtype"];
-            }
-            else if (Request.Form["searchtype"] != null)
-            {
-                searchtype = Request.Form["searchtype"];
-
-            }
-
-            if (Request.QueryString["searchfor"] != null)
+            if (Request.QueryString["searchfor"].IsNullOrEmpty()==false)
                 searchfor = Request.QueryString["searchfor"];
 
-            if (Request.Form["txtSearchFor"] != null)
-            {
-                searchfor = Request.Form["txtSearchFor"];
-            }
-
-
-            if (Request.QueryString["lname"] != null)
+            if (Request.Form["txtSearchFor"].IsNullOrEmpty()==false)
+				searchfor = Request.Form["txtSearchFor"];
+            
+            if (Request.QueryString["lname"].IsNullOrEmpty()==false)
                 lname = Request.QueryString["lname"];
 
-
-            if (Request.QueryString["institution"] != null)
+            if (Request.QueryString["institution"].IsNullOrEmpty()==false)
                 institution = Request.QueryString["institution"];
 
-
-            if (Request.QueryString["department"] != null)
+            if (Request.QueryString["department"].IsNullOrEmpty()==false)
                 department = Request.QueryString["department"];
 
-
-            if (Request.QueryString["fname"] != null)
+            if (Request.QueryString["fname"].IsNullOrEmpty()==false)
                 fname = Request.QueryString["fname"];
 
-            if (Request.QueryString["classgroupuri"] != null)
+            if (Request.QueryString["classgroupuri"].IsNullOrEmpty()==false)
                 classgroupuri = HttpUtility.UrlDecode(Request.QueryString["classgroupuri"]);
             else
                 classgroupuri = HttpUtility.UrlDecode(Request.Form["classgroupuri"]);
-
 
             if (classgroupuri != null)
             {
@@ -201,7 +206,7 @@ namespace Profiles.Search
                     classgroupuri = classgroupuri.Replace('!', '#');
             }
 
-            if (Request.QueryString["classuri"] != null)
+            if (Request.QueryString["classuri"].IsNullOrEmpty()==false)
                 classuri = HttpUtility.UrlDecode(Request.QueryString["classuri"]);
             else
                 classuri = HttpUtility.UrlDecode(Request.Form["classuri"]);
@@ -213,97 +218,66 @@ namespace Profiles.Search
             }
             else
             {
-
                 classuri = "";
             }
 
-            if (Request.QueryString["perpage"] != null)
+            if (Request.QueryString["perpage"].IsNullOrEmpty()==false)
                 perpage = Request.QueryString["perpage"];
             else
                 perpage = Request.Form["perpage"];
 
+			//if (perpage == string.Empty || perpage == null)
+			//{
+			//    perpage = Request.QueryString["perpage"];
+			//}
 
-            if (perpage == string.Empty || perpage == null)
-            {
-                perpage = Request.QueryString["perpage"];
-            }
-
-            if (perpage == null)
+            if (perpage.IsNullOrEmpty())
                 perpage = "15";
 
-
-            if (Request.QueryString["offset"] != null)
+            if (Request.QueryString["offset"].IsNullOrEmpty()==false)
                 offset = Request.QueryString["offset"];
             else
                 offset = Request.Form["offset"];
 
-            if (offset == string.Empty)
+            if (offset.IsNullOrEmpty())
                 offset = "0";
 
-            if (offset == null)
-                offset = "0";
+			//if (offset == null)
+			//    offset = "0";
 
-
-
-            if (Request.QueryString["sortby"] != null)
+			if (Request.QueryString["sortby"].IsNullOrEmpty() == false)
                 sortby = Request.QueryString["sortby"];
 
-            if (Request.QueryString["sortdirection"] != null)
+			if (Request.QueryString["sortdirection"].IsNullOrEmpty() == false)
                 sortdirection = Request.QueryString["sortdirection"];
 
-            if (Request.QueryString["searchrequest"] != null)
+			if (Request.QueryString["searchrequest"].IsNullOrEmpty() == false)
                 searchrequest = Request.QueryString["searchrequest"];
 
+			if (Request.QueryString["otherfilters"].IsNullOrEmpty() == false)
+				otherfilters = Request.QueryString["otherfilters"];
 
-            if (Request.QueryString["otherfilters"] != null)
-            {
-                otherfilters = Request.QueryString["otherfilters"];
-
-            }
-
-
-            if (Request.QueryString["institutionallexcept"] != null)
-            {
+			if (Request.QueryString["institutionallexcept"].IsNullOrEmpty() == false)            
                 institutionallexcept = Request.QueryString["institutionallexcept"];
 
-            }
-
-
-            if (Request.QueryString["departmentallexcept"] != null)
-            {
+			if (Request.QueryString["departmentallexcept"].IsNullOrEmpty() == false)            
                 departmentallexcept = Request.QueryString["departmentallexcept"];
 
-            }
-
-
-
-            if (Request.QueryString["division"] != null)
-            {
+			if (Request.QueryString["division"].IsNullOrEmpty() == false)            
                 division = Request.QueryString["division"];
 
-            }
+			if (Request.QueryString["divisionallexcept"].IsNullOrEmpty() == false)
+				divisionallexcept = Request.QueryString["divisionallexcept"];
 
-
-            if (Request.QueryString["divisionallexcept"] != null)
-            {
-                divisionallexcept = Request.QueryString["divisionallexcept"];
-
-            }
-
-
-            if (Request.QueryString["exactphrase"] != null)
-            {
+			if (Request.QueryString["exactphrase"].IsNullOrEmpty() == false)
                 exactphrase = Request.QueryString["exactphrase"];
-            }
 
-            if (Request.QueryString["nodeuri"] != null)
+			if (Request.QueryString["nodeuri"].IsNullOrEmpty() == false)
             {
                 nodeuri = Request.QueryString["nodeuri"];
                 nodeid = nodeuri.Substring(nodeuri.LastIndexOf("/") + 1);
             }
-
-
-
+	
             switch (searchtype.ToLower())
             {
                 case "everything":
@@ -323,7 +297,6 @@ namespace Profiles.Search
             }
 
 
-
             if (nodeuri != string.Empty && nodeid != string.Empty)
                 masterpage.RDFData = data.WhySearch(xml, nodeuri, Convert.ToInt64(nodeid));
             else
@@ -335,8 +308,5 @@ namespace Profiles.Search
         }
 
         public XmlDocument PresentationXML { get; set; }
-
-
-
     }
 }

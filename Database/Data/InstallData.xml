@@ -2,11 +2,11 @@
   <Table Name="[Framework.].[Parameter]">
     <Row>
       <ParameterID>basePath</ParameterID>
-      <Value>http://itwvwebip02.med.harvard.edu/profiles</Value>
+      <Value>http://itwvwebip02/profiles</Value>
     </Row>
     <Row>
       <ParameterID>baseURI</ParameterID>
-      <Value>http://itwvwebip02.med.harvard.edu/profiles/profile/</Value>
+      <Value>http://itwvwebip02/profiles/profile/</Value>
     </Row>
     <Row>
       <ParameterID>RC4EncryptionKey</ParameterID>
@@ -42,6 +42,8 @@
       <Step>1</Step>
       <IsActive>1</IsActive>
       <Script>UPDATE [Framework.].[Parameter] SET Value = (SELECT Value+'/profile/' FROM [Framework.].[Parameter] WHERE ParameterID = 'basePath') WHERE ParameterID = 'baseURI'</Script>
+      <LastStart>2012-07-17T14:07:36.297</LastStart>
+      <LastEnd>2012-07-17T14:07:36.303</LastEnd>
     </Row>
     <Row>
       <JobID>2</JobID>
@@ -49,6 +51,8 @@
       <Step>2</Step>
       <IsActive>1</IsActive>
       <Script>UPDATE [Ontology.Import].OWL SET Graph = 2 WHERE name = 'VIVO_1.4'</Script>
+      <LastStart>2012-07-17T14:07:36.307</LastStart>
+      <LastEnd>2012-07-17T14:07:36.310</LastEnd>
     </Row>
     <Row>
       <JobID>3</JobID>
@@ -56,6 +60,8 @@
       <Step>3</Step>
       <IsActive>1</IsActive>
       <Script>UPDATE [Ontology.Import].OWL SET Graph = 3 WHERE name =  'PRNS_1.0'</Script>
+      <LastStart>2012-07-17T14:07:36.310</LastStart>
+      <LastEnd>2012-07-17T14:07:36.313</LastEnd>
     </Row>
     <Row>
       <JobID>4</JobID>
@@ -63,6 +69,8 @@
       <Step>4</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'VIVO_1.4'</Script>
+      <LastStart>2012-07-17T14:07:36.313</LastStart>
+      <LastEnd>2012-07-17T14:07:37.873</LastEnd>
     </Row>
     <Row>
       <JobID>5</JobID>
@@ -70,6 +78,8 @@
       <Step>5</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'PRNS_1.0'</Script>
+      <LastStart>2012-07-17T14:07:37.877</LastStart>
+      <LastEnd>2012-07-17T14:07:37.953</LastEnd>
     </Row>
     <Row>
       <JobID>6</JobID>
@@ -77,6 +87,8 @@
       <Step>6</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [RDF.Stage].[LoadTriplesFromOntology] @Truncate = 1</Script>
+      <LastStart>2012-07-17T14:07:37.953</LastStart>
+      <LastEnd>2012-07-17T14:07:38.063</LastEnd>
     </Row>
     <Row>
       <JobID>7</JobID>
@@ -84,6 +96,8 @@
       <Step>7</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [RDF.Stage].[ProcessTriples]</Script>
+      <LastStart>2012-07-17T14:07:38.063</LastStart>
+      <LastEnd>2012-07-17T14:07:39.703</LastEnd>
     </Row>
     <Row>
       <JobID>8</JobID>
@@ -91,6 +105,8 @@
       <Step>8</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Ontology.].[UpdateDerivedFields]</Script>
+      <LastStart>2012-07-17T14:07:39.707</LastStart>
+      <LastEnd>2012-07-17T14:07:40.937</LastEnd>
     </Row>
     <Row>
       <JobID>9</JobID>
@@ -98,6 +114,8 @@
       <Step>9</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Data].[Concept.Mesh.ParseMeshXML]</Script>
+      <LastStart>2012-07-17T14:07:40.960</LastStart>
+      <LastEnd>2012-07-17T14:09:57.370</LastEnd>
     </Row>
     <Row>
       <JobID>10</JobID>
@@ -105,6 +123,8 @@
       <Step>10</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Utility.NLP].[UpdateThesaurus]</Script>
+      <LastStart>2012-07-17T14:09:57.370</LastStart>
+      <LastEnd>2012-07-17T14:10:02.413</LastEnd>
     </Row>
     <Row>
       <JobID>11</JobID>
@@ -112,6 +132,9 @@
       <Step>1</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Framework.].[RunJobGroup] @JobGroup = 7</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:22:51.063</LastStart>
+      <LastEnd>2012-07-25T15:30:56.973</LastEnd>
     </Row>
     <Row>
       <JobID>12</JobID>
@@ -119,6 +142,9 @@
       <Step>2</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Framework.].[RunJobGroup] @JobGroup = 8</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:30:56.977</LastStart>
+      <LastEnd>2012-07-25T16:01:39.060</LastEnd>
     </Row>
     <Row>
       <JobID>13</JobID>
@@ -126,6 +152,9 @@
       <Step>3</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Framework.].[RunJobGroup] @JobGroup = 9</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T16:01:39.063</LastStart>
+      <LastEnd>2012-07-25T19:35:37.323</LastEnd>
     </Row>
     <Row>
       <JobID>14</JobID>
@@ -133,6 +162,9 @@
       <Step>4</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [RDF.Stage].[ProcessDataMap] @AutoFeedOnly = 0</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T19:35:37.323</LastStart>
+      <LastEnd>2012-07-25T21:44:14.763</LastEnd>
     </Row>
     <Row>
       <JobID>15</JobID>
@@ -140,6 +172,9 @@
       <Step>5</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Import].[Beta.SetDisplayPreferences]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T21:44:14.797</LastStart>
+      <LastEnd>2012-07-25T21:44:52.227</LastEnd>
     </Row>
     <Row>
       <JobID>16</JobID>
@@ -147,6 +182,9 @@
       <Step>6</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [RDF.Stage].[LoadAliases]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T21:44:52.227</LastStart>
+      <LastEnd>2012-07-25T21:44:52.240</LastEnd>
     </Row>
     <Row>
       <JobID>17</JobID>
@@ -154,6 +192,9 @@
       <Step>7</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Ontology.].[UpdateCounts]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T21:44:52.240</LastStart>
+      <LastEnd>2012-07-25T21:55:31.620</LastEnd>
     </Row>
     <Row>
       <JobID>18</JobID>
@@ -161,6 +202,9 @@
       <Step>8</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Search.Cache].[Public.UpdateCache]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T21:55:31.623</LastStart>
+      <LastEnd>2012-07-25T22:16:57.503</LastEnd>
     </Row>
     <Row>
       <JobID>19</JobID>
@@ -168,6 +212,9 @@
       <Step>9</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Search.Cache].[Private.UpdateCache]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T22:16:57.507</LastStart>
+      <LastEnd>2012-07-25T22:38:12.957</LastEnd>
     </Row>
     <Row>
       <JobID>20</JobID>
@@ -259,6 +306,9 @@
       <Step>1</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Person.UpdatePerson]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:22:51.070</LastStart>
+      <LastEnd>2012-07-25T15:23:05.760</LastEnd>
     </Row>
     <Row>
       <JobID>33</JobID>
@@ -266,6 +316,9 @@
       <Step>2</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Person.UpdateAffiliation]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:23:05.760</LastStart>
+      <LastEnd>2012-07-25T15:23:06.040</LastEnd>
     </Row>
     <Row>
       <JobID>34</JobID>
@@ -273,6 +326,9 @@
       <Step>3</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Person.UpdatePhysicalNeighbor]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:23:06.040</LastStart>
+      <LastEnd>2012-07-25T15:24:17.397</LastEnd>
     </Row>
     <Row>
       <JobID>35</JobID>
@@ -280,6 +336,9 @@
       <Step>4</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Publication.PubMed.UpdateAuthorPosition]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:24:17.400</LastStart>
+      <LastEnd>2012-07-25T15:24:26.020</LastEnd>
     </Row>
     <Row>
       <JobID>36</JobID>
@@ -287,6 +346,9 @@
       <Step>5</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Data].[Publication.Entity.UpdateEntity]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:24:26.023</LastStart>
+      <LastEnd>2012-07-25T15:26:16.147</LastEnd>
     </Row>
     <Row>
       <JobID>37</JobID>
@@ -294,6 +356,9 @@
       <Step>6</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[SNA.Coauthor.UpdateCoauthor]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:26:16.147</LastStart>
+      <LastEnd>2012-07-25T15:26:17.703</LastEnd>
     </Row>
     <Row>
       <JobID>38</JobID>
@@ -301,6 +366,9 @@
       <Step>7</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdateCountTree]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:26:17.703</LastStart>
+      <LastEnd>2012-07-25T15:26:41.033</LastEnd>
     </Row>
     <Row>
       <JobID>39</JobID>
@@ -308,6 +376,9 @@
       <Step>8</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdatePersonPublication]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:26:41.033</LastStart>
+      <LastEnd>2012-07-25T15:27:41.540</LastEnd>
     </Row>
     <Row>
       <JobID>40</JobID>
@@ -315,6 +386,9 @@
       <Step>9</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdatePerson]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:27:41.543</LastStart>
+      <LastEnd>2012-07-25T15:28:21.090</LastEnd>
     </Row>
     <Row>
       <JobID>41</JobID>
@@ -322,6 +396,9 @@
       <Step>10</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdateWord2Mesh]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:28:21.090</LastStart>
+      <LastEnd>2012-07-25T15:28:21.103</LastEnd>
     </Row>
     <Row>
       <JobID>42</JobID>
@@ -329,6 +406,9 @@
       <Step>11</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdateJournal]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:28:21.103</LastStart>
+      <LastEnd>2012-07-25T15:30:56.510</LastEnd>
     </Row>
     <Row>
       <JobID>43</JobID>
@@ -336,6 +416,9 @@
       <Step>12</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[SNA.Coauthor.UpdateSummary]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:30:56.520</LastStart>
+      <LastEnd>2012-07-25T15:30:56.940</LastEnd>
     </Row>
     <Row>
       <JobID>44</JobID>
@@ -343,6 +426,9 @@
       <Step>14</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Search.Cache].[History.UpdateTopSearchPhrase]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:30:56.943</LastStart>
+      <LastEnd>2012-07-25T15:30:56.970</LastEnd>
     </Row>
     <Row>
       <JobID>45</JobID>
@@ -350,6 +436,9 @@
       <Step>1</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Person.UpdateSimilarPerson]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:30:56.980</LastStart>
+      <LastEnd>2012-07-25T15:53:25.663</LastEnd>
     </Row>
     <Row>
       <JobID>46</JobID>
@@ -357,6 +446,9 @@
       <Step>2</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdateSimilarConcept]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T15:53:25.700</LastStart>
+      <LastEnd>2012-07-25T16:01:39.060</LastEnd>
     </Row>
     <Row>
       <JobID>47</JobID>
@@ -364,6 +456,9 @@
       <Step>1</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[SNA.Coauthor.UpdateDistance]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T16:01:39.067</LastStart>
+      <LastEnd>2012-07-25T16:55:38.440</LastEnd>
     </Row>
     <Row>
       <JobID>48</JobID>
@@ -371,6 +466,9 @@
       <Step>2</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[SNA.Coauthor.UpdateReach]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T16:55:38.443</LastStart>
+      <LastEnd>2012-07-25T16:56:05.680</LastEnd>
     </Row>
     <Row>
       <JobID>49</JobID>
@@ -378,6 +476,9 @@
       <Step>3</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[SNA.Coauthor.UpdateBetweenness]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T16:56:05.680</LastStart>
+      <LastEnd>2012-07-25T19:35:36.773</LastEnd>
     </Row>
     <Row>
       <JobID>50</JobID>
@@ -385,6 +486,9 @@
       <Step>4</Step>
       <IsActive>1</IsActive>
       <Script>EXEC [Profile.Cache].[SNA.Coauthor.UpdateSummary]</Script>
+      <Status>COMPLETED</Status>
+      <LastStart>2012-07-25T19:35:36.773</LastStart>
+      <LastEnd>2012-07-25T19:35:37.323</LastEnd>
     </Row>
     <Row>
       <JobID>51</JobID>
@@ -1044,8 +1148,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>3075089</_NumberOfNodes>
-      <_NumberOfTriples>3075089</_NumberOfTriples>
+      <_NumberOfNodes>3186019</_NumberOfNodes>
+      <_NumberOfTriples>3186019</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>22</ClassPropertyID>
@@ -2344,8 +2448,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>50230</_NumberOfNodes>
-      <_NumberOfTriples>50230</_NumberOfTriples>
+      <_NumberOfNodes>54915</_NumberOfNodes>
+      <_NumberOfTriples>54915</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>74</ClassPropertyID>
@@ -2369,8 +2473,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>50230</_NumberOfNodes>
-      <_NumberOfTriples>50230</_NumberOfTriples>
+      <_NumberOfNodes>54915</_NumberOfNodes>
+      <_NumberOfTriples>54915</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>75</ClassPropertyID>
@@ -2619,8 +2723,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>1515220</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>1610436</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>85</ClassPropertyID>
@@ -2644,8 +2748,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>378805</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>402609</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>86</ClassPropertyID>
@@ -2669,8 +2773,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>1515220</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>1610436</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>87</ClassPropertyID>
@@ -2694,8 +2798,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>378805</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>402609</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>88</ClassPropertyID>
@@ -3494,8 +3598,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>1515220</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>1610436</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>120</ClassPropertyID>
@@ -3519,8 +3623,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>378805</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>402609</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>121</ClassPropertyID>
@@ -3694,8 +3798,8 @@
       <_PropertyNode>827</_PropertyNode>
       <_TagName>bibo:pmid</_TagName>
       <_PropertyLabel>PubMed Identifier</_PropertyLabel>
-      <_NumberOfNodes>327334</_NumberOfNodes>
-      <_NumberOfTriples>327334</_NumberOfTriples>
+      <_NumberOfNodes>350982</_NumberOfNodes>
+      <_NumberOfTriples>350982</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>128</ClassPropertyID>
@@ -6344,8 +6448,8 @@
       <_PropertyNode>989</_PropertyNode>
       <_TagName>vivo:address1</_TagName>
       <_PropertyLabel>address line 1</_PropertyLabel>
-      <_NumberOfNodes>27040</_NumberOfNodes>
-      <_NumberOfTriples>27040</_NumberOfTriples>
+      <_NumberOfNodes>29225</_NumberOfNodes>
+      <_NumberOfTriples>29225</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>234</ClassPropertyID>
@@ -6369,8 +6473,8 @@
       <_PropertyNode>992</_PropertyNode>
       <_TagName>vivo:address2</_TagName>
       <_PropertyLabel>address line 2</_PropertyLabel>
-      <_NumberOfNodes>24852</_NumberOfNodes>
-      <_NumberOfTriples>24852</_NumberOfTriples>
+      <_NumberOfNodes>26901</_NumberOfNodes>
+      <_NumberOfTriples>26901</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>235</ClassPropertyID>
@@ -6394,8 +6498,8 @@
       <_PropertyNode>994</_PropertyNode>
       <_TagName>vivo:address3</_TagName>
       <_PropertyLabel>address line 3</_PropertyLabel>
-      <_NumberOfNodes>25297</_NumberOfNodes>
-      <_NumberOfTriples>25297</_NumberOfTriples>
+      <_NumberOfNodes>27486</_NumberOfNodes>
+      <_NumberOfTriples>27486</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>236</ClassPropertyID>
@@ -6419,8 +6523,8 @@
       <_PropertyNode>227</_PropertyNode>
       <_TagName>vivo:addressCity</_TagName>
       <_PropertyLabel>city</_PropertyLabel>
-      <_NumberOfNodes>27053</_NumberOfNodes>
-      <_NumberOfTriples>27053</_NumberOfTriples>
+      <_NumberOfNodes>29238</_NumberOfNodes>
+      <_NumberOfTriples>29238</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>237</ClassPropertyID>
@@ -6444,8 +6548,8 @@
       <_PropertyNode>281</_PropertyNode>
       <_TagName>vivo:addressPostalCode</_TagName>
       <_PropertyLabel>postal code</_PropertyLabel>
-      <_NumberOfNodes>27052</_NumberOfNodes>
-      <_NumberOfTriples>27052</_NumberOfTriples>
+      <_NumberOfNodes>29237</_NumberOfNodes>
+      <_NumberOfTriples>29237</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>238</ClassPropertyID>
@@ -6469,8 +6573,8 @@
       <_PropertyNode>254</_PropertyNode>
       <_TagName>vivo:addressState</_TagName>
       <_PropertyLabel>state or province</_PropertyLabel>
-      <_NumberOfNodes>27043</_NumberOfNodes>
-      <_NumberOfTriples>27043</_NumberOfTriples>
+      <_NumberOfNodes>29229</_NumberOfNodes>
+      <_NumberOfTriples>29229</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>239</ClassPropertyID>
@@ -6494,8 +6598,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>27062</_NumberOfNodes>
-      <_NumberOfTriples>27062</_NumberOfTriples>
+      <_NumberOfNodes>29266</_NumberOfNodes>
+      <_NumberOfTriples>29266</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>240</ClassPropertyID>
@@ -6519,8 +6623,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>25297</_NumberOfNodes>
-      <_NumberOfTriples>25297</_NumberOfTriples>
+      <_NumberOfNodes>27486</_NumberOfNodes>
+      <_NumberOfTriples>27486</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>241</ClassPropertyID>
@@ -6569,8 +6673,8 @@
       <_PropertyNode>1595</_PropertyNode>
       <_TagName>vivo:mailingAddressFor</_TagName>
       <_PropertyLabel>mailing address for</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>243</ClassPropertyID>
@@ -6944,8 +7048,8 @@
       <_PropertyNode>257</_PropertyNode>
       <_TagName>vivo:linkedAuthor</_TagName>
       <_PropertyLabel>linked author</_PropertyLabel>
-      <_NumberOfNodes>514807</_NumberOfNodes>
-      <_NumberOfTriples>514807</_NumberOfTriples>
+      <_NumberOfNodes>534964</_NumberOfNodes>
+      <_NumberOfTriples>534964</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>258</ClassPropertyID>
@@ -6969,8 +7073,8 @@
       <_PropertyNode>1524</_PropertyNode>
       <_TagName>vivo:linkedInformationResource</_TagName>
       <_PropertyLabel>linked information resource</_PropertyLabel>
-      <_NumberOfNodes>540763</_NumberOfNodes>
-      <_NumberOfTriples>540763</_NumberOfTriples>
+      <_NumberOfNodes>580413</_NumberOfNodes>
+      <_NumberOfTriples>580413</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>259</ClassPropertyID>
@@ -6994,8 +7098,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>540763</_NumberOfNodes>
-      <_NumberOfTriples>540763</_NumberOfTriples>
+      <_NumberOfNodes>580413</_NumberOfNodes>
+      <_NumberOfTriples>580413</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>260</ClassPropertyID>
@@ -7019,8 +7123,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>540763</_NumberOfNodes>
-      <_NumberOfTriples>540763</_NumberOfTriples>
+      <_NumberOfNodes>580413</_NumberOfNodes>
+      <_NumberOfTriples>580413</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>261</ClassPropertyID>
@@ -7194,8 +7298,8 @@
       <_PropertyNode>328</_PropertyNode>
       <_TagName>prns:awardConferredBy</_TagName>
       <_PropertyLabel>award conferred by</_PropertyLabel>
-      <_NumberOfNodes>16445</_NumberOfNodes>
-      <_NumberOfTriples>16445</_NumberOfTriples>
+      <_NumberOfNodes>16861</_NumberOfNodes>
+      <_NumberOfTriples>16861</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>268</ClassPropertyID>
@@ -7219,8 +7323,8 @@
       <_PropertyNode>357</_PropertyNode>
       <_TagName>prns:endDate</_TagName>
       <_PropertyLabel>end date</_PropertyLabel>
-      <_NumberOfNodes>3601</_NumberOfNodes>
-      <_NumberOfTriples>3601</_NumberOfTriples>
+      <_NumberOfNodes>3752</_NumberOfNodes>
+      <_NumberOfTriples>3752</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>269</ClassPropertyID>
@@ -7244,8 +7348,8 @@
       <_PropertyNode>468</_PropertyNode>
       <_TagName>prns:startDate</_TagName>
       <_PropertyLabel>start date</_PropertyLabel>
-      <_NumberOfNodes>16632</_NumberOfNodes>
-      <_NumberOfTriples>16632</_NumberOfTriples>
+      <_NumberOfNodes>17051</_NumberOfNodes>
+      <_NumberOfTriples>17051</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>270</ClassPropertyID>
@@ -7344,8 +7448,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>16652</_NumberOfNodes>
-      <_NumberOfTriples>16652</_NumberOfTriples>
+      <_NumberOfNodes>17075</_NumberOfNodes>
+      <_NumberOfTriples>17075</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>274</ClassPropertyID>
@@ -7369,8 +7473,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>16650</_NumberOfNodes>
-      <_NumberOfTriples>16650</_NumberOfTriples>
+      <_NumberOfNodes>17073</_NumberOfNodes>
+      <_NumberOfTriples>17073</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>275</ClassPropertyID>
@@ -7394,8 +7498,8 @@
       <_PropertyNode>1063</_PropertyNode>
       <_TagName>vivo:awardOrHonorFor</_TagName>
       <_PropertyLabel>award or honor for</_PropertyLabel>
-      <_NumberOfNodes>16020</_NumberOfNodes>
-      <_NumberOfTriples>16020</_NumberOfTriples>
+      <_NumberOfNodes>15984</_NumberOfNodes>
+      <_NumberOfTriples>15984</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>276</ClassPropertyID>
@@ -9319,8 +9423,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>164</_NumberOfNodes>
-      <_NumberOfTriples>328</_NumberOfTriples>
+      <_NumberOfNodes>177</_NumberOfNodes>
+      <_NumberOfTriples>354</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>353</ClassPropertyID>
@@ -9344,8 +9448,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>163</_NumberOfNodes>
-      <_NumberOfTriples>163</_NumberOfTriples>
+      <_NumberOfNodes>176</_NumberOfNodes>
+      <_NumberOfTriples>176</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>354</ClassPropertyID>
@@ -9369,8 +9473,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>91</_NumberOfNodes>
-      <_NumberOfTriples>182</_NumberOfTriples>
+      <_NumberOfNodes>93</_NumberOfNodes>
+      <_NumberOfTriples>186</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>355</ClassPropertyID>
@@ -9394,8 +9498,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>90</_NumberOfNodes>
-      <_NumberOfTriples>90</_NumberOfTriples>
+      <_NumberOfNodes>92</_NumberOfNodes>
+      <_NumberOfTriples>92</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>356</ClassPropertyID>
@@ -11394,8 +11498,8 @@
       <_PropertyNode>373</_PropertyNode>
       <_TagName>prns:informationResourceReference</_TagName>
       <_PropertyLabel>information resource reference</_PropertyLabel>
-      <_NumberOfNodes>378796</_NumberOfNodes>
-      <_NumberOfTriples>378796</_NumberOfTriples>
+      <_NumberOfNodes>402595</_NumberOfNodes>
+      <_NumberOfTriples>402595</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>436</ClassPropertyID>
@@ -11419,8 +11523,8 @@
       <_PropertyNode>460</_PropertyNode>
       <_TagName>prns:publicationDate</_TagName>
       <_PropertyLabel>publication date</_PropertyLabel>
-      <_NumberOfNodes>378732</_NumberOfNodes>
-      <_NumberOfTriples>378732</_NumberOfTriples>
+      <_NumberOfNodes>402536</_NumberOfNodes>
+      <_NumberOfTriples>402536</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>437</ClassPropertyID>
@@ -11444,8 +11548,8 @@
       <_PropertyNode>476</_PropertyNode>
       <_TagName>prns:year</_TagName>
       <_PropertyLabel>year</_PropertyLabel>
-      <_NumberOfNodes>378732</_NumberOfNodes>
-      <_NumberOfTriples>378732</_NumberOfTriples>
+      <_NumberOfNodes>402536</_NumberOfNodes>
+      <_NumberOfTriples>402536</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>438</ClassPropertyID>
@@ -11469,8 +11573,8 @@
       <_PropertyNode>827</_PropertyNode>
       <_TagName>bibo:pmid</_TagName>
       <_PropertyLabel>PubMed Identifier</_PropertyLabel>
-      <_NumberOfNodes>327334</_NumberOfNodes>
-      <_NumberOfTriples>327334</_NumberOfTriples>
+      <_NumberOfNodes>350982</_NumberOfNodes>
+      <_NumberOfTriples>350982</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>439</ClassPropertyID>
@@ -11494,8 +11598,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>1515220</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>1610436</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>440</ClassPropertyID>
@@ -11519,8 +11623,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>378805</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>402609</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>441</ClassPropertyID>
@@ -11644,8 +11748,8 @@
       <_PropertyNode>1522</_PropertyNode>
       <_TagName>vivo:informationResourceInAuthorship</_TagName>
       <_PropertyLabel>authors</_PropertyLabel>
-      <_NumberOfNodes>378805</_NumberOfNodes>
-      <_NumberOfTriples>540763</_NumberOfTriples>
+      <_NumberOfNodes>402609</_NumberOfNodes>
+      <_NumberOfTriples>580413</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>446</ClassPropertyID>
@@ -13244,8 +13348,8 @@
       <_PropertyNode>379</_PropertyNode>
       <_TagName>prns:isPrimaryPosition</_TagName>
       <_PropertyLabel>is primary position</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>510</ClassPropertyID>
@@ -13269,8 +13373,8 @@
       <_PropertyNode>423</_PropertyNode>
       <_TagName>prns:positionInDepartment</_TagName>
       <_PropertyLabel>position in department</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23730</_NumberOfNodes>
+      <_NumberOfTriples>23730</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>511</ClassPropertyID>
@@ -13294,8 +13398,8 @@
       <_PropertyNode>425</_PropertyNode>
       <_TagName>prns:positionInDivision</_TagName>
       <_PropertyLabel>position in division</_PropertyLabel>
-      <_NumberOfNodes>5851</_NumberOfNodes>
-      <_NumberOfTriples>5851</_NumberOfTriples>
+      <_NumberOfNodes>5631</_NumberOfNodes>
+      <_NumberOfTriples>5631</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>512</ClassPropertyID>
@@ -13319,8 +13423,8 @@
       <_PropertyNode>466</_PropertyNode>
       <_TagName>prns:sortOrder</_TagName>
       <_PropertyLabel>sort order</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23730</_NumberOfNodes>
+      <_NumberOfTriples>23730</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>513</ClassPropertyID>
@@ -13344,8 +13448,8 @@
       <_PropertyNode>1507</_PropertyNode>
       <_TagName>vivo:hrJobTitle</_TagName>
       <_PropertyLabel>HR job title</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23723</_NumberOfNodes>
+      <_NumberOfTriples>23723</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>514</ClassPropertyID>
@@ -13369,8 +13473,8 @@
       <_PropertyNode>36</_PropertyNode>
       <_TagName>vivo:positionInOrganization</_TagName>
       <_PropertyLabel>position in organization</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23730</_NumberOfNodes>
+      <_NumberOfTriples>23730</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>515</ClassPropertyID>
@@ -13394,8 +13498,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23730</_NumberOfNodes>
+      <_NumberOfTriples>23730</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>516</ClassPropertyID>
@@ -13419,8 +13523,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23723</_NumberOfNodes>
+      <_NumberOfTriples>23723</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>517</ClassPropertyID>
@@ -13469,8 +13573,8 @@
       <_PropertyNode>85</_PropertyNode>
       <_TagName>vivo:positionForPerson</_TagName>
       <_PropertyLabel>position for person</_PropertyLabel>
-      <_NumberOfNodes>24140</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>23730</_NumberOfNodes>
+      <_NumberOfTriples>23730</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>519</ClassPropertyID>
@@ -18819,8 +18923,8 @@
       <_PropertyNode>393</_PropertyNode>
       <_TagName>prns:meshDescriptorUI</_TagName>
       <_PropertyLabel>MeSH DescriptorUI</_PropertyLabel>
-      <_NumberOfNodes>25588</_NumberOfNodes>
-      <_NumberOfTriples>25588</_NumberOfTriples>
+      <_NumberOfNodes>26142</_NumberOfNodes>
+      <_NumberOfTriples>26142</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>733</ClassPropertyID>
@@ -18844,8 +18948,8 @@
       <_PropertyNode>395</_PropertyNode>
       <_TagName>prns:meshSemanticGroupName</_TagName>
       <_PropertyLabel>MeSH semantic group name</_PropertyLabel>
-      <_NumberOfNodes>25588</_NumberOfNodes>
-      <_NumberOfTriples>27062</_NumberOfTriples>
+      <_NumberOfNodes>26142</_NumberOfNodes>
+      <_NumberOfTriples>27645</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>734</ClassPropertyID>
@@ -18869,8 +18973,8 @@
       <_PropertyNode>403</_PropertyNode>
       <_TagName>prns:numberOfAuthors</_TagName>
       <_PropertyLabel>number of authors</_PropertyLabel>
-      <_NumberOfNodes>21417</_NumberOfNodes>
-      <_NumberOfTriples>21417</_NumberOfTriples>
+      <_NumberOfNodes>21818</_NumberOfNodes>
+      <_NumberOfTriples>21818</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>735</ClassPropertyID>
@@ -18894,8 +18998,8 @@
       <_PropertyNode>407</_PropertyNode>
       <_TagName>prns:numberOfPublications</_TagName>
       <_PropertyLabel>number of publications</_PropertyLabel>
-      <_NumberOfNodes>21417</_NumberOfNodes>
-      <_NumberOfTriples>21417</_NumberOfTriples>
+      <_NumberOfNodes>21818</_NumberOfNodes>
+      <_NumberOfTriples>21818</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>736</ClassPropertyID>
@@ -18919,8 +19023,8 @@
       <_PropertyNode>472</_PropertyNode>
       <_TagName>prns:uniquenessWeight</_TagName>
       <_PropertyLabel>uniqueness weight</_PropertyLabel>
-      <_NumberOfNodes>21417</_NumberOfNodes>
-      <_NumberOfTriples>21417</_NumberOfTriples>
+      <_NumberOfNodes>21818</_NumberOfNodes>
+      <_NumberOfTriples>21818</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>737</ClassPropertyID>
@@ -18944,8 +19048,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>25588</_NumberOfNodes>
-      <_NumberOfTriples>25588</_NumberOfTriples>
+      <_NumberOfNodes>26142</_NumberOfNodes>
+      <_NumberOfTriples>26142</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>738</ClassPropertyID>
@@ -18969,8 +19073,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>25588</_NumberOfNodes>
-      <_NumberOfTriples>25588</_NumberOfTriples>
+      <_NumberOfNodes>26142</_NumberOfNodes>
+      <_NumberOfTriples>26142</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>739</ClassPropertyID>
@@ -18994,8 +19098,8 @@
       <_PropertyNode>397</_PropertyNode>
       <_TagName>prns:meshTreeNumber</_TagName>
       <_PropertyLabel>MeSH tree number</_PropertyLabel>
-      <_NumberOfNodes>25586</_NumberOfNodes>
-      <_NumberOfTriples>50956</_NumberOfTriples>
+      <_NumberOfNodes>26140</_NumberOfNodes>
+      <_NumberOfTriples>52545</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>740</ClassPropertyID>
@@ -19095,8 +19199,8 @@
       <_PropertyNode>1471</_PropertyNode>
       <_TagName>vivo:researchAreaOf</_TagName>
       <_PropertyLabel>research area of</_PropertyLabel>
-      <_NumberOfNodes>21417</_NumberOfNodes>
-      <_NumberOfTriples>1957398</_NumberOfTriples>
+      <_NumberOfNodes>21818</_NumberOfNodes>
+      <_NumberOfTriples>2058910</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>744</ClassPropertyID>
@@ -19120,8 +19224,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>46386</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>45456</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>745</ClassPropertyID>
@@ -19145,8 +19249,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>746</ClassPropertyID>
@@ -19220,8 +19324,8 @@
       <_PropertyNode>205</_PropertyNode>
       <_TagName>vivo:awardOrHonor</_TagName>
       <_PropertyLabel>awards and honors</_PropertyLabel>
-      <_NumberOfNodes>374</_NumberOfNodes>
-      <_NumberOfTriples>2130</_NumberOfTriples>
+      <_NumberOfNodes>418</_NumberOfNodes>
+      <_NumberOfTriples>2340</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>749</ClassPropertyID>
@@ -19245,8 +19349,8 @@
       <_PropertyNode>1350</_PropertyNode>
       <_TagName>vivo:faxNumber</_TagName>
       <_PropertyLabel>fax</_PropertyLabel>
-      <_NumberOfNodes>12485</_NumberOfNodes>
-      <_NumberOfTriples>12485</_NumberOfTriples>
+      <_NumberOfNodes>12107</_NumberOfNodes>
+      <_NumberOfTriples>12107</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>750</ClassPropertyID>
@@ -19470,8 +19574,8 @@
       <_PropertyNode>1667</_PropertyNode>
       <_TagName>vivo:overview</_TagName>
       <_PropertyLabel>overview</_PropertyLabel>
-      <_NumberOfNodes>304</_NumberOfNodes>
-      <_NumberOfTriples>304</_NumberOfTriples>
+      <_NumberOfNodes>342</_NumberOfNodes>
+      <_NumberOfTriples>342</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>759</ClassPropertyID>
@@ -19495,8 +19599,8 @@
       <_PropertyNode>1679</_PropertyNode>
       <_TagName>vivo:phoneNumber</_TagName>
       <_PropertyLabel>phone</_PropertyLabel>
-      <_NumberOfNodes>19146</_NumberOfNodes>
-      <_NumberOfTriples>19146</_NumberOfTriples>
+      <_NumberOfNodes>18635</_NumberOfNodes>
+      <_NumberOfTriples>18635</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>760</ClassPropertyID>
@@ -19645,8 +19749,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>291</_NumberOfNodes>
-      <_NumberOfTriples>546</_NumberOfTriples>
+      <_NumberOfNodes>306</_NumberOfNodes>
+      <_NumberOfTriples>576</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>766</ClassPropertyID>
@@ -19670,8 +19774,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>289</_NumberOfNodes>
-      <_NumberOfTriples>289</_NumberOfTriples>
+      <_NumberOfNodes>304</_NumberOfNodes>
+      <_NumberOfTriples>304</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>767</ClassPropertyID>
@@ -20123,8 +20227,8 @@
       <_PropertyNode>361</_PropertyNode>
       <_TagName>prns:fullName</_TagName>
       <_PropertyLabel>full name</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>785</ClassPropertyID>
@@ -20148,8 +20252,8 @@
       <_PropertyNode>367</_PropertyNode>
       <_TagName>prns:hasFacultyRank</_TagName>
       <_PropertyLabel>has faculty rank</_PropertyLabel>
-      <_NumberOfNodes>23171</_NumberOfNodes>
-      <_NumberOfTriples>23171</_NumberOfTriples>
+      <_NumberOfNodes>22639</_NumberOfNodes>
+      <_NumberOfTriples>22639</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>786</ClassPropertyID>
@@ -20173,8 +20277,8 @@
       <_PropertyNode>381</_PropertyNode>
       <_TagName>prns:latitude</_TagName>
       <_PropertyLabel>latitude</_PropertyLabel>
-      <_NumberOfNodes>18474</_NumberOfNodes>
-      <_NumberOfTriples>18474</_NumberOfTriples>
+      <_NumberOfNodes>16659</_NumberOfNodes>
+      <_NumberOfTriples>16659</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>787</ClassPropertyID>
@@ -20198,8 +20302,8 @@
       <_PropertyNode>383</_PropertyNode>
       <_TagName>prns:longitude</_TagName>
       <_PropertyLabel>longitude</_PropertyLabel>
-      <_NumberOfNodes>18474</_NumberOfNodes>
-      <_NumberOfTriples>18474</_NumberOfTriples>
+      <_NumberOfNodes>16659</_NumberOfNodes>
+      <_NumberOfTriples>16659</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>788</ClassPropertyID>
@@ -20251,8 +20355,8 @@
       <_PropertyNode>419</_PropertyNode>
       <_TagName>prns:personInPrimaryPosition</_TagName>
       <_PropertyLabel>person in primary position</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>790</ClassPropertyID>
@@ -20301,8 +20405,8 @@
       <_PropertyNode>1706</_PropertyNode>
       <_TagName>vivo:preferredTitle</_TagName>
       <_PropertyLabel>preferred title</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22721</_NumberOfNodes>
+      <_NumberOfTriples>22721</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>792</ClassPropertyID>
@@ -20351,8 +20455,8 @@
       <_PropertyNode>14</_PropertyNode>
       <_TagName>rdf:type</_TagName>
       <_PropertyLabel>type</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>46386</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>45456</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>794</ClassPropertyID>
@@ -20376,8 +20480,8 @@
       <_PropertyNode>15</_PropertyNode>
       <_TagName>rdfs:label</_TagName>
       <_PropertyLabel>label</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>795</ClassPropertyID>
@@ -20401,8 +20505,8 @@
       <_PropertyNode>1993</_PropertyNode>
       <_TagName>foaf:firstName</_TagName>
       <_PropertyLabel>first name</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>796</ClassPropertyID>
@@ -20426,8 +20530,8 @@
       <_PropertyNode>2001</_PropertyNode>
       <_TagName>foaf:lastName</_TagName>
       <_PropertyLabel>last name</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>797</ClassPropertyID>
@@ -20452,8 +20556,8 @@
       <_PropertyNode>421</_PropertyNode>
       <_TagName>prns:physicalNeighborOf</_TagName>
       <_PropertyLabel>physical neighbor</_PropertyLabel>
-      <_NumberOfNodes>17582</_NumberOfNodes>
-      <_NumberOfTriples>85702</_NumberOfTriples>
+      <_NumberOfNodes>15810</_NumberOfNodes>
+      <_NumberOfTriples>76867</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>798</ClassPropertyID>
@@ -20580,8 +20684,8 @@
       <_PropertyNode>205</_PropertyNode>
       <_TagName>vivo:awardOrHonor</_TagName>
       <_PropertyLabel>awards and honors</_PropertyLabel>
-      <_NumberOfNodes>374</_NumberOfNodes>
-      <_NumberOfTriples>2130</_NumberOfTriples>
+      <_NumberOfNodes>418</_NumberOfNodes>
+      <_NumberOfTriples>2340</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>803</ClassPropertyID>
@@ -20933,8 +21037,8 @@
       <_PropertyNode>246</_PropertyNode>
       <_TagName>vivo:mailingAddress</_TagName>
       <_PropertyLabel>mailing address</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>23193</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>22728</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>817</ClassPropertyID>
@@ -21019,7 +21123,7 @@
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>1.000000000000000e+000</SearchWeight>
-      <CustomDisplay>0</CustomDisplay>
+      <CustomDisplay>1</CustomDisplay>
       <CustomEdit>0</CustomEdit>
       <ViewSecurityGroup>-1</ViewSecurityGroup>
       <EditSecurityGroup>-20</EditSecurityGroup>
@@ -21029,12 +21133,19 @@
       <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
       <EditDeleteSecurityGroup>-20</EditDeleteSecurityGroup>
       <MinCardinality>0</MinCardinality>
+      <CustomViewModule>
+        <Module ID="HTMLBlockLineBreaks">
+          <ParamList>
+            <Param Name="DataURI">rdf:RDF[1]/rdf:Description[1]/vivo:overview</Param>
+          </ParamList>
+        </Module>
+      </CustomViewModule>
       <_ClassNode>48</_ClassNode>
       <_PropertyNode>1667</_PropertyNode>
       <_TagName>vivo:overview</_TagName>
       <_PropertyLabel>overview</_PropertyLabel>
-      <_NumberOfNodes>304</_NumberOfNodes>
-      <_NumberOfTriples>304</_NumberOfTriples>
+      <_NumberOfNodes>342</_NumberOfNodes>
+      <_NumberOfTriples>342</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>821</ClassPropertyID>
@@ -21058,8 +21169,8 @@
       <_PropertyNode>1677</_PropertyNode>
       <_TagName>vivo:personInPosition</_TagName>
       <_PropertyLabel>positions</_PropertyLabel>
-      <_NumberOfNodes>23193</_NumberOfNodes>
-      <_NumberOfTriples>24140</_NumberOfTriples>
+      <_NumberOfNodes>22728</_NumberOfNodes>
+      <_NumberOfTriples>23730</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>822</ClassPropertyID>
@@ -21184,8 +21295,8 @@
       <_PropertyNode>345</_PropertyNode>
       <_TagName>prns:coAuthorOf</_TagName>
       <_PropertyLabel>coauthor of</_PropertyLabel>
-      <_NumberOfNodes>12707</_NumberOfNodes>
-      <_NumberOfTriples>201298</_NumberOfTriples>
+      <_NumberOfNodes>12809</_NumberOfNodes>
+      <_NumberOfTriples>212062</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>827</ClassPropertyID>
@@ -21210,8 +21321,8 @@
       <_PropertyNode>464</_PropertyNode>
       <_TagName>prns:similarTo</_TagName>
       <_PropertyLabel>similar to</_PropertyLabel>
-      <_NumberOfNodes>15274</_NumberOfNodes>
-      <_NumberOfTriples>916393</_NumberOfTriples>
+      <_NumberOfNodes>15252</_NumberOfNodes>
+      <_NumberOfTriples>915047</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>828</ClassPropertyID>
@@ -21241,8 +21352,8 @@
       <_PropertyNode>94</_PropertyNode>
       <_TagName>vivo:authorInAuthorship</_TagName>
       <_PropertyLabel>selected publications</_PropertyLabel>
-      <_NumberOfNodes>16013</_NumberOfNodes>
-      <_NumberOfTriples>512419</_NumberOfTriples>
+      <_NumberOfNodes>15777</_NumberOfNodes>
+      <_NumberOfTriples>532309</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>829</ClassPropertyID>
@@ -21267,8 +21378,8 @@
       <_PropertyNode>198</_PropertyNode>
       <_TagName>vivo:hasResearchArea</_TagName>
       <_PropertyLabel>research areas</_PropertyLabel>
-      <_NumberOfNodes>15274</_NumberOfNodes>
-      <_NumberOfTriples>1957398</_NumberOfTriples>
+      <_NumberOfNodes>15252</_NumberOfNodes>
+      <_NumberOfTriples>2058910</_NumberOfTriples>
     </Row>
     <Row>
       <ClassPropertyID>830</ClassPropertyID>
@@ -21566,6 +21677,38 @@
       <_PropertyLabel>type</_PropertyLabel>
       <_NumberOfNodes>0</_NumberOfNodes>
       <_NumberOfTriples>0</_NumberOfTriples>
+    </Row>
+    <Row>
+      <ClassPropertyID>841</ClassPropertyID>
+      <Class>http://xmlns.com/foaf/0.1/Person</Class>
+      <Property>http://vivoweb.org/ontology/core#freetextKeyword</Property>
+      <IsDetail>1</IsDetail>
+      <IncludeDescription>0</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>1.000000000000000e+000</SearchWeight>
+      <CustomDisplay>1</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-20</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-20</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-20</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-20</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-20</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+      <CustomViewModule>
+        <Module ID="HTMLBlockLineBreaks">
+          <ParamList>
+            <Param Name="DataURI">rdf:RDF[1]/rdf:Description[1]/vivo:freetextKeyword</Param>
+          </ParamList>
+        </Module>
+      </CustomViewModule>
+      <_ClassNode>48</_ClassNode>
+      <_PropertyNode>133</_PropertyNode>
+      <_TagName>vivo:freetextKeyword</_TagName>
+      <_PropertyLabel>keywords</_PropertyLabel>
+      <_NumberOfNodes>342</_NumberOfNodes>
+      <_NumberOfTriples>342</_NumberOfTriples>
     </Row>
   </Table>
   <Table Name="[Ontology.].[DataMap]">
@@ -27756,11 +27899,16 @@
               <Module ID="MainMenu" />
             </Panel>
             <Panel Type="main" TabSort="0" TabType="Default">
-              <Module ID="PropertyList" />
+              <Module ID="CustomViewConceptPublication">
+                <ParamList>
+                  <Param Name="TimelineCaption">This graph shows the total number of publications written about "@ConceptName" by people in Harvard Catalyst Profiles by year, and whether "@ConceptName" was a major or minor topic of these publication.</Param>
+                  <Param Name="CitedCaption">Below are the publications written about "@ConceptName" that have been cited the most by articles in Pubmed Central.</Param>
+                  <Param Name="NewestCaption">Below are the most recent publications written about "@ConceptName" by people in Profiles.</Param>
+                  <Param Name="OldestCaption">Below are the earliest publications written about "@ConceptName" by people in Profiles.</Param>
+                </ParamList>
+              </Module>
             </Panel>
-            <Panel Type="page">
-              <Module ID="RDFLink" />
-            </Panel>
+            <Panel Type="page" />
             <Panel Type="passive">
               <Module ID="PassiveList">
                 <ParamList>
@@ -27776,6 +27924,20 @@
                   <Param Name="MoreText">See all people</Param>
                 </ParamList>
               </Module>
+              <Module ID="CustomViewConceptSimilarMesh">
+                <ParamList>
+                  <Param Name="InfoCaption">Similar Concepts</Param>
+                  <Param Name="Description">People who have written about this concept.</Param>
+                </ParamList>
+              </Module>
+              <!--
+	  <Module ID="CustomViewConceptTopJournal">
+		<ParamList>
+          <Param Name="InfoCaption">Top Journals</Param>
+          <Param Name="Description">Top journals in which articles about this concept have been published.</Param>          
+        </ParamList>
+	  </Module>
+	  -->
             </Panel>
           </PanelList>
         </Presentation>
@@ -27788,9 +27950,9 @@
       <presentationXML>
         <Presentation PresentationClass="profile">
           <PageOptions Columns="3" />
-          <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/foaf:firstName[1]}}} {{{rdf:RDF[1]/rdf:Description[1]/foaf:lastName[1]}}}</WindowName>
+          <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/prns:fullName[1]}}}</WindowName>
           <PageColumns>3</PageColumns>
-          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/foaf:firstName[1]}}} {{{rdf:RDF[1]/rdf:Description[1]/foaf:lastName[1]}}}</PageTitle>
+          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/foaf:fullName[1]}}}</PageTitle>
           <PageBackLinkName />
           <PageBackLinkURL />
           <PageSubTitle />
@@ -27811,6 +27973,13 @@
               </Module>
               <Module ID="PropertyList">
                 <ParamList />
+              </Module>
+              <Module ID="Gadgets">
+                <ParamList>
+                  <Param Name="HTML">
+                    <div id="gadgets-view" class="gadgets-gadget-parent" />
+                  </Param>
+                </ParamList>
               </Module>
             </Panel>
             <Panel Type="passive">
@@ -27921,7 +28090,18 @@
             <Panel Type="main" TabSort="2" Alias="radial" Name="Radial">
               <Module ID="NetworkRadial" />
             </Panel>
-            <Panel Type="main" TabSort="3" Alias="details" Name="Details">
+            <Panel Type="main" TabSort="3" Alias="cluster" Name="Cluster">
+              <Module ID="NetworkCluster" />
+            </Panel>
+            <Panel Type="main" TabSort="4" Alias="timeline" Name="Timeline">
+              <Module ID="NetworkTimeline">
+                <ParamList>
+                  <Param Name="TimelineType">CoAuthor</Param>
+                  <Param Name="InfoCaption">The timeline below shows the dates (blue tick marks) of publications @SubjectName co-authored with other people in Profiles. The average publication date for each co-author is shown as a red circle, illustrating changes in the people that @SubjectName has worked with over time.</Param>
+                </ParamList>
+              </Module>
+            </Panel>
+            <Panel Type="main" TabSort="5" Alias="details" Name="Details">
               <Module ID="ApplyXSLT">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
@@ -27998,9 +28178,9 @@
       <presentationXML>
         <Presentation PresentationClass="network">
           <PageOptions Columns="3" />
-          <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
+          <WindowName>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</WindowName>
           <PageColumns>3</PageColumns>
-          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</PageTitle>
+          <PageTitle>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</PageTitle>
           <PageBackLinkName>Back to Profile</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource}}}</PageBackLinkURL>
           <PageSubTitle>Similar People ({{{//rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageSubTitle>
@@ -28030,6 +28210,14 @@
               <Module ID="NetworkMap">
                 <ParamList>
                   <Param Name="MapType">SimilarTo</Param>
+                </ParamList>
+              </Module>
+            </Panel>
+            <Panel Type="main" TabSort="3" Alias="details" Name="Details">
+              <Module ID="ApplyXSLT">
+                <ParamList>
+                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
+                  <Param Name="XSLTPath">~/profile/XSLT/SimilarPeopleDetails.xslt</Param>
                 </ParamList>
               </Module>
             </Panel>
@@ -28102,9 +28290,9 @@
       <presentationXML>
         <Presentation PresentationClass="network">
           <PageOptions Columns="3" />
-          <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
+          <WindowName>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</WindowName>
           <PageColumns>3</PageColumns>
-          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</PageTitle>
+          <PageTitle>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</PageTitle>
           <PageBackLinkName>Back to Profile</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource}}}</PageBackLinkURL>
           <PageSubTitle>Concepts  ({{{//rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageSubTitle>
@@ -28139,6 +28327,14 @@
                   <Param Name="CategoryPath">//prns:meshSemanticGroupName</Param>
                   <Param Name="ItemText">{{{//rdf:Description/rdfs:label}}}</Param>
                   <Param Name="ItemURL">{{{//rdf:Description/@rdf:about}}}</Param>
+                </ParamList>
+              </Module>
+            </Panel>
+            <Panel Type="main" TabSort="2" Alias="timeline" Name="Timeline">
+              <Module ID="NetworkTimeline">
+                <ParamList>
+                  <Param Name="TimelineType">Concept</Param>
+                  <Param Name="InfoCaption">The timeline below shows the dates (blue tick marks) of publications associated with @SubjectName's top concepts. The average publication date for each concept is shown as a red circle, illustrating changes in the primary topics that @SubjectName has written about over time.</Param>
                 </ParamList>
               </Module>
             </Panel>
@@ -28223,10 +28419,14 @@
           <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
           <PageColumns>3</PageColumns>
           <PageTitle>Connection</PageTitle>
-          <PageBackLinkName>Back to {{{//rdf:RDF/rdf:Description/rdfs:label}}}</PageBackLinkName>
+          <PageBackLinkName>Back to Details</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/prns:connectionInNetwork/@rdf:resource}}}/details</PageBackLinkURL>
           <PageSubTitle>Co-Authors</PageSubTitle>
-          <PageDescription>This is a "connection" page, showing publications co-authored by {{{//rdf:RDF/rdf:Description/rdfs:label}}} and {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.</PageDescription>
+          <PageDescription>This is a "connection" page, showing publications co-authored by 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} 
+	and 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.
+  </PageDescription>
           <PanelTabType>Fixed</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28234,7 +28434,29 @@
               <Module ID="MainMenu" />
             </Panel>
             <Panel Type="main" TabSort="0" TabType="Default">
-              <Module ID="CoAuthorConnection" />
+              <Module ID="CoAuthorConnection">
+                <ParamList>
+                  <Param Name="SubjectName">//rdf:RDF/rdf:Description/rdfs:label</Param>
+                  <Param Name="SubjectURI">//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
+                  <Param Name="ObjectName">//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label</Param>
+                  <Param Name="ObjectURI">//rdf:RDF/rdf:Description/rdf:object/@rdf:resource</Param>
+                </ParamList>
+              </Module>
+            </Panel>
+            <Panel Type="passive">
+              <Module ID="HTMLBlock">
+                <ParamList>
+                  <Param Name="HTML">
+                    <div class="passiveSectionHead">
+						Connection Strength
+					</div>
+                    <br />
+                    <div class="passiveSectionBody">
+						The connection strength for co-authors is the <u>sum</u> of the scores for each of their co-authored publications.
+					</div>
+                  </Param>
+                </ParamList>
+              </Module>
             </Panel>
           </PanelList>
         </Presentation>
@@ -28252,10 +28474,14 @@
           <WindowName>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</WindowName>
           <PageColumns>3</PageColumns>
           <PageTitle>Connection</PageTitle>
-          <PageBackLinkName>Back to {{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</PageBackLinkName>
+          <PageBackLinkName>Back to Details</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource}}}</PageBackLinkURL>
           <PageSubTitle>Similar Person</PageSubTitle>
-          <PageDescription>This is a "connection" page, showing concepts shared by  {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} and {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}.</PageDescription>
+          <PageDescription>
+	This is a "connection" page, showing concepts shared by  
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} and 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.
+  </PageDescription>
           <PanelTabType>Fixed</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28263,10 +28489,12 @@
               <Module ID="MainMenu" />
             </Panel>
             <Panel Type="main" TabSort="0" TabType="Default">
-              <Module ID="SimilarPeopleConnection">
+              <Module ID="SimilarConnection">
                 <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
-                  <Param Name="XSLTPath">~/profile/Modules/SimilarPeopleConnection/SimilarPeopleConnection.xslt</Param>
+                  <Param Name="SubjectName">//rdf:RDF/rdf:Description/rdfs:label</Param>
+                  <Param Name="SubjectURI">//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
+                  <Param Name="ObjectName">//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label</Param>
+                  <Param Name="ObjectURI">//rdf:RDF/rdf:Description/rdf:object/@rdf:resource</Param>
                 </ParamList>
               </Module>
             </Panel>
@@ -28274,15 +28502,11 @@
               <Module ID="HTMLBlock">
                 <ParamList>
                   <Param Name="HTML">
-                    <div>
-                      <b> Connection Strength </b>
-                    </div>
+                    <div class="passiveSectionHead">
+              Connection Strength
+            </div>
                     <br />
-                    <div> The connection strength for similar people is the <u>sum</u> of the scores for each shared concept. </div>
-                    <br />
-                    <div> A shared concept score is the <u>product</u> of the concept scores for each person. </div>
-                    <br />
-                    <div> Click any person's concept score value to show details. </div>
+                    <div class="passiveSectonBody"> The connection strength for similar people is the <u>sum</u> of the scores for each shared concept. </div>
                   </Param>
                 </ParamList>
               </Module>
@@ -28303,10 +28527,22 @@
           <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
           <PageColumns>3</PageColumns>
           <PageTitle>Connection</PageTitle>
-          <PageBackLinkName>Back to {{{//rdf:RDF/rdf:Description/rdfs:label}}}</PageBackLinkName>
+          <PageBackLinkName>Back to Details
+  </PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/prns:connectionInNetwork/@rdf:resource}}}/details</PageBackLinkURL>
-          <PageSubTitle />
-          <PageDescription>This is a "connection" page, showing publications {{{//rdf:RDF/rdf:Description/rdfs:label}}} has written about {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}</PageDescription>
+          <PageSubTitle>
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} 
+	to 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}
+  </PageSubTitle>
+          <PageDescription>
+	This is a "connection" page, showing publications 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} 
+	has written about 
+	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}.
+  </PageDescription>
           <PanelTabType>Fixed</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28315,9 +28551,25 @@
             </Panel>
             <Panel Type="main" TabSort="0" TabType="Default">
               <Module ID="ConceptConnection">
-                <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                <Param Name="Offset">0</Param>
-                <Param Name="Limit">0</Param>
+                <ParamList>
+                  <Param Name="SubjectName">//rdf:RDF/rdf:Description/rdfs:label</Param>
+                  <Param Name="SubjectURI">//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
+                  <Param Name="ObjectName">//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label</Param>
+                  <Param Name="ObjectURI">//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/@rdf:about</Param>
+                </ParamList>
+              </Module>
+            </Panel>
+            <Panel Type="passive">
+              <Module ID="HTMLBlock">
+                <ParamList>
+                  <Param Name="HTML">
+                    <div class="passiveSectionHead">
+              Connection Strength
+            </div>
+                    <br />
+                    <div class="passiveSectionBody"> The connection strength for concepts is the <u>sum</u> of the scores for each matching publication.</div>
+                  </Param>
+                </ParamList>
               </Module>
             </Panel>
           </PanelList>

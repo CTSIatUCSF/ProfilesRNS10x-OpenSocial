@@ -10,9 +10,9 @@
   <xsl:param name="total"/>
   <xsl:template match="/">
     <div class="passiveSectionHead">
-      <xsl:text>Filter by type</xsl:text>
+      <xsl:text>Filter by Type</xsl:text>
     </div>
-    <div class="passiveSectionBody">
+    <div class="passiveSectionBody" style="margin-top: 6px;">
       <xsl:variable name="allURL">
         
         <xsl:value-of select="$root"/><![CDATA[/Search/Default.aspx?searchtype=everything&searchfor=]]><xsl:value-of select="$searchfor"/><![CDATA[&perpage=15&offset=]]>
@@ -21,12 +21,14 @@
         <li>
           <xsl:choose>
             <xsl:when test="$classGrpURIpassedin=''">
-              <a href="{$allURL}" id="type">
-                <xsl:value-of select="'All'"/>
+              <a href="{$allURL}" id="type" style="color:#888">
+				  <strong>
+					  <xsl:value-of select="'All'"/>
+				  </strong>
               </a>
             </xsl:when>
             <xsl:otherwise>
-              <a href="{$allURL}" style="color:grey" id="type">
+              <a href="{$allURL}"  id="type">
                 <xsl:value-of select="'All'"/>
               </a>
             </xsl:otherwise>
@@ -45,13 +47,15 @@
           <li>
             <xsl:choose>
               <xsl:when test="$classGrpURI !=$classGrpURIpassedin">
-                <a href="{$typeURL}" style="color:grey" id="type">
+                <a href="{$typeURL}" id="type">
                   <xsl:value-of select="rdfs:label"/>
                 </a>
               </xsl:when>
               <xsl:otherwise>
-                <a href="{$typeURL}" id="type">
-                  <xsl:value-of select="rdfs:label"/>
+                <a href="{$typeURL}" style="color:#888" id="type">
+					<strong>
+						<xsl:value-of select="rdfs:label"/>
+					</strong>
                 </a>
               </xsl:otherwise>
             </xsl:choose>

@@ -104,7 +104,12 @@ namespace Profiles.Login.Modules.Login
             Searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Searchcss);
 
-            Response.Write("<script>var _path = \"" + Root.Domain + "\";</script>");
+			// Inject script into HEADER
+			Literal script = new Literal();
+			script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
+			Page.Header.Controls.Add(script);
+			
+			//Response.Write("<script>var _path = \"" + Root.Domain + "\";</script>");
 
 
         }

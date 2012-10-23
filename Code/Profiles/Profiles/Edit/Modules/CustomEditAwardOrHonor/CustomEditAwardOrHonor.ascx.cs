@@ -74,6 +74,14 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             securityOptions.SecurityGroups = new XmlDataDocument();
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
 
+            if (Request.QueryString["new"] != null && Session["new"]!=null)
+            {
+                Session["pnlInsertAward.Visible"] = null;
+                Session["new"] = null;
+                btnEditAwards_OnClick(this, new EventArgs());
+            }
+
+
         }
 
         #region Awards
@@ -120,17 +128,13 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-
-
                 txtYr1 = (TextBox)e.Row.Cells[0].FindControl("txtYr1");
                 txtYr2 = (TextBox)e.Row.Cells[1].FindControl("txtYr2");
                 txtAwardName = (TextBox)e.Row.Cells[2].FindControl("txtAwardName");
                 txtAwardInst = (TextBox)e.Row.Cells[3].FindControl("txtAwardInst");
                 hdURI = (HiddenField)e.Row.Cells[3].FindControl("hdURI");
 
-
-
-
+                
                 lnkEdit = (ImageButton)e.Row.Cells[4].FindControl("lnkEdit");
                 lnkDelete = (ImageButton)e.Row.Cells[4].FindControl("lnkDelete");
 
@@ -171,14 +175,13 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             TextBox txtAwardName = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtAwardName");
             TextBox txtAwardInst = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtAwardInst");
             HiddenField hdURI = (HiddenField)GridViewAwards.Rows[e.RowIndex].FindControl("hdURI");
-
-
+            
 
             data.UpdateAward(hdURI.Value, txtAwardName.Text, txtAwardInst.Text, txtYr1.Text, txtYr2.Text);
             GridViewAwards.EditIndex = -1;
             Session["pnlInsertAward.Visible"] = null;
             this.FillAwardGrid(true);
-            upnlEditSection.Update();
+            upnlEditSection.Update();            
         }
 
         protected void GridViewAwards_RowUpdated(object sender, GridViewUpdatedEventArgs e)
@@ -224,16 +227,28 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             {
                 data.AddAward(this.SubjectID, txtAwardName.Text, txtInstitution.Text, txtStartYear.Text, txtEndYear.Text);
 
-                this.FillAwardGrid(true);
-
+              
                 txtStartYear.Text = "";
                 txtEndYear.Text = "";
                 txtInstitution.Text = "";
-                txtAwardName.Text = "";
-                upnlEditSection.Update();
+                txtAwardName.Text = "";                
                 Session["pnlInsertAward.Visible"] = null;
                 btnEditAwards_OnClick(sender, e);
+                this.FillAwardGrid(true);
+                if (GridViewAwards.Rows.Count == 1)
+                {
+                    Session["new"] = true;
+                    //stupid update panel bug we cant figure out.
+                    Response.Redirect(Request.Url.ToString() + "&new=true");
+                }
+                else
+                {
+                    this.FillAwardGrid(true);
+                    upnlEditSection.Update();
+                }
+
             }
+         
         }
 
         protected void btnInsertClose_OnClick(object sender, EventArgs e)
@@ -247,6 +262,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
                 btnInsertCancel_OnClick(sender, e);
                 upnlEditSection.Update();
             }
+ 
         }
         protected void ibUp_Click(object sender, EventArgs e)
         {
@@ -263,7 +279,6 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
 
             upnlEditSection.Update();
 
-
         }
 
         protected void ibDown_Click(object sender, EventArgs e)
@@ -277,7 +292,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             data.MoveTripleUp(this.SubjectID, predicate, _object);
 
             this.FillAwardGrid(true);
-
+            
             upnlEditSection.Update();
 
         }

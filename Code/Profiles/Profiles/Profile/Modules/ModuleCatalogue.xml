@@ -12,6 +12,7 @@ For details, see: LICENSE.txt
 -->
 <ModuleList>
   <Module ModulePath="Modules" NameSpace="NetworkRadial" FileName="NetworkRadial.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkCluster" FileName="NetworkCluster.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkMap" FileName="NetworkMap.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewPersonGeneralInfo" FileName="CustomViewPersonGeneralInfo.ascx" Enabled="true"/>    
   <Module ModulePath="Modules" NameSpace="PropertyList" FileName="PropertyList.ascx" Enabled="true"/>
@@ -19,10 +20,20 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewInformationResource" FileName="CustomViewInformationResource.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveHeader" FileName="PassiveHeader.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorship" FileName="CustomViewAuthorInAuthorship.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewConceptSimilarMesh" FileName="CustomViewConceptSimilarMesh.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewConceptTopJournal" FileName="CustomViewConceptTopJournal.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewConceptPublication" FileName="CustomViewConceptPublication.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkCategories" FileName="NetworkCategories.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkList" FileName="NetworkList.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkTimeline" FileName="NetworkTimeline.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveList" FileName="PassiveList.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveText" FileName="PassiveText.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkDetails" FileName="NetworkDetails.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="ConceptConnection" FileName="ConceptConnection.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CoAuthorConnection" FileName="CoAuthorConnection.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SimilarConnection" FileName="SimilarConnection.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="Timeline" FileName="Timeline.ascx" Enabled="true"/>
+  <!-- by UCSF-->
+  <Module ModulePath="Modules" NameSpace="HTMLBlockLineBreaks" FileName="HTMLBlockLineBreaks.ascx" Enabled="true"/>
 </ModuleList>
 

@@ -116,13 +116,25 @@ namespace Profiles.Framework
             Profilescss.Attributes["rel"] = "stylesheet";
             Profilescss.Attributes["type"] = "text/css";
             Profilescss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(Profilescss);
-
+            //Page.Header.Controls.Add(Profilescss);
+			head.Controls.Add(Profilescss);
 
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
             jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
+
+            HtmlLink UCSFcss = new HtmlLink();
+            UCSFcss.Href = Root.Domain + "/Framework/CSS/UCSF.css";
+            UCSFcss.Attributes["rel"] = "stylesheet";
+            UCSFcss.Attributes["type"] = "text/css";
+            UCSFcss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(UCSFcss);
+
+            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+            UCSFjs.Attributes.Add("type", "text/javascript");
+            UCSFjs.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/UCSF.js");
+            Page.Header.Controls.Add(UCSFjs);
 
             if (this.GetStringFromPresentationXML("Presentation/PageOptions/@Columns") == "3")
             {
@@ -133,6 +145,17 @@ namespace Profiles.Framework
                 //trbody.Style["background-image"] = Root.Domain + "/Framework/Images/passive_back.gif";
                 //trbody.Style["background-repeat"] = "repeat";
             }
+
+
+			// IE Only css files
+			Literal ieCss = new Literal();
+			ieCss.Text = String.Format(@"
+				<!--[if IE]>
+					<link rel='stylesheet' type='text/css' href='{0}/Framework/CSS/profiles-ie.css' />
+				<![endif]-->
+			",
+			Root.Domain);
+			Page.Header.Controls.Add(ieCss);
 
 
         }

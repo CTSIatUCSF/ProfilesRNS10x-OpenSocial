@@ -50,7 +50,20 @@ namespace Profiles.Profile
                 request.Expand = false;
             }
 
-            request.ShowDetails = true;
+
+            if (HttpContext.Current.Request.Headers["ShowDetails"] != null)
+            {
+                request.ShowDetails = Convert.ToBoolean(HttpContext.Current.Request.Headers["ShowDetails"].ToString());
+
+            }
+            else
+            {
+                request.ShowDetails = true;
+            }
+
+
+
+
 
             base.LoadRDFData();
 

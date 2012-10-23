@@ -29,27 +29,29 @@
           }
           x.style.color = '';
           for (var i = 0; i &lt; x.childNodes.length; i++) {
-          if (x.childNodes[i].childNodes.length > 0) {
-          if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-          x.childNodes[i].childNodes[0].style.color = '#36C';
-          }
-          }
-          }
-          }
-          function doListTableCellOver(x) {
-          //x.className = 'listTableLinkOver';
-          x.style.backgroundColor = '#36C';
-          }
-          function doListTableCellOut(x) {
-          //x.className = 'listTableLink';
-          x.style.backgroundColor = '';
-          }
-          function doListTableCellClick(x) {
-          hasClickedListTable = true;
-          }
+			if (x.childNodes[i].childNodes.length > 0) {
+			if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
+			x.childNodes[i].childNodes[0].style.color = '#36C';
+			}
+			}
+			}
+			}
+			function doListTableCellOver(x) {
+			//x.className = 'listTableLinkOver';
+			x.style.backgroundColor = '#36C';
+			}
+			function doListTableCellOut(x) {
+			//x.className = 'listTableLink';
+			x.style.backgroundColor = '';
+			}
+			function doListTableCellClick(x) {
+			hasClickedListTable = true;
+			}
+			function WhyLink(uri){
+			window.location = '/profile/'+uri;
+			}
 
-
-        </script>
+		</script>
     
       <script>
         
@@ -64,7 +66,7 @@
         <table id="thetable1">
           <tbody>
             <tr>
-              <th class="alignLeft" style="width: 250px;">Name</th>
+              <th class="alignLeft" style="width:250px;">Name</th>
               <th style="width: 110px;">
                 Number of publications
               </th>
@@ -73,12 +75,16 @@
               </th>
               <th style="width: 80px;">
                 Publications by all authors
-              </th>            
+              </th>
+				<th style="width: 38px;">
+					Why?
+				</th>         
             </tr>
             <xsl:for-each select="rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://profiles.catalyst.harvard.edu/ontology/prns#Connection']">
               <xsl:sort select="prns:sortOrder" data-type="number"/>              
               <xsl:variable name="objectResource" select="./rdf:object/@rdf:resource"/>
               <xsl:variable name="connectionResource" select="./prns:hasConnectionDetails/@rdf:resource"/>
+			  <xsl:variable name="whyLink" select="./@rdf:about"/>
               <tr  onclick="doURL('{$objectResource}')" onmouseover="doListTableRowOver(this)">
                 <xsl:choose>
                   <xsl:when test="position() mod 2 = 0">
@@ -99,9 +105,9 @@
                   </xsl:otherwise>
                 </xsl:choose>
                 <td style="text-align: left;" class="alignLeft">
-                  <div>
-                    <xsl:value-of select="/rdf:RDF/rdf:Description[@rdf:about=$objectResource]/rdfs:label"/>
-                  </div>
+					<div>
+						<xsl:value-of select="/rdf:RDF/rdf:Description[@rdf:about=$objectResource]/rdfs:label"/>
+					</div>
                 </td>
                 <td>
                   <div >
@@ -117,8 +123,13 @@
                   <div>
                     <xsl:value-of select="/rdf:RDF/rdf:Description[@rdf:about=$objectResource]/prns:numberOfAuthors"/>
                   </div>
-                </td>               
-              </tr>
+                </td>
+				  <td>
+				  <a class="listTableLink"  href="Javascript:document.location = '{$whyLink}';">
+					  Why?
+				  </a>
+				  </td>
+			  </tr>
             </xsl:for-each>
           </tbody>
         </table>

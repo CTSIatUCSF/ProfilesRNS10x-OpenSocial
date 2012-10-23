@@ -88,7 +88,20 @@ namespace Profiles.Proxy
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Searchcss);
+
+            HtmlLink UCSFcss = new HtmlLink();
+            UCSFcss.Href = Root.Domain + "/Proxy/CSS/UCSF.css";
+            UCSFcss.Attributes["rel"] = "stylesheet";
+            UCSFcss.Attributes["type"] = "text/css";
+            UCSFcss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(UCSFcss);
+
+            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+            UCSFjs.Attributes.Add("type", "text/javascript");
+            UCSFjs.Attributes.Add("src", Root.Domain + "/Proxy/JavaScript/UCSF.js");
+            Page.Header.Controls.Add(UCSFjs);
         }
+
         public XmlDocument PresentationXML { get; set; }
 
     }

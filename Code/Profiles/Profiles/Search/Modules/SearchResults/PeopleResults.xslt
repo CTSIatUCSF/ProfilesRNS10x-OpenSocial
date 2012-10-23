@@ -47,7 +47,6 @@
   </xsl:variable>
   <xsl:template match="/">
 
-
     <input type="hidden" id="txtSearchFor" value="{$searchfor}"/>
     <input type="hidden" id="txtSearchRequest" name="txtSearchRequest" value="{$searchrequest}"/>
     <input type="hidden" id="txtRoot" value="{$root}"/>
@@ -64,10 +63,10 @@
 
         <table>
           <tr>
-            <td>
+            <td style="width:33%;">
               <xsl:choose>
                 <xsl:when test="$why">
-                  <div style="background-color:#F7F3EF;border:1px solid #999999;font-size:11px;padding:1px;text-align:center">
+                  <div style="width:200px;background-color:#F7F3EF;border:1px solid #999999;font-size:11px;padding:1px;text-align:center">
                     Click the <b>Why</b> column to see why a person matched the search.
                   </div>
                 </xsl:when>
@@ -76,7 +75,7 @@
                 </xsl:otherwise>
               </xsl:choose>
             </td>
-            <td>
+            <td style="width:33%;">
               <div style="float:right">
                 Sort&#160;<select id="selSort" onchange="JavaScript:DropdownSort();">
                   <option value="">Query Relevance</option>
@@ -205,7 +204,7 @@
                 </select>
               </div>
             </td>
-            <td>
+			<td style="width:33%;">
               <div style="float: right;">
                 <input type="hidden" id="hiddenToggle" value="off" />
                 Show&#160;
@@ -215,24 +214,24 @@
                 <table>
                   <tr>
                     <td style="padding-left:45px">
-                      <div id="divColSelect" style="border-right: solid 1px #000000; border-bottom: solid 1px #000000;
-                                                border-left: solid 1px gray; padding-left:3px; height: 90; width: 143px; overflow: auto;
+                      <div id="divColSelect" style="border-right: solid 1px gray; border-bottom: solid 1px gray;
+                                                border-left: solid 1px silver; padding-left:3px; margin-left: -5px; margin-top: -1px; height: 100; width: 144px; overflow: auto;
                                                 background-color: #ffffff;z-index:5;position: absolute;">
                         <xsl:if test="$ShowInstitutions='true'">
                           <br />
-                          <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox"/> Institution
+                          <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox"/> <span>Institution</span>
                         </xsl:if>
                         <xsl:if test="$ShowDepartments='true'">
                           <br></br>
-                          <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox"/> Department
+                          <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox"/><span>Department</span>
                         </xsl:if>
                         <xsl:if test="$ShowDivisions='true'">
                           <br></br>
-                          <input type="checkbox" id="chkDivision" name="chkDivision" value="Division" class="otherOptionCheckBox"/> Division
+                          <input type="checkbox" id="chkDivision" name="chkDivision" value="Division" class="otherOptionCheckBox"/><span>Division</span>
                         </xsl:if>
                         <xsl:if test="$ShowFacRank='true'">
                           <br></br>
-                          <input type="checkbox" id="chkFacRank" name="chkFacRank" value="Faculty Rank" class="otherOptionCheckBox"/> Faculty Rank
+                          <input type="checkbox" id="chkFacRank" name="chkFacRank" value="Faculty Rank" class="otherOptionCheckBox"/><span>Faculty Rank</span>
                         </xsl:if>
                       </div>
                     </td>
@@ -241,15 +240,16 @@
               </div>
             </td>
           </tr>
-          <TR>
-            <TD colspan="3" height="10">
-            </TD>
-          </TR>
+          <tr>
+            <td colspan="3" height="10">
+				<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>nbsp;
+			</td>
+          </tr>
 
           <tr>
             <td colspan="3">
               <div class="listTable" style="margin-top:0px;">
-                <table id="tblSearchResults" style="width:100%" class="SearchResults">
+                <table id="tblSearchResults" class="SearchResults">
                   <tbody>
                     <tr>
                       <th class="alignLeft">
@@ -511,7 +511,8 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <script language="JavaScript">
+
+	  <script language="JavaScript">
 
 
       var perpage = 0;
@@ -564,129 +565,128 @@
 
       if(document.getElementById("chkFacRank")!=null){
       if((document.getElementById("showcolumns").value <xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text> 8)){
-      document.getElementById("chkFacRank").checked = true;
-      }else{
-      document.getElementById("chkFacRank").checked = false;
-      }
-      }
+		document.getElementById("chkFacRank").checked = true;
+		}else{
+		document.getElementById("chkFacRank").checked = false;
+		}
+		}
 
 
-      }
+		}
 
-      function DropdownSort(){
+		function DropdownSort(){
 
-      var dropdown = document.getElementById("selSort");
-      var val = dropdown.options[dropdown.selectedIndex].value;
+		var dropdown = document.getElementById("selSort");
+		var val = dropdown.options[dropdown.selectedIndex].value;
 
-      if(val!=''){
-      this.Sort(val);
-      }
+		if(val!=''){
+		this.Sort(val);
+		}
 
-      }
+		}
 
-      function GetPageData(){
-
-
-      perpage = document.getElementById("ddlPerPage").value;
-      root = document.getElementById("txtRoot").value;
-      searchfor = document.getElementById("txtSearchFor").value;
-      page = document.getElementById("txtPageNumber").value;
-      totalpages = document.getElementById("txtTotalPages").value;
-      searchrequest = document.getElementById("txtSearchRequest").value;
+		function GetPageData(){
 
 
-      if(document.getElementById("selSort").value==''){
-      sortby = document.getElementById("txtCurrentSort").value;
-      }else{
-      sortby = document.getElementById("selSort").value;
-      }
-
-      sortdirection = document.getElementById("txtCurrentSortDirection").value;
-      offset = document.getElementById("txtOffset").value;
-
-      if(page==0){
-      page = 1;
-      }
+		perpage = document.getElementById("ddlPerPage").value;
+		root = document.getElementById("txtRoot").value;
+		searchfor = document.getElementById("txtSearchFor").value;
+		page = document.getElementById("txtPageNumber").value;
+		totalpages = document.getElementById("txtTotalPages").value;
+		searchrequest = document.getElementById("txtSearchRequest").value;
 
 
-      if(document.getElementById("chkInstitution")!=null){
-      institution = document.getElementById("chkInstitution").checked;
-      }
+		if(document.getElementById("selSort").value==''){
+		sortby = document.getElementById("txtCurrentSort").value;
+		}else{
+		sortby = document.getElementById("selSort").value;
+		}
 
-      if(document.getElementById("chkDepartment")!=null){
-      department = document.getElementById("chkDepartment").checked;
-      }
+		sortdirection = document.getElementById("txtCurrentSortDirection").value;
+		offset = document.getElementById("txtOffset").value;
 
-      if(document.getElementById("chkDivision")!=null){
-      division = document.getElementById("chkDivision").checked;
-      }
-
-
-      if(document.getElementById("chkFacRank")!=null){
-      facrank = document.getElementById("chkFacRank").checked;
-      }
+		if(page==0){
+		page = 1;
+		}
 
 
+		if(document.getElementById("chkInstitution")!=null){
+		institution = document.getElementById("chkInstitution").checked;
+		}
 
-      }
+		if(document.getElementById("chkDepartment")!=null){
+		department = document.getElementById("chkDepartment").checked;
+		}
 
-      function Sort(sort){
-
-
-      GetPageData();
-
-
-      if(sort.indexOf("_")==-1){
-
-      if(sort==sortby){
-
-      if(sortdirection=="desc"){
-      sortdirection = "asc";
-      }else{
-      sortdirection = "desc";
-      }
-
-      }else{
-
-      sortdirection = "desc";
-      sortby = sort;
-      }
-
-      }else{
-
-      var items = sort.split("_");
-
-      sortby = items[0];
-      sortdirection = items[1];
+		if(document.getElementById("chkDivision")!=null){
+		division = document.getElementById("chkDivision").checked;
+		}
 
 
-      }
+		if(document.getElementById("chkFacRank")!=null){
+		facrank = document.getElementById("chkFacRank").checked;
+		}
 
 
-      NavToPage();
 
-      }
+		}
 
-      function NavToPage(){
+		function Sort(sort){
 
-      var showcolumns = 0;
 
-      if(institution){
-      showcolumns = 1;
-      }
-      if(department){
-      showcolumns = showcolumns | 2;
-      }
+		GetPageData();
 
-      if(division){
-      showcolumns = showcolumns | 4;
-      }
 
-      if(facrank){
-      showcolumns = showcolumns | 8;
-      }
+		if(sort.indexOf("_")==-1){
 
-      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>showcolumns=' + showcolumns;
+		if(sort==sortby){
+
+		if(sortdirection=="desc"){
+		sortdirection = "asc";
+		}else{
+		sortdirection = "desc";
+		}
+
+		}else{
+
+		sortdirection = "desc";
+		sortby = sort;
+		}
+
+		}else{
+
+		var items = sort.split("_");
+
+		sortby = items[0];
+		sortdirection = items[1];
+
+
+		}
+
+
+		NavToPage();
+
+		}
+
+		function NavToPage(){
+
+		var showcolumns = 0;
+		
+		if(institution){
+		showcolumns = 1;
+		}
+		if(department){
+		showcolumns = showcolumns | 2;
+		}
+
+		if(division){
+		showcolumns = showcolumns | 4;
+		}
+
+		if(facrank){
+		showcolumns = showcolumns | 8;
+		}
+		window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>showcolumns=' + showcolumns;
       }
 
       function ChangePerPage(){
@@ -728,73 +728,123 @@
       GetPageData();
       window.location = root + '/search/default.aspx?searchtype=whypeople<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>nodeuri=' + uri + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection;
 
-      }
+		  }
 
-      function ShowDetails(nodeURI,obj){
+		  function ShowDetails(nodeURI,obj){
 
-      doListTableRowOver(obj);
+		  doListTableRowOver(obj);
+		  document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
 
-      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
+		  }
 
-      }
-      function HideDetails(obj,ord){
+		  function HideDetails(obj,ord){
 
-      doListTableRowOut(obj,ord);
-      document.getElementById('divItemDetails').innerHTML = '';
-      }
+		  doListTableRowOut(obj,ord);
+		  document.getElementById('divItemDetails').innerHTML = '';
+		  }
 
-      <!--// create global code object if not already created-->
-      if (undefined==ProfilesRNS) var ProfilesRNS = {};
 
-      <!--// <START::SHOW/HIDE OTHER OPTIONS DROPDOWN LIST>-->
-      $(document).ready(function() {
 
-      // initially hide the other options DIV
-      $("#divColSelect").hide();
+		  <!--// create global code object if not already created-->
+		if (undefined==ProfilesRNS) var ProfilesRNS = {};
 
-      // hide/show event occurs on click of dropdown
-      $("#selColSelect").click(function() {
-      if ($("#divColSelect").is(":visible")) {
-      $("#divColSelect").hide();
-      NavToPage();
+		
+		var $defaultColumns = null;
+		
+		<!--Reloads page only if new columns are selected-->
+		function reloadColumns()
+		{
+		var reload = false;
+		var $colToShow = $('#divColSelect input:checked');
 
-      $("//*[@id='divSearchSection']/descendant::input[@type='submit']").focus();
+		// Check column count first.
+		if ($colToShow.length != $defaultColumns.length)
+		{
+		GetPageData();
+		NavToPage();
+		return;
+		}		
+		
+		// See if column selection have changed from default
+		$colToShow.each(function(idx, item){
+		if ($defaultColumns.filter("#"+$(this).get(0).id).length != 1)
+		{
+		GetPageData();
+		NavToPage();
+		return false; // exit loop
+		}
+		});
+		}
 
-      } else {
-      $("#divColSelect").show();
-      $("*[id*=institution]").focus();
-      }
-      });
+		<!--// <START::SHOW/HIDE OTHER OPTIONS DROPDOWN LIST>-->
+		$(document).ready(function() {
 
-      // hide the other options DIV when a click occurs outside of the DIV while it's shown
-      $(document).click(function(evt) {
-      if ($("#divColSelect").is(":visible")) {
-      switch (evt.target.id) {
-      case "selColSelect":
-      case "divColSelect":
-      break;
-      default:
-      var tmp = evt.target;
-      while (tmp.parentNode) {
-      tmp = tmp.parentNode;
-      if (tmp.id == "divColSelect") { return true; }
-      }
-      $("#divColSelect").hide();
-      GetPageData();
-      NavToPage();
-      }
-      }
-      });
+		// initially hide the other options DIV
+		$("#divColSelect").hide();
 
-      });
-      <!--// <END::SHOW/HIDE OTHER OPTIONS DROPDOWN LIST>-->
+		// hide/show event occurs on click of dropdown
+		$("#selColSelect").click(function() {
+		if ($("#divColSelect").is(":visible")) {
+		$("#divColSelect").hide();
+
+		reloadColumns();
+
+		$("//*[@id='divSearchSection']/descendant::input[@type='submit']").focus();
+
+		} else {
+		$("#divColSelect").show();
+
+		// Set default columns to show
+		$defaultColumns = $('#divColSelect input:checked');
+
+		$("*[id*=institution]").focus();
+		}
+		});
+
+		// hide the other options DIV when a click occurs outside of the DIV while it's shown
+		$(document).click(function(evt) {
+		if ($("#divColSelect").is(":visible")) {
+		switch (evt.target.id) {
+		case "selColSelect":
+		case "divColSelect":
+		break;
+		default:
+		var tmp = evt.target;
+		while (tmp.parentNode) {
+		tmp = tmp.parentNode;
+		if (tmp.id == "divColSelect") { return true; }
+		}
+		$("#divColSelect").hide();
+
+		reloadColumns()
+		}
+		}
+		});
+
+		});
+
+		
+		$('#divColSelect span')
+			.hover(
+				function(){ // Mouse in				
+					$(this).css('cursor', 'pointer');				
+				},
+				function(){ // Mouse out				
+					$(this).css('cursort', 'default');				
+			})
+			.click(function(){ // select checkbox when checkbox label is clicked			
+				var $checkbox = $(this).prev('input');		
+				$checkbox.attr('checked', !$checkbox.attr('checked'));
+			});
+		<!--// <END::SHOW/HIDE OTHER OPTIONS DROPDOWN LIST>-->
 
 
     </script>
 
   </xsl:template>
 
-  <xsl:template name="threeColumn">
+
+	<xsl:template name="threeColumn">
     <xsl:param name="doc"></xsl:param>
     <xsl:param name="nodeURI"></xsl:param>
     <xsl:param name="weight"></xsl:param>
@@ -871,7 +921,7 @@
           </xsl:choose>
         </xsl:variable>
 
-        <input type="hidden" id="{$nodeURI}" value="&lt;div class='passiveSectionBody'&gt;&lt;div class='passive_section_line'&gt;&lt;/div&gt;&lt;/div&gt;&lt;b&gt;Person Summary&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&lt;u&gt;Name&lt;/u&gt;&lt;br/&gt;{prns:fullName}{$titlelink}{$institutionlink}{$departmentlink}{$divisionlink}{$facranklink}"></input>
+        <input type="hidden" id="{$nodeURI}" value="&lt;div class='passiveSectionHead'&gt;&lt;b&gt;Person Summary&lt;/b&gt;&lt;/div&gt;&lt;div class='passiveSectionBody'&gt;&lt;br/&gt;&lt;u&gt;Name&lt;/u&gt;&lt;br/&gt;{prns:fullName}{$titlelink}{$institutionlink}{$departmentlink}{$divisionlink}{$facranklink}&lt;/div&gt;"></input>
 
       </td>
     </xsl:if>
@@ -898,7 +948,7 @@
     </xsl:if>
 
     <xsl:if test="$facrank='true'">
-      <td class="alignLeft" style="width:250px">
+      <td class="alignLeft" style="width:250px;">
         <xsl:choose>
           <xsl:when test ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label!=''">
             <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>

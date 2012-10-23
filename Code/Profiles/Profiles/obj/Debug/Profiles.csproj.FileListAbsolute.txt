@@ -1,14 +1,27 @@
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Profiles.pdb
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\log4net.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Newtonsoft.Json.Net35.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\bin\Newtonsoft.Json.Net35.xml
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Debug\Profiles.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\Profiles\Profiles\obj\Debug\Profiles.pdb
-C:\Development\ProfilesRNS101\Code\Profiles\Profiles\bin\Profiles.XML
-C:\Development\ProfilesRNS101\Code\Profiles\Profiles\bin\Profiles.dll
-C:\Development\ProfilesRNS101\Code\Profiles\Profiles\bin\Profiles.pdb
-C:\Development\ProfilesRNS101\Code\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
-C:\Development\ProfilesRNS101\Code\Profiles\Profiles\obj\Debug\Profiles.dll
-C:\Development\ProfilesRNS101\Code\Profiles\Profiles\obj\Debug\Profiles.pdb
+C:\Projects\Profiles\OpenSource\Profiles\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\Profiles\OpenSource\Profiles\bin\Profiles.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\Profiles.pdb
+C:\Projects\Profiles\OpenSource\Profiles\bin\AjaxControlToolkit.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\ProfilesSPARQLAPI.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\SemWeb.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\sparql-core.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\IKVM.Runtime.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\IKVM.GNU.Classpath.dll
+C:\Projects\Profiles\OpenSource\Profiles\bin\SemWeb.pdb
+C:\Projects\Profiles\OpenSource\Profiles\bin\ProfilesSPARQLAPI.pdb
+C:\Projects\Profiles\OpenSource\Profiles\obj\Debug\Profiles.dll
+C:\Projects\Profiles\OpenSource\Profiles\obj\Debug\Profiles.pdb
+C:\Projects\Profiles\OpenSource\Profiles\bin\Profiles.XML
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\Profiles.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\Profiles.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\SemWeb.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\sparql-core.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\IKVM.GNU.Classpath.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\IKVM.Runtime.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\SemWeb.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\obj\Debug\Profiles.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\obj\Debug\Profiles.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\Profiles\Profiles\bin\Profiles.XML

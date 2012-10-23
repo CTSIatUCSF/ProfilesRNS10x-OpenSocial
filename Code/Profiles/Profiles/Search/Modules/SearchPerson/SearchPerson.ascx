@@ -173,7 +173,7 @@
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <div id="divOtherOptions" style="border-right: solid 1px #000000; border-bottom: solid 1px #000000;
+                                                    <div id="divOtherOptions" style="position:absolute; margin-top:-2px; margin-left:-2px; width:255px; border-right: solid 1px #000000; border-bottom: solid 1px #000000;
                                                         border-left: solid 1px gray; padding-left: 3px; height: 150; width: 243px; overflow: auto;
                                                         background-color: #ffffff;">
                                                         <br />

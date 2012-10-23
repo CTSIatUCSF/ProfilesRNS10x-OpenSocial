@@ -70,12 +70,16 @@
               <th style="width: 110px;">
                 Most recent<br/>co-publication
               </th>
-            </tr>
+				<th style="width: 38px;">
+					Why?
+				</th>
+			</tr>
             <xsl:for-each select="rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://profiles.catalyst.harvard.edu/ontology/prns#Connection']">
               <xsl:sort select="prns:sortOrder" data-type="number"/>
               <xsl:variable name="connectionResource" select="@rdf:about"/>
               <xsl:variable name="objectResource" select="./rdf:object/@rdf:resource"/>
               <xsl:variable name="detailsResource" select="./prns:hasConnectionDetails/@rdf:resource"/>
+				<xsl:variable name="whyLink" select="./@rdf:about"/>
               <tr  onclick="doURL('{$objectResource}')" onmouseover="doListTableRowOver(this)">
                 <xsl:choose>
                   <xsl:when test="position() mod 2 = 0">
@@ -110,6 +114,11 @@
                     <xsl:value-of select="substring(/rdf:RDF/rdf:Description[@rdf:about=$detailsResource]/prns:endDate,1,4)"/>
                   </div>
                 </td>
+				  <td>
+					  <a class="listTableLink"  href="Javascript:document.location = '{$whyLink}';">
+						  Why?
+					  </a>
+				  </td>
               </tr>
             </xsl:for-each>
           </tbody>

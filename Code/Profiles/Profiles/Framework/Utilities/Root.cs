@@ -28,6 +28,7 @@ namespace Profiles.Framework.Utilities
         {
             get
             {
+		
                 DataIO data = new DataIO();
 
                 string restdomain = data.GetRESTBasePath();
@@ -36,9 +37,8 @@ namespace Profiles.Framework.Utilities
                 {
                     restdomain = restdomain.Replace("http:", "https:");
                 }
-               // restdomain = "http://localhost:55956";
-
-                return restdomain;
+              
+               return restdomain;
             }
         }
 

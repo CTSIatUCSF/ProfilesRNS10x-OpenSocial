@@ -7,9 +7,8 @@
         </div>
     </div>    
     <div class="passiveSectionBody">
-        <asp:Literal runat="server" ID="litModifySearch"></asp:Literal><br />             
-            <asp:Literal runat="server" ID="litSearchOtherInstitutions"></asp:Literal>        
-        <div class="passiveSectionLine">
-        </div>
+        <div style='margin-bottom:4px;margin-top:4px;'><asp:Literal runat="server" ID="litModifySearch"></asp:Literal></div>
+        <div><asp:Literal runat="server" ID="litSearchOtherInstitutions"></asp:Literal></div>
+        <div class="passiveSectionLine"></div>              
     </div>
 </div>

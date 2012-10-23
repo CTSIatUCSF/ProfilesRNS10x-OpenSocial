@@ -144,6 +144,15 @@ function NoEnter(){
 		document.getElementById('FSAJAXFrame').src = u;
 	
 	}
+	
+	function submitDirectSearch(e) {
+        if (e.keyCode == 13) {
+            doDirectSearch(); 
+            return false;           
+        }
+        return true;
+    }
+    
 	function doAuto() {	
 		<%
 			if( GetKeywordString() != ""){
@@ -153,6 +162,8 @@ function NoEnter(){
 			}
 		%>
 	}
+	
+	
 
     </script>
  <div class="searchForm">
@@ -177,7 +188,7 @@ function NoEnter(){
                             Keywords
                         </th>
                         <td  class="fieldMain">
-                            <input type='text' name="SearchPhrase" id="FSSearchPhrase" value="<%Response.Write(GetSearchPhrase()); %>"
+                            <input onkeypress="return submitDirectSearch(event);" type='text' name="SearchPhrase" id="FSSearchPhrase" value="<%Response.Write(GetSearchPhrase()); %>"
                                 class="inputText" />
                         </td>
                         <td class="fieldOptions">

@@ -107,7 +107,7 @@ namespace Profiles.ORNG.Utilities
                     int moduleId = 0;
                     if (((requestAppId == null && gadgetSpec.IsEnabled()) || gadgetSpec.GetAppId() == Convert.ToInt32(requestAppId)) && gadgetSpec.Show(viewerId, ownerId, GetPageName()))
                     {
-                        String securityToken = SocketSendReceive(viewerId, ownerId, "" + gadgetSpec.GetAppId());
+                        String securityToken = SocketSendReceive(viewerId, ownerId, gadgetSpec.GetGadgetURL());
                         gadgets.Add(new PreparedGadget(gadgetSpec, this, moduleId++, securityToken));
                     }
                 }
@@ -317,7 +317,7 @@ namespace Profiles.ORNG.Utilities
             string[] tokenService = ConfigurationManager.AppSettings["OpenSocial.TokenService"].ToString().Trim().Split(':');
 
             string request = "c=default" + (viewer != null ? "&v=" + HttpUtility.UrlEncode(viewer) : "") +
-                    (owner != null ? "&o=" + HttpUtility.UrlEncode(owner) : "") + "&g=" + gadget + "\r\n";
+                    (owner != null ? "&o=" + HttpUtility.UrlEncode(owner) : "") + "&g=" + HttpUtility.UrlEncode(gadget) + "\r\n";
             Byte[] bytesSent = Encoding.ASCII.GetBytes(request);
             Byte[] bytesReceived = new Byte[256];
 
@@ -395,16 +395,14 @@ namespace Profiles.ORNG.Utilities
         {
             string gadgetScriptText = Environment.NewLine + 
                     "var my = {};" + Environment.NewLine +
-                    "my.gadgetSpec = function(appId, name, url, secureToken, view, closed_width, open_width, start_closed, chrome_id, visible_scope) {" + Environment.NewLine +
+                    "my.gadgetSpec = function(appId, name, url, secureToken, view, chrome_id, opt_params, visible_scope) {" + Environment.NewLine +
                     "this.appId = appId;" + Environment.NewLine +
                     "this.name = name;" + Environment.NewLine +
                     "this.url = url;" + Environment.NewLine +
                     "this.secureToken = secureToken;" + Environment.NewLine +
                     "this.view = view || 'default';" + Environment.NewLine +
-                    "this.closed_width = closed_width;" + Environment.NewLine +
-                    "this.open_width = open_width;" + Environment.NewLine +
-                    "this.start_closed = start_closed;" + Environment.NewLine +
                     "this.chrome_id = chrome_id;" + Environment.NewLine +
+                    "this.opt_params = opt_params;" + Environment.NewLine +
                     "this.visible_scope = visible_scope;" + Environment.NewLine +
                     "};" + Environment.NewLine +
                 "my.pubsubData = {};" + Environment.NewLine;
@@ -421,8 +419,7 @@ namespace Profiles.ORNG.Utilities
                 foreach (PreparedGadget gadget in GetVisibleGadgets())
                 {
                     gadgetScriptText += "new my.gadgetSpec(" + gadget.GetAppId() + ",'" + gadget.GetName() + "','" + gadget.GetGadgetURL() + "','" +
-                        gadget.GetSecurityToken() + "','" + gadget.GetView() + "'," + gadget.GetClosedWidth() + "," +
-                        gadget.GetOpenWidth() + "," + (gadget.GetStartClosed() ? "1" : "0") + ",'" + gadget.GetChromeId() + "','" +
+                        gadget.GetSecurityToken() + "','" + gadget.GetView() + "','" + gadget.GetChromeId() + "'," + gadget.GetOptParams() + ",'" +
                         gadget.GetGadgetSpec().GetVisibleScope() + "'), ";
                 }
                 gadgetScriptText = gadgetScriptText.Substring(0, gadgetScriptText.Length - 2);
@@ -505,7 +502,7 @@ namespace Profiles.ORNG.Utilities
                 int moduleId = 0;
                 if (sandboxOnly || gadgetSpec.Show(viewerId, ownerId, page.AppRelativeVirtualPath.Substring(2)))
                 {
-                    String securityToken = SocketSendReceive(viewerId, ownerId, "" + gadgetSpec.GetAppId());
+                    String securityToken = SocketSendReceive(viewerId, ownerId, gadgetSpec.GetGadgetURL());
                     sandboxGadgets.Add(new PreparedGadget(gadgetSpec, this, moduleId++, securityToken));
                 }
             }

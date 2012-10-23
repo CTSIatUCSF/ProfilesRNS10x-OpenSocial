@@ -60,8 +60,9 @@ namespace Profiles.Framework.Utilities
                     dbcommand.CommandTimeout = this.GetCommandTimeout();
 
                     dbcommand.CommandText = "[RDF.].GetPropertyList";
-                    dbcommand.Parameters.Add(new SqlParameter("@RDF", rdf.OuterXml));
+                    dbcommand.Parameters.Add(new SqlParameter("@RDFStr", rdf.OuterXml));
                     dbcommand.Parameters.Add(new SqlParameter("@PresentationXML", presentation.OuterXml));
+                    dbcommand.Parameters.Add(new SqlParameter("@returnXMLasStr", true));
 
 
                     if (withcounts)

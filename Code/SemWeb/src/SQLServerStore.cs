@@ -171,6 +171,7 @@ namespace SemWeb.Stores
             using (SqlCommand cmd = new SqlCommand(sql, connection))
             {
 
+		cmd.CommandTimeout = this.GetCommandTimeout();
                 return cmd.ExecuteReader();
             }
         }

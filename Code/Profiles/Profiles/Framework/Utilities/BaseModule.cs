@@ -129,6 +129,11 @@ namespace Profiles.Framework.Utilities
         public List<ModuleParams> ModuleParams { get; set; }
         public RDFTriple RDFTriple { get; set; }
 
+		// Helpers
+		public string GetRootDomain()
+		{
+			return Root.Domain;
+		}
 
         //The data
         public XmlDocument BaseData { get; set; }
@@ -272,6 +277,6 @@ namespace Profiles.Framework.Utilities
         }
 
         private List<Module> Modules { get; set; }
-
+		
     }
 }

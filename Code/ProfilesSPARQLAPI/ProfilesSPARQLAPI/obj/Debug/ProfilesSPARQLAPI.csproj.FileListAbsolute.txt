@@ -1,20 +1,20 @@
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
-C:\Visual Studio 2008\Projects\Profiles.OpenSource\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
-C:\Development\ProfilesRNS101\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
+C:\Projects\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
