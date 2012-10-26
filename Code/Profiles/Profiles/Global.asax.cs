@@ -125,7 +125,7 @@ namespace Profiles
             }
 
             if (!reader.IsClosed)
-                reader.Close();          
+                reader.Close();
 
         }
 

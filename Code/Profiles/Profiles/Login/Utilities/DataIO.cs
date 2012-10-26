@@ -60,7 +60,7 @@ namespace Profiles.Login.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[User.Account].[Authenticate]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[User.Account].[Authenticate]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param), true);
 
                 dbconnection.Close();
                 try

@@ -6,11 +6,11 @@ using System.Configuration;
 using System.IO;
 using System.Diagnostics;
 
+
 namespace Profiles.Framework.Utilities
 {
     public static class DebugLogging
     {
-
         public static void Log(string msg)
         {
             //Each error that occurs will trigger this event.

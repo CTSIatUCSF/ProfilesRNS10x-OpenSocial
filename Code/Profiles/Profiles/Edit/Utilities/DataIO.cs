@@ -91,7 +91,7 @@ namespace Profiles.Edit.Utilities
                 param[1].Direction = ParameterDirection.Output;
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.DoesPublicationExist]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.DoesPublicationExist]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param), true);
 
                 dbconnection.Close();
 
@@ -126,7 +126,7 @@ namespace Profiles.Edit.Utilities
                 SqlCommand comm = GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.Entity.UpdateEntityOnePerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(comm);
+                ExecuteSQLDataCommand(comm, true);
 
                 comm.Connection.Close();
 
@@ -161,7 +161,7 @@ namespace Profiles.Edit.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.Pubmed.AddPubMedXML]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.Pubmed.AddPubMedXML]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param), true);
 
                 dbconnection.Close();
 
@@ -196,7 +196,7 @@ namespace Profiles.Edit.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(dbconnection, "[Profile.Data].[Publication.Pubmed.AddPublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(GetDBCommand(dbconnection, "[Profile.Data].[Publication.Pubmed.AddPublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param), true);
 
                 dbconnection.Close();
 
@@ -619,7 +619,7 @@ namespace Profiles.Edit.Utilities
                 SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].DeleteTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(comm);
+                ExecuteSQLDataCommand(comm, true);
 
                 comm.Connection.Close();
 
@@ -713,7 +713,7 @@ namespace Profiles.Edit.Utilities
             SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
             //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-            ExecuteSQLDataCommand(comm);
+            ExecuteSQLDataCommand(comm, true);
 
             comm.Connection.Close();
 
@@ -1005,7 +1005,7 @@ namespace Profiles.Edit.Utilities
 
                 SqlCommand comm = GetDBCommand(ref dbconnection, "[Edit.Module].[CustomEditAwardOrHonor.StoreItem]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(comm);
+                ExecuteSQLDataCommand(comm, true);
 
 
                 comm.Connection.Close();
@@ -1067,7 +1067,7 @@ namespace Profiles.Edit.Utilities
                 try
                 {
                     //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                    ExecuteSQLDataCommand(cmd);
+                    ExecuteSQLDataCommand(cmd, true);
                 }
                 finally
                 {
@@ -1129,7 +1129,7 @@ namespace Profiles.Edit.Utilities
                 {
 
                     //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                    ExecuteSQLDataCommand(cmd);
+                    ExecuteSQLDataCommand(cmd, true);
                     cmd.Connection.Close();
 
                 }
@@ -1170,7 +1170,7 @@ namespace Profiles.Edit.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(comm);
+                ExecuteSQLDataCommand(comm, true);
 
 
                 comm.Connection.Close();

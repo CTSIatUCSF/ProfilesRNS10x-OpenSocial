@@ -20,6 +20,8 @@ using System.Web;
 using System.Web.Caching;
 
 using Profiles.Profile.Utilities;
+using System.IO;
+using System.Collections.Specialized;
 
 namespace Profiles.Framework.Utilities
 {
@@ -556,6 +558,16 @@ namespace Profiles.Framework.Utilities
 
         public void ExecuteSQLDataCommand(SqlCommand sqlcmd)
         {
+            ExecuteSQLDataCommand(sqlcmd, false);
+        }
+
+        public void ExecuteSQLDataCommand(SqlCommand sqlcmd, bool log)
+        {
+            // UCSF
+            if (log)
+            {
+               ActivityLog(sqlcmd);
+            }
             try
             {
                 sqlcmd.ExecuteNonQuery();
@@ -812,6 +824,51 @@ namespace Profiles.Framework.Utilities
             set { _ErrorNumber = value; }
         }
 
+        #endregion
+
+        #region "UCSF Activity Log"
+        public class Param
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+
+        private void ActivityLog(SqlCommand sqlcmd)
+        {
+            //Each error that occurs will trigger this event.
+            try
+            {
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ActivityLog"]) == true)
+                {
+                    Param[] pa = new Param[sqlcmd.Parameters.Count];
+                    for (int i = 0; i < sqlcmd.Parameters.Count; i++)
+                    {
+                        pa[i] = new Param { Name = "" + sqlcmd.Parameters[i], Value = "" + sqlcmd.Parameters[i].Value };
+                    }
+                    StringWriter sw = new StringWriter();
+                    System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(pa.GetType());
+                    x.Serialize(sw, pa);
+
+                    SqlConnection dbconnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString);
+                    SqlParameter[] param = new SqlParameter[3];
+                    param[0] = new SqlParameter("@userId", new SessionManagement().Session().UserID);
+                    param[1] = new SqlParameter("@cmd", sqlcmd.CommandText);
+                    param[2] = new SqlParameter("@params", sw.ToString());
+
+                    SqlCommand comm = GetDBCommand(ref dbconnection, "[UCSF.].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
+                    ExecuteSQLDataCommand(comm, false);
+                    comm.Connection.Close();
+
+                    if (dbconnection.State != ConnectionState.Closed)
+                        dbconnection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
         #endregion
     }
 }

@@ -235,7 +235,7 @@ namespace Profiles.ORNG.Utilities
         {
             // always have turned on for Profile/Display.aspx because we want to generate the "profile was viewed" in Javascript (bot proof) 
             // regardless of any gadgets being visible, and we need this to be True for the shindig javascript libraries to load
-            return (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] != null && (GetVisibleGadgets().Count > 0) || GetPageName().Equals("Profile/Display.aspx"));
+            return ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] != null && (GetVisibleGadgets().Count > 0 || GetPageName().Equals("Profile/Display.aspx"));
         }
 
         public List<PreparedGadget> GetVisibleGadgets()

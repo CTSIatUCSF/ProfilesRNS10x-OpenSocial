@@ -52,9 +52,58 @@
 
     </script>
 
-    <div class="institutionHeader">
-        <img src="<%=GetURLDomain()%>/Framework/Images/banner.jpg" />
+    <div id="header-ucsf">
+      <div id="ucsfnav">
+        <a class="ucsf-logo" target="_blank" href="http://www.ucsf.edu/">UCSF</a>
+         <ul>
+         <li class="first">
+           <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
+         </li>
+         <li>
+           <a title="About UCSF" href="http://www.ucsf.edu/about" target="_blank">About UCSF</a>
+         </li>
+         <li>
+           <a title="Search UCSF" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
+         </li>
+         <li>
+           <a title="UCSF Medical Center" href="http://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
+         </li>
+         </ul>
+       </div>
     </div>
+    <div class="institutionHeader">
+        <div id="site-logo">
+        <h1><a href="../">UCSF Profiles
+        <div id="tagline">search, discover, network</div></a></h1>
+        </div>
+        <div id="powered-by-block">
+          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank">Powered by CTSI</a>
+        </div>
+    </div>
+
+    <div id="suckerfish-container">
+       <div id="suckerfishmenu">
+         <div class="content">
+           <ul class="menu">
+              <li class="leaf first item-home"><asp:HyperLink ID="navResearch" runat="server" Text="Home" NavigateUrl="~/"></asp:HyperLink></li>
+              <li id="about" class="expanded"><a href="AboutUCSFProfiles.aspx">About</a>
+                 <ul class="menu">
+                     <li class="leaf first"><a href="AboutUCSFProfiles.aspx">About UCSF Profiles</a></li>
+                     <li class="leaf"><a href="HowProfilesWorks.aspx">
+                      How Profiles Works / FAQ</a></li>
+                   <li class="leaf"><a href="ForDevelopers.aspx">
+                      Use UCSF Profiles Data to <br />&nbsp;&nbsp;&nbsp;Enhance Your Website</a></li>
+                     <li class="leaf"><a href="GadgetLibrary.aspx">
+                      How UCSF Has Extended <br />&nbsp;&nbsp;&nbsp;Profiles</a></li>
+                    <li class="leaf"><a href="Help.aspx">
+                      Help</a></li>
+                  </ul>
+               </li>
+           </ul>
+         </div>
+       </div>
+    </div>
+
     <div class="profiles">
         <center>
             <div class="profilesHeader" runat="server" id="divProfilesHeader">
@@ -165,6 +214,23 @@
                 </table>
             </div>
             <div class="profilesFooter">
+               <div id="footer-collaboration">
+                 <p>UCSF Profiles is managed by the UCSF 
+                 <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+                 part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
+                 Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH).</p>
+               </div>
+               <div id="footer-contact">
+                 <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
+                 </ul>
+               </div>
+               <div id="footer-copyright">
+                 <p>Copyright &copy; 2012 The Regents of the University of California. 
+                    All Rights Reserved.</p>
+               </div>
+
                 <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
                     <asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">
                         <ItemTemplate>
@@ -177,4 +243,10 @@
     </div>
     </form>
 </body>
+
+<form id="navbarsearch" action="http://dev-profiles.ucsf.edu/profiles_102/Search/Default.aspx?">
+<input type="hidden" name="searchtype" value="everything" />
+<input id="searchterm" placeholder="e.g. Smith or HIV" type="text" name="searchfor" value="" /><input type="hidden" name="ClassGroupURI" value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupPeople" /><input type="submit" value="" id="navbarsubmit" />
+</form>
+
 </html>
