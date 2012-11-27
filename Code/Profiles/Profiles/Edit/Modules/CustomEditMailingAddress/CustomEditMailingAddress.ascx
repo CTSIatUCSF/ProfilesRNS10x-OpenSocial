@@ -19,6 +19,14 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="3" class="notice">
+                    UCSF Profiles uses Campus Locator System data for your mailing address. 
+                    It cannot be changed directly in the UCSF Profiles system. Changes should be 
+                    directed to the Payroll/ Personnel Analyst for your UCSF campus department. 
+                    If unsure who this person is, contact your department's Business Officer.
+                </td>
+            </tr>
+            <tr>
                 <td colspan="3">
                     <div style="padding: 10px 0px;">
                         <asp:Panel runat="server" ID="pnlSecurityOptions">

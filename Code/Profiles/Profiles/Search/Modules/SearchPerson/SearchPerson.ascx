@@ -133,7 +133,7 @@
                                 </tr>
                                 <tr runat="server" id="trInstitution">
                                     <th>
-                                        Institution
+                                        School
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
@@ -201,6 +201,8 @@
                     </td>
                 </tr>
             </table>
+            <p><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/search/all">Find articles and other content as well as people</a><br />
+            <img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
         </div>
     </div>
 

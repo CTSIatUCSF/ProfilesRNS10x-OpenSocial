@@ -18,3 +18,13 @@ C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAP
 C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
 C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
 C:\Development\ProfilesRNS102-OpenSocial\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\ProfilesSPARQLAPI.pdb
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.dll
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\sparql-core.dll
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.GNU.Classpath.dll
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\IKVM.Runtime.dll
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\bin\SemWeb.pdb
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.dll
+C:\Development\ProfilesRNS102-UCSF\Code\ProfilesSPARQLAPI\ProfilesSPARQLAPI\obj\Debug\ProfilesSPARQLAPI.pdb

@@ -34,7 +34,7 @@ namespace Profiles.ORNG.Utilities
                 SqlDataReader dr = data.GetGadgetViewRequirements(appId);
                 while (dr.Read())
                 {
-                    viewRequirements.Add(dr[0].ToString(), new GadgetViewRequirements(dr[0].ToString(),
+                    viewRequirements.Add(dr[0].ToString().ToLower(), new GadgetViewRequirements(dr[0].ToString().ToLower(),
                             dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
                             dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
                             dr[3].ToString(),
@@ -120,6 +120,11 @@ namespace Profiles.ORNG.Utilities
         // Bad idea to cache this
         public bool IsRegisteredTo(string personId)
         {
+            if (personId == null || personId.Trim().Length == 0)
+            {
+                return false;
+            }
+
             Int32 count = 0;
 
             Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
@@ -149,7 +154,7 @@ namespace Profiles.ORNG.Utilities
         // who sees it?  Return the viewerReq for the ProfileDetails page
         public char GetVisibleScope()
         {
-            GadgetViewRequirements req = GetGadgetViewRequirements("Profile/Display.aspx");
+            GadgetViewRequirements req = GetGadgetViewRequirements("profile/display.aspx");
             return req != null ? req.GetViewerReq() : ' ';
         }
     }

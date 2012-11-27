@@ -77,7 +77,9 @@
     <Content Include="CustomProfileService.svc" />
     <Content Include="NetworkBrowserService.svc" />
     <Content Include="ProfileService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,2 +1,4 @@
-﻿body {
-}
+﻿.profilesPage .profilesPageColumnLeft { display: none; }
+.profiles .profilesPageColumnRightCenter { width: 960px; }
+.evenRow { background-color: #FFFFFF; }
+#suckerfishmenu li.edit a { background-color: #6A7D7D !important; }

@@ -64,7 +64,7 @@ namespace Profiles.ORNG.Utilities
             this.isDebug = page.Session != null && page.Session[OPENSOCIAL_DEBUG] != null && (bool)page.Session[OPENSOCIAL_DEBUG];
             this.noCache = page.Session != null && page.Session[OPENSOCIAL_NOCACHE] != null && (bool)page.Session[OPENSOCIAL_NOCACHE];
             this.page = page;
-            this.pageName = page.AppRelativeVirtualPath.Substring(2);
+            this.pageName = page.AppRelativeVirtualPath.Substring(2).ToLower();
 
             if (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] == null)
             {

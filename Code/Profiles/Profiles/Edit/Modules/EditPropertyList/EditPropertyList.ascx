@@ -4,24 +4,23 @@
 
 <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
 <br />
+<!--
 <div class='editPage'>
-    <h2>
-        Content Type</h2>
+    <h2>Edit UCSF Profile</h2>
 </div>
-Below are the types of content that can be included on this profile.
-<br />
-<br />
+-->
+<h3>Basic Components:</h3>
+<div id="profile-components">
 <asp:Repeater runat="server" ID="repPropertyGroups" OnItemDataBound="repPropertyGroups_OnItemDataBound">
     <ItemTemplate>
         <asp:GridView runat="server" ID="grdSecurityGroups" AutoGenerateColumns="false" OnRowDataBound="grdSecurityGroups_OnDataBound"
             Width="100%">
             <HeaderStyle BorderStyle="None" CssClass="EditMenuTopRow" />
             <RowStyle BorderColor="#ccc" Width="1px" VerticalAlign="Middle" />
-            <AlternatingRowStyle CssClass="evenRow" />
             <Columns>
                 <asp:BoundField HeaderStyle-CssClass="padding" ItemStyle-CssClass="padding" HeaderStyle-HorizontalAlign="Left"
-                    ItemStyle-HorizontalAlign="Left" DataField="item" HeaderText="Item" ItemStyle-Width="400px" />
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Items" ItemStyle-Width="100px">
+                    ItemStyle-HorizontalAlign="Left" DataField="item" HeaderText="Item" ItemStyle-Width="150px" />
+                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Items" ItemStyle-Width="50px">
                     <ItemTemplate>
                         <asp:Image runat="server" ID="imgBlank" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" />
                         <asp:Label runat="server" ID="lblItems"></asp:Label>
@@ -44,15 +43,15 @@ Below are the types of content that can be included on this profile.
         <br />
     </ItemTemplate>
 </asp:Repeater>
-<table width='100%'>
+</div>
+<table id="profile-visibility">
     <tr>
         <td colspan='3'>
             <div class='editPage'>
                 <table width="100%">
                     <tr>
                         <td>
-                            <h2>
-                                *Privacy Levels</h2>
+                            <h3>Visibility Settings</h3>
                         </td>
                         <td align="right">
                            <%-- <b>Set All</b>&nbsp;
@@ -62,12 +61,16 @@ Below are the types of content that can be included on this profile.
                     </tr>
                 </table>
             </div>
-            <div style='border: solid 1px #ccc; margin-bottom: 2px; width:100%'>
+            <div>
                 <asp:Literal runat="server" ID="litSecurityKey"></asp:Literal>
             </div>
         </td>
     </tr>
 </table>
+<div style="clear:left">
+  <br />
+  <h3>Add-ons:</h3>
+</div>
 <%-- Profiles OpenSocial Extension by UCSF --%>    
 <asp:Panel ID="pnlOpenSocial" runat="server" Visible="false">
     <div id="gadgets-edit" class="gadgets-gadget-parent"></div>

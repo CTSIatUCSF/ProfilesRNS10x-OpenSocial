@@ -124,7 +124,7 @@ namespace Profiles.Edit.Modules.SecurityOptions
         private void UpdateSecuritySetting(string securitygroup)
         {
             Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            
+
             data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
 
         }

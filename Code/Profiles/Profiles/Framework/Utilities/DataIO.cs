@@ -22,6 +22,8 @@ using System.Web.Caching;
 using Profiles.Profile.Utilities;
 using System.IO;
 using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Profiles.Framework.Utilities
 {
@@ -558,16 +560,6 @@ namespace Profiles.Framework.Utilities
 
         public void ExecuteSQLDataCommand(SqlCommand sqlcmd)
         {
-            ExecuteSQLDataCommand(sqlcmd, false);
-        }
-
-        public void ExecuteSQLDataCommand(SqlCommand sqlcmd, bool log)
-        {
-            // UCSF
-            if (log)
-            {
-               ActivityLog(sqlcmd);
-            }
             try
             {
                 sqlcmd.ExecuteNonQuery();
@@ -827,36 +819,60 @@ namespace Profiles.Framework.Utilities
         #endregion
 
         #region "UCSF Activity Log"
-        public class Param
+
+        protected void ActivityLog(int personId, string property, string privacyCode)
         {
-            public string Name { get; set; }
-            public string Value { get; set; }
+            ActivityLog(personId, property, privacyCode, null, null);
         }
 
-        private void ActivityLog(SqlCommand sqlcmd)
+        protected void ActivityLog(int personId, string property, string privacyCode, string param1, string param2)
         {
-            //Each error that occurs will trigger this event.
             try
             {
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ActivityLog"]) == true)
                 {
-                    Param[] pa = new Param[sqlcmd.Parameters.Count];
-                    for (int i = 0; i < sqlcmd.Parameters.Count; i++)
+                    int userId = new SessionManagement().Session().UserID;
+                    int i = 1;
+                    string message = null;
+                    do
                     {
-                        pa[i] = new Param { Name = "" + sqlcmd.Parameters[i], Value = "" + sqlcmd.Parameters[i].Value };
-                    }
-                    StringWriter sw = new StringWriter();
-                    System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(pa.GetType());
-                    x.Serialize(sw, pa);
+                        StackFrame frame = new StackFrame(i++);
+                        MethodBase method = frame.GetMethod();
+                        message = String.Format("{0}.{1}", method.DeclaringType.FullName, method.Name);
+                    } while (message.IndexOf("ActivityLog") != -1);
 
+                    // lookup 
+                    //Console.WriteLine(message);
                     SqlConnection dbconnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString);
-                    SqlParameter[] param = new SqlParameter[3];
-                    param[0] = new SqlParameter("@userId", new SessionManagement().Session().UserID);
-                    param[1] = new SqlParameter("@cmd", sqlcmd.CommandText);
-                    param[2] = new SqlParameter("@params", sw.ToString());
+                    List<SqlParameter> param = new List<SqlParameter>();
+                    if (userId > 0) 
+                        param.Add(new SqlParameter("@userId", userId));
+                    else
+                        param.Add(new SqlParameter("@userId", DBNull.Value));
+                    if (personId > 0) 
+                        param.Add(new SqlParameter("@personId", personId));
+                    else
+                        param.Add(new SqlParameter("@personId", DBNull.Value));
+                    param.Add(new SqlParameter("@methodName", message));
+                    if (property != null)
+                        param.Add(new SqlParameter("@property", property));
+                    else
+                        param.Add(new SqlParameter("@property", DBNull.Value));
+                    if (privacyCode != null)
+                        param.Add(new SqlParameter("@privacyCode", Convert.ToInt32(privacyCode)));
+                    else
+                        param.Add(new SqlParameter("@privacyCode", DBNull.Value));
+                    if (param1 != null) 
+                        param.Add(new SqlParameter("@param1", param1));
+                    else
+                        param.Add(new SqlParameter("@param1", DBNull.Value));
+                    if (param2 != null) 
+                        param.Add(new SqlParameter("@param2", param2));
+                    else
+                        param.Add(new SqlParameter("@param2", DBNull.Value));
 
-                    SqlCommand comm = GetDBCommand(ref dbconnection, "[UCSF.].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
-                    ExecuteSQLDataCommand(comm, false);
+                    SqlCommand comm = GetDBCommand(ref dbconnection, "[UCSF.].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray());
+                    ExecuteSQLDataCommand(comm);
                     comm.Connection.Close();
 
                     if (dbconnection.State != ConnectionState.Closed)
@@ -867,8 +883,85 @@ namespace Profiles.Framework.Utilities
             {
 
             }
-
         }
+
+        public string GetProperty(Int64 predicateId) 
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlDataReader reader;
+            string property = null;
+
+            try
+            {
+
+                dbconnection.Open();
+
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                reader = GetDBCommand(connstr, "select Property FROM [Ontology.].[ClassProperty] where Class = 'http://xmlns.com/foaf/0.1/Person' and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                while (reader.Read())
+                {
+                    property = reader[0].ToString();
+                }
+
+                reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return property;
+        }
+
+ 
         #endregion
+
+        // Other UCSF extension to fix bug with old style redirects
+        public Int64 GetNodeID(int personId)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlDataReader reader;
+            Int64 nodeId = 0;
+
+            try
+            {
+
+                dbconnection.Open();
+
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                reader = GetDBCommand(connstr, "select i.nodeid from [RDF.Stage].internalnodemap i with(nolock) where [class] = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = " + personId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                while (reader.Read())
+                {
+                    nodeId = Convert.ToInt64(reader[0]);
+                }
+
+                reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return nodeId;
+        }
+
     }
 }

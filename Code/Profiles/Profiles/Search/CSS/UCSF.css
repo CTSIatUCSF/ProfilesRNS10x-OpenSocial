@@ -1,2 +1,5 @@
-﻿body {
-}
+﻿.pageTabs { display: none; }
+.searchForm td div { color: #CA7C29 !important; }
+#tblSearchResults th { border-right: 1px solid #CCC !important; }
+#tblSearchResults tr td:first-child { font-weight: bold; }
+#suckerfishmenu li.item-home a { background-color: #6A7D7D !important; }

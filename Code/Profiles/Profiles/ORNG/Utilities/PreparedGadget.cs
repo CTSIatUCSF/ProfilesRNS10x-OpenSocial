@@ -75,11 +75,11 @@ namespace Profiles.ORNG.Utilities
             {
                 return "home";
             }
-            else if (helper.GetPageName().Equals("Profile/Display.aspx"))
+            else if (helper.GetPageName().Equals("profile/display.aspx"))
             {
                 return "profile";
             }
-            else if (helper.GetPageName().Equals("ORNG/GadgetDetails.aspx"))
+            else if (helper.GetPageName().Equals("orng/gadgetdetails.aspx"))
             {
                 return "canvas";
             }
@@ -115,11 +115,11 @@ namespace Profiles.ORNG.Utilities
             {
                 return "gadgets-edit";
             }
-            else if (helper.GetPageName().Equals("Profile/Display.aspx"))
+            else if (helper.GetPageName().Equals("profile/display.aspx"))
             {
                 return "gadgets-view";
             }
-            else if (helper.GetPageName().Equals("ORNG/GadgetDetails.aspx"))
+            else if (helper.GetPageName().Equals("orng/gadgetdetails.aspx"))
             {
                 return "gadgets-detail";
             }
@@ -140,7 +140,7 @@ namespace Profiles.ORNG.Utilities
 
         public string CanvasURL
         {
-            get { return "~/ORNG/GadgetDetails.aspx?appId=" + GetAppId() + "&Person=" + HttpUtility.UrlEncode(helper.ownerId); }
+            get { return "~/orng/gadgetdetails.aspx?appId=" + GetAppId() + "&Person=" + HttpUtility.UrlEncode(helper.ownerId); }
         }
 
         public int AppId

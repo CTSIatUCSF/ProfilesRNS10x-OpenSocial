@@ -239,12 +239,12 @@ namespace Profiles.Search.Modules.SearchResults
             {
                 showcolumns = Convert.ToInt16(Request.QueryString["showcolumns"]);
 				if (!(showcolumns > 0))				
-					showcolumns = 1;
+					showcolumns = 2;
 				
             }
             else
             {
-                showcolumns = 1;
+                showcolumns = 2;
             }
 
 

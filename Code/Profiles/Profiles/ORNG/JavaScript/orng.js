@@ -347,8 +347,8 @@ ORNGGadgetService.prototype.requestNavigateTo = function (view, opt_params) {
     // remove appId if present
     url = my.removeParameterFromURL(url, 'appId');
 
-    // Add appId if the URL Template begins with the word 'Gadget'
-    if (urlTemplate.indexOf('Gadget') == 0) {
+    // Add appId if the URL Template begins with the word 'ORNG'
+    if (urlTemplate.indexOf('ORNG') == 0) {
         var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(this.f);
         var appId = my.gadgets[moduleId].appId;
         url += '&appId=' + appId;
@@ -361,7 +361,7 @@ ORNGGadgetService.prototype.requestNavigateTo = function (view, opt_params) {
         }
     }
     if (url && document.location.href.indexOf(url) == -1) {
-        document.location.href = url;
+        document.location.href = '../' + url;
     }
 };
 
@@ -461,7 +461,7 @@ ORNGToggleGadget.prototype.handleToggle = function (track) {
             }
 
             gadgetContent.style.display = '';
-            gadgetImg.src = 'Images/icon_squareDownArrow.gif';
+            gadgetImg.src = './ORNG/Images/gadgetcollapse.gif';
             // refresh if certain features require so
             //if (this.hasFeature('dynamic-height')) {
             if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
@@ -506,7 +506,7 @@ ORNGToggleGadget.prototype.handleToggle = function (track) {
             }
 
             gadgetContent.style.display = 'none';
-            gadgetImg.src = 'Images/icon_squareArrow.gif';
+            gadgetImg.src = './ORNG/Images/gadgetexpand.gif';
             if (track) {
                 if (my.gadgets[this.id].view == 'home') {
                     // record in google analytics     
@@ -548,7 +548,7 @@ ORNGToggleGadget.prototype.getTitleBarContent = function (continuation) {
 				+ this.cssClassTitleButton
 				+ '"><img id="gadgets-gadget-title-image-'
 				+ this.id
-				+ '" src="Images/icon_squareDownArrow.gif"/></a></span> <span id="'
+				+ '" src="./ORNG/Images/gadgetcollapse.gif"/></a></span> <span id="'
 				+ this.getIframeId() + '_title" class="' + this.cssClassTitle
 				+ '">' + this.getTitleHtml(this.title)
 				+ '</span><span id="' + this.getIframeId()

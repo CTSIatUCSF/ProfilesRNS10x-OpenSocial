@@ -2,10 +2,17 @@
 
 
 <div class='publicationList'>	
+	<div class='Xtoggle-vis' style='margin-top: 6px;'>		
+		This graph shows the total number of publications by year.
+		<div id="publicationTimelineGraph">
+			<img id='timelineBar' runat='server' border='0'/>
+		</div>
+	</div>	
+
 	<div class="sectionHeader">Publications</div>
 	<div style="font-weight:bold;color:#888;padding:5px 0px;">
 		Publications listed below are automatically derived from MEDLINE/PubMed and other sources, which might result in incorrect or missing publications. 
-		Faculty can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions.
+		Faculty can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <a href="mailto:profiles@ucsf.edu">contact us for help</a>.
 	</div>
 	<div class="publicationMenu">
 		<a class='selected' href='javascript:void(0)'>List All</a> 
@@ -32,15 +39,11 @@
 			</div>				
 		</FooterTemplate>
 	</asp:Repeater>
-	
-	<div class='toggle-vis' style='display:none;margin-top: 6px;'>		
-		This graph shows the total number of publications by year, by first, middle/unknown, or last author.
-		<div id="publicationTimelineGraph">
-			<img id='timelineBar' runat='server' border='0'/>
-		</div>
-	</div>	
+
+<!-- graph divs were here -->	
 </div>
 
+<!--
 <script type="text/javascript">
 	$(function() {
 		$("div.publicationList li:first").attr("class", "first");
@@ -56,3 +59,4 @@
 		});
 	});
 </script>
+-->

@@ -77,12 +77,15 @@ BEGIN
 	DECLARE @aliases INT
 	SELECT @aliases = 0
 	
-	-- subject when Application name is based on FNO
+	-- UCSF subject when Application name is based on FNO
+	DECLARE @FNO VARCHAR(1000)
 	IF (@MaxParam IS NULL) 
 	BEGIN
   		SELECT @subject = i.nodeid from  [RDF.Stage].internalnodemap i with(nolock) where 
 			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = (
 				select 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) from cls.dbo.vw_FNO where UID_USERID =  @ApplicationName + '@ucsf.edu')		
+        IF @subject is not null
+			SELECT @FNO=@subject				
 	END
 	-- subject
 	IF (@MaxParam >= @pointer)
@@ -98,6 +101,11 @@ BEGIN
 		IF @subject IS NULL
 			SELECT @ErrorDescription = 'The subject cannot be found.'
 	END
+
+	-- UCSF if we only hvae Subject and this is for a person, replace with FNO
+	IF (@MaxParam = 1) AND (@Subject IS NOT NULL)
+		SELECT @FNO = left(UID_USERID, len(UID_USERID) - 9) from cls.dbo.vw_FNO where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = 
+			(select InternalID from [RDF.Stage].internalnodemap i with(nolock) where i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)		
 
 	-- predicate
 	IF (@MaxParam >= @pointer) AND (@subject IS NOT NULL)
@@ -195,51 +203,42 @@ BEGIN
 						@ResponseRedirect = 1,
 						@ResponseIncludePostData = 1,
 						@ResponseURL = @basePath + 
+							(CASE WHEN @FNO IS NOT NULL THEN '/' + @FNO
+							ELSE '/display' 
 							+ (CASE WHEN @Subject IS NULL THEN ''
 									ELSE IsNull((SELECT TOP 1 '/'+Subject
 											FROM (
-  		SELECT 1 k, left(UID_USERID, len(UID_USERID) - 9) Subject from cls.dbo.vw_FNO where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = 
-  			(select InternalID from [RDF.Stage].internalnodemap i with(nolock) where 
-				i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)
-												UNION ALL
-												SELECT 2, AliasType+'/'+AliasID
+												SELECT 1 k, AliasType+'/'+AliasID Subject
 													FROM [RDF.].Alias
 													WHERE NodeID = @Subject AND Preferred = 1
 												UNION ALL
-												SELECT 3, CAST(@Subject AS VARCHAR(50))
+												SELECT 2, CAST(@Subject AS VARCHAR(50))
 											) t
 											ORDER BY k, Subject),'')
 									END)
 							+ (CASE WHEN @Predicate IS NULL THEN ''
 									ELSE IsNull((SELECT TOP 1 '/'+Subject
 											FROM (
-  		SELECT 1 k, left(UID_USERID, len(UID_USERID) - 9) Subject from cls.dbo.vw_FNO where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = 
-  			(select InternalID from [RDF.Stage].internalnodemap i with(nolock) where 
-				i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Predicate)
-												UNION ALL
-												SELECT 2, AliasType+'/'+AliasID
+												SELECT 1 k, AliasType+'/'+AliasID Subject
 													FROM [RDF.].Alias
 													WHERE NodeID = @Predicate AND Preferred = 1
 												UNION ALL
-												SELECT 3, CAST(@Predicate AS VARCHAR(50))
+												SELECT 2, CAST(@Predicate AS VARCHAR(50))
 											) t
 											ORDER BY k, Subject),'')
 									END)
 							+ (CASE WHEN @Object IS NULL THEN ''
 									ELSE IsNull((SELECT TOP 1 '/'+Subject
 											FROM (
-  		SELECT 1 k, left(UID_USERID, len(UID_USERID) - 9) Subject from cls.dbo.vw_FNO where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = 
-  			(select InternalID from [RDF.Stage].internalnodemap i with(nolock) where 
-				i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Object)
-												UNION ALL
-												SELECT 2, AliasType+'/'+AliasID 
+												SELECT 1 k, AliasType+'/'+AliasID Subject
 													FROM [RDF.].Alias
 													WHERE NodeID = @Object AND Preferred = 1
 												UNION ALL
-												SELECT 3, CAST(@Object AS VARCHAR(50))
+												SELECT 2, CAST(@Object AS VARCHAR(50))
 											) t
 											ORDER BY k, Subject),'')
 									END)
+								END)
 							+ (CASE WHEN @MaxParam >= 1 AND @Pointer <= 1 THEN '/'+@param1 ELSE '' END)
 							+ (CASE WHEN @MaxParam >= 2 AND @Pointer <= 2 THEN '/'+@param2 ELSE '' END)
 							+ (CASE WHEN @MaxParam >= 3 AND @Pointer <= 3 THEN '/'+@param3 ELSE '' END)

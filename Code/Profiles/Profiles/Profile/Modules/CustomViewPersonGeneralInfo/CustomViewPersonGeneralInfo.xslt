@@ -35,7 +35,7 @@
     <xsl:variable name="uriOrganization" select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:positionInOrganization/@rdf:resource"/>
     <xsl:if test="rdf:RDF/rdf:Description[@rdf:about=$uriOrganization]/rdfs:label !=''">
       <tr>
-        <th>Institution</th>
+        <th>School</th>
         <td>
           <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about= $uriOrganization]/rdfs:label"/>
         </td>
@@ -85,6 +85,7 @@
         </td>
       </tr>
     </xsl:if>
+<!--
     <xsl:choose>
       <xsl:when test="rdf:RDF[1]/rdf:Description[1]/vivo:faxNumber !=''">
         <tr>
@@ -95,6 +96,7 @@
         </tr>
       </xsl:when>
     </xsl:choose>
+-->
     <xsl:choose>
       <xsl:when test="$email!=''">
         <tr>

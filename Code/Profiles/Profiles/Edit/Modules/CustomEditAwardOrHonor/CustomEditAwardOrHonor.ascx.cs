@@ -225,7 +225,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
         {
             if (txtStartYear.Text != "" || txtEndYear.Text != "" || txtInstitution.Text != "" || txtAwardName.Text != "")
             {
-                data.AddAward(this.SubjectID, txtAwardName.Text, txtInstitution.Text, txtStartYear.Text, txtEndYear.Text);
+                data.AddAward(this.SubjectID, txtAwardName.Text, txtInstitution.Text, txtStartYear.Text, txtEndYear.Text, this.PropertyListXML);
 
               
                 txtStartYear.Text = "";
@@ -256,7 +256,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             if (txtStartYear.Text != "" || txtEndYear.Text != "" || txtInstitution.Text != "" || txtAwardName.Text != "")
             {
                 Session["pnlInsertAward.Visible"] = null;
-                data.AddAward(this.SubjectID, txtAwardName.Text, txtInstitution.Text, txtStartYear.Text, txtEndYear.Text);
+                data.AddAward(this.SubjectID, txtAwardName.Text, txtInstitution.Text, txtStartYear.Text, txtEndYear.Text, this.PropertyListXML);
 
                 this.FillAwardGrid(true);
                 btnInsertCancel_OnClick(sender, e);

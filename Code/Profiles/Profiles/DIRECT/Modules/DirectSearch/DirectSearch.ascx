@@ -14,12 +14,12 @@ function NoEnter(){
 	function doListTableRowOver(x) {
 	
 		x.className = 'overRow';
-		x.style.backgroundColor = '#5A719C';
-		x.style.color = '#FFF';
+		//x.style.backgroundColor = '#5A719C';
+		//x.style.color = '#FFF';
 		for (var i=0; i<x.childNodes.length; i++) {
 			if (x.childNodes[i].childNodes.length > 0) {
 				if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-					x.childNodes[i].childNodes[0].style.color = '#FFF';
+					x.childNodes[i].childNodes[0].style.color = '#000';
 				}
 			}
 		}
@@ -167,12 +167,9 @@ function NoEnter(){
 
     </script>
  <div class="searchForm">
-        <div class="pageTitle">
-            National Search</div>
-        <div class="pageSubTitle">
-            Distributed Interoperable Research Experts Collaboration Tool (DIRECT)</div>
-        <div class="pageSubTitleCaption">
-            DIRECT is pilot project to demonstrate federated search across multiple institutions.</div>
+        <div class="pageSubTitleCaption">This tool, called
+            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"              style="color:#CA7C29 !important;font-size:13px;text-decoration:none">DIRECT</a>, 
+             finds experts at multiple institutions. <a href="../">Return to search UCSF only</a><br /><br /></div>
         <div class="searchForm">
             <input type="hidden" name="request" value="outgoingcount" />
             <%

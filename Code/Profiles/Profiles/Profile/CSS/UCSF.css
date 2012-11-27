@@ -1,13 +1,13 @@
 ﻿.PropertyGroup,
 .profilesPage .profilesPageColumnLeft { display: none; }
-.profiles .profilesContentMain { width: 680px; margin: 10px 60px 0 10px; }
+.profiles .profilesContentMain { width: 680px; margin: 10px 60px 0 10px !important; }
 .profiles .profilesContentPassive { width: 192px; padding: 4px 20px 0 0; }
-.profiles .profilesContentMain .pageTitle h2 { display: block; padding-left: 194px; }
 img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
-.PropertyGroupItem { margin: 10px 0; border: none; border-bottom: 1px solid #CCC; }
-.PropertyItemHeader { text-transform: capitalize; color: #CA7C29; background-color: #FFF; padding-left: 0; }
+.PropertyGroupItem { margin: 0 0 10px; border: none; }
+.PropertyItemHeader { text-transform: capitalize; color: #CA7C29; font-size: 16px; background-color: #FFF; 
+  border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 15px 0 0; }
 .PropertyItemHeader a { display: none; }
-#toc { margin-top: 20px; background-color: #EEE; border: none; width: 600px\9; }
+#toc { margin: 30px 0; background-color: #EEE; border: none; width: 680px\9; height: 28px\9; }
 #toc ul { padding: 0 0 0 10px; }
 #toc ul li { text-transform: capitalize; list-style-type: none; display: inline-block; white-space: nowrap; padding: 0 15px 0 0;
    border-right: 1px solid #CCC; margin: 5px 15px 5px 0; width: auto\9; float: left\9; } 
@@ -17,3 +17,5 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .profiles .profilesContentMain .sectionHeader { padding-top: 6px;  text-decoration: none; }
 .awardsList:after { content:""; display:block; height: 15px; }
 .profiles .profilesContentMain .publications li { border: none; padding-top: 0; }
+#ctl00_lblHTMLBlockLineBreaks { display: block; padding-bottom: 8px; }
+#publicationTimelineGraph { width: 485px; overflow: hidden; margin-left: 30px; margin-bottom: 15px; }

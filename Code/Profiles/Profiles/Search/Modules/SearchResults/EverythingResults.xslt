@@ -65,12 +65,11 @@
             <input type="hidden" id="searchtype" name="searchtype" value="everything"/>
           </form>
         </div>
-        <br/>
-        <div style="width:180px;background-color:#F7F3EF;border:1px solid #999999;font-size:11px;padding:1px;text-align:center;">
-          Click the <b>Why</b> column to see why a person matched the search.
+        <div style="float:right;width:170px;font-size:11px;padding:1px;text-align:center;background-color:#F2F7F7;margin-bottom:8px;">
+          Click the <b>Why</b> column to see why <br />a person matched the search.
         </div>
         <br></br>
-        <div class="listTable" style="margin-top:0px;float: left;z-index:1;">
+        <div class="listTable" style="clear:right;margin-top:0px;float: left;z-index:1;">
           <table id="tblSearchResults" class="SearchResults">
             <tbody>
               <tr>

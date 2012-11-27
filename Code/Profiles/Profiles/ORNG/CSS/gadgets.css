@@ -23,8 +23,8 @@
   border: 1px solid #7aa5d6;
   border: 1px solid #CCC; 
 }
-.col2 .gadgets-gadget-chrome { 
-  margin-left: 9px;
+.profilesPageColumnLeft .gadgets-gadget-chrome { 
+  margin-left: 12px;
 }
 
 .gadgets-gadget 
@@ -37,8 +37,9 @@
   padding: 4px 4px 2px;
   background-color: #e5ecf9;
   background-color: #EEEBE5;
+  background-color: #EEE;
 }
-.gadgets-gadget-title-bar:hover { background-color: #e7e3db; } 
+.gadgets-gadget-title-bar:hover { background-color: #EAEAEA; } 
 .gadgets-gadget-title-bar img,
 .gadgets-gadget-title-button {
   vertical-align: top;
@@ -47,13 +48,13 @@
 .gadgets-gadget-title a, .gadgets-gadget-title a:hover {
   font-weight: bold;
   font-size: 14px;
-  color: #CA7C29;
+  color: #CA7C29 !important;
 }
 .EditBody .gadgets-gadget-title a {
-  color:#3B6394;
+  color: #0088CC !important;
 } 
 .EditBody .gadgets-gadget-title a:hover {
-  color:#1E416C;
+  color: #005580 !important;
 }
 
 .gadgets-gadget-title-button-bar {

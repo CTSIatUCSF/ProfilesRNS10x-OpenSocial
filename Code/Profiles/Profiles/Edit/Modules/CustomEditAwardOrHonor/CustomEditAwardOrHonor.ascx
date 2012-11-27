@@ -43,7 +43,7 @@
                             <br />
                         </ItemTemplate>
                     </asp:Repeater>
-                    <asp:Panel ID="pnlInsertAward" runat="server" Style="background-color: #F0F4F6; margin-bottom: 5px;
+                    <asp:Panel ID="pnlInsertAward" runat="server" Style="background-color: #EEE; margin-bottom: 5px;
                         border: solid 1px #ccc;" Visible="false" DefaultButton="btnInsertAward">
                         <table border="0" cellspacing="2" cellpadding="4">
                             <tr>

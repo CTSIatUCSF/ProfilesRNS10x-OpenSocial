@@ -13,9 +13,11 @@ namespace Profiles
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Request.QueryString["person"]!= null)
-            Response.Redirect(Root.Domain + "/display/person/" + Request.QueryString["person"].ToString());
-
+            if (Request.QueryString["person"] != null)
+            {
+                // need to convert personid to nodeid
+                Response.Redirect(Root.Domain + "/profile/" + new Profiles.Framework.Utilities.DataIO().GetNodeID(Convert.ToInt32(Request.QueryString["person"].ToString())));
+            }
 
             Response.End();
 

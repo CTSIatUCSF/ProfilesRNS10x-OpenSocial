@@ -20,3 +20,14 @@ C:\Development\ProfilesRNS102-OpenSocial\Code\SemWeb\src\bin\Debug\SemWeb.Sparql
 C:\Development\ProfilesRNS102-OpenSocial\Code\SemWeb\src\obj\Debug\ResolveAssemblyReference.cache
 C:\Development\ProfilesRNS102-OpenSocial\Code\SemWeb\src\obj\Debug\SemWeb.dll
 C:\Development\ProfilesRNS102-OpenSocial\Code\SemWeb\src\obj\Debug\SemWeb.pdb
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\SemWeb.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\SemWeb.pdb
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\IKVM.GNU.Classpath.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\IKVM.Runtime.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\Mono.GetOptions.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\SemWeb.Sparql.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\sparql-core.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\bin\Debug\SemWeb.Sparql.pdb
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\obj\Debug\SemWeb.dll
+C:\Development\ProfilesRNS102-UCSF\Code\SemWeb\src\obj\Debug\SemWeb.pdb

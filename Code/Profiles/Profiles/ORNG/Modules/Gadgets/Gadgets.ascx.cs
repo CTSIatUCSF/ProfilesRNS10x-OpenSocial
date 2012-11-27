@@ -43,13 +43,14 @@ namespace Profiles.ORNG.Modules.Gadgets
         public Gadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
+            string uri = null;
             // code to convert from numeric node ID to URI
-            string personId = Request.QueryString["Subject"];
-            if (Request.Url.AbsolutePath != null && Request.Url.AbsolutePath.EndsWith("/display/" + personId))
+            if (base.Namespaces.HasNamespace("rdf"))
             {
-                personId = "http://" + Request.Url.Host + Request.Url.AbsolutePath.Replace("/display/", "/profile/");
+                XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
+                uri = node != null ? node.Value : null;
             }
-            om = OpenSocialManager.GetOpenSocialManager(personId, Page, false);
+            om = OpenSocialManager.GetOpenSocialManager(uri, Page, false);
         }
 
         public void DrawProfilesModule()

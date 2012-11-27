@@ -53,7 +53,7 @@
                         <table border="0" cellspacing="2" cellpadding="4">
                             <tr>
                                 <td>
-                                    <asp:TextBox ID="txtLabel" runat="server" Rows="5" Width="500px" TextMode="MultiLine"
+                                    <asp:TextBox ID="txtLabel" runat="server" Rows="15" Width="500px" TextMode="MultiLine"
                                         TabIndex="1"></asp:TextBox>
                                 </td>
                             </tr>
@@ -84,7 +84,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtLabel" Rows="5" runat="server" TextMode="MultiLine" Width="500px"
+                                        <asp:TextBox ID="txtLabel" Rows="15" runat="server" TextMode="MultiLine" Width="500px"
                                             Text='<%# Bind("Literal") %>'></asp:TextBox>
                                         <asp:HiddenField ID="hdLabel" runat="server" Value='<%# Bind("Literal") %>'></asp:HiddenField>
                                     </EditItemTemplate>

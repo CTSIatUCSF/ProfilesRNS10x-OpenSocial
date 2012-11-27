@@ -14,8 +14,12 @@ GO
 CREATE TABLE [UCSF.].[ActivityLog](
 	[activityLogId] [int] IDENTITY(1,1) NOT NULL,
 	[userId] [int] NULL,
-	[cmd] [nvarchar](255) NULL,
-	[params] [xml] NULL,
+	[personId] [int] NULL,
+	[methodName] [nvarchar](255) NULL,
+	[property] [nvarchar](255) NULL,
+	[privacyCode] [int] NULL,
+	[param1] [nvarchar](255) NULL,
+	[param2] [nvarchar](255) NULL,
 	[createdDT] [datetime] NOT NULL,
  CONSTRAINT [PK__activityLog] PRIMARY KEY CLUSTERED 
 (
@@ -33,17 +37,22 @@ GO
 
 CREATE PROCEDURE [UCSF.].[LogActivity]
 	@userId int,
-	@cmd varchar(255),
-	@params xml
+	@personId int,
+	@methodName varchar(255),
+	@property varchar(255),
+	@privacyCode int,
+	@param1 varchar(255),
+	@param2 varchar(255)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	INSERT INTO [UCSF.].[ActivityLog] (userId, cmd, params) 
-		VALUES(@userId, @cmd, @params)
+	INSERT INTO [UCSF.].[ActivityLog] (userId, personId, methodName, property, privacyCode, param1, param2) 
+		VALUES(@userId, @personId, @methodName, @property, @privacyCode, @param1, @param2)
 END
 
 GO
+
 

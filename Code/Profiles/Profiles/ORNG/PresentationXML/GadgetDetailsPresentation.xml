@@ -1,7 +1,5 @@
-﻿<Presentation PresentationClass="profile">
+﻿<Presentation PresentationClass="orng">
   <PageOptions Columns="2"/>
-  <WindowName>Gadget Details</WindowName>
-  <PageTitle>Gadget Details</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -18,6 +16,11 @@
       <Module ID="Gadgets" >
         <ParamList>
           <Param Name="HTML">
+            <div class="pageTitle">
+              <h2>
+                <div id="gadgets-title">Gadget Details</div>
+              </h2>
+            </div>
             <div id="gadgets-detail" class="gadgets-gadget-parent"></div>
           </Param>
         </ParamList>

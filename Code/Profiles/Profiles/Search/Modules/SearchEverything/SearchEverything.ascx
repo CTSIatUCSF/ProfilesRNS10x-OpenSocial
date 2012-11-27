@@ -53,7 +53,7 @@ Search or browse for people, publications, concepts, and other items in Profiles
                                         <td style="text-decoration: none" colspan="2">
                                             <div style="float: left; display: inline">
                                                 <a href="JavaScript:submitEverythingSearch();">
-                                                    <img src="images/search.jpg" style="border: 0px; position: relative; top: 9px;" />
+                                                    <img src="images/search.jpg" style="border: 0px; position: relative; top: 9px;padding-left:5px;" />
                                                 </a>
                                             </div>
                                         </td>
@@ -65,5 +65,6 @@ Search or browse for people, publications, concepts, and other items in Profiles
                 </tr>
             </table>
         </div>
+       <p><img src="images/icon_squareArrow.gif" /> <a href="../">Search for people only</a></p>
     </div>
 </div>
