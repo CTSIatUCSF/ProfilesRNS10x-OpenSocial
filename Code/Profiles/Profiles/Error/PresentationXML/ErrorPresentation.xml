@@ -1,12 +1,13 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
-  <WindowName>Error</WindowName> 
-  <PageTitle>Error</PageTitle>
+  <WindowName></WindowName> 
+  <PageTitle>Ooops. Something went wrong.</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
   <PageDescription>
-    An application error has occurred</PageDescription>  
+We’re sorry for this inconvenience. The website administrator has been notified. Please check back in a few minutes.
+  </PageDescription>
   <PanelList>
     <Panel type="header"  />
     <Panel type="page" />
@@ -16,8 +17,8 @@
     </Panel>
     <Panel Type="main" >
       <Module ID="ErrorMessage">
-        <ParamList/>
-      </Module>      
+        <ParamList />
+      </Module>     
     </Panel>
     <Panel Type="passive"/>
     <Panel type="footer" />

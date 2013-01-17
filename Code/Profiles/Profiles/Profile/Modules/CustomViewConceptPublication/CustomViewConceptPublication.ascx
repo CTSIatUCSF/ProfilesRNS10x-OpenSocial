@@ -4,7 +4,7 @@
 
 	<div class="sectionHeader">Publications</div>
 	
-	<div class="publicationMenu">
+	<div class="publicationMenu" style="display:none">
 		<a class='selected' rel="#timelineContainer" href='javascript:void(0)'>Timeline</a>
 		&nbsp; | &nbsp; 
 		<% if (ShowOtherPub) { %>
@@ -26,7 +26,7 @@
 	</div>	
 	
 	<% if (ShowOtherPub) {%>
-	<div id="cited" class="cited publications toggle-vis" style="display:none;">
+	<div id="cited" class="cited publications toggle-vis">
 		<div class='intro'><%= this.GetModuleParamString("CitedCaption").Replace("@ConceptName", this.ConceptName)%></div>
 		<ol style="margin-top: 8px;">		
 			<asp:Literal ID='cited' runat="server" />		
@@ -34,7 +34,7 @@
 	</div>	
 	<% } %>
 	
-	<div id="newest" class="newest publications toggle-vis" style="display:none;">
+	<div id="newest" class="newest publications toggle-vis">
 		<div class='intro'><%= this.GetModuleParamString("NewestCaption").Replace("@ConceptName", this.ConceptName)%></div>
 		<ol style="margin-top: 8px;">		
 			<asp:Literal ID='newest' runat="server" />
@@ -42,7 +42,7 @@
 	</div>	
 	
 	<% if (ShowOtherPub) {%>
-	<div id="oldest" class="oldest publications toggle-vis"  style="display:none;">
+	<div id="oldest" class="oldest publications toggle-vis">
 		<div class='intro'><%= this.GetModuleParamString("OldestCaption").Replace("@ConceptName", this.ConceptName)%></div>
 		<ol style="margin-top: 8px;">		
 			<asp:Literal ID='oldest' runat="server"	/>	

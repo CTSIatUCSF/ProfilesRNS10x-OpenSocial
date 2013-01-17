@@ -1,0 +1,1 @@
+---update [Ontology.].[DataMap] set oValue = "DisplayName" where DataMapID in (17, 91);

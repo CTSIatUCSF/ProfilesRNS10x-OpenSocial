@@ -1,0 +1,52 @@
+Make sure cls db has latest data, stored procedures and functions.  Copy cls from prod but get sps and functions from stage.
+
+Run FixImportData.sql!!! see how/when to do this
+Run modifed BetaLoadData.sql actually
+
+Install profiles_1.0.1 database following harvard instructions. 
+DONE
+
+Check fulltext catalog location 'select *  FROM sys.fulltext_catalogs'
+Move if needed (http://social.msdn.microsoft.com/Forums/en-US/sqldatabaseengine/thread/4285fe4c-fd9a-4d8f-862c-cc3bb698dd0c/)
+
+Run RemoveCRFromNarrative.sql to remove CR from narrative early on
+Maybe fix in Profiles.Import.Beta.Narrative and Profiles.Import.Beta.Award.
+
+Upgrate to profiles_1.0.2 database following harvard instructions.
+
+Run HTMLBlockLineBreaks.sql because it is not picked up during upgrade
+
+Run AmpBugSearchResults.sql to alter [Search.Cache].[Public.GetNodes]
+
+Run CapatalizeCategories.sql
+
+create schema [UCSF]
+
+Run ActivityLog.sql
+
+Run CreatePersonIdFunction.sql
+
+Run LoadProfilesData.sql to alter [Profile.Import].[LoadProfilesData]
+
+Run ResolveURL.sql to alter [Profile.Framework].[ResolveURL]
+
+Run RestPath.sql to load uniquenames for individuals
+
+Run SearchConceptResolveURL.sql to alter [Search.Framework].[ResolveURL] for concept search
+
+Run UpdateSessionShortDisplayName.sql to alter [User.Session].[UpdateSession] so that name is returned for login
+
+Run DisambiguationUseGivenName.sql to create given name views and alter [Profile.Data].[Publication.PubMed.GetPersonInfoForDisambiguation]  to use given name
+
+create schema [ORNG]
+
+Run CreateOpenSocial.sql
+
+Run BetaLoadExtraData.sql to install it, then run the sp and check everything!
+Run BetaLoadExtraData-part2.sql
+
+Run GlobalHealth.sql 
+
+Move jobs over (ExportActivitiesToChatter, GlobalHealthImport, ProfilesGetNewHRAndPubs)
+change [UCSF.] to [UCSF] and [ORNG.] to [ORNG]
+

@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchEverything.ascx.cs"
     Inherits="Profiles.Search.Modules.SearchEverything.SearchEverything" %>
     
+<style type="text/css">
+.profiles .profilesContentMain { width: 584px; }
+.profiles .profilesContentPassive { margin-right: 20px; }
+.profiles .profilesContentMain .pageTitle h2 { display: none; }
+</style>
+
     <script type="text/javascript">
 
         function submitEverythingSearch() {
@@ -25,11 +31,11 @@ Search or browse for people, publications, concepts, and other items in Profiles
 
 <div class="content_container">
     <div class="tabContainer" style="margin-top: 0px;">
-        <div class="searchForm">
+        <div class="searchForm nonavbar">
             <table width="100%">
                 <tr>
                     <td colspan='3'>
-                        <div style="font-size: 18px; color: #b23f45; font-weight: bold; margin-bottom: 3px;">
+                        <div class='header'>
                             Search by keywords
                         </div>
                     </td>
@@ -39,25 +45,29 @@ Search or browse for people, publications, concepts, and other items in Profiles
                         <div class="searchSection" style="margin-bottom: 15px;">
                             <table width="100%" class='searchForm' onkeypress="JavaScript:runScript(event);" >
                                 <tr>
-                                    <th>
+                                    <th style="width: 80px">
                                         Keywords
                                     </th>
                                     <td colspan="2" class="fieldOptions">
                                         <input type="TextBox" id="txtSearchFor" name="txtSearchFor" size="50" style="margin: 0px 5px;" />
                                     </td>
+<!--
                                 </tr>
                                 <tr>
                                     <tr>
                                         <th>
                                         </th>
+-->
                                         <td style="text-decoration: none" colspan="2">
                                             <div style="float: left; display: inline">
                                                 <a href="JavaScript:submitEverythingSearch();">
-                                                    <img src="images/search.jpg" style="border: 0px; position: relative; top: 9px;padding-left:5px;" />
+                                                    <img src="images/search.jpg" style="border: 0px; padding-top:4px;" />
                                                 </a>
                                             </div>
                                         </td>
+<!--
                                     </tr>
+-->
                                 </tr>
                             </table>
                         </div>
@@ -65,6 +75,8 @@ Search or browse for people, publications, concepts, and other items in Profiles
                 </tr>
             </table>
         </div>
+<!--
        <p><img src="images/icon_squareArrow.gif" /> <a href="../">Search for people only</a></p>
+-->
     </div>
 </div>

@@ -43,7 +43,7 @@ namespace Profiles.ORNG.Modules.Gadgets
         public SearchGadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            om = OpenSocialManager.GetOpenSocialManager(null, Page, false);
+            om = OpenSocialManager.GetOpenSocialManager(null, Page, false, true);
             List<string> peopleURIs = new List<string>();
             XmlNodeList people = pagedata.GetElementsByTagName("rdf:object");
             for (int i = 0; i < people.Count; i++)

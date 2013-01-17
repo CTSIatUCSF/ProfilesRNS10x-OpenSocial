@@ -49,7 +49,6 @@ namespace Profiles.Profile
             masterpage.RDFData = base.RDFData;
             masterpage.RDFNamespaces = base.RDFNamespaces;
             masterpage.PresentationXML = this.PresentationXML;
-
         }
 
         private void LoadAssets()
@@ -73,6 +72,11 @@ namespace Profiles.Profile
             UCSFjs.Attributes.Add("type", "text/javascript");
             UCSFjs.Attributes.Add("src", Root.Domain + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
+
+            HtmlLink Canonical = new HtmlLink();
+            Canonical.Href = Root.Domain + Request.Url.AbsolutePath;
+            Canonical.Attributes["rel"] = "canonical";
+            Page.Header.Controls.Add(Canonical);
         }
 
         public void LoadPresentationXML()

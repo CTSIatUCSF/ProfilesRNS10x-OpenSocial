@@ -65,11 +65,12 @@
             <input type="hidden" id="searchtype" name="searchtype" value="everything"/>
           </form>
         </div>
-        <div style="float:right;width:170px;font-size:11px;padding:1px;text-align:center;background-color:#F2F7F7;margin-bottom:8px;">
-          Click the <b>Why</b> column to see why <br />a person matched the search.
-        </div>
+<!--
+        Focus your search below to find articles at UCSF published on specific topics / concepts.
+        <div id="filtersContainer"><span><strong>Search filters:</strong></span></div>
+-->
         <br></br>
-        <div class="listTable" style="clear:right;margin-top:0px;float: left;z-index:1;">
+        <div class="listTable" style="clear:right;margin-top:-10px;float: left;z-index:1;">
           <table id="tblSearchResults" class="SearchResults">
             <tbody>
               <tr>

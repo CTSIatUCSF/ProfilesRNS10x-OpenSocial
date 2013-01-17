@@ -17,6 +17,8 @@
  * under the License.
  */
  
+#gadgets-view { margin: 20px 0; }
+
 .gadgets-gadget-chrome {
   float: left;
   margin: 4px 6px 4px 0;
@@ -45,10 +47,11 @@
   vertical-align: top;
 }
 
-.gadgets-gadget-title a, .gadgets-gadget-title a:hover {
+.profiles .gadgets-gadget-title a, .profiles .gadgets-gadget-title a:hover {
   font-weight: bold;
   font-size: 14px;
   color: #CA7C29 !important;
+  outline: 0;
 }
 .EditBody .gadgets-gadget-title a {
   color: #0088CC !important;
@@ -88,6 +91,7 @@
 
 .gadgets-gadget-content {
   padding: 4px;
+  background-color: #FFF;
 }
 
 .gadgets-log-entry {

@@ -1,0 +1,28 @@
+﻿.searchForm td div.header { color: #CA7C29; font-size: 27px; font-weight: bold; margin: 16px 0 8px; }
+.searchForm #div1 { border-top: none; padding-top: 12px; } 
+.searchForm #div1 th { font-weight: normal; width: 140px; }
+#searchOptions { margin-top: -16px; }
+#txtSearchFor { padding-left: 2px; }
+.listTable th { border: 1px solid #CCC !important; }
+#tblSearchResults tr td:first-child { font-weight: bold; }
+#suckerfishmenu li.item-home a { background-color: #6A7D7D !important; }
+#filtersContainer { width: 680px; }
+#filtersContainer #filters { display: inline-block; margin-bottom: -6px; width: 560px; }
+* html #filtersContainer #filters { margin-bottom: 10px; }
+*+html #filtersContainer #filters { margin-bottom: 10px; }
+#filtersContainer #filters ul { display: inline; padding-left: 15px; margin: 0; }
+#filtersContainer #filters ul li { display: inline; list-style-type: none; }
+td.connectionLine { vertical-align: middle; }
+image { border: none; }
+.profiles .profilesContentMain .pageTabs .tabBack { none; }
+.profiles .profilesContentMain .pageTabs { padding-left: 235px; 
+  background-image: url('../../Framework/Images/tab_back.gif'); }
+* html .profiles .profilesContentMain .pageTabs { padding-left: 225px; } 
+*+html .profiles .profilesContentMain .pageTabs { padding-left: 225px; } 
+
+/* temporary Qualaroo style */
+#ki_container #ki_buttons, html div#ki_container hr { display: none !important; }
+#ki_container .ki_description { text-align: center; font: normal 13px/17px helvetica,arial,sans-serif !important; }
+
+
+

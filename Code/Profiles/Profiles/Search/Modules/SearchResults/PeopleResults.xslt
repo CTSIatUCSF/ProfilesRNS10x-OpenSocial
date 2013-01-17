@@ -233,8 +233,8 @@
             <td style="width:33%;">
               <xsl:choose>
                 <xsl:when test="$why">
-                  <div style="width:170px;font-size:11px;padding:1px;text-align:center;background-color:#F2F7F7;margin-left:30px;">
-                    Click the <b>Why</b> column to see why<br /> a person matched the search.
+                  <div style="width:190px;font-size:11px;padding:1px;text-align:center;background-color:#F2F7F7;margin-left:30px;">
+                    Click <b>Why?</b> to see a researcher's relevant publications.
                   </div>
                 </xsl:when>
                 <xsl:otherwise>

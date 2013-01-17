@@ -735,6 +735,46 @@ namespace Profiles.Profile.Utilities
 
         #endregion
 
+        #region UCSF
+        // Other UCSF extension to fix bug with old style redirects
+        public String GetName(Int64 nodeId)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlDataReader reader;
+            String name = null;
+
+            try
+            {
+
+                dbconnection.Open();
+
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                reader = GetDBCommand(connstr, "select p.FirstName + ' ' + p.LastName from [Profile.Data].[Person] p join [RDF.Stage].internalnodemap i on p.personid = i.internalid where i.[class] = 'http://xmlns.com/foaf/0.1/Person' and i.nodeid = " + nodeId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                while (reader.Read())
+                {
+                    name = reader[0].ToString();
+                }
+
+                reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return name;
+        }
+        #endregion
+
     }
 
 

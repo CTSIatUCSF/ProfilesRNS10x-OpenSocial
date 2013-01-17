@@ -11,6 +11,7 @@ using Connects.Profiles.Common;
 using Connects.Profiles.Service.DataContracts;
 using Connects.Profiles.Utility;
 using System.Web.Script.Serialization;
+using Profiles.Framework.Utilities;
 
 public partial class JSONProfile : System.Web.UI.Page
 {
@@ -96,7 +97,7 @@ public partial class JSONProfile : System.Web.UI.Page
                 Person person = personProfileList.Person[0];
 
                 personData.Add("Name", person.Name.FullName);
-                personData.Add("ProfilesURL", person.ProfileURL.ToString());
+                personData.Add("ProfilesURL", person.ProfileURL.Text);
                 /*personData.Add("SampleHTML", "<a href=\"" + ConfigUtil.GetConfigItem("URLBase") + "ProfileDetails.aspx?Person=" + personId + 
                     "\" title=\"Go to UCSF Profiles, powered by CTSI\" rel=\"me\">View " + person.Name.FirstName + " " +
                     (person.Name.MiddleName != null && person.Name.MiddleName.Length > 0 ? person.Name.MiddleName + " " : "") + person.Name.LastName + "'s research profile</a>"); */
@@ -124,7 +125,7 @@ public partial class JSONProfile : System.Web.UI.Page
                     personData.Add("Narrative", person.Narrative.Text);
                 }
 
-                personData.Add("PhotoURL", ConfigUtil.GetConfigItem("URLBase") + "Thumbnail.ashx?id=" + personId);
+                personData.Add("PhotoURL", person.PhotoUrl.Text);
 
                 if (showPublications && person.PublicationList != null)
                 {
@@ -190,7 +191,7 @@ public partial class JSONProfile : System.Web.UI.Page
                 {
                     foreach (Keyword2 kw in person.PassiveNetworks.KeywordList.Keyword)
                     {
-                        keywords.Add(kw.ToString());
+                        keywords.Add(kw.Text);
                     }
                 }
                 if (keywords.Count > 0)

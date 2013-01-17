@@ -1,6 +1,6 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
-  <WindowName>SPARQL | Profiles RNS</WindowName>
+  <WindowName>SPARQL | UCSF Profiles</WindowName>
   <PageTitle>SPARQL</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>

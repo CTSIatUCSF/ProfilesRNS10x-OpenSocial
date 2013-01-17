@@ -1,6 +1,3 @@
-CREATE SCHEMA [UCSF]
-GO
-
 /****** Object:  UserDefinedFunction [Profile.Data].[fnPublication.Pubmed.GetPubDate]    Script Date: 10/19/2012 12:26:37 ******/
 SET ANSI_NULLS ON
 GO

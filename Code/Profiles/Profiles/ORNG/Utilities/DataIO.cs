@@ -26,21 +26,21 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetGadgetViewRequirements(int appId)
         {
-            string sql = "select page, viewer_req, owner_req, [view], chromeId, opt_params, display_order from [ORNG.].[AppViews] where appId = " + appId;
+            string sql = "select page, viewer_req, owner_req, [view], chromeId, opt_params, display_order from [ORNG].[AppViews] where appId = " + appId;
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetIsRegisteredTo(int appId, string personId)
         {
-            string sql = "select count(*) from [ORNG.].[AppRegistry] where appId = " + appId + " and personId = '" + personId + "';";
+            string sql = "select count(*) from [ORNG].[AppRegistry] where appId = " + appId + " and personId = '" + personId + "';";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetGadgets()
         {
-            string sql = "select appId, name, url, channels, enabled from [ORNG.].[Apps]";
+            string sql = "select appId, name, url, channels, enabled from [ORNG].[Apps]";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

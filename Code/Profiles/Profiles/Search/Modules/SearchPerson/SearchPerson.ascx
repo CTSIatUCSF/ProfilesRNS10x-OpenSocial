@@ -3,6 +3,13 @@
 
 <%@ register src="ComboTreeCheck.ascx" tagname="ComboTreeCheck" tagprefix="uc1" %>
 
+<style type="text/css">
+.profiles .profilesContentMain { width: 584px; }
+.profiles .profilesContentPassive { margin-right: 20px; }
+.profiles .profilesContentMain .pageTitle h2 { display: none; }
+</style>
+
+
 <script type="text/javascript">
 
 
@@ -63,13 +70,13 @@
 
 <div class="content_container">
     <div class="tabContainer" style="margin-top: 0px;">
-        <div class="searchForm">
+        <div class="searchForm nonavbar">
             <table onkeypress="JavaScript:runScript(event);"  width="100%">
                 <tbody align="left">
                     <tr>
                         <td colspan='3'>
-                            <div style="font-size: 18px; color: #b23f45; font-weight: bold; margin-bottom: 3px;">
-                                Find people by keyword</div>
+                            <div class='header'>
+                                Find People by Name or Research Topic</div>
                         </td>
                     </tr>
                     <tr>
@@ -77,19 +84,21 @@
                             <div class="searchSection" id="divSearchSection">
                                 <table width="100%" class='searchForm'>
                                     <tr>
-                                        <th>
-                                            Keywords
+                                        <th style="width: 140px">
+                                            Keywords or Name
                                         </th>
                                         <td colspan="2" class="fieldOptions">
-                                            <input onkeypress="JavaScript:runScript(event);" type="text" name="txtSearchFor" id="txtSearchFor" class="inputText" />
-                                            <input type="checkbox" id='exactphrase' />
-                                            Search for exact phrase
+                                            <input onkeypress="JavaScript:runScript(event);" type="text" name="txtSearchFor" id="txtSearchFor" class="inputText keywordsName" />
+                                            <input type="hidden" id='exactphrase' />
                                         </td>
+<!--  NOTE: checkboxes are hidden & name rows are display: none
+                                            Search for exact phrase
                                     </tr>
                                     <tr>
                                         <tr>
                                             <th>
                                             </th>
+-->
                                             <td style="text-decoration: none" colspan="2">
                                                 <div style="float: left; display: inline">
                                                     <a href="JavaScript:search();">
@@ -97,25 +106,27 @@
                                                     </a>
                                                 </div>
                                             </td>
-                                        </tr>
                                     </tr>
                                 </table>
                             </div>
                         </td>
                     </tr>
             </table>
-            <table width="100%">
+            <table width="100%" id="searchOptions">
+<!--
                 <tr>
                     <td colspan='3'>
-                        <div style="font-size: 18px; color: #b23f45; font-weight: bold; margin-bottom: 3px;">
+                        <div class='header'>
                             Find people by name/organization</div>
                     </td>
                 </tr>
+-->
                 <tr>
                     <td colspan='3'>
                         <div class="searchSection" id="div1">
                             <table width="100%" class='searchForm'>
-                                <tr>
+
+                                <tr style="display:none;">
                                     <th>
                                         Last Name
                                     </th>
@@ -123,7 +134,7 @@
                                         <input onkeypress="JavaScript:runScript(event);" type="text" name="txtLname" id="txtLname" class="inputText" />
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="display:none;">
                                     <th>
                                         First Name
                                     </th>
@@ -131,14 +142,17 @@
                                         <input onkeypress="JavaScript:runScript(event);" type="text" name="txtFname" id="txtFname" class="inputText" />
                                     </td>
                                 </tr>
+
                                 <tr runat="server" id="trInstitution">
-                                    <th>
+                                    <th style="width: 140px;">
                                         School
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
-                                        <input type="checkbox" id="institutionallexcept" />
+                                        <input type="hidden" id="institutionallexcept" />
+<!--
                                         All <b>except</b> the one selected
+-->
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDepartment">
@@ -147,8 +161,10 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litDepartment"></asp:Literal>
-                                        <input type="checkbox" id="departmentallexcept" />
+                                        <input type="hidden" id="departmentallexcept" />
+<!--
                                         All <b>except</b> the one selected
+-->
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDivision">
@@ -163,7 +179,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        Other Options
+                                        More Options
                                     </th>
                                     <td colspan='2'>
                                         <input type="hidden" id="hiddenToggle" value="off" />
@@ -184,6 +200,7 @@
                                         </table>
                                     </td>
                                 </tr>
+<!--
                                 <tr>
                                     <th>
                                     </th>
@@ -195,14 +212,17 @@
                                         </div>
                                     </td>
                                 </tr>
+-->
                            
                             </table>
                         </div>
                     </td>
                 </tr>
             </table>
+<!--
             <p><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/search/all">Find articles and other content as well as people</a><br />
-            <img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
+-->
+            <p><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
         </div>
     </div>
 

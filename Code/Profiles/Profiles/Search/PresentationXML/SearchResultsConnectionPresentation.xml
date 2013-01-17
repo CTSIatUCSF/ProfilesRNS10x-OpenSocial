@@ -5,7 +5,7 @@
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
-  <PageDescription>This is a "connection" page, showing the details of why an item matched the keywords from your search.</PageDescription>
+  <PageDescription>This is a "connection" page, showing the details of why an item matched your search terms.</PageDescription>
   <PanelList>
     <Panel Type="header"  />
     <Panel Type="page" />

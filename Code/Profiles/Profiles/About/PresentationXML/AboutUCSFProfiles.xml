@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
   <WindowName>About</WindowName>  
-  <PageTitle>About Profiles RNS</PageTitle>
+  <PageTitle>What is UCSF Profiles?</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -17,45 +17,87 @@
       <Module ID="HTMLBlock">
         <ParamList>
           <Param Name="HTML">
-            <div class="aboutText">              
-            <h3>Introduction</h3>
-            <br />
-            Profiles is a research networking and expertise mining software tool. It not only shows traditional directory information, but also illustrates how each person is connected to others in the broad research community. <br />
-            <br />
-            When you view a person's profile, three types of information are displayed: <br />
-            <ol>
-              <li>
-                <u>Managed Descriptions</u><br />
-                This is the typical information listed in a research profile, including name, titles, affiliation, phone number and email address. Faculty can edit their own profiles, adding publications, awards, narrative, and a photo. <br />
-                <br />
-              </li>
-              <li>
-                <u>Passive Networks</u><br />
-                Passive networks are formed automatically when faculty share common traits such as being in the same department, working in the same building, co-authoring the same paper, or researching the same topics (as defined, for example, by the "MeSH" keywords or other keywords assigned to their publications). The passive networks a person belongs to are shown on the <u>right</u> side of the page when viewing a profile. <br />
-                <br />
-              </li>
-              <li>
-                <u>Active Networks</u><br />
-                Active networks are the ones that you define. When users who login to the website view other people's profiles, they can mark those people as collaborators, advisors, or advisees. In other words, you can build your own network of people that you know. Currently, you can only see the networks that you build. In the future you will be able to share these lists with others.  Active networks are shown on your <u>left</u> sidebar. <br />
-                <br />
-              </li>
-            </ol>
 
-            <h3>Why are there missing or incorrect publications in my profile?</h3>
-            <br />
-            Publications are added both automatically from PubMed and manually by faculty themselves. Unfortunately, there is no easy way to match articles in PubMed to the profiles on this website. The algorithm used to find articles from PubMed attempts to minimize the number of publications incorrectly added to a profile; however, this method results in some missing publications. Faculty with common names or whose articles were written at other institutions are most likely to have incomplete publication lists. We encourage all faculty to login to the website and add any missing publications or remove incorrect ones.<br />
-            <br />
+<style type="text/css">
+#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
+</style>
+<h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#999;margin:0">
+  A Research Networking and Expertise Mining Tool</h3>
+<table cellspacing="0" id="about">
+ <tr>
+  <td style="background-color:#B8D0D0;padding:0 8px">
+    <h2>Search</h2>
+    <img src="images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:0 0 8px 25px" />
+    <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
+    <ul class="square">
+       <li>100,000+ publications</li>
+       <li>3000+ UCSF faculty</li>
+       <li>1400+ UCSF residents and fellows</li>
+       <li>1000+ UCSF postdocs</li>
+       <li>30 biomedical institutions nationwide</li>
+    </ul>
+  </td>
 
-            <h3>Can I edit my keywords, co-authors, or list of similar people?</h3>
-            <br />
-            These are derived automatically from the PubMed articles listed with your profile. You cannot edit these directly, but you can improve these lists by keeping your publications up to date. Please note that it takes up to 24 hours for the system to update your keywords, co-authors, and similar people after you have modified your publications. Keyword rankings and similar people lists are based on algorithms that weigh multiple factors, such as how many publications you have in a subject area compared to the total number of faculty who have published in that area and how long ago the articles were written.<br />
-            <br />
+  <td style="padding:0 8px">
+    <h2>Discover Networks</h2>
+    <img src="images/profiles.jpg" alt="Discover Networks" class="sdn" style="margin:0 0 8px 30px" />
+    <h3 style="text-align:center;color:#333">Peoples' Research Connections</h3>
+    <ul class="square">
+       <li>Who co-authored together</li>
+       <li>Who worked on similar research topics</li>
+    </ul>
+  </td>
 
-            <h3>Who created Profiles?</h3>
-            <br />
-            This service is made possible by the Profiles Research Networking Software developed under the supervision of Griffin M Weber, MD, PhD, with support from Grant Number 1 UL1 RR025758-01 to Harvard Catalyst: The Harvard Clinical and Translational Science Center from the National Center for Research Resources and support from Harvard University and its affiliated academic healthcare centers.
+  <td style="background-color:#B8D0D0;padding:0 8px">
+    <h2>Edit Your Profile</h2>
+    <img src="images/develop-profile.gif" alt="Develop Your Profile" class="sdn" style="margin:0 0 8px 20px" />
+    <h3 style="text-align:center;color:#333">Information about Your Research</h3>
+    <ul class="square">
+       <li>Overview to describe your work</li>
+       <li>Photo, website links, and awards</li>
+       <li>Mentoring information</li>
+       <li>Your presentations on SlideShare</li>
+       <li>Edit your publications if necessary</li>
+    </ul>
+     <p style="text-align:center;margin:15px 40px 6px;padding:5px 0;border-left: solid 1px #8fb5b5;
+       border-top: solid 1px #8fb5b5;background-color:#FFF;">
+       <a href="../login/default.aspx?method=login&amp;edit=true" class="doublearrow">Edit your profile now</a></p>
+ </td>
+ </tr>
+ <tr>
+  <td colspan="3" align="center" style="padding:15px 0 20px;">
+    <a href="NewFeatures.aspx"><img src="images/newfeatures.gif" alt="New Features" style="border:none;margin-left:192px\9;" /></a>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
+    background: transparent url(images/gear.gif) no-repeat 20px 14px;">
+    <h3 style="padding: 12px 0 8px 40px">Toolbox</h3> 
+    <ul class="square" style="margin-left: 0;">
+      <li><a href="ForDevelopers.aspx">Profiles data tools for your website</a></li>
+      <li><a href="http://www.orng.info/index.html">Profiles OpenSocial extensions</a></li>
+    </ul>
+  </td>
+  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
+    background: transparent url(images/help.gif) no-repeat 20px 12px;">
+    <h3 style="padding: 12px 0 8px 40px">Help</h3>
+    <ul class="square" style="margin-left: 0;">
+      <li><a href="Help.aspx#faq">Frequently Asked Questions</a></li>
+      <li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
+    </ul>
+  </td>
+  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
+    background: transparent url(images/comment.gif) no-repeat 20px 14px;">
+     <h3 style="padding: 12px 0 15px 40px">Feedback</h3> 
+     <p style="margin:0; font-size:12px"><a href="mailto:profiles@ucsf.edu">Contact us</a> to share your ideas and success stories.</p>
+  </td>
+ </tr>
+</table>
 
-            </div>            
+<h3 style="padding-top:20px">Acknowledgement</h3>
+<p>UCSF Profiles is UCSF’s version of the ground-breaking, open source "Profiles Research Networking Software" that was developed under the supervision of Griffin M Weber, MD, PhD, with support from Grant Number 1 UL1 RR025758-01 to <a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst: The Harvard Clinical and Translational Science Center</a> from the National Center for Research Resources and support from Harvard University and its affiliated academic healthcare centers.</p>
+
+<p>Harvard Catalyst Profiles is available as an <a href="http://connects.catalyst.harvard.edu/profiles/about/opensource" target="_new">open source platform</a> for institutions seeking a web-based means of facilitating collaboration among their academic researchers. </p>        
           </Param>
         </ParamList>
       </Module>

@@ -14,7 +14,10 @@
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:awardConferredBy"/>
                 </td>
                 <td>
-                  <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:startDate"/> -                 
+                  <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:startDate"/>
+                  <xsl:if test="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:endDate">
+                    -
+                  </xsl:if>
                 </td>
                 <td>
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:endDate"/>

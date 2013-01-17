@@ -196,6 +196,12 @@ namespace Profiles
                 string URL = resolve.ResponseURL;
                 Server.Execute(HttpUtility.HtmlDecode(URL));
             }
+            else if (resolve.Resolved && resolve.Redirect && resolve.StatusCode == "301") // UCSF addition
+            {
+                Response.Status = "301 Moved Permanently";
+                Response.AddHeader("Location", resolve.ResponseURL);
+                Response.End();
+            }
             else if (resolve.Resolved && resolve.Redirect)
             {
                 Response.Redirect(resolve.ResponseURL, true);

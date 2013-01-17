@@ -98,7 +98,7 @@ namespace Profiles.Framework
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
 
                 HttpContext.Current.Session["GLOBAL_ERROR"] = ex.Message + " ++ " + ex.StackTrace;
-                Response.Redirect(Root.Domain + "/error/default.aspx");
+                Response.Redirect(Root.Domain + "/Error/Default.aspx");
             }
         }
 
@@ -326,6 +326,11 @@ namespace Profiles.Framework
                 {
                     buffer = PresentationClass.Substring(0, 1).ToUpper() + PresentationClass.Substring(1, PresentationClass.Length - 1);
                 }
+                // UCSF schema.org hack
+                if (PresentationClass == "profile")
+                {
+                    buffer = "<span itemprop=\"name\">" + buffer + "</span>";
+                }
                 litPageTitle.Text = "<h2><a><img class=\"pageIcon\" src=\"" + Root.Domain + "/Framework/Images/icon_" + PresentationClass + ".gif\"/></a>" + buffer + "</h2>";
             }
 
@@ -366,9 +371,9 @@ namespace Profiles.Framework
 
             if (buffer != String.Empty)
             {
-                buffer = " | " + buffer;
+                buffer = buffer + " | ";
             }
-            Page.Header.Title = "Profiles RNS" + buffer;
+            Page.Header.Title = buffer + "UCSF Profiles";
 
         }
         

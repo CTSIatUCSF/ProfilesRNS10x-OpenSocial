@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [UCSF.Profile.Framework].[ResolveURL]
+ALTER PROCEDURE [Profile.Framework].[ResolveURL]
 	@ApplicationName varchar(1000) = '',
 	@param1 varchar(1000) = '',
 	@param2 varchar(1000) = '',
@@ -77,15 +77,15 @@ BEGIN
 	DECLARE @aliases INT
 	SELECT @aliases = 0
 	
-	-- UCSF subject when Application name is based on FNO
-	DECLARE @FNO VARCHAR(1000)
+	-- UCSF subject when Application name is based on URL_NAME
+	DECLARE @URL_NAME VARCHAR(1000)
 	IF (@MaxParam IS NULL) 
 	BEGIN
   		SELECT @subject = i.nodeid from  [RDF.Stage].internalnodemap i with(nolock) where 
 			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = (
-				select 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) from cls.dbo.vw_FNO where UID_USERID =  @ApplicationName + '@ucsf.edu')		
+				select 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) from cls.dbo.uniqueNames where URL_NAME =  @ApplicationName)		
         IF @subject is not null
-			SELECT @FNO=@subject				
+			SELECT @URL_NAME=@subject				
 	END
 	-- subject
 	IF (@MaxParam >= @pointer)
@@ -102,9 +102,9 @@ BEGIN
 			SELECT @ErrorDescription = 'The subject cannot be found.'
 	END
 
-	-- UCSF if we only hvae Subject and this is for a person, replace with FNO
+	-- UCSF if we only have Subject and this is for a person, replace with URL_NAME
 	IF (@MaxParam = 1) AND (@Subject IS NOT NULL)
-		SELECT @FNO = left(UID_USERID, len(UID_USERID) - 9) from cls.dbo.vw_FNO where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = 
+		SELECT @URL_NAME = URL_NAME from cls.dbo.uniqueNames where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = 
 			(select InternalID from [RDF.Stage].internalnodemap i with(nolock) where i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)		
 
 	-- predicate
@@ -199,11 +199,11 @@ BEGIN
 		ELSE IF (@ApplicationName = 'profile')
 				-- Redirect 303 to the HTML URL
 				SELECT	@ResponseContentType = @ContentType,
-						@ResponseStatusCode = 303,
+						@ResponseStatusCode = (CASE WHEN @URL_NAME IS NOT NULL THEN 301 ELSE 303 END),
 						@ResponseRedirect = 1,
 						@ResponseIncludePostData = 1,
 						@ResponseURL = @basePath + 
-							(CASE WHEN @FNO IS NOT NULL THEN '/' + @FNO
+							(CASE WHEN @URL_NAME IS NOT NULL THEN '/' + @URL_NAME
 							ELSE '/display' 
 							+ (CASE WHEN @Subject IS NULL THEN ''
 									ELSE IsNull((SELECT TOP 1 '/'+Subject

@@ -16,7 +16,9 @@ namespace Profiles
             if (Request.QueryString["person"] != null)
             {
                 // need to convert personid to nodeid
-                Response.Redirect(Root.Domain + "/profile/" + new Profiles.Framework.Utilities.DataIO().GetNodeID(Convert.ToInt32(Request.QueryString["person"].ToString())));
+                // send them to the pretty URL
+                Response.Status = "301 Moved Permanently";
+                Response.AddHeader("Location", Root.Domain + "/" + new Profiles.Framework.Utilities.DataIO().GetPrettyURL(Request.QueryString["person"].ToString()));
             }
 
             Response.End();

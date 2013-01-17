@@ -11,6 +11,16 @@
 -->
 <h3>Basic Components:</h3>
 <div id="profile-components">
+  <table style="width:100%;margin-bottom:0;">
+    <tr style="border-bottom:1px solid #CCC;">
+       <td class="padding" id="namedegree">Name and Degrees</td>
+       <td colspan="2">
+         <span id="public"><img src="Images/icons_lock.gif" />Always Public</span>
+         <span id="cls">This info is drawn from the Campus Locator System. 
+         Please contact your HR representative for corrections.</span>
+       </td>
+    </tr>
+  </table>
 <asp:Repeater runat="server" ID="repPropertyGroups" OnItemDataBound="repPropertyGroups_OnItemDataBound">
     <ItemTemplate>
         <asp:GridView runat="server" ID="grdSecurityGroups" AutoGenerateColumns="false" OnRowDataBound="grdSecurityGroups_OnDataBound"

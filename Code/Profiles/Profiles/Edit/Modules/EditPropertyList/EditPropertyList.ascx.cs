@@ -106,7 +106,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
             // Profiles OpenSocial Extension by UCSF
             string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
-            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
+            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, true, true);
             if (om.IsVisible())
             {
                 om.LoadAssets();

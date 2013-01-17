@@ -367,9 +367,12 @@ ORNGGadgetService.prototype.requestNavigateTo = function (view, opt_params) {
 
 // ORNGGadget
 ORNGGadget = function (opt_params) {
-    shindig.BaseIfrGadget.call(this, opt_params);
-    this.debug = my.debug;
+    //shindig.BaseIfrGadget.call(this, opt_params);  need to override
+    shindig.Gadget.call(this, opt_params);
     this.serverBase_ = my.openSocialURL + "/gadgets/";
+    this.queryIfrGadgetType_();
+    // done with override
+    this.debug = my.debug;
     var gadget = this;
     var subClass = shindig.IfrGadget;
     this.metadata = {};
@@ -461,7 +464,7 @@ ORNGToggleGadget.prototype.handleToggle = function (track) {
             }
 
             gadgetContent.style.display = '';
-            gadgetImg.src = './ORNG/Images/gadgetcollapse.gif';
+            gadgetImg.src = '../Framework/Images/gadgetcollapse.gif';
             // refresh if certain features require so
             //if (this.hasFeature('dynamic-height')) {
             if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
@@ -506,7 +509,7 @@ ORNGToggleGadget.prototype.handleToggle = function (track) {
             }
 
             gadgetContent.style.display = 'none';
-            gadgetImg.src = './ORNG/Images/gadgetexpand.gif';
+            gadgetImg.src = '../Framework/Images/gadgetexpand.gif';
             if (track) {
                 if (my.gadgets[this.id].view == 'home') {
                     // record in google analytics     
@@ -548,7 +551,7 @@ ORNGToggleGadget.prototype.getTitleBarContent = function (continuation) {
 				+ this.cssClassTitleButton
 				+ '"><img id="gadgets-gadget-title-image-'
 				+ this.id
-				+ '" src="./ORNG/Images/gadgetcollapse.gif"/></a></span> <span id="'
+				+ '" src="../Framework/Images/gadgetcollapse.gif"/></a></span> <span id="'
 				+ this.getIframeId() + '_title" class="' + this.cssClassTitle
 				+ '">' + this.getTitleHtml(this.title)
 				+ '</span><span id="' + this.getIframeId()

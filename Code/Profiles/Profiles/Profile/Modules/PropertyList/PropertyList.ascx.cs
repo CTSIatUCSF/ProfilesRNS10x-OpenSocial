@@ -20,6 +20,7 @@ using System.Xml;
 using System.Xml.Xsl;
 using Profiles.Framework.Utilities;
 using Profiles.Profile.Utilities;
+using Profiles.ORNG.Utilities;
 
 
 namespace Profiles.Profile.Modules.PropertyList
@@ -59,6 +60,18 @@ namespace Profiles.Profile.Modules.PropertyList
             
             bool hasitems = false;
 
+            // UCSF OpenSocial items
+            string uri = null;
+            // code to convert from numeric node ID to URI
+            if (base.Namespaces.HasNamespace("rdf"))
+            {
+                XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
+                uri = node != null ? node.Value : null;
+            }
+            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, false); // we just want to add pubsub data, not a gadget, so do NOT increment count
+            om.SetPubsubData(OpenSocialManager.JSON_PERSONID_CHANNEL, OpenSocialManager.BuildJSONPersonIds(uri, "one person"));
+            bool gadgetsShown = false;
+
 
             foreach (XmlNode propertygroup in this.PropertyListXML.SelectNodes("PropertyList/PropertyGroup"))
             {                
@@ -67,7 +80,13 @@ namespace Profiles.Profile.Modules.PropertyList
                 {
 
                     if ((propertygroup.SelectNodes("Property/Network/Connection").Count > 0 && propertygroup.SelectNodes("Property[@CustomDisplay='false']").Count > 0) || propertygroup.SelectNodes("Property/CustomModule").Count > 0)
-                    {  
+                    {
+                        // ORNG hack
+                        if (propertygroup.SelectSingleNode("@URI").Value == "http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupBibliographic")
+                        {
+                            html.Append("<div id='gadgets-view' class='gadgets-gadget-parent'></div>");
+                            gadgetsShown = true;
+                        }
               
                         html.Append("<div class='PropertyGroup' style='cursor:pointer;' onclick=\"javascript:toggleBlock('propertygroup','" + propertygroup.SelectSingleNode("@URI").Value + "');\"><br>");
                         html.Append("<a style='text-decoration:none' href=\"javascript:toggleBlock('propertygroup','" + propertygroup.SelectSingleNode("@URI").Value + "\"> <img id=\"propertygroup" + propertygroup.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' style='border: none; text-decoration: none !important' border='0' /></a>&nbsp;"); //add image and onclick here.
@@ -163,6 +182,13 @@ namespace Profiles.Profile.Modules.PropertyList
 
 
             }//End of property group loop
+
+            // ORNG gadget hack
+            if (!gadgetsShown)
+            {
+                html.Append("<div id='gadgets-view' class='gadgets-gadget-parent'></div>");
+                gadgetsShown = true;
+            }
 
             litPropertyList.Text = html.ToString();
 

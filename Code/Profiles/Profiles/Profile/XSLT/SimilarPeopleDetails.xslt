@@ -54,7 +54,7 @@
         if (!hasClickedListTable) { document.location = x;}
         }
       </script>
-      <div class="tabInfoText">Similar people share similar sets of concepts, but are not necessarily co-authors.</div>
+      <div class="tabInfoText">The people in this list are ordered by decreasing similarity.</div>
       <div class="listTable" style="margin-top: 12px, margin-bottom:8px ">
         <table id="thetable1">
           <tbody>

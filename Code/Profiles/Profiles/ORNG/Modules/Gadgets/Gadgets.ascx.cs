@@ -50,7 +50,7 @@ namespace Profiles.ORNG.Modules.Gadgets
                 XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
                 uri = node != null ? node.Value : null;
             }
-            om = OpenSocialManager.GetOpenSocialManager(uri, Page, false);
+            om = OpenSocialManager.GetOpenSocialManager(uri, Page, false, true);
         }
 
         public void DrawProfilesModule()

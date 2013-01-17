@@ -92,7 +92,7 @@ namespace Profiles.CustomAPI.Utilities
 
         private int GetAppRegistryCount(int appId)
         {
-            return GetCount("select count(*) from [ORNG.].[AppRegistry] where appId = " + appId + ";");
+            return GetCount("select count(*) from [ORNG].[AppRegistry] where appId = " + appId + ";");
         }
 
         private int GetCount(string sql)

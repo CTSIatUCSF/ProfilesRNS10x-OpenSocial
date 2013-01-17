@@ -1,7 +1,3 @@
-USE [profiles_102]
-GO
-
-/****** Object:  Table [ORNG.].[Activity]    Script Date: 10/25/2012 15:13:28 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +7,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [UCSF.].[ActivityLog](
+CREATE TABLE [UCSF].[ActivityLog](
 	[activityLogId] [int] IDENTITY(1,1) NOT NULL,
 	[userId] [int] NULL,
 	[personId] [int] NULL,
@@ -32,10 +28,10 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE [UCSF.].[ActivityLog] ADD  CONSTRAINT [DF_activityLog_createdDT]  DEFAULT (getdate()) FOR [createdDT]
+ALTER TABLE [UCSF].[ActivityLog] ADD  CONSTRAINT [DF_activityLog_createdDT]  DEFAULT (getdate()) FOR [createdDT]
 GO
 
-CREATE PROCEDURE [UCSF.].[LogActivity]
+CREATE PROCEDURE [UCSF].[LogActivity]
 	@userId int,
 	@personId int,
 	@methodName varchar(255),
@@ -49,7 +45,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	INSERT INTO [UCSF.].[ActivityLog] (userId, personId, methodName, property, privacyCode, param1, param2) 
+	INSERT INTO [UCSF].[ActivityLog] (userId, personId, methodName, property, privacyCode, param1, param2) 
 		VALUES(@userId, @personId, @methodName, @property, @privacyCode, @param1, @param2)
 END
 

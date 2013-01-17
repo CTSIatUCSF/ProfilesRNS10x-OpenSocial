@@ -873,6 +873,19 @@ namespace Connects.Profiles.Service.ServiceImplementation
                 returnxml.Append("</Address>");
                 //END ADDRESS
 
+                // NARRATIVE (UCSF)
+                returnxml.Append("<Narrative>");
+                if (RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']/vivo:overview", namespaces) != null)
+                    returnxml.Append(RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']/vivo:overview", namespaces).InnerText);
+                returnxml.Append("</Narrative>");
+                // END NARRATIVE
+
+                // PHOTOURL (UCSF)
+                returnxml.Append("<PhotoUrl>");
+                if (RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']/prns:mainImage/@rdf:resource", namespaces) != null)
+                    returnxml.Append(RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']/prns:mainImage/@rdf:resource", namespaces).InnerText);
+                returnxml.Append("</PhotoUrl>");
+                // END PHOTOURL
 
                 returnxml.Append("<AffiliationList Visible=\"true\">");
                 if (RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']/prns:personInPrimaryPosition/@rdf:resource", namespaces) != null)
@@ -1042,16 +1055,22 @@ namespace Connects.Profiles.Service.ServiceImplementation
                     }
                     returnxml.Append("</NeighborList>");
 
-                    returnxml.Append("<KeywordList TotalKeywordCount=\"" + RDF.SelectNodes("rdf:RDF/rdf:Description/vivo:hasResearchArea", namespaces).Count + "\">");
-                    foreach (XmlNode keyword in RDF.SelectNodes("rdf:RDF/rdf:Description/vivo:hasResearchArea", namespaces))
+                    List<String> concepts = new List<String>();
+                    foreach (XmlNode keyword in RDF.SelectNodes("rdf:RDF/rdf:Description/rdf:type", namespaces))
                     {
-
+                        // see if this is a keyword
+                        XmlNode resource = keyword.SelectSingleNode("@rdf:resource", namespaces);
+                        if (resource.Value == "http://www.w3.org/2004/02/skos/core#Concept")
+                        {
+                            concepts.Add(keyword.ParentNode.SelectSingleNode("rdfs:label", namespaces).InnerText);
+                        }
+                    }
+                    returnxml.Append("<KeywordList TotalKeywordCount=\"" + concepts.Count + "\">");
+                    foreach (String concept in concepts)
+                    {
                         returnxml.Append("<Keyword>");
-                        returnxml.Append(RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + keyword.SelectSingleNode("@rdf:resource", namespaces).Value + "']/rdfs:label", namespaces).InnerText);
+                        returnxml.Append(concept);
                         returnxml.Append("</Keyword>");
-
-
-
                     }
                     returnxml.Append("</KeywordList>");
 
@@ -1060,10 +1079,6 @@ namespace Connects.Profiles.Service.ServiceImplementation
                     returnxml.Append("</PassiveNetworks>");
 
                 }
-
-
-
-
 
                 returnxml.Append("</Person>");
 

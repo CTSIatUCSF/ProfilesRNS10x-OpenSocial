@@ -20368,7 +20368,7 @@
       <SearchWeight>1.000000000000000e+000</SearchWeight>
       <CustomDisplay>1</CustomDisplay>
       <CustomEdit>1</CustomEdit>
-      <ViewSecurityGroup>-20</ViewSecurityGroup>
+      <ViewSecurityGroup>-10</ViewSecurityGroup>
       <EditSecurityGroup>-40</EditSecurityGroup>
       <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
       <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
@@ -20418,7 +20418,7 @@
       <SearchWeight>1.000000000000000e+000</SearchWeight>
       <CustomDisplay>1</CustomDisplay>
       <CustomEdit>0</CustomEdit>
-      <ViewSecurityGroup>-20</ViewSecurityGroup>
+      <ViewSecurityGroup>-10</ViewSecurityGroup>
       <EditSecurityGroup>-40</EditSecurityGroup>
       <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
       <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
@@ -20594,7 +20594,7 @@
       <SearchWeight>5.000000000000000e-001</SearchWeight>
       <CustomDisplay>0</CustomDisplay>
       <CustomEdit>0</CustomEdit>
-      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <ViewSecurityGroup>0</ViewSecurityGroup>
       <EditSecurityGroup>-40</EditSecurityGroup>
       <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
       <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
@@ -27901,7 +27901,7 @@
             <Panel Type="main" TabSort="0" TabType="Default">
               <Module ID="CustomViewConceptPublication">
                 <ParamList>
-                  <Param Name="TimelineCaption">This graph shows the total number of publications written about "@ConceptName" by people in Harvard Catalyst Profiles by year, and whether "@ConceptName" was a major or minor topic of these publication.</Param>
+                  <Param Name="TimelineCaption">This graph shows the total number of publications written about "@ConceptName" by people in UCSF Profiles by year, and whether "@ConceptName" was a major or minor topic of these publications.</Param>
                   <Param Name="CitedCaption">Below are the publications written about "@ConceptName" that have been cited the most by articles in Pubmed Central.</Param>
                   <Param Name="NewestCaption">Below are the most recent publications written about "@ConceptName" by people in Profiles.</Param>
                   <Param Name="OldestCaption">Below are the earliest publications written about "@ConceptName" by people in Profiles.</Param>
@@ -27940,7 +27940,7 @@
 	  -->
             </Panel>
           </PanelList>
-        </Presentation>
+        </Presentation>        
       </presentationXML>
     </Row>
     <Row>
@@ -27952,7 +27952,7 @@
           <PageOptions Columns="3" />
           <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/prns:fullName[1]}}}</WindowName>
           <PageColumns>3</PageColumns>
-          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/foaf:fullName[1]}}}</PageTitle>
+          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/prns:fullName[1]}}}</PageTitle>
           <PageBackLinkName />
           <PageBackLinkURL />
           <PageSubTitle />
@@ -27974,20 +27974,13 @@
               <Module ID="PropertyList">
                 <ParamList />
               </Module>
-              <Module ID="Gadgets">
-                <ParamList>
-                  <Param Name="HTML">
-                    <div id="gadgets-view" class="gadgets-gadget-parent" />
-                  </Param>
-                </ParamList>
-              </Module>
             </Panel>
             <Panel Type="passive">
               <Module ID="PassiveHeader" />
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
-                  <Param Name="InfoCaption">Concepts</Param>
+                  <Param Name="InfoCaption">Related Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
                   <Param Name="MaxDisplay">5</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:hasResearchArea/@rdf:resource]</Param>
@@ -28014,7 +28007,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
-                  <Param Name="InfoCaption">Similar People</Param>
+                  <Param Name="InfoCaption">Related Authors</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
                   <Param Name="MaxDisplay">11</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:similarTo/@rdf:resource]</Param>
@@ -28026,16 +28019,11 @@
                 </ParamList>
               </Module>
               <Module ID="CustomViewPersonSameDepartment" />
-              <Module ID="PassiveList">
+              <Module ID="Gadgets">
                 <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
-                  <Param Name="InfoCaption">Physical Neighbors</Param>
-                  <Param Name="Description">People whose addresses are nearby this person.</Param>
-                  <Param Name="MaxDisplay">11</Param>
-                  <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:physicalNeighborOf/@rdf:resource]</Param>
-                  <Param Name="ItemURLText">{{{rdf:Description/rdfs:label}}}</Param>
-                  <Param Name="ItemText" />
-                  <Param Name="ItemURL">{{{rdf:Description/@rdf:about}}}</Param>
+                  <Param Name="HTML">
+                    <div id="gadgets-tools" class="gadgets-gadget-parent" />
+                  </Param>
                 </ParamList>
               </Module>
             </Panel>
@@ -28114,7 +28102,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Concepts</Param>
+                  <Param Name="InfoCaption">Related Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
                   <Param Name="MaxDisplay">5</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:hasResearchArea/@rdf:resource]</Param>
@@ -28141,7 +28129,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Similar People</Param>
+                  <Param Name="InfoCaption">Related Authors</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
                   <Param Name="MaxDisplay">11</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:similarTo/@rdf:resource]</Param>
@@ -28153,18 +28141,6 @@
                 </ParamList>
               </Module>
               <Module ID="CustomViewPersonSameDepartment" />
-              <Module ID="PassiveList">
-                <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Physical Neighbors</Param>
-                  <Param Name="Description">People whose addresses are nearby this person.</Param>
-                  <Param Name="MaxDisplay">11</Param>
-                  <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:physicalNeighborOf/@rdf:resource]</Param>
-                  <Param Name="ItemURLText">{{{rdf:Description/rdfs:label}}}</Param>
-                  <Param Name="ItemText" />
-                  <Param Name="ItemURL">{{{rdf:Description/@rdf:about}}}</Param>
-                </ParamList>
-              </Module>
             </Panel>
           </PanelList>
         </Presentation>
@@ -28183,8 +28159,8 @@
           <PageTitle>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</PageTitle>
           <PageBackLinkName>Back to Profile</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource}}}</PageBackLinkURL>
-          <PageSubTitle>Similar People ({{{//rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageSubTitle>
-          <PageDescription>Similar people share similar sets of concepts, but are not necessarily co-authors.</PageDescription>
+          <PageSubTitle>Related Authors ({{{//rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageSubTitle>
+          <PageDescription>Related authors share similar sets of concepts, but are not necessarily co-authors.</PageDescription>
           <PanelTabType>Default</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28194,7 +28170,9 @@
             <Panel Type="main" TabSort="0" TabType="Default" Alias="list" Name="List">
               <Module ID="NetworkList">
                 <ParamList>
-                  <Param Name="InfoCaption">The people in this list are ordered by decreasing similarity.     (<font color="red">*</font> These people are also co-authors.)</Param>
+                  <Param Name="InfoCaption">
+                    The people in this list are ordered by decreasing similarity.     (<font color="red">*</font> These people are also co-authors.)
+                  </Param>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
                   <Param Name="BulletType">disc</Param>
                   <Param Name="Columns">2</Param>
@@ -28226,7 +28204,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Concepts</Param>
+                  <Param Name="InfoCaption">Related Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
                   <Param Name="MaxDisplay">5</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:hasResearchArea/@rdf:resource]</Param>
@@ -28253,7 +28231,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Similar People</Param>
+                  <Param Name="InfoCaption">Related Authors</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
                   <Param Name="MaxDisplay">11</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:similarTo/@rdf:resource]</Param>
@@ -28265,18 +28243,6 @@
                 </ParamList>
               </Module>
               <Module ID="CustomViewPersonSameDepartment" />
-              <Module ID="PassiveList">
-                <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Physical Neighbors</Param>
-                  <Param Name="Description">People whose addresses are nearby this person.</Param>
-                  <Param Name="MaxDisplay">11</Param>
-                  <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:physicalNeighborOf/@rdf:resource]</Param>
-                  <Param Name="ItemURLText">{{{rdf:Description/rdfs:label}}}</Param>
-                  <Param Name="ItemText" />
-                  <Param Name="ItemURL">{{{rdf:Description/@rdf:about}}}</Param>
-                </ParamList>
-              </Module>
             </Panel>
           </PanelList>
         </Presentation>
@@ -28295,8 +28261,8 @@
           <PageTitle>{{{//rdf:RDF/rdf:Description[@rdf:about= ../rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}</PageTitle>
           <PageBackLinkName>Back to Profile</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource}}}</PageBackLinkURL>
-          <PageSubTitle>Concepts  ({{{//rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageSubTitle>
-          <PageDescription>Concepts are derived automatically from a person's publications.</PageDescription>
+          <PageSubTitle>Related Concepts  ({{{//rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageSubTitle>
+          <PageDescription>Related concepts are derived automatically from a person's publications.</PageDescription>
           <PanelTabType>Default</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28351,7 +28317,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Concepts</Param>
+                  <Param Name="InfoCaption">Related Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
                   <Param Name="MaxDisplay">5</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:hasResearchArea/@rdf:resource]</Param>
@@ -28378,7 +28344,7 @@
               <Module ID="PassiveList">
                 <ParamList>
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Similar People</Param>
+                  <Param Name="InfoCaption">Related Authors</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
                   <Param Name="MaxDisplay">11</Param>
                   <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:similarTo/@rdf:resource]</Param>
@@ -28390,18 +28356,6 @@
                 </ParamList>
               </Module>
               <Module ID="CustomViewPersonSameDepartment" />
-              <Module ID="PassiveList">
-                <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
-                  <Param Name="InfoCaption">Physical Neighbors</Param>
-                  <Param Name="Description">People whose addresses are nearby this person.</Param>
-                  <Param Name="MaxDisplay">11</Param>
-                  <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:physicalNeighborOf/@rdf:resource]</Param>
-                  <Param Name="ItemURLText">{{{rdf:Description/rdfs:label}}}</Param>
-                  <Param Name="ItemText" />
-                  <Param Name="ItemURL">{{{rdf:Description/@rdf:about}}}</Param>
-                </ParamList>
-              </Module>
             </Panel>
           </PanelList>
         </Presentation>
@@ -28422,11 +28376,12 @@
           <PageBackLinkName>Back to Details</PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/prns:connectionInNetwork/@rdf:resource}}}/details</PageBackLinkURL>
           <PageSubTitle>Co-Authors</PageSubTitle>
-          <PageDescription>This is a "connection" page, showing publications co-authored by 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} 
-	and 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.
-  </PageDescription>
+          <PageDescription>
+            This is a "connection" page, showing publications co-authored by
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}
+            and
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.
+          </PageDescription>
           <PanelTabType>Fixed</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28448,12 +28403,12 @@
                 <ParamList>
                   <Param Name="HTML">
                     <div class="passiveSectionHead">
-						Connection Strength
-					</div>
+                      Connection Strength
+                    </div>
                     <br />
                     <div class="passiveSectionBody">
-						The connection strength for co-authors is the <u>sum</u> of the scores for each of their co-authored publications.
-					</div>
+                      The connection strength for co-authors is the <u>sum</u> of the scores for each of their co-authored publications.
+                    </div>
                   </Param>
                 </ParamList>
               </Module>
@@ -28478,10 +28433,10 @@
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/rdf:subject/@rdf:resource}}}</PageBackLinkURL>
           <PageSubTitle>Similar Person</PageSubTitle>
           <PageDescription>
-	This is a "connection" page, showing concepts shared by  
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} and 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.
-  </PageDescription>
+            This is a "connection" page, showing concepts shared by
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} and
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName}}} {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName}}}.
+          </PageDescription>
           <PanelTabType>Fixed</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28503,10 +28458,12 @@
                 <ParamList>
                   <Param Name="HTML">
                     <div class="passiveSectionHead">
-              Connection Strength
-            </div>
+                      Connection Strength
+                    </div>
                     <br />
-                    <div class="passiveSectonBody"> The connection strength for similar people is the <u>sum</u> of the scores for each shared concept. </div>
+                    <div class="passiveSectonBody">
+                      The connection strength for related authors is the <u>sum</u> of the scores for each shared concept.
+                    </div>
                   </Param>
                 </ParamList>
               </Module>
@@ -28527,22 +28484,23 @@
           <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
           <PageColumns>3</PageColumns>
           <PageTitle>Connection</PageTitle>
-          <PageBackLinkName>Back to Details
-  </PageBackLinkName>
+          <PageBackLinkName>
+            Back to Details
+          </PageBackLinkName>
           <PageBackLinkURL>{{{//rdf:RDF/rdf:Description/prns:connectionInNetwork/@rdf:resource}}}/details</PageBackLinkURL>
           <PageSubTitle>
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} 
-	to 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}
-  </PageSubTitle>
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}}
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}
+            to
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}
+          </PageSubTitle>
           <PageDescription>
-	This is a "connection" page, showing publications 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}} 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}} 
-	has written about 
-	{{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}.
-  </PageDescription>
+            This is a "connection" page, showing publications
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName}}}
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName}}}
+            has written about
+            {{{//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/rdfs:label}}}.
+          </PageDescription>
           <PanelTabType>Fixed</PanelTabType>
           <PanelList>
             <Panel Type="active">
@@ -28564,10 +28522,12 @@
                 <ParamList>
                   <Param Name="HTML">
                     <div class="passiveSectionHead">
-              Connection Strength
-            </div>
+                      Connection Strength
+                    </div>
                     <br />
-                    <div class="passiveSectionBody"> The connection strength for concepts is the <u>sum</u> of the scores for each matching publication.</div>
+                    <div class="passiveSectionBody">
+                      The connection strength for concepts is the <u>sum</u> of the scores for each matching publication.
+                    </div>
                   </Param>
                 </ParamList>
               </Module>
@@ -28624,6 +28584,33 @@
             </Panel>
             <Panel Type="main" TabSort="0" TabType="Default">
               <Module ID="CustomViewInformationResource" />
+            </Panel>
+          </PanelList>
+        </Presentation>
+      </presentationXML>
+    </Row>
+    <Row>
+      <PresentationID>14</PresentationID>
+      <type>E</type>
+      <subject>http://xmlns.com/foaf/0.1/Person</subject>
+      <presentationXML>
+        <Presentation PresentationClass="profile">
+          <PageOptions Columns="2" />
+          <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/prns:fullName[1]}}}</WindowName>
+          <PageColumns>2</PageColumns>
+          <PageTitle>{{{rdf:RDF[1]/rdf:Description[1]/prns:fullName[1]}}}</PageTitle>
+          <PageBackLinkName>View Profile</PageBackLinkName>
+          <PageBackLinkURL>{{{rdf:RDF[1]/rdf:Description[1]/@rdf:about[1]}}}</PageBackLinkURL>
+          <PageSubTitle />
+          <PageDescription />
+          <PanelTabType>Fixed</PanelTabType>
+          <PanelList>
+            <Panel Type="active">
+              <Module ID="MiniSearch" />
+              <Module ID="MainMenu" />
+            </Panel>
+            <Panel Type="main" TabSort="0" TabType="Default">
+              <Module ID="EditPropertyContainer" Type="fixed" />
             </Panel>
           </PanelList>
         </Presentation>

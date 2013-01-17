@@ -9,10 +9,12 @@
   <xsl:param name="classURIpassedin"/>
   <xsl:param name="total"/>
   <xsl:template match="/">
+<!--
     <div class="passiveSectionHead">
       <xsl:text>Filter by Type</xsl:text>
     </div>
-    <div class="passiveSectionBody" style="margin-top: 6px;">
+-->
+    <div class="passiveSectionBody" id="filters" style="margin-top: 6px;">
       <xsl:variable name="allURL">
         
         <xsl:value-of select="$root"/><![CDATA[/Search/Default.aspx?searchtype=everything&searchfor=]]><xsl:value-of select="$searchfor"/><![CDATA[&perpage=15&offset=]]>
@@ -68,7 +70,9 @@
 
     </div>
     <div>
+<!--
       <div class="passiveSectionLine"></div>
+-->
     </div>
    
   </xsl:template>

@@ -201,7 +201,7 @@ namespace Profiles
                //After the error is written to the event log, a copy of the same message is loaded into a session variable and then
                //displayed in the ErrorPage.aspx file.
 
-               Response.Redirect("~/Error/default.aspx",true);       
+               Response.Redirect("~/Error/Default.aspx",true);       
              
             }
             catch (Exception ex)

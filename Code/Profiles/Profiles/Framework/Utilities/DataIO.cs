@@ -278,8 +278,8 @@ namespace Profiles.Framework.Utilities
 
         public SqlDataReader GetRESTApplications()
         {
-
-            string sql = "Select * from [Framework.].RestPath with(nolock)";
+            // UCSF  Order matter so that Jane.Doe.2 does not get picked up by Jane.Doe
+            string sql = "Select * from [Framework.].RestPath with(nolock) order by len(ApplicationName) desc";
 
             SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
 
@@ -676,7 +676,7 @@ namespace Profiles.Framework.Utilities
 
             SqlParameter[] param;
 
-            param = new SqlParameter[6];
+            param = new SqlParameter[7];
 
             SqlCommand dbcommand = new SqlCommand();
 
@@ -696,9 +696,13 @@ namespace Profiles.Framework.Utilities
             param[4] = new SqlParameter("@SessionPersonURI", SqlDbType.VarChar, 400);
             param[4].Direction = ParameterDirection.Output;
 
+            // UCSF
+            param[5] = new SqlParameter("@ShortDisplayName", SqlDbType.VarChar, 400);
+            param[5].Direction = ParameterDirection.Output;
+
             if (session.LogoutDate > DateTime.Now.AddDays(-5))
             {
-                param[5] = new SqlParameter("@LogoutDate", session.LogoutDate.ToString());
+                param[6] = new SqlParameter("@LogoutDate", session.LogoutDate.ToString());
             }
 
             dbcommand.Connection = dbconnection;
@@ -717,6 +721,7 @@ namespace Profiles.Framework.Utilities
                 dbcommand.Connection.Close();
                 session.NodeID = Convert.ToInt64(param[3].Value);
                 session.PersonURI = param[4].Value.ToString();
+                session.ShortDisplayName = param[5].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -871,7 +876,7 @@ namespace Profiles.Framework.Utilities
                     else
                         param.Add(new SqlParameter("@param2", DBNull.Value));
 
-                    SqlCommand comm = GetDBCommand(ref dbconnection, "[UCSF.].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray());
+                    SqlCommand comm = GetDBCommand(ref dbconnection, "[UCSF].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray());
                     ExecuteSQLDataCommand(comm);
                     comm.Connection.Close();
 
@@ -961,6 +966,43 @@ namespace Profiles.Framework.Utilities
             }
 
             return nodeId;
+        }
+
+        public string GetPrettyURL(string personId)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlDataReader reader;
+            string prettyURL = null;
+
+            try
+            {
+
+                dbconnection.Open();
+
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                reader = GetDBCommand(connstr, "select URL_NAME from cls.dbo.uniqueNames where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = " + personId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                while (reader.Read())
+                {
+                    prettyURL = reader[0].ToString();
+                }
+
+                reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return prettyURL;
         }
 
     }

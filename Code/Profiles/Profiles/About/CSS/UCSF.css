@@ -23,14 +23,26 @@ blockquote {
 }
 img { border: none; }
 .content-block {
-  width: 300px; float: left;
+  width: 370px; float: left;
   padding-right: 40px; 
 }
-.content-block h2 { font-size: 16px; margin-top: 16px; color: #333;
-  border-bottom: 1px solid #D18145;
-  width: 290px;
-  padding: 0 8px 8px 0;
+.content-block h2 { font-size: 16px; line-height: 20px; margin-top: 12px; color: #CA7C29;
+  padding: 0;
   margin-bottom: 14px;
-  background: transparent url(../images/orange-tick.gif) no-repeat 0 bottom;
 }
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
+
+.doublearrow { font-weight: bold;
+  background: url(../images/arrows.gif) no-repeat scroll right 4px transparent;
+  padding-right: 13px;
+}
+
+ul.highlights { padding-left: 20px; }
+ul.highlights li {
+  background:transparent url(../images/orangeArrow.gif) no-repeat scroll 0px 0.45em;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin: 0;
+  padding:0 0 5px 18px;
+  font-size: 14px;
+}

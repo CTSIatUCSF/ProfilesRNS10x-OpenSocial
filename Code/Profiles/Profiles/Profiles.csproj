@@ -73,15 +73,46 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\AboutUCSFProfiles.aspx" />
+    <Content Include="About\CloseBrowser.aspx" />
+    <Content Include="About\Images\conceptsearch.jpg" />
+    <Content Include="About\Images\detailstab.jpg" />
+    <Content Include="About\Images\newfeatures.gif" />
+    <Content Include="About\Images\orangeArrow.gif" />
+    <Content Include="About\Images\pubsgraph.jpg" />
+    <Content Include="About\Images\timeline.jpg" />
+    <Content Include="About\Images\toc.jpg" />
+    <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\CSS\UCSF.css" />
     <Content Include="About\ForDevelopers.aspx" />
     <Content Include="About\GadgetLibrary.aspx" />
     <Content Include="About\Help.aspx" />
     <Content Include="About\HowProfilesWorks.aspx" />
+    <Content Include="About\Images\arrows.gif" />
+    <Content Include="About\Images\cloud.png" />
+    <Content Include="About\Images\comment.gif" />
+    <Content Include="About\Images\develop-profile.gif" />
+    <Content Include="About\Images\feed.jpg" />
+    <Content Include="About\Images\gear.gif" />
+    <Content Include="About\Images\googleGadget.png" />
+    <Content Include="About\Images\groupsGadget.png" />
+    <Content Include="About\Images\help.gif" />
+    <Content Include="About\Images\linksGadget.png" />
+    <Content Include="About\Images\mentorGadget.png" />
+    <Content Include="About\Images\minisearch.png" />
+    <Content Include="About\Images\opensocial-slideset.jpeg" />
+    <Content Include="About\Images\orange-tick.gif" />
+    <Content Include="About\Images\presentationGadget.png" />
+    <Content Include="About\Images\profiles.jpg" />
+    <Content Include="About\Images\profilesnapshot.png" />
+    <Content Include="About\Images\pubsGadget.png" />
+    <Content Include="About\Images\quote-begin.png" />
+    <Content Include="About\Images\search-icon.gif" />
+    <Content Include="About\Images\tryit.gif" />
     <Content Include="About\JavaScript\UCSF.js" />
     <Content Include="About\PresentationXML\AboutUCSFProfiles.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="About\PresentationXML\CloseBrowser.xml" />
     <Content Include="About\PresentationXML\ForDevelopers.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -94,9 +125,37 @@
     <Content Include="About\PresentationXML\HowProfilesWorks.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="About\PresentationXML\NewFeatures.xml" />
     <Content Include="ActiveNetwork\CSS\UCSF.css" />
     <Content Include="ActiveNetwork\JavaScript\UCSF.js" />
+    <Content Include="Edit\Images\Icons_downSort.gif" />
+    <Content Include="Edit\Images\icons_greenStar.gif" />
+    <Content Include="Edit\Images\icons_green_BlueRow.gif" />
+    <Content Include="Edit\Images\icons_redCircle.gif" />
+    <Content Include="Edit\Images\icons_red_BlueRow.gif" />
+    <Content Include="Edit\Images\Icons_upSort.gif" />
+    <Content Include="Edit\Images\Icon_add_item.gif" />
+    <Content Include="Framework\Images\backtotop.gif" />
+    <Content Include="Framework\Images\chatter-follow.png" />
+    <Content Include="Framework\Images\chatter-group.png" />
+    <Content Include="Framework\Images\collapseRound.gif" />
+    <Content Include="Framework\Images\expandRound.gif" />
+    <Content Include="Framework\Images\favicon.gif" />
+    <Content Include="Framework\Images\gadgetcollapse.gif" />
+    <Content Include="Framework\Images\gadgetexpand.gif" />
+    <Content Include="Framework\Images\glyphicons-halflings.png" />
+    <Content Include="Framework\Images\info1.png" />
+    <Content Include="Framework\Images\info4.png" />
+    <Content Include="Framework\Images\link.gif" />
+    <Content Include="Framework\Images\photodefault.jpg" />
+    <Content Include="Framework\Images\ProfilesLogo.gif" />
+    <Content Include="Framework\Images\search-icon.gif" />
+    <Content Include="Framework\Images\ucsf.png" />
+    <Content Include="Profile\Images\default_img.png" />
     <Content Include="RobotsTxt.aspx" />
+    <Content Include="Search\Images\icon_squareArrow.gif" />
+    <Content Include="Search\Images\search-red.jpg" />
+    <Content Include="Search\Modules\SearchConcept\SearchConcept.ascx" />
     <Content Include="SiteMap.aspx" />
     <Content Include="CustomAPI\v1\EditedCount.aspx" />
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
@@ -109,8 +168,6 @@
     <Content Include="Edit\JavaScript\UCSF.js" />
     <Content Include="Error\CSS\UCSF.css" />
     <Content Include="Error\JavaScript\UCSF.js" />
-    <Content Include="Error\UCSFErrorPage.aspx" />
-    <Content Include="Error\PresentationXML\UCSFErrorPage.xml" />
     <Content Include="Framework\CSS\UCSF.css" />
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />
@@ -141,6 +198,7 @@
     <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="SPARQL\CSS\UCSF.css" />
     <Content Include="SPARQL\JavaScript\UCSF.js" />
+    <Content Include="trace.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -152,6 +210,20 @@
     </Compile>
     <Compile Include="About\AboutUCSFProfiles.aspx.designer.cs">
       <DependentUpon>AboutUCSFProfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\CloseBrowser.aspx.cs">
+      <DependentUpon>CloseBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\CloseBrowser.aspx.designer.cs">
+      <DependentUpon>CloseBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\NewFeatures.aspx.cs">
+      <DependentUpon>NewFeatures.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\NewFeatures.aspx.designer.cs">
+      <DependentUpon>NewFeatures.aspx</DependentUpon>
     </Compile>
     <Compile Include="About\ForDevelopers.aspx.cs">
       <DependentUpon>ForDevelopers.aspx</DependentUpon>
@@ -209,6 +281,13 @@
     <Compile Include="RobotsTxt.aspx.designer.cs">
       <DependentUpon>RobotsTxt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Search\Modules\SearchConcept\SearchConcept.ascx.cs">
+      <DependentUpon>SearchConcept.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Modules\SearchConcept\SearchConcept.ascx.designer.cs">
+      <DependentUpon>SearchConcept.ascx</DependentUpon>
+    </Compile>
     <Compile Include="SiteMap.aspx.cs">
       <DependentUpon>SiteMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -252,13 +331,6 @@
     </Compile>
     <Compile Include="Edit\Modules\EditObjectTypeProperty\EditObjectTypeProperty.ascx.designer.cs">
       <DependentUpon>EditObjectTypeProperty.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Error\UCSFErrorPage.aspx.cs">
-      <DependentUpon>UCSFErrorPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Error\UCSFErrorPage.aspx.designer.cs">
-      <DependentUpon>UCSFErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Framework\Utilities\StringExtensions.cs" />
     <Compile Include="Login\Modules\ShibLogin\ShibLogin.ascx.cs">
@@ -1005,7 +1077,9 @@
     <Content Include="Search\JavaScript\comboTreeCheck.js" />
     <Content Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.ascx" />
     <Content Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.xslt" />
-    <Content Include="Search\Modules\SearchResults\PeopleResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\PeopleResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\Modules\SearchResults\SearchResults.ascx" />
     <Content Include="Search\Modules\TopSearchPhrase\TopSearchPhrase.ascx" />
     <Content Include="Search\Modules\MiniSearch\MiniSearch.ascx" />
@@ -1020,7 +1094,9 @@
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
-    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPARQL\PresentationXML\SPARQLPresentation.xml" />
     <Content Include="SPARQL\Default.aspx" />
     <Content Include="SPARQL\Modules\SPARQLSearch\SPARQLSearch.ascx" />

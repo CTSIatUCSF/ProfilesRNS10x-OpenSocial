@@ -44,16 +44,27 @@ namespace Profiles.ORNG.Utilities
 
         public static OpenSocialManager GetOpenSocialManager(string ownerId, Page page, bool editMode)
         {
+            return GetOpenSocialManager(ownerId, page, editMode, false);
+        }
+
+        public static OpenSocialManager GetOpenSocialManager(string ownerId, Page page, bool editMode, bool loadingAssets)
+        {
             // synchronize?  From the debugger this seems to be single threaded, so synchronization is not needed
             if (page.Items.Contains(OPENSOCIAL_MANAGER))
             {
-                int currentCount = (int)page.Items[OPENSOCIAL_PAGE_REQUESTS];
-                page.Items[OPENSOCIAL_PAGE_REQUESTS] = ++currentCount;
+                if (loadingAssets)
+                {
+                    int currentCount = (int)page.Items[OPENSOCIAL_PAGE_REQUESTS];
+                    page.Items[OPENSOCIAL_PAGE_REQUESTS] = ++currentCount;
+                }
             }
             else
             {
                 page.Items.Add(OPENSOCIAL_MANAGER, new OpenSocialManager(ownerId, page, editMode));
-                page.Items.Add(OPENSOCIAL_PAGE_REQUESTS, 1);
+                if (loadingAssets)
+                {
+                    page.Items.Add(OPENSOCIAL_PAGE_REQUESTS, 1);
+                }
             }
             return (OpenSocialManager)page.Items[OPENSOCIAL_MANAGER];
         }
@@ -66,6 +77,7 @@ namespace Profiles.ORNG.Utilities
             this.page = page;
             this.pageName = page.AppRelativeVirtualPath.Substring(2).ToLower();
 
+            DebugLogging.Log("Creating GetOpenSocialManager for " + ownerId + ", " + pageName);
             if (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] == null)
             {
                 // do nothing
@@ -113,6 +125,7 @@ namespace Profiles.ORNG.Utilities
                 }
             }
             // sort the gadgets
+            DebugLogging.Log("Visible Gadget Count : " + gadgets.Count);
             gadgets.Sort();
         }
 
@@ -156,6 +169,7 @@ namespace Profiles.ORNG.Utilities
 
         public static string BuildJSONPersonIds(string personId, string message)
         {
+            DebugLogging.Log("BuildJSONPersonIds " + personId + " : " + message);
             List<string> personIds = new List<string>();
             personIds.Add(personId);
             return BuildJSONPersonIds(personIds, message);
@@ -235,7 +249,10 @@ namespace Profiles.ORNG.Utilities
         {
             // always have turned on for Profile/Display.aspx because we want to generate the "profile was viewed" in Javascript (bot proof) 
             // regardless of any gadgets being visible, and we need this to be True for the shindig javascript libraries to load
-            return ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] != null && (GetVisibleGadgets().Count > 0 || GetPageName().Equals("Profile/Display.aspx"));
+            bool retval = ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] != null && (GetVisibleGadgets().Count > 0 || GetPageName().Equals("Profile/Display.aspx"));
+            DebugLogging.Log("OpenSocialIsVisible = " + retval);
+            return retval;
+
         }
 
         public List<PreparedGadget> GetVisibleGadgets()
@@ -353,6 +370,7 @@ namespace Profiles.ORNG.Utilities
             int currentCount = (int)page.Items[OPENSOCIAL_PAGE_REQUESTS];
             page.Items[OPENSOCIAL_PAGE_REQUESTS] = --currentCount;
 
+            DebugLogging.Log("OpenSocialCurrentCount = " + currentCount);
             if (!IsVisible() || currentCount > 0)
             {
                 return;

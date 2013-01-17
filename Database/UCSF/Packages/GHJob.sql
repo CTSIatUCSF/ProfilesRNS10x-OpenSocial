@@ -51,8 +51,8 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Refresh 
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
 		@command=N'declare @ghid int;
-select @ghid = max(ghid) from [UCSF.].[ghXML];
-exec [UCSF.].[gh_ParseGlobalHealthXML] @ghid;', 
+select @ghid = max(ghid) from [UCSF].[ghXML];
+exec [UCSF].[gh_ParseGlobalHealthXML] @ghid;', 
 		@database_name=N'profiles_102', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
