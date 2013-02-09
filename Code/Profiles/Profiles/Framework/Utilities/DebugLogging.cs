@@ -39,7 +39,7 @@ namespace Profiles.Framework.Utilities
             {
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
                 {
-                    using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "/ProfilesDebuggingLog.txt"))
+                    using (StreamWriter w = File.AppendText(ConfigurationSettings.AppSettings["DEBUG_PATH"]))
                     {
                         if (triple.Subject == 0) {
                             // write a line of text to the file

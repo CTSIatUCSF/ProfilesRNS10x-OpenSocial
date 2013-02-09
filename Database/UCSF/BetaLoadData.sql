@@ -1,4 +1,4 @@
-USE [profiles_102]
+USE [profiles_prod]
 GO
 
 /****** Object:  StoredProcedure [Profile.Import].[Beta.LoadData]    Script Date: 01/03/2013 10:45:15 ******/
@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE procedure [Profile.Import].[Beta.LoadData] (@SourceDBName varchar(max))
+ALTER procedure [Profile.Import].[Beta.LoadData] (@SourceDBName varchar(max))
 AS BEGIN
 	 
 	SET NOCOUNT ON;
@@ -133,7 +133,7 @@ AS BEGIN
 	
 	--	[profile.data].[person.narrative]dbo.narratives  
 	TRUNCATE TABLE [profile.Import].[Beta.Narrative] 
-	SELECT @sql = 'SELECT [PersonID],REPLACE(REPLACE([NarrativeMain],''&amp;'', ''&''),CHAR(13),'') FROM '+ @SourceDBName + '.dbo.narratives'
+	SELECT @sql = 'SELECT [PersonID],REPLACE(REPLACE(cast([NarrativeMain] as varchar(max)),''&amp;'', ''&''),CHAR(13),'') FROM '+ @SourceDBName + '.dbo.narratives'
 	INSERT INTO [profile.Import].[Beta.Narrative]([PersonID],[NarrativeMain] )
 	EXEC sp_executesql @sql	    	
 	

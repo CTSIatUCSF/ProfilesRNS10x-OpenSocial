@@ -29,14 +29,18 @@ look and feel.</p>
 </div>
 <ul  class="square">
   <li>Over 100,000 publications, research overviews, photos, UCSF Campus Locator System</li>
-  <li>More than 3000 UCSF faculty and academic leaders</li>
-  <li>More than 1400 UCSF residents and fellows</li>
-  <li>More than 1000 UCSF postdoctoral scholars</li>
+  <li>More than 3,000 UCSF faculty and academic leaders</li>
+  <li>More than 1,400 UCSF residents and fellows</li>
+  <li>More than 1,000 UCSF postdoctoral scholars</li>
   <li>Updated automatically as new publications become available and contact data change</li>
 </ul>
 
+<h2 style="clear:right;padding-top:10px" class="about">Embed UCSF Profiles Data into your Site</h2>
+<img src="images/feed.jpg" alt="data feed" style="float:right;margin-top:-20px" />
+<p>Enhance your website with automated data from UCSF Profiles, matching your design. <br /><a href="http://opendata.profiles.ucsf.edu/" target="_blank">Learn more</a></p>
+
 <h2 style="padding-top:10px" class="about">Search UCSF Profiles from your Website</h2>
-<img src="images/minisearch.png" alt="mini-search" style="float:right;padding-left:30px;padding-top:10px" />
+<img src="images/minisearch.jpg" alt="mini-search" style="float:right;padding-left:30px;padding-top:30px" />
 <p>By adding the UCSF Profiles Mini Search box to your website your site visitors can find UCSF researchers, potential collaborators, and mentors directly from your site. To get started, contact <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a></p>
 <p>See a demo at <a href="http://medschool2.ucsf.edu/sfgh/research" target="_new" title="See a demo">San Francisco General Hospital (SFGH)</a></p>
 <blockquote>
@@ -46,11 +50,7 @@ Moriah Hart, Analyst, San Francisco General Hospital, UCSF
 </p>
 </blockquote>
  
-<h2 style="clear:right;padding-top:10px" class="about">Embed UCSF Profiles Data into your Site</h2>
-<img src="images/feed.jpg" alt="data feed" style="float:right;margin-top:-40px" />
-<p>Enhance your website with automated data from UCSF Profiles, matching your design. <br /><a href="http://opendata.profiles.ucsf.edu/" target="_blank">Learn more</a></p>
-
-  
+ 
           </Param>
         </ParamList>
       </Module>

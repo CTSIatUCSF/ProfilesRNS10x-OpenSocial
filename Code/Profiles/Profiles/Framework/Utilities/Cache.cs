@@ -46,7 +46,14 @@ namespace Profiles.Framework.Utilities
                     HttpRuntime.Cache.Remove(hashkey);
                 }
 
-                HttpRuntime.Cache.Insert(hashkey, data, null, DateTime.Now.AddSeconds(timeout), System.Web.Caching.Cache.NoSlidingExpiration);
+                if (timeout > 0)
+                {
+                    HttpRuntime.Cache.Insert(hashkey, data, null, DateTime.Now.AddSeconds(timeout), System.Web.Caching.Cache.NoSlidingExpiration);
+                }
+                else
+                {
+                    HttpRuntime.Cache.Insert(hashkey, data);
+                }
             }
             catch (Exception e)
             {

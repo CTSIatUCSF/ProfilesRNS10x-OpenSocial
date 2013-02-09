@@ -20,9 +20,4 @@ image { border: none; }
 .profiles .profilesContentPassive { margin-top: 38px; margin-top: 35px\9; } 
 
 
-/* temporary Qualaroo style */
-#ki_container #ki_buttons, html div#ki_container hr { display: none !important; }
-#ki_container .ki_description { text-align: center; font: normal 13px/17px helvetica,arial,sans-serif !important; }
-
-
 

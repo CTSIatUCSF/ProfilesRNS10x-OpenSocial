@@ -27903,7 +27903,7 @@
                 <ParamList>
                   <Param Name="TimelineCaption">This graph shows the total number of publications written about "@ConceptName" by people in UCSF Profiles by year, and whether "@ConceptName" was a major or minor topic of these publications.</Param>
                   <Param Name="CitedCaption">Below are the publications written about "@ConceptName" that have been cited the most by articles in Pubmed Central.</Param>
-                  <Param Name="NewestCaption">Below are the most recent publications written about "@ConceptName" by people in Profiles.</Param>
+                  <Param Name="NewestCaption">Below are recent publications written about "@ConceptName" by people in Profiles.</Param>
                   <Param Name="OldestCaption">Below are the earliest publications written about "@ConceptName" by people in Profiles.</Param>
                 </ParamList>
               </Module>

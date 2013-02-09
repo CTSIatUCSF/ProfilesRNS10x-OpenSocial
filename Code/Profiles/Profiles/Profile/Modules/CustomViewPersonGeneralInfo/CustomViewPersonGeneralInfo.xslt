@@ -4,7 +4,7 @@
   <xsl:param name="root"/>
   <xsl:param name="imgguid"/>
   <xsl:template match="/">
-    <div class="content_two_columns" itemscope="itemscope" itemtype="http://schema.org/Person">
+    <div class="content_two_columns">
       <table>
         <tbody>
           <tr>
@@ -122,7 +122,7 @@
             <tr>
               <th>Email</th>
               <td>
-                <a href="mailto:{rdf:RDF[1]/rdf:Description[1]/vivo:email}" itemprop="email">
+                <a href="mailto:{rdf:RDF[1]/rdf:Description[1]/vivo:email}" onlick="return handleMailTo(this, '{rdf:RDF[1]/rdf:Description[1]/vivo:email}')" itemprop="email">
                   <xsl:value-of select="rdf:RDF[1]/rdf:Description[1]/vivo:email"/>
                 </a>
               </td>

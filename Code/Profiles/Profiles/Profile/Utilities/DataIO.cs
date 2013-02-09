@@ -69,7 +69,7 @@ namespace Profiles.Profile.Utilities
                             dbcommand.Parameters.Add(new SqlParameter("@ExpandRDFListXML", request.ExpandRDFList));
 
                         dbcommand.Connection = dbconnection;
-                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE end GetRDFData(RDFTriple request)", request);
+                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE preread GetRDFData(RDFTriple request)", request);
 
                         using (var dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
                         {
@@ -83,6 +83,7 @@ namespace Profiles.Profile.Utilities
                         }
 
                         xmlrtn.LoadXml(xmlstr);
+                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE end GetRDFData(RDFTriple request)", request);
 
                         Framework.Utilities.Cache.Set(request.Key + "data", xmlrtn);
                         xmlstr = string.Empty;
@@ -160,7 +161,7 @@ namespace Profiles.Profile.Utilities
 
                     xmlrtn.LoadXml(xmlstr);
 
-                    Framework.Utilities.Cache.Set(request.Key + "presentation", xmlrtn);
+                    Framework.Utilities.Cache.Set(request.Key + "presentation", xmlrtn, -1); //UCSF.  No need to load this all the time.  It NEVER changes
                     xmlstr = string.Empty;
 
 

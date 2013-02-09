@@ -1,4 +1,4 @@
-USE [profiles_102]
+USE [profiles_prod]
 GO
 
 /****** Object:  StoredProcedure [Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]    Script Date: 01/03/2013 11:10:44 ******/

@@ -43,7 +43,7 @@ SELECT p.[PersonID]
 
 GO
 
-ALTER view [UCSF].[vwPerson]
+CREATE view [UCSF].[vwPerson]
 as
 		SELECT p.personid,
 					 p.userid,

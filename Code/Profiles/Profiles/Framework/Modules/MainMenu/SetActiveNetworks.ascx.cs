@@ -89,6 +89,7 @@ namespace Profiles.Framework.Modules.MainMenu
                 
             }
 
+            /** UCSF
             reader = data.GetActiveNetwork(0, false);
 
             while (reader.Read())
@@ -113,7 +114,7 @@ namespace Profiles.Framework.Modules.MainMenu
                 pnlMyNetwork.Visible = false;
             }
 
-
+            */
         }
 
         protected void gvActiveNetwork_OnRowDataBound(object sender, GridViewRowEventArgs e)

@@ -123,7 +123,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE FUNCTION [dbo].[fn_UrlCleanName]
+ALTER FUNCTION [dbo].[fn_UrlCleanName]
 (
 	@s varchar(255)
 )
@@ -145,11 +145,18 @@ BEGIN
 		SET @c = substring(@s,@i,1)											------------------------------------------- ' . - _ all are valid for URL's
 		IF (ascii(@c) between 65 and 90 or ascii(@c) between 97 and 122 or ascii(@c) between 48 and 57 or ascii(@c) in (45, 46, 95))
 			SET @str = @str + @c
+        ELSE IF (ASCII(@c) = 32 AND @str != '' AND (ascii(right(@str,1)) between 65 and 90 or ascii(right(@str,1)) between 48 and 57)) 
+			SET @str = @str + '-'
+						
 		SET @i = @i + 1
 	END
 
 	IF len(@str) < 1
 		SET @str = null
+		
+	-- remove any trailing dots or dashes
+	WHILE (ascii(RIGHT(@str,1)) in (45, 46, 95))
+		SET @str = LEFT(@str, len(@str) -1)
 			
 	RETURN @str
 

@@ -13,23 +13,23 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER (PRESIDENT AND FELLOWS OF HARV
 */
 USE [master]
 GO
-CREATE LOGIN [App_Profiles10] WITH PASSWORD=N'Password1234', DEFAULT_DATABASE=[ProfilesRNS], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+CREATE LOGIN [App_ProfilesProd] WITH PASSWORD=N'IlikeCTSI!', DEFAULT_DATABASE=[profiles_prod], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 GO
-USE [ProfilesRNS]
+USE [profiles_prod]
 GO
-CREATE USER [App_Profiles10] FOR LOGIN [App_Profiles10] WITH DEFAULT_SCHEMA=[dbo]
+CREATE USER [App_ProfilesProd] FOR LOGIN [App_ProfilesProd] WITH DEFAULT_SCHEMA=[dbo]
 GO
-EXEC sp_change_users_login 'Auto_Fix', 'App_Profiles10', NULL, 'Password1234'
+EXEC sp_change_users_login 'Auto_Fix', 'App_ProfilesProd', NULL, 'Password1234'
 GO
-EXEC sp_addrolemember N'db_datareader', N'App_Profiles10'
+EXEC sp_addrolemember N'db_datareader', N'App_ProfilesProd'
 GO
-EXEC master..sp_addsrvrolemember @loginame = N'App_Profiles10', @rolename = N'sysadmin'
+EXEC master..sp_addsrvrolemember @loginame = N'App_ProfilesProd', @rolename = N'sysadmin'
 GO
 SET NOCOUNT ON
 DECLARE @user SYSNAME
  
 -- 2 - Set @user variable
-SELECT @user='App_Profiles10'
+SELECT @user='App_ProfilesProd'
  
 -- 4 - Populate temporary table
 SELECT  'GRANT EXEC ON ' + '[' + ROUTINE_SCHEMA + ']' + '.' + '[' +ROUTINE_NAME + ']' + ' TO ' + @user

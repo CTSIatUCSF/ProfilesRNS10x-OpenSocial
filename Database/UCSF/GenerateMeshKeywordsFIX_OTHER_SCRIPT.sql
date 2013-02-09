@@ -1,28 +1,14 @@
 USE [profiles_prod]
 GO
 
-/****** Object:  Table [dbo].[UCSF]].[MeSH.Keywords]    Script Date: 01/16/2013 11:14:10 ******/
+/****** Object:  StoredProcedure [UCSF].[Generate.MeSH.Keywords]    Script Date: 02/04/2013 16:53:06 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-SET ANSI_PADDING ON
-GO
-
-CREATE TABLE [UCSF].[MeSH.Keywords](
-	[PersonID] [int] NOT NULL,
-	[PMID] [int] NOT NULL,
-	[MeSHKeywords] [nvarchar](max) NOT NULL
-) ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
-GO
-
-CREATE PROCEDURE [UCSF].[Generate.MeSH.Keywords] AS
+ALTER PROCEDURE [UCSF].[Generate.MeSH.Keywords] AS
 BEGIN
   truncate table [UCSF].[MeSH.Keywords]
 
@@ -50,7 +36,7 @@ BEGIN
 	end
 	else
 	begin
-	    if (@oldpersonid > 0) 	    
+	    if (@oldpersonid > 0 AND @descriptors != '') 	    
 			insert [UCSF].[MeSH.Keywords] values (@oldpersonid, @oldpmid, RIGHT(@descriptors, len(@descriptors) - 1))
 		set @oldpersonid = @personid
 		set @oldpmid = @pmid
@@ -60,7 +46,11 @@ BEGIN
   fetch next from keywords into @personid, @pmid, @descriptor   
   end
   -- get the last one in 
-  insert [UCSF].[MeSH.Keywords] values (@oldpersonid, @oldpmid, RIGHT(@descriptors, len(@descriptors) - 1))
+  if @descriptors != ''
+	insert [UCSF].[MeSH.Keywords] values (@oldpersonid, @oldpmid, RIGHT(@descriptors, len(@descriptors) - 1))
   close keywords
   deallocate keywords
 END
+GO
+
+

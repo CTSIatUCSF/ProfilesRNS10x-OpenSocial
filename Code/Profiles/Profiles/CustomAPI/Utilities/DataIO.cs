@@ -92,7 +92,14 @@ namespace Profiles.CustomAPI.Utilities
 
         private int GetAppRegistryCount(int appId)
         {
-            return GetCount("select count(*) from [ORNG].[AppRegistry] where appId = " + appId + ";");
+            Nullable<int> cnt = (Nullable<int>)Framework.Utilities.Cache.FetchObject("ORNG._appRegistryCount_" + appId);
+            if (cnt == null) 
+            {
+                cnt = GetCount("select count(*) from [ORNG].[AppRegistry] where appId = " + appId + ";");
+                Framework.Utilities.Cache.Set("ORNG._appRegistryCount_" + appId, (Nullable<int>)cnt);
+            }
+
+            return cnt.Value;
         }
 
         private int GetCount(string sql)

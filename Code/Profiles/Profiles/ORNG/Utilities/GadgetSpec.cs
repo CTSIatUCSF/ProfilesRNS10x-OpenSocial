@@ -125,20 +125,25 @@ namespace Profiles.ORNG.Utilities
                 return false;
             }
 
-            Int32 count = 0;
-
-            Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-
-            SqlDataReader dr = data.GetIsRegisteredTo(GetAppId(), personId);
-            if (dr.Read())
+            List<int> registeredApps = (List<int>)Framework.Utilities.Cache.FetchObject(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId) ;
+            if (registeredApps == null)
             {
-                count = dr.GetInt32(0);
+                registeredApps = new List<int>();
+                Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
+
+                SqlDataReader dr = data.GetRegisteredApps(personId);
+                while (dr.Read())
+                {
+                    registeredApps.Add(dr.GetInt32(0));
+                }
+
+                if (!dr.IsClosed)
+                    dr.Close();
+
+                Framework.Utilities.Cache.Set(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId, registeredApps);
             }
 
-            if (!dr.IsClosed)
-                dr.Close();
-
-            return (count == 1);
+            return registeredApps.Contains(GetAppId());
         }
 
         public bool FromSandbox()

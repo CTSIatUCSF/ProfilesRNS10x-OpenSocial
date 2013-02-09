@@ -349,7 +349,7 @@ namespace Profiles.Framework.Utilities
 
             SqlParameter[] param;
 
-            param = new SqlParameter[6];
+            param = new SqlParameter[4];
 
             SqlCommand dbcommand = new SqlCommand();
 
@@ -504,6 +504,9 @@ namespace Profiles.Framework.Utilities
         {
             for (int i = 0; i < sqlParam.GetLength(0); i++)
             {
+                if (sqlParam[i] == null)
+                    break;
+
                 sqlcmd.Parameters.Add(sqlParam[i]);
                 sqlcmd.Parameters[i].Direction = sqlParam[i].Direction;
 

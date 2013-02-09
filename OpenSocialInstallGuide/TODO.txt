@@ -1,0 +1,4 @@
+Extend the ontology with ORNG to capture both appdata as well as registry info.  This will hopefully work in VIVO as well, and has the benefit of allowing gadgets to fit into the Profiles security structure and have searchable data.
+
+Try and extend gadget metadata to include information currently found in [ORNG].[AppViews]
+Think about "hard coding" view to chrome ID relationship

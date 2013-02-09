@@ -1,4 +1,4 @@
-USE [profiles_102]
+USE [profiles_prod]
 GO
 
 /****** Object:  StoredProcedure [Profile.Framework].[ResolveURL]    Script Date: 10/25/2012 11:28:20 ******/

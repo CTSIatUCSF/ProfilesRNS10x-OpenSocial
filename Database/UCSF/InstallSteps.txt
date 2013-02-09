@@ -14,13 +14,16 @@ Maybe fix in Profiles.Import.Beta.Narrative and Profiles.Import.Beta.Award.
 
 Upgrate to profiles_1.0.2 database following harvard instructions.
 
+create schema [UCSF]
+
+Run MESHKeywords.sql
+Run UCSFOntoloty.sql 
+
 Run HTMLBlockLineBreaks.sql because it is not picked up during upgrade
 
 Run AmpBugSearchResults.sql to alter [Search.Cache].[Public.GetNodes]
 
 Run CapatalizeCategories.sql
-
-create schema [UCSF]
 
 Run ActivityLog.sql
 
@@ -29,6 +32,8 @@ Run CreatePersonIdFunction.sql
 Run LoadProfilesData.sql to alter [Profile.Import].[LoadProfilesData]
 
 Run ResolveURL.sql to alter [Profile.Framework].[ResolveURL]
+
+Install CLS database
 
 Run RestPath.sql to load uniquenames for individuals
 
@@ -46,7 +51,17 @@ Run BetaLoadExtraData.sql to install it, then run the sp and check everything!
 Run BetaLoadExtraData-part2.sql
 
 Run GlobalHealth.sql 
+(pause) check pub counts and such!
 
 Move jobs over (ExportActivitiesToChatter, GlobalHealthImport, ProfilesGetNewHRAndPubs)
 change [UCSF.] to [UCSF] and [ORNG.] to [ORNG]
+
+Run AuthorshipTimelineConcept.sql and
+AuthorshipTimelinePerson.sql to fix colors
+
+Run FixAwardOrder.sql
+Configure logging
+
+!!!!!!!!!!!!!!!!!!!!! 
+Create ORNG indexes!!! see stageing
 

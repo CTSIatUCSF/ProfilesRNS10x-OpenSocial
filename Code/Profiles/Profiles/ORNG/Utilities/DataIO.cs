@@ -31,9 +31,9 @@ namespace Profiles.ORNG.Utilities
             return sqldr;
         }
 
-        public SqlDataReader GetIsRegisteredTo(int appId, string personId)
+        public SqlDataReader GetRegisteredApps(string personId)
         {
-            string sql = "select count(*) from [ORNG].[AppRegistry] where appId = " + appId + " and personId = '" + personId + "';";
+            string sql = "select appId from [ORNG].[AppRegistry] where personId = '" + personId + "';";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

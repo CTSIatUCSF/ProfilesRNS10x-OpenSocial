@@ -296,7 +296,10 @@ namespace Profiles.Framework
                         display = false;
                     }
                 if (display == true)
+                {
+                    Framework.Utilities.DebugLogging.Log("Loading control for " + module.Path + " : " + module.ParamList);
                     placeholder.Controls.Add(mp.LoadControl(module.Path, this, this.RDFData, module.ParamList, this.RDFNamespaces));
+                }
             }
 
             display = true;

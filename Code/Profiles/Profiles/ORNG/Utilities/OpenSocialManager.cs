@@ -77,7 +77,7 @@ namespace Profiles.ORNG.Utilities
             this.page = page;
             this.pageName = page.AppRelativeVirtualPath.Substring(2).ToLower();
 
-            DebugLogging.Log("Creating GetOpenSocialManager for " + ownerId + ", " + pageName);
+            DebugLogging.Log("Creating OpenSocialManager for " + ownerId + ", " + pageName);
             if (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] == null)
             {
                 // do nothing
@@ -104,6 +104,7 @@ namespace Profiles.ORNG.Utilities
 
             string requestAppId = page.Request.QueryString["appId"];
 
+            DebugLogging.Log("OpenSocialManager GetAllDBGadgets " + !noCache);
             Dictionary<string, GadgetSpec> allDBGadgets = GetAllDBGadgets(!noCache);
 
             // if someone used the sandbox to log in, grab those gadgets refreshed from the DB
@@ -113,6 +114,7 @@ namespace Profiles.ORNG.Utilities
             }
             else
             {
+                DebugLogging.Log("OpenSocialManager GetSecurityToken " + !noCache);
                 foreach (GadgetSpec gadgetSpec in allDBGadgets.Values)
                 {
                     // only add ones that are visible in this context!
@@ -470,7 +472,8 @@ namespace Profiles.ORNG.Utilities
                 // add to cache unless noCache is turned on 
                 if (useCache)
                 {
-                    Cache.Set(GADGET_SPEC_KEY, dbApps);
+                    // set it to not timeout
+                    Cache.Set(GADGET_SPEC_KEY, dbApps, -1);
                 }
             }
 
