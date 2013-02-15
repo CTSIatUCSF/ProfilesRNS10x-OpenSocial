@@ -62,7 +62,8 @@ namespace Profiles
             SessionManagement session = new SessionManagement();
             session.SessionCreate();
             
-            Framework.Utilities.DebugLogging.Log("SESSION CREATED for: " + session.Session().SessionID);
+            if (session.Session() != null) 
+                Framework.Utilities.DebugLogging.Log("SESSION CREATED for: " + session.Session().SessionID);
             session = null;
         }
 

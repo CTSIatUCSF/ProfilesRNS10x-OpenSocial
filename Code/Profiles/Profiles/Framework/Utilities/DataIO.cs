@@ -48,16 +48,16 @@ namespace Profiles.Framework.Utilities
 
             if (Framework.Utilities.Cache.Fetch(key) == null || !cache)
             {
+
+                Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetPropertyList(XmlDocument rdf, XmlDocument presentation, string propertyuri, bool withcounts, bool showall)");
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+                SqlConnection dbconnection = new SqlConnection(connstr);
+                SqlCommand dbcommand = new SqlCommand();
+
+                SqlDataReader dbreader = null;
                 try
                 {
-
-                    Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetPropertyList(XmlDocument rdf, XmlDocument presentation, string propertyuri, bool withcounts, bool showall)");
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                    SqlConnection dbconnection = new SqlConnection(connstr);
-                    SqlCommand dbcommand = new SqlCommand();
-
-                    SqlDataReader dbreader;
                     dbconnection.Open();
                     dbcommand.CommandType = CommandType.StoredProcedure;
 
@@ -94,9 +94,6 @@ namespace Profiles.Framework.Utilities
                         xmlstr += dbreader[0].ToString();
                     }
 
-                    if (!dbreader.IsClosed)
-                        dbreader.Close();
-
                     xmlrtn.LoadXml(xmlstr);
 
                     Framework.Utilities.Cache.Set(key, xmlrtn);
@@ -107,6 +104,14 @@ namespace Profiles.Framework.Utilities
                 {
                     Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                     throw new Exception(e.Message);
+                }
+                finally
+                {
+                    if (dbreader != null && !dbreader.IsClosed)
+                        dbreader.Close();
+
+                    if (dbcommand.Connection.State != ConnectionState.Closed)
+                        dbcommand.Connection.Close();
                 }
             }
             else
@@ -128,15 +133,15 @@ namespace Profiles.Framework.Utilities
 
             if (Framework.Utilities.Cache.Fetch(key) == null)
             {
+                Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetPropertyRangeList(propertyuri)");
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+                SqlConnection dbconnection = new SqlConnection(connstr);
+                SqlCommand dbcommand = new SqlCommand();
+
+                SqlDataReader dbreader = null;
                 try
                 {
-                    Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetPropertyRangeList(propertyuri)");
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                    SqlConnection dbconnection = new SqlConnection(connstr);
-                    SqlCommand dbcommand = new SqlCommand();
-
-                    SqlDataReader dbreader;
                     dbconnection.Open();
                     dbcommand.CommandType = CommandType.StoredProcedure;
 
@@ -156,9 +161,6 @@ namespace Profiles.Framework.Utilities
                         xmlstr += dbreader[0].ToString();
                     }
 
-                    if (!dbreader.IsClosed)
-                        dbreader.Close();
-
                     xmlrtn.LoadXml(xmlstr);
 
                     Framework.Utilities.Cache.Set(key, xmlrtn);
@@ -169,6 +171,14 @@ namespace Profiles.Framework.Utilities
                 {
                     Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                     throw new Exception(e.Message);
+                }
+                finally
+                {
+                    if (dbreader != null && !dbreader.IsClosed)
+                        dbreader.Close();
+
+                    if (dbcommand.Connection.State != ConnectionState.Closed)
+                        dbcommand.Connection.Close();
                 }
             }
             else
@@ -225,9 +235,9 @@ namespace Profiles.Framework.Utilities
 
             URLResolve rtn = null;
 
+            SqlDataReader dbreader = null;
             try
             {
-                SqlDataReader dbreader;
                 SqlParameter[] param = new SqlParameter[14];
                 param[0] = new SqlParameter("@ApplicationName", applicationname);
                 param[1] = new SqlParameter("@param1", param1);
@@ -250,11 +260,6 @@ namespace Profiles.Framework.Utilities
                 rtn = new URLResolve(Convert.ToBoolean(dbreader["Resolved"]), dbreader["ErrorDescription"].ToString(), dbreader["ResponseURL"].ToString(),
                     dbreader["ResponseContentType"].ToString(), dbreader["ResponseStatusCode"].ToString(), Convert.ToBoolean(dbreader["ResponseRedirect"]), Convert.ToBoolean(dbreader["ResponseIncludePostData"]));
 
-
-                //Always close your readers
-                if (!dbreader.IsClosed)
-                    dbreader.Close();
-
             }
             catch (Exception ex)
             {
@@ -264,8 +269,13 @@ namespace Profiles.Framework.Utilities
                 }
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
             }
+            finally
+            {
+                //Always close your readers
+                if (dbreader != null && !dbreader.IsClosed)
+                    dbreader.Close();
 
-
+            }
 
             return rtn;
         }
@@ -374,9 +384,15 @@ namespace Profiles.Framework.Utilities
 
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (dbcommand.Connection.State != ConnectionState.Closed)
+                    dbcommand.Connection.Close();
+            }
 
-            dbcommand.Connection.Close();
             if (param[1] != null)
                 accesscode = Convert.ToInt64(param[1].Value);
 
@@ -566,7 +582,6 @@ namespace Profiles.Framework.Utilities
             try
             {
                 sqlcmd.ExecuteNonQuery();
-                sqlcmd.Dispose();
             }
             catch (Exception ex)
             {
@@ -574,6 +589,10 @@ namespace Profiles.Framework.Utilities
                 Framework.Utilities.DebugLogging.Log("ERROR" + ex.StackTrace);
                 throw ex;
 
+            }
+            finally
+            {
+                sqlcmd.Dispose();
             }
         }
 
@@ -587,16 +606,18 @@ namespace Profiles.Framework.Utilities
                 sqlcmd.CommandType = CommandType.Text;
                 sqlcmd.CommandTimeout = GetCommandTimeout();
                 sqlcmd.ExecuteNonQuery();
-
-                if (sqlcmd.Connection.State == ConnectionState.Open)
-                {
-                    sqlcmd.Connection.Close();
-                }
             }
             catch (Exception ex)
             {
                 //do nothing
 
+            }
+            finally
+            {
+                if (sqlcmd != null && sqlcmd.Connection.State == ConnectionState.Open)
+                {
+                    sqlcmd.Connection.Close();
+                }
             }
 
         }
@@ -613,8 +634,10 @@ namespace Profiles.Framework.Utilities
                 Framework.Utilities.DebugLogging.Log("ERROR" + ex.Message);
                 Framework.Utilities.DebugLogging.Log("ERROR" + ex.StackTrace);
             }
-
-            sqlcmd.Dispose();
+            finally
+            {
+                sqlcmd.Dispose();
+            }
 
 
         }
@@ -835,9 +858,10 @@ namespace Profiles.Framework.Utilities
 
         protected void ActivityLog(int personId, string property, string privacyCode, string param1, string param2)
         {
-            try
+            if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ActivityLog"]) == true)
             {
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ActivityLog"]) == true)
+                SqlConnection dbconnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString);
+                try
                 {
                     int userId = new SessionManagement().Session().UserID;
                     int i = 1;
@@ -851,13 +875,12 @@ namespace Profiles.Framework.Utilities
 
                     // lookup 
                     //Console.WriteLine(message);
-                    SqlConnection dbconnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString);
                     List<SqlParameter> param = new List<SqlParameter>();
-                    if (userId > 0) 
+                    if (userId > 0)
                         param.Add(new SqlParameter("@userId", userId));
                     else
                         param.Add(new SqlParameter("@userId", DBNull.Value));
-                    if (personId > 0) 
+                    if (personId > 0)
                         param.Add(new SqlParameter("@personId", personId));
                     else
                         param.Add(new SqlParameter("@personId", DBNull.Value));
@@ -870,11 +893,11 @@ namespace Profiles.Framework.Utilities
                         param.Add(new SqlParameter("@privacyCode", Convert.ToInt32(privacyCode)));
                     else
                         param.Add(new SqlParameter("@privacyCode", DBNull.Value));
-                    if (param1 != null) 
+                    if (param1 != null)
                         param.Add(new SqlParameter("@param1", param1));
                     else
                         param.Add(new SqlParameter("@param1", DBNull.Value));
-                    if (param2 != null) 
+                    if (param2 != null)
                         param.Add(new SqlParameter("@param2", param2));
                     else
                         param.Add(new SqlParameter("@param2", DBNull.Value));
@@ -882,14 +905,16 @@ namespace Profiles.Framework.Utilities
                     SqlCommand comm = GetDBCommand(ref dbconnection, "[UCSF].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray());
                     ExecuteSQLDataCommand(comm);
                     comm.Connection.Close();
+                }
+                catch (Exception ex)
+                {
 
+                }
+                finally
+                {
                     if (dbconnection.State != ConnectionState.Closed)
                         dbconnection.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-
             }
         }
 
@@ -899,7 +924,7 @@ namespace Profiles.Framework.Utilities
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlDataReader reader;
+            SqlDataReader reader = null;
             string property = null;
 
             try
@@ -914,18 +939,21 @@ namespace Profiles.Framework.Utilities
                 {
                     property = reader[0].ToString();
                 }
-
-                reader.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
+
 
             return property;
         }
@@ -940,7 +968,7 @@ namespace Profiles.Framework.Utilities
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlDataReader reader;
+            SqlDataReader reader = null;
             Int64 nodeId = 0;
 
             try
@@ -955,17 +983,19 @@ namespace Profiles.Framework.Utilities
                 {
                     nodeId = Convert.ToInt64(reader[0]);
                 }
-
-                reader.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return nodeId;
@@ -977,7 +1007,7 @@ namespace Profiles.Framework.Utilities
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlDataReader reader;
+            SqlDataReader reader = null;
             string prettyURL = null;
 
             try
@@ -987,22 +1017,25 @@ namespace Profiles.Framework.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                reader = GetDBCommand(connstr, "select URL_NAME from cls.dbo.uniqueNames where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = " + personId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                //Force the Convert.ToInt64 in order to preven SQL Injection!!!!
+                reader = GetDBCommand(connstr, "select URL_NAME from cls.dbo.uniqueNames where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = " + Convert.ToInt64(personId), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
                 while (reader.Read())
                 {
                     prettyURL = reader[0].ToString();
                 }
-
-                reader.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return prettyURL;

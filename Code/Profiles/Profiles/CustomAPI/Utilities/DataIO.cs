@@ -87,6 +87,8 @@ namespace Profiles.CustomAPI.Utilities
             {
                 return sqldr[0].ToString();
             }
+            if (!sqldr.IsClosed)
+                sqldr.Close();
             return "";
         }
 
@@ -112,6 +114,9 @@ namespace Profiles.CustomAPI.Utilities
             {
                 cnt = Convert.ToInt32(sqldr[0].ToString());
             }
+
+            if (!sqldr.IsClosed)
+                sqldr.Close();
 
             return cnt;
         }

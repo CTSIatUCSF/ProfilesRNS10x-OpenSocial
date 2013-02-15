@@ -115,9 +115,9 @@ BEGIN
 		--select @v, @h, @d
 
 		--set @gc = 'http://chart.apis.google.com/chart?chs=605x150&amp;chf=bg,s,ffffff|c,s,ffffff&amp;chxt=x,y&amp;chxl=0:|99|00|01|02|03|1:|0|10|20|30|40|50&amp;cht=bvs&amp;chd=t:70.00,42.00,34.00,38.00,82.00|30.00,18.00,8.00,6.00,4.00&amp;chdl=First+Author|Middle+Author&amp;chco=0000ff,cc3300&amp;chbh=50'
-		--set @gc = 'http://chart.apis.google.com/chart?chxs=0,333333,10&amp;chs=605x80&amp;chf=bg,s,ffffff|c,s,ffffff&amp;chxt=x,y&amp;chxl=0:' + @h + '|1:' + @v + '&amp;cht=bvs&amp;chd=t:' + @d + '&amp;chdl=First+Author|Middle or Unkown|Last+Author&amp;chco=0000ff,009900,cc3300&amp;chbh=10'
+		--set @gc = 'http://chart.apis.google.com/chart?chxs=0,333333,10&amp;chs=605x80&amp;chf=bg,s,ffffff|c,s,ffffff&amp;chxt=x,y&amp;chxl=0:' + @h + '|1:' + @v + '&amp;cht=bvs&amp;chd=t:' + @d + '&amp;chdl=First+Author|Middle or Unknown|Last+Author&amp;chco=0000ff,009900,cc3300&amp;chbh=10'
 		--set @gc = 'http://chart.apis.google.com/chart?chs=595x100&amp;chf=bg,s,ffffff|c,s,ffffff&amp;chxt=x,y&amp;chxl=0:' + @h + '|1:' + @v + '&amp;cht=bvs&amp;chd=t:' + @d + '&amp;chdl=First+Author|Middle or Unkown|Last+Author&amp;chco='+@c+'&amp;chbh=10'
-		set @gc = 'http://chart.apis.google.com/chart?chs=625x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unkown|Last+Author&chco='+@c+'&chbh=10'
+		set @gc = 'http://chart.apis.google.com/chart?chs=625x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unknown|Last+Author&chco='+@c+'&chbh=10'
 
 		select @gc gc --, @w w
 

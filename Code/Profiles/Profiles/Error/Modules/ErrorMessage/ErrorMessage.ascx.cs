@@ -27,8 +27,8 @@ namespace Profiles.Error.Modules
     public partial class ErrorMessage : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            litError.Text = HttpContext.Current.Session["GLOBAL_ERROR"].ToString();
+        {            
+            litError.Text = (HttpContext.Current.Session != null && HttpContext.Current.Session["GLOBAL_ERROR"] != null) ? HttpContext.Current.Session["GLOBAL_ERROR"].ToString() : "Unknown Error";
         }
 
         public ErrorMessage() { }

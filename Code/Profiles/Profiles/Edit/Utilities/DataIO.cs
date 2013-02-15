@@ -36,7 +36,7 @@ namespace Profiles.Edit.Utilities
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlDataReader reader;
+            SqlDataReader reader = null;
             int personid = 0;
 
             try
@@ -52,16 +52,20 @@ namespace Profiles.Edit.Utilities
                     personid = Convert.ToInt32(reader[0]);
                 }
 
-                reader.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
 
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed) 
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return personid;
@@ -93,8 +97,6 @@ namespace Profiles.Edit.Utilities
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.DoesPublicationExist]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
 
-                dbconnection.Close();
-
                 exists = Convert.ToBoolean(param[1].Value);
 
             }
@@ -102,6 +104,11 @@ namespace Profiles.Edit.Utilities
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return exists;
@@ -129,14 +136,16 @@ namespace Profiles.Edit.Utilities
                 ExecuteSQLDataCommand(comm);
 
                 comm.Connection.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
         }
 
@@ -161,15 +170,16 @@ namespace Profiles.Edit.Utilities
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Profile.Data].[Publication.Pubmed.AddPubMedXML]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
-
-                dbconnection.Close();
-
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
 
@@ -198,17 +208,17 @@ namespace Profiles.Edit.Utilities
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(GetDBCommand(dbconnection, "[Profile.Data].[Publication.Pubmed.AddPublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
 
-                dbconnection.Close();
-
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
-
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
         }
 
         public void DeletePublications(int personid, bool deletePMID, bool deleteMPID)
@@ -216,12 +226,11 @@ namespace Profiles.Edit.Utilities
             string skey = string.Empty;
             string sparam = string.Empty;
 
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                SqlConnection dbconnection = new SqlConnection(connstr);
 
                 SqlCommand comm = new SqlCommand();
 
@@ -237,9 +246,6 @@ namespace Profiles.Edit.Utilities
 
                 comm.Connection.Close();
 
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
                 if (deleteMPID)
                     this.UpdateEntityOnePerson(personid);
 
@@ -250,8 +256,11 @@ namespace Profiles.Edit.Utilities
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
-
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
         }
 
         public void DeleteOnePublication(int personid, string pubid, XmlDocument PropertyListXML)
@@ -260,12 +269,11 @@ namespace Profiles.Edit.Utilities
             string skey = string.Empty;
             string sparam = string.Empty;
 
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                SqlConnection dbconnection = new SqlConnection(connstr);
 
                 SqlCommand comm = new SqlCommand();
 
@@ -280,21 +288,18 @@ namespace Profiles.Edit.Utilities
                 comm.ExecuteScalar();
 
                 comm.Connection.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
                 this.UpdateEntityOnePerson(personid);
-
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
-
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
         }
 
         public void EditCustomPublication(Hashtable parameters)
@@ -302,12 +307,11 @@ namespace Profiles.Edit.Utilities
             string skey = string.Empty;
             string sparam = string.Empty;
 
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                SqlConnection dbconnection = new SqlConnection(connstr);
 
                 SqlCommand comm = new SqlCommand();
 
@@ -326,18 +330,17 @@ namespace Profiles.Edit.Utilities
                 comm.ExecuteScalar();
 
                 comm.Connection.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
-
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
         }
 
         public void AddCustomPublication(Hashtable parameters, int personid, XmlDocument PropertyListXML)
@@ -346,12 +349,11 @@ namespace Profiles.Edit.Utilities
             string skey = string.Empty;
             string sparam = string.Empty;
 
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                SqlConnection dbconnection = new SqlConnection(connstr);
 
                 SqlCommand comm = new SqlCommand();
 
@@ -375,9 +377,6 @@ namespace Profiles.Edit.Utilities
 
                 comm.Connection.Close();
 
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
                 this.UpdateEntityOnePerson(personid);
 
             }
@@ -386,8 +385,11 @@ namespace Profiles.Edit.Utilities
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
-
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
         }
 
         public List<PublicationState> GetPubs(int personid)
@@ -397,7 +399,7 @@ namespace Profiles.Edit.Utilities
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlDataReader reader;
+            SqlDataReader reader = null;
 
             SqlParameter[] param = null;
             List<PublicationState> pubs = new List<PublicationState>();
@@ -409,8 +411,6 @@ namespace Profiles.Edit.Utilities
             string url = string.Empty;
             string pubdate = string.Empty;
             string frompubmed = string.Empty;
-
-
 
             try
             {
@@ -447,18 +447,20 @@ namespace Profiles.Edit.Utilities
                         Convert.ToDateTime(pubdate),
                        Convert.ToBoolean(frompubmed)));
                 }
-
-                if (!reader.IsClosed)
-                    reader.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
             }
 
             return pubs;
@@ -487,6 +489,11 @@ namespace Profiles.Edit.Utilities
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return reader;
@@ -519,17 +526,16 @@ namespace Profiles.Edit.Utilities
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
                 }
-
-                comm.Connection.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
 
 
             return true;
@@ -626,32 +632,23 @@ namespace Profiles.Edit.Utilities
 
                 comm.Connection.Close();
 
-
-                if (dbconnection.State == ConnectionState.Open)
-                    dbconnection.Close();
-
-
                 error = Convert.ToBoolean(param[5].Value);
-
-
-
 
                 if (error)
                     Framework.Utilities.DebugLogging.Log("Delete Triple blew up with the following values -- {[RDF.].DeleteTriple} DeleteInverse: 1 SubjectID:" + subjectid.ToString() + " PredicateID:" + predicateid.ToString() + " ObjectID:" + objectid.ToString() + " SessionID:" + sm.Session().SessionID);
-
-
-
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
+            finally
+            {
+                if (dbconnection.State == ConnectionState.Open)
+                    dbconnection.Close();
+            }
 
             return error;
-
-
         }
 
         public bool AddExistingEntity(Int64 subjectid, Int64 predicateid, Int64 objectid)
@@ -692,40 +689,45 @@ namespace Profiles.Edit.Utilities
         }
         public Int64 AddNewEntity(string label, string classuri)
         {
-
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
             SqlConnection dbconnection = new SqlConnection(connstr);
-
             SqlParameter[] param = new SqlParameter[5];
 
-            string error = string.Empty;
+            try
+            {
 
-            dbconnection.Open();
+                string error = string.Empty;
 
-            param[0] = new SqlParameter("@label", label);
-            param[1] = new SqlParameter("@EntityClassURI", classuri);
-            param[2] = new SqlParameter("@ForceNewEntity", 1);
-            param[3] = new SqlParameter("@SessionID", sm.Session().SessionID);
+                dbconnection.Open();
 
-            param[4] = new SqlParameter("@NodeID", null);
-            param[4].DbType = DbType.Int64;
-            param[4].Direction = ParameterDirection.Output;
+                param[0] = new SqlParameter("@label", label);
+                param[1] = new SqlParameter("@EntityClassURI", classuri);
+                param[2] = new SqlParameter("@ForceNewEntity", 1);
+                param[3] = new SqlParameter("@SessionID", sm.Session().SessionID);
 
-            SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
+                param[4] = new SqlParameter("@NodeID", null);
+                param[4].DbType = DbType.Int64;
+                param[4].Direction = ParameterDirection.Output;
 
-            //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-            ExecuteSQLDataCommand(comm);
+                SqlCommand comm = GetDBCommand(ref dbconnection, "[RDF.].GetStoreNode", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
 
-            comm.Connection.Close();
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(comm);
 
-            if (dbconnection.State == ConnectionState.Open)
-                dbconnection.Close();
+                comm.Connection.Close();
+            }
+            finally
+            {
+                if (dbconnection.State == ConnectionState.Open)
+                    dbconnection.Close();
+            }
 
             return Convert.ToInt64(param[4].Value.ToString());
 
         }
+
         public bool AddLiteral(Int64 subjectid, Int64 predicateid, Int64 objectid, XmlDocument PropertyListXML)
         {
             // UCSF
@@ -1017,9 +1019,6 @@ namespace Profiles.Edit.Utilities
 
                 comm.Connection.Close();
 
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
                 error = Convert.ToBoolean(param[sarr.Length - 1].Value);
 
             }
@@ -1027,6 +1026,12 @@ namespace Profiles.Edit.Utilities
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
             }
 
             return error;
@@ -1149,6 +1154,11 @@ namespace Profiles.Edit.Utilities
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
             }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
 
             return error;
 
@@ -1182,10 +1192,6 @@ namespace Profiles.Edit.Utilities
 
 
                 comm.Connection.Close();
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
-
             }
             catch (Exception e)
             {
@@ -1193,6 +1199,11 @@ namespace Profiles.Edit.Utilities
                 error = true;
                 throw new Exception(e.Message);
 
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return error;

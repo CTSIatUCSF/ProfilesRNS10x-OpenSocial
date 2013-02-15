@@ -53,34 +53,32 @@ namespace Profiles.Profile.Modules.NetworkMap
 
             GoogleMapHelper gmh = new GoogleMapHelper();
 
-            if (base.GetModuleParamString("MapType") == "CoAuthor")
+            try
             {
+                if (base.GetModuleParamString("MapType") == "CoAuthor")
+                {
 
-                reader = data.GetGMapUserCoAuthors(base.RDFTriple.Subject, 0, session.Session().SessionID);
-                reader2 = data.GetGMapUserCoAuthors(base.RDFTriple.Subject, 1, session.Session().SessionID);
+                    reader = data.GetGMapUserCoAuthors(base.RDFTriple.Subject, 0, session.Session().SessionID);
+                    reader2 = data.GetGMapUserCoAuthors(base.RDFTriple.Subject, 1, session.Session().SessionID);
 
+                }
+
+                if (base.GetModuleParamString("MapType") == "SimilarTo")
+                {
+                    reader = data.GetGMapUserSimilarPeople(base.RDFTriple.Subject, false, session.Session().SessionID);
+                    reader2 = data.GetGMapUserSimilarPeople(base.RDFTriple.Subject, true, session.Session().SessionID);
+                }
+
+                litGoogleCode.Text = gmh.MapPlotPeople(base.RDFTriple.Subject, reader, reader2);
             }
-
-            if (base.GetModuleParamString("MapType") == "SimilarTo")
+            finally
             {
-                reader = data.GetGMapUserSimilarPeople(base.RDFTriple.Subject, false, session.Session().SessionID);
-                reader2 = data.GetGMapUserSimilarPeople(base.RDFTriple.Subject, true, session.Session().SessionID);
+                if (!reader.IsClosed)
+                    reader.Close();
+
+                if (!reader2.IsClosed)
+                    reader2.Close();
             }
-
-
-            
-
-
-            litGoogleCode.Text =  gmh.MapPlotPeople(base.RDFTriple.Subject, reader, reader2);
-
-
-
-            if (!reader.IsClosed)
-                reader.Close();
-
-            if (!reader2.IsClosed)
-                reader2.Close();
-
 
         }
 

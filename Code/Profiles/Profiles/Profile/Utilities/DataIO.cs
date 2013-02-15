@@ -28,19 +28,20 @@ namespace Profiles.Profile.Utilities
         {
             string xmlstr = string.Empty;
             XmlDocument xmlrtn = new XmlDocument();
-            try
+            if (Framework.Utilities.Cache.Fetch(request.Key + "data") == null || request.Edit)
             {
-                if (Framework.Utilities.Cache.Fetch(request.Key + "data") == null || request.Edit)
+
+                if (request.Type != string.Empty)
                 {
 
-                    if (request.Type != string.Empty)
+                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+                    SqlConnection dbconnection = new SqlConnection(connstr);
+                    SqlCommand dbcommand = new SqlCommand();
+
+                    try
                     {
-
-                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetRDFData(RDFTriple request)", request);
-                        string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                        SqlConnection dbconnection = new SqlConnection(connstr);
-                        SqlCommand dbcommand = new SqlCommand();
+                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetRDFData(RDFTriple request) :" + request.Key + "data", request);
 
                         dbconnection.Open();
                         dbcommand.CommandType = CommandType.StoredProcedure;
@@ -52,7 +53,7 @@ namespace Profiles.Profile.Utilities
                         dbcommand.Parameters.Add(new SqlParameter("@predicate", request.Predicate));
                         dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
                         dbcommand.Parameters.Add(new SqlParameter("@returnXMLasStr", true));
-                        
+
 
                         if (request.Offset != null && request.Offset != string.Empty)
                             dbcommand.Parameters.Add(new SqlParameter("@offset", request.Offset));
@@ -69,7 +70,7 @@ namespace Profiles.Profile.Utilities
                             dbcommand.Parameters.Add(new SqlParameter("@ExpandRDFListXML", request.ExpandRDFList));
 
                         dbcommand.Connection = dbconnection;
-                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE preread GetRDFData(RDFTriple request)", request);
+                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE preread GetRDFData(RDFTriple request) :" + request.Key + "data", request);
 
                         using (var dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
                         {
@@ -78,39 +79,44 @@ namespace Profiles.Profile.Utilities
                                 xmlstr += dbreader[0].ToString();
                             }
                             dbreader.Close();
-
-                            SqlConnection.ClearPool(dbconnection);
                         }
 
                         xmlrtn.LoadXml(xmlstr);
-                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE end GetRDFData(RDFTriple request)", request);
+                        Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE end GetRDFData(RDFTriple request) :" + request.Key + "data", request);
 
                         Framework.Utilities.Cache.Set(request.Key + "data", xmlrtn);
                         xmlstr = string.Empty;
 
                     }
-                    else if (request.URI != string.Empty)
+                    catch (Exception e)
                     {
-                        Framework.Utilities.DebugLogging.Log("{CLOUD} HTTP POST start GetRDFData(RDFTriple request) ", request);
-                        HTTPIO httpio = new HTTPIO();
-                        xmlrtn = httpio.QueryHTTPIO(request);
-                        Framework.Utilities.DebugLogging.Log("{CLOUD} HTTP POST end GetRDFData(RDFTriple request)", request);
-                        Framework.Utilities.Cache.Set(request.Key + "data", xmlrtn);
+                        Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                        throw new Exception(e.Message);
+                    }
+                    finally
+                    {
+                        // UCSF. Trying to close connection instead of clearing it. 
+                        //SqlConnection.ClearPool(dbconnection);
+                        if (dbconnection.State != ConnectionState.Closed)
+                            dbconnection.Close();
                     }
                 }
-
-
-                else
+                else if (request.URI != string.Empty)
                 {
-                    Framework.Utilities.DebugLogging.Log("{CLOUD} CACHE start GetRDFData(RDFTriple request)", request);
-                    xmlrtn = Framework.Utilities.Cache.Fetch(request.Key + "data");
-                    Framework.Utilities.DebugLogging.Log("{CLOUD} CACHE end GetRDFData(RDFTriple request)", request);
+                    Framework.Utilities.DebugLogging.Log("{CLOUD} HTTP POST start GetRDFData(RDFTriple request) :" + request.Key + "data", request);
+                    HTTPIO httpio = new HTTPIO();
+                    xmlrtn = httpio.QueryHTTPIO(request);
+                    Framework.Utilities.DebugLogging.Log("{CLOUD} HTTP POST end GetRDFData(RDFTriple request) :" + request.Key + "data", request);
+                    Framework.Utilities.Cache.Set(request.Key + "data", xmlrtn);
                 }
             }
-            catch (Exception e)
+
+
+            else
             {
-                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
-                throw new Exception(e.Message);
+                Framework.Utilities.DebugLogging.Log("{CLOUD} CACHE start GetRDFData(RDFTriple request) :" + request.Key + "data", request);
+                xmlrtn = Framework.Utilities.Cache.Fetch(request.Key + "data");
+                Framework.Utilities.DebugLogging.Log("{CLOUD} CACHE end GetRDFData(RDFTriple request) :" + request.Key + "data", request);
             }
 
             return xmlrtn;
@@ -120,13 +126,13 @@ namespace Profiles.Profile.Utilities
         {
             string xmlstr = string.Empty;
             XmlDocument xmlrtn = new XmlDocument();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
             try
             {
 
                 if (Framework.Utilities.Cache.Fetch(request.Key + "presentation") == null || request.Edit)
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-                    SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand("[rdf.].[GetPresentationXML]");
 
                     SqlDataReader dbreader;
@@ -152,11 +158,6 @@ namespace Profiles.Profile.Utilities
                     while (dbreader.Read())
                         xmlstr += dbreader[0].ToString();
 
-
-
-
-
-
                     Framework.Utilities.DebugLogging.Log(xmlstr);
 
                     xmlrtn.LoadXml(xmlstr);
@@ -164,11 +165,8 @@ namespace Profiles.Profile.Utilities
                     Framework.Utilities.Cache.Set(request.Key + "presentation", xmlrtn, -1); //UCSF.  No need to load this all the time.  It NEVER changes
                     xmlstr = string.Empty;
 
-
                     if (!dbreader.IsClosed)
                         dbreader.Close();
-
-
                 }
                 else
                 {
@@ -177,8 +175,14 @@ namespace Profiles.Profile.Utilities
 
 
             }
-            catch (Exception ex) { }
-
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
 
             return xmlrtn;
         }
@@ -193,11 +197,11 @@ namespace Profiles.Profile.Utilities
 
             //if (Framework.Utilities.Cache.FetchBytes(NodeID.ToString() + "photo") == null)
             //{
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-                SqlConnection dbconnection = new SqlConnection(connstr);
                 dbconnection.Open();
 
                 SqlCommand dbcommand = new SqlCommand("[Profile.Data].[Person.GetPhotos]");
@@ -242,8 +246,11 @@ namespace Profiles.Profile.Utilities
                 throw new Exception(e.Message);
 
             }
-
-
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
 
             return new System.IO.MemoryStream((byte[])result);
         }
@@ -261,24 +268,33 @@ namespace Profiles.Profile.Utilities
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewPersonSameDepartment.GetList]");
 
-            SqlDataReader dbreader;
-            dbconnection.Open();
-            dbcommand.CommandType = CommandType.StoredProcedure;
-            dbcommand.CommandTimeout = base.GetCommandTimeout();
-            dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
-            dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
+            try
+            {
+                SqlDataReader dbreader;
+                dbconnection.Open();
+                dbcommand.CommandType = CommandType.StoredProcedure;
+                dbcommand.CommandTimeout = base.GetCommandTimeout();
+                dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+                dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
 
-            dbcommand.Connection = dbconnection;
+                dbcommand.Connection = dbconnection;
 
-            dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+                dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            while (dbreader.Read())
-                xmlstr += dbreader[0].ToString();
+                while (dbreader.Read())
+                    xmlstr += dbreader[0].ToString();
 
-            xmlrtn.LoadXml(xmlstr);
+                xmlrtn.LoadXml(xmlstr);
 
-            if (!dbreader.IsClosed)
-                dbreader.Close();
+                if (!dbreader.IsClosed)
+                    dbreader.Close();
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
+
 
             return xmlrtn;
         }
@@ -296,11 +312,10 @@ namespace Profiles.Profile.Utilities
 
             if (Framework.Utilities.Cache.Fetch(connectiontype + node1.ToString() + node2.ToString() + concept) == null)
             {
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                SqlConnection dbconnection = new SqlConnection(connstr);
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-                    SqlConnection dbconnection = new SqlConnection(connstr);
-
                     System.Text.StringBuilder sql = new System.Text.StringBuilder();
 
                     sql.AppendLine("Declare @Person1 Bigint");
@@ -326,10 +341,6 @@ namespace Profiles.Profile.Utilities
                             break;
                     }
 
-
-
-
-
                     SqlCommand dbcommand = new SqlCommand(sql.ToString());
                     SqlDataReader dbreader;
 
@@ -338,25 +349,14 @@ namespace Profiles.Profile.Utilities
 
                     dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-
-
-
-
                     html.AppendLine("<div class=\"sectionHeader\">Publications</div>");
                     html.AppendLine("<ul style=\"list-style-type:decimal\">");
 
 
                     html.AppendLine("<div id=\"publicationListAll\" class=\"publications\">");
 
-
-
-
-
                     while (dbreader.Read())
                     {
-
-
-
                         html.AppendLine(" <li>");
                         html.AppendLine(" <div>");
                         html.AppendLine(dbreader["PublicationReference"].ToString());
@@ -375,9 +375,6 @@ namespace Profiles.Profile.Utilities
 
                         html.AppendLine("</li>");
 
-
-
-
                     }
                     html.AppendLine("</div>");
                     html.AppendLine("</ul>");
@@ -385,18 +382,20 @@ namespace Profiles.Profile.Utilities
 
                     Framework.Utilities.Cache.Set(connectiontype + node1.ToString() + node2.ToString() + concept, html.ToString());
 
-
-
                     if (!dbreader.IsClosed)
                         dbreader.Close();
 
                 }
                 catch (Exception e)
                 {
-
                     throw new Exception(e.Message);
-
                 }
+                finally
+                {
+                    if (dbconnection.State != ConnectionState.Closed)
+                        dbconnection.Close();
+                }
+
             }
             else
             {
@@ -464,12 +463,17 @@ namespace Profiles.Profile.Utilities
             DataView dataView = null;
 
             var db = new SqlConnection(connstr);
-            dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject, db);
-            dataSet = new DataSet();
-            dataAdapter.Fill(dataSet);
-            dataView = new DataView(dataSet.Tables[0]);
-
-            db.Close();
+            try
+            {
+                dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject, db);
+                dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                dataView = new DataView(dataSet.Tables[0]);
+            }
+            finally
+            {
+                db.Close();
+            }
 
             return dataView;
 
@@ -572,11 +576,11 @@ namespace Profiles.Profile.Utilities
 
             if (Framework.Utilities.Cache.Fetch(request.Key + "GetProfileNetworkForBrowser") == null)
             {
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                SqlConnection dbconnection = new SqlConnection(connstr);
+                SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.GetCoauthors]");
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-                    SqlConnection dbconnection = new SqlConnection(connstr);
-                    SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.GetCoauthors]");
 
                     SqlDataReader dbreader;
                     dbconnection.Open();
@@ -612,6 +616,11 @@ namespace Profiles.Profile.Utilities
 
                     Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
                 }
+                finally
+                {
+                    if (dbconnection.State != ConnectionState.Closed)
+                        dbconnection.Close();
+                }
             }
             else
             {
@@ -634,6 +643,7 @@ namespace Profiles.Profile.Utilities
 
             return result;
         }
+
         public List<Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation> GetGoogleMapZoomLinks()
         {
             XmlDocument vals = new XmlDocument();
@@ -761,15 +771,16 @@ namespace Profiles.Profile.Utilities
                 }
 
                 reader.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
             }
 
             return name;

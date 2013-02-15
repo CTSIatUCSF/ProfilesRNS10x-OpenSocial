@@ -2,12 +2,15 @@
 
 <div class="passiveSectionHead">
     <div style="white-space: nowrap; display: inline">
-        <%= this.GetModuleParamString("InfoCaption") %> <a href="JavaScript:toggleVisibility('similarConceptDescription');">
+        <%= this.GetModuleParamString("InfoCaption") %> 
+<!--
+<a href="JavaScript:toggleVisibility('similarConceptDescription');">
             <asp:Image runat="server" ID="imgQuestion" />
         </a>
     </div>
     <div id="similarConceptDescription" class="passiveSectionHeadDescription" style="display: none;">
         <%= this.GetModuleParamString("Description") %>
+-->
     </div>
 </div>
 <div class="passiveSectionBody">

@@ -37,10 +37,17 @@ namespace Profiles.ORNG.Utilities
         internal bool noCache = false;
         private string pageName;
         private Page page;
+        private static SocketConnectionPool sockets = null;
 
         #endregion
 
         #region InitPage Helpers
+
+        static OpenSocialManager()
+        {
+            string[] tokenService = ConfigurationManager.AppSettings["OpenSocial.TokenService"].ToString().Trim().Split(':');
+            sockets = new SocketConnectionPool(tokenService[0], Int32.Parse(tokenService[1]), 3, 10);
+        }
 
         public static OpenSocialManager GetOpenSocialManager(string ownerId, Page page, bool editMode)
         {
@@ -291,45 +298,6 @@ namespace Profiles.ORNG.Utilities
 
         #region Socket Communications
 
-        private static Socket ConnectSocket(string server, int port)
-        {
-            Socket s = null;
-            IPHostEntry hostEntry = null;
-
-            // Get host related information.
-            hostEntry = Dns.GetHostEntry(server);
-
-            // Loop through the AddressList to obtain the supported AddressFamily. This is to avoid
-            // an exception that occurs when the host IP Address is not compatible with the address family
-            // (typical in the IPv6 case).
-            foreach (IPAddress address in hostEntry.AddressList)
-            {
-                IPEndPoint ipe = new IPEndPoint(address, port);
-                Socket tempSocket =
-                    new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
-                try
-                {
-                    tempSocket.Connect(ipe);
-                }
-                catch
-                {
-                    // ignore error, move on to the next entry
-                }
-
-                if (tempSocket.Connected)
-                {
-                    s = tempSocket;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            return s;
-        }
-
         private static string SocketSendReceive(string viewer, string owner, string gadget)
         {
             //  These keys need to match what you see in edu.ucsf.profiles.shindig.service.SecureTokenGeneratorService in Shindig
@@ -341,27 +309,41 @@ namespace Profiles.ORNG.Utilities
             Byte[] bytesReceived = new Byte[256];
 
             // Create a socket connection with the specified server and port.
-            Socket s = ConnectSocket(tokenService[0], Int32.Parse(tokenService[1]));
-
-            if (s == null)
-                return ("Connection failed");
-
-            // Send request to the server.
-            s.Send(bytesSent, bytesSent.Length, 0);
-
-            // Receive the server home page content.
-            int bytes = 0;
+            //Socket s = ConnectSocket(tokenService[0], Int32.Parse(tokenService[1]));
+            CustomSocket s = null;
             string page = "";
-
-            // The following will block until te page is transmitted.
-            do
+            try
             {
-                bytes = s.Receive(bytesReceived, bytesReceived.Length, 0);
-                page = page + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
-            }
-            while (bytes > 0);
+                s = sockets.GetSocket();
 
-            return page;
+                if (s == null)
+                    return ("Connection failed");
+
+                // Send request to the server.
+                s.Send(bytesSent, bytesSent.Length, 0);
+
+                // Receive the server home page content.
+                int bytes = 0;
+
+                // The following will block until te page is transmitted.
+                do
+                {
+                    bytes = s.Receive(bytesReceived, bytesReceived.Length, 0);
+                    page = page + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+                    DebugLogging.Log("Socket Page=" + page + "|");
+                }
+                while (page.Length == page.TrimEnd().Length && bytes > 0);
+            }
+            catch (Exception ex)
+            {
+                DebugLogging.Log("Socket Error :" + ex.Message);
+            }
+            finally
+            {
+                sockets.PutSocket(s);
+            }
+
+            return page.TrimEnd();
         }
         #endregion
 

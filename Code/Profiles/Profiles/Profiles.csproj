@@ -277,6 +277,7 @@
     <Compile Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx.designer.cs">
       <DependentUpon>MyNetwork.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ORNG\Utilities\SocketConnectionPool.cs" />
     <Compile Include="RobotsTxt.aspx.cs">
       <DependentUpon>RobotsTxt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

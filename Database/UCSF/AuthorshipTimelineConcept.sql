@@ -111,7 +111,7 @@ BEGIN
 
 		--select @v, @h, @d
 
-		--set @gc = 'http://chart.apis.google.com/chart?chs=595x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unkown|Last+Author&chco='+@c+'&chbh=10'
+		--set @gc = 'http://chart.apis.google.com/chart?chs=595x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unknown|Last+Author&chco='+@c+'&chbh=10'
 		set @gc = 'http://chart.apis.google.com/chart?chs=625x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=Major+Topic|Minor+Topic&chco='+@c+'&chbh=10'
 
 		select @gc gc --, @w w
