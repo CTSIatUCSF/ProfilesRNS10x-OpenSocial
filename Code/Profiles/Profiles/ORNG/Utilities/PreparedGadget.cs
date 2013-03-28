@@ -25,7 +25,7 @@ namespace Profiles.ORNG.Utilities
         {
             GadgetViewRequirements gvr1 = this.GetGadgetViewRequirements();
             GadgetViewRequirements gvr2 = other.GetGadgetViewRequirements();
-            return ("" + this.GetView() + (gvr1 != null ? gvr1.GetDisplayOrder() : Int32.MaxValue)).CompareTo("" + other.GetView() + (gvr2 != null ? gvr2.GetDisplayOrder() : Int32.MaxValue));
+            return ("" + this.GetView() + (gvr1 != null ? 1000 + gvr1.GetDisplayOrder() : Int32.MaxValue)).CompareTo("" + other.GetView() + (gvr2 != null ? 1000 + gvr2.GetDisplayOrder() : Int32.MaxValue));
         }
 
         public GadgetSpec GetGadgetSpec()

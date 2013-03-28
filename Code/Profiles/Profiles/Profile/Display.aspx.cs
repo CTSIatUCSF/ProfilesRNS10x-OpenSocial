@@ -65,7 +65,7 @@ namespace Profiles.Profile
                 Page.Header.Controls.Add(Description);
 
                 HtmlLink Canonical = new HtmlLink();
-                Canonical.Href = Root.Domain + Request.Url.AbsolutePath;
+                Canonical.Href = Root.Domain + Request.Url.AbsolutePath.ToLower();
                 Canonical.Attributes["rel"] = "canonical";
                 Page.Header.Controls.Add(Canonical);
 

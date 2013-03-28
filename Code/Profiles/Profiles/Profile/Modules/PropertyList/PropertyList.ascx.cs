@@ -173,6 +173,11 @@ namespace Profiles.Profile.Modules.PropertyList
 
                         } //End of property item loop
 
+                        // ORNG hack
+                        if (propertygroup.SelectSingleNode("@URI").Value == "http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupBibliographic")
+                        {
+                            html.Append("<div id='gadgets-view-bottom' class='gadgets-gadget-parent'></div>");
+                        }
 
 
                         html.Append("</div>");
@@ -187,6 +192,7 @@ namespace Profiles.Profile.Modules.PropertyList
             if (!gadgetsShown)
             {
                 html.Append("<div id='gadgets-view' class='gadgets-gadget-parent'></div>");
+                html.Append("<div id='gadgets-view-bottom' class='gadgets-gadget-parent'></div>");
                 gadgetsShown = true;
             }
 

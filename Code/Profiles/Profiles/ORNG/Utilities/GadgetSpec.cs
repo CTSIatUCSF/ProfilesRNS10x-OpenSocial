@@ -31,20 +31,18 @@ namespace Profiles.ORNG.Utilities
             if (!sandboxOnly)
             {
                 Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-                SqlDataReader dr = data.GetGadgetViewRequirements(appId);
-                while (dr.Read())
+                using (SqlDataReader dr = data.GetGadgetViewRequirements(appId))
                 {
-                    viewRequirements.Add(dr[0].ToString().ToLower(), new GadgetViewRequirements(dr[0].ToString().ToLower(),
-                            dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
-                            dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
-                            dr[3].ToString(),
-                            dr[4].ToString(),
-                            dr[5].ToString(),
-                            dr.IsDBNull(6) ? Int32.MaxValue : Convert.ToInt32(dr[6])));
-                }
-                if (!dr.IsClosed)
-                {
-                    dr.Close();
+                    while (dr.Read())
+                    {
+                        viewRequirements.Add(dr[0].ToString().ToLower(), new GadgetViewRequirements(dr[0].ToString().ToLower(),
+                                dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
+                                dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
+                                dr[3].ToString(),
+                                dr[4].ToString(),
+                                dr[5].ToString(),
+                                dr.IsDBNull(6) ? Int32.MaxValue : Convert.ToInt32(dr[6])));
+                    }
                 }
             }
         }
@@ -76,6 +74,7 @@ namespace Profiles.ORNG.Utilities
 
         public GadgetViewRequirements GetGadgetViewRequirements(String page)
         {
+            page = page.ToLower();
             if (viewRequirements.ContainsKey(page))
             {
                 return viewRequirements[page];
@@ -85,6 +84,7 @@ namespace Profiles.ORNG.Utilities
 
         public bool Show(string viewerId, string ownerId, String page)
         {
+            page = page.ToLower();
             bool show = true;
             // if there are no view requirements, go ahead and show it.  We are likely testing out a new gadget
             // if there are some, turn it off unless this page is 

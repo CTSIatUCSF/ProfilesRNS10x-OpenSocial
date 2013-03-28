@@ -26,15 +26,15 @@ INSERT INTO [Ontology.].[Namespace] (URI, Prefix)
 
 
 EXEC [Ontology.].[AddProperty]	@OWL = 'ucsf_1.0',
-								@PropertyURI = 'http://ucsf/ontology#meshKeywords',
-								@PropertyName = 'MeSH Keywords',
+								@PropertyURI = 'http://ucsf/ontology#publishingFirstName',
+								@PropertyName = 'Publishing First Name',
 								@ObjectType = 1,
 								@PropertyGroupURI = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupIdentifiers',
 								@ClassURI = 'http://xmlns.com/foaf/0.1/Person',
 								@IsDetail = 0,
 								@IncludeDescription = 0
--- temp for testing
-update [Ontology.].[ClassProperty] set SearchWeight = 1   
+-- needs to be visible of course....
+update [Ontology.].[ClassProperty] set SearchWeight = 0   
 	  ,[IsDetail] = 1
       ,[ViewSecurityGroup] = -1    
 	  ,[EditSecurityGroup] = -20
@@ -42,18 +42,8 @@ update [Ontology.].[ClassProperty] set SearchWeight = 1
       ,[EditExistingSecurityGroup] = -20
       ,[EditAddNewSecurityGroup] = -20
       ,[EditAddExistingSecurityGroup] = -20
-      ,[EditDeleteSecurityGroup] = -20 where Property = 'http://ucsf/ontology#meshKeywords';	
-      
--- for real use
-update [Ontology.].[ClassProperty] set SearchWeight = 1   
-	  ,[IsDetail] = 1
-      ,[ViewSecurityGroup] = 0    
-	  ,[EditSecurityGroup] = -40
-      ,[EditPermissionsSecurityGroup] = -40
-      ,[EditExistingSecurityGroup] = -40
-      ,[EditAddNewSecurityGroup] = -40
-      ,[EditAddExistingSecurityGroup] = -40
-      ,[EditDeleteSecurityGroup] = -40 where Property = 'http://ucsf/ontology#meshKeywords';	      
+      ,[EditDeleteSecurityGroup] = -20 where Property = 'http://ucsf/ontology#publishingFirstName';	
+            
       
 INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph, 
 		Class, NetworkProperty, Property, 
@@ -62,10 +52,10 @@ INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph,
 		oClass, oInternalType, oInternalID, oValue, oDataType, oLanguage, 
 		oObjectType, Weight, OrderBy, ViewSecurityGroup, EditSecurityGroup)
 	VALUES (1001, 1, 1, 1,
-		'http://xmlns.com/foaf/0.1/Person', NULL, 'http://ucsf/ontology#meshKeywords',
-		'[UCSF].[MeSH.Keywords]',
-		'Person', 'PersonID',
-		NULL, NULL, NULL, 'MeSHKeywords', NULL, NULL,
+		'http://xmlns.com/foaf/0.1/Person', NULL, 'http://ucsf/ontology#publishingFirstName',
+		'[UCSF].[vwPerson]',
+		'Person', 'personid',
+		NULL, NULL, NULL, 'publishingfirst', NULL, NULL,
 		0, 1, NULL, -1, -40)
 
 EXEC [Ontology.].UpdateDerivedFields

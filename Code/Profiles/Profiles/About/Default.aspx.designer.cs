@@ -10,6 +10,6 @@
 namespace Profiles.About {
     
     
-    public partial class AboutTest {
+    public partial class Default {
     }
 }

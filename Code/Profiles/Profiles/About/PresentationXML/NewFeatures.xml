@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
-  <WindowName>About</WindowName>  
-  <PageTitle>UCSF Profiles is Testing Improvements</PageTitle>
+  <WindowName>New Features</WindowName>  
+  <PageTitle>New Features</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -24,9 +24,7 @@ ul li { padding-top: 10px; }
 #new-features { display: none; }
 </style>
 
-<p>UCSF Profiles is temporarily testing new functionality, which may result in some minor delays on the site. We appreciate your patience, and welcome any feedback. Please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
-<h2 style="color: #CA7C29;font-size: 20px;">New Features</h2>
-<p>The new and improved UCSF Profiles offers a variety of features that make it an even more effective research networking and collaboration tool. Find out what's new.</p>
+<p>The new and improved UCSF Profiles offers a variety of features that make it an even more effective research networking and collaboration tool. Find out what's new and please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
 
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
 <h2 style="color: #CA7C29;font-size: 16px;">Highlights</h2>

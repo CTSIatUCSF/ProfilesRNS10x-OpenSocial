@@ -88,7 +88,13 @@ public partial class JSONProfile : System.Web.UI.Page
         List<Dictionary<string, Object>> personDataList = new List<Dictionary<string, object>>();
         Dictionary<string, Object> profileData = new Dictionary<string, Object>();
 
-        // lookup personid from FNO
+        if (!new Connects.Profiles.Service.ServiceImplementation.DataIO().GetIsActive(personId))
+        {
+            // this will cause a safe {} to be returned 
+            throw new Exception("Person does not have an active profile");
+        }
+
+        // get person data
         try
         {
             PersonList personProfileList = new Connects.Profiles.Service.ServiceImplementation.ProfileServiceAdapter().GetPersonFromPersonId(personId);
@@ -134,7 +140,7 @@ public partial class JSONProfile : System.Web.UI.Page
                     {
                         Dictionary<string, Object> pubData = new Dictionary<string, Object>();
                         pubData.Add("PublicationID", pub.PublicationID);
-                        pubData.Add("PublicationTitle", pub.PublicationReference);
+                        pubData.Add("PublicationTitle", pub.PublicationReference.Replace("&amp;", "&").Replace("&gt;", ">").Replace("&lt;", "<").Replace("&#37;", "%"));
                         //pubData.Add("PublicationAbstract", pub.PublicationDetails);
 
                         List<Object> pubSourceList = new List<object>();

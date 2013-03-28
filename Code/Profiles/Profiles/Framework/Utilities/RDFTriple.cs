@@ -143,7 +143,8 @@ namespace Profiles.Framework.Utilities
                 else
                     rtn = this.URI;
 
-                return rtn + this.Session.SessionID + this.Session.UserID.ToString() + this.Expand + this.ShowDetails + this.ExpandRDFList;
+                // UCSF Treat all anonymous users as the same
+                return rtn + (this.Session.UserID != 0 ? this.Session.SessionID : "") + this.Session.UserID.ToString() + this.Expand + this.ShowDetails + this.ExpandRDFList;
             }
         }
         #endregion

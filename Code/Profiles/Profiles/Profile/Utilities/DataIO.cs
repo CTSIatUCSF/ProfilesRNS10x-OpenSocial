@@ -764,7 +764,7 @@ namespace Profiles.Profile.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                reader = GetDBCommand(connstr, "select p.FirstName + ' ' + p.LastName from [Profile.Data].[Person] p join [RDF.Stage].internalnodemap i on p.personid = i.internalid where i.[class] = 'http://xmlns.com/foaf/0.1/Person' and i.nodeid = " + nodeId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                reader = GetDBCommand(dbconnection, "select p.FirstName + ' ' + p.LastName from [Profile.Data].[Person] p join [RDF.Stage].internalnodemap i on p.personid = i.internalid where i.[class] = 'http://xmlns.com/foaf/0.1/Person' and i.nodeid = " + nodeId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
                 while (reader.Read())
                 {
                     name = reader[0].ToString();

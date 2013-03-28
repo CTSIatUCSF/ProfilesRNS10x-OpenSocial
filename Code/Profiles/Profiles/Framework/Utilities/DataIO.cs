@@ -451,7 +451,8 @@ namespace Profiles.Framework.Utilities
                 if (sqlParam != null)
                     Framework.Utilities.DebugLogging.Log("NUMBER OF PARAMS " + sqlParam.Length);
 
-                AddSQLParameters(sqlcmd, sqlParam);
+                if (sqlParam != null)
+                    AddSQLParameters(sqlcmd, sqlParam);
 
             }
             catch (Exception ex)
@@ -934,7 +935,7 @@ namespace Profiles.Framework.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                reader = GetDBCommand(connstr, "select Property FROM [Ontology.].[ClassProperty] where Class = 'http://xmlns.com/foaf/0.1/Person' and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                reader = GetDBCommand(dbconnection, "select Property FROM [Ontology.].[ClassProperty] where Class = 'http://xmlns.com/foaf/0.1/Person' and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
                 while (reader.Read())
                 {
                     property = reader[0].ToString();
@@ -978,7 +979,7 @@ namespace Profiles.Framework.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                reader = GetDBCommand(connstr, "select i.nodeid from [RDF.Stage].internalnodemap i with(nolock) where [class] = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = " + personId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                reader = GetDBCommand(dbconnection, "select i.nodeid from [RDF.Stage].internalnodemap i with(nolock) where [class] = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = " + personId, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
                 while (reader.Read())
                 {
                     nodeId = Convert.ToInt64(reader[0]);
@@ -1003,6 +1004,7 @@ namespace Profiles.Framework.Utilities
 
         public string GetPrettyURL(string personId)
         {
+            Framework.Utilities.DebugLogging.Log("Getting PrettyURL for Person=" + personId);
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
@@ -1018,8 +1020,8 @@ namespace Profiles.Framework.Utilities
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 //Force the Convert.ToInt64 in order to preven SQL Injection!!!!
-                reader = GetDBCommand(connstr, "select URL_NAME from cls.dbo.uniqueNames where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = " + Convert.ToInt64(personId), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
-                while (reader.Read())
+                reader = GetDBCommand(dbconnection, "select URL_NAME from cls.dbo.uniqueNames where 2569307 + cast(SUBSTRING(INDIVIDUAL_ID, 2, 7) as numeric) = " + Convert.ToInt64(personId), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                if (reader.Read())
                 {
                     prettyURL = reader[0].ToString();
                 }
@@ -1037,6 +1039,7 @@ namespace Profiles.Framework.Utilities
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
             }
+            Framework.Utilities.DebugLogging.Log("Returning PrettyURL = " + prettyURL + " for Person=" + personId);
 
             return prettyURL;
         }

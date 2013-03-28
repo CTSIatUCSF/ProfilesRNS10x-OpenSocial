@@ -44,9 +44,16 @@ namespace Profiles.ORNG.Utilities
         #region InitPage Helpers
 
         static OpenSocialManager()
-        {
+        {            
+            if (ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] == null)
+                return;
             string[] tokenService = ConfigurationManager.AppSettings["OpenSocial.TokenService"].ToString().Trim().Split(':');
-            sockets = new SocketConnectionPool(tokenService[0], Int32.Parse(tokenService[1]), 3, 10);
+            int min = Convert.ToInt32(ConfigurationManager.AppSettings["OpenSocial.SocketPoolMin"].ToString());
+            int max = Convert.ToInt32(ConfigurationManager.AppSettings["OpenSocial.SocketPoolMax"].ToString());
+            int expire = Convert.ToInt32(ConfigurationManager.AppSettings["OpenSocial.SocketPoolExpire"].ToString());
+            int timeout = Convert.ToInt32(ConfigurationManager.AppSettings["OpenSocial.SocketReceiveTimeout"].ToString());
+
+            sockets = new SocketConnectionPool(tokenService[0], Int32.Parse(tokenService[1]), min, max, expire, timeout);
         }
 
         public static OpenSocialManager GetOpenSocialManager(string ownerId, Page page, bool editMode)
@@ -320,6 +327,7 @@ namespace Profiles.ORNG.Utilities
                     return ("Connection failed");
 
                 // Send request to the server.
+                DebugLogging.Log("Sending Bytes");
                 s.Send(bytesSent, bytesSent.Length, 0);
 
                 // Receive the server home page content.
@@ -328,6 +336,7 @@ namespace Profiles.ORNG.Utilities
                 // The following will block until te page is transmitted.
                 do
                 {
+                    DebugLogging.Log("Receiving Bytes");
                     bytes = s.Receive(bytesReceived, bytesReceived.Length, 0);
                     page = page + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
                     DebugLogging.Log("Socket Page=" + page + "|");
@@ -503,7 +512,7 @@ namespace Profiles.ORNG.Utilities
                 GadgetSpec gadgetSpec = new GadgetSpec(appId, name, openSocialGadgetURL, channels, true, sandboxOnly);
                 // only add ones that are visible in this context!
                 int moduleId = 0;
-                if (sandboxOnly || gadgetSpec.Show(viewerId, ownerId, page.AppRelativeVirtualPath.Substring(2)))
+                if (sandboxOnly || gadgetSpec.Show(viewerId, ownerId, page.AppRelativeVirtualPath.Substring(2).ToLower()))
                 {
                     String securityToken = SocketSendReceive(viewerId, ownerId, gadgetSpec.GetGadgetURL());
                     sandboxGadgets.Add(new PreparedGadget(gadgetSpec, this, moduleId++, securityToken));

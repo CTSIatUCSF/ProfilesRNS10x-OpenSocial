@@ -48,24 +48,13 @@ namespace Profiles.ORNG.Utilities
         public void ExecuteSQLDataCommand(string sqltext)
         {
 
-            SqlCommand sqlcmd = null;
-            try
+            using (SqlConnection conn = GetDBConnection(""))
             {
-                sqlcmd = new SqlCommand(sqltext, GetDBConnection(""));
+                SqlCommand sqlcmd = new SqlCommand(sqltext, conn);
                 sqlcmd.CommandType = CommandType.Text;
                 sqlcmd.CommandTimeout = GetCommandTimeout();
                 sqlcmd.ExecuteNonQuery();
-
-                if (sqlcmd.Connection.State == ConnectionState.Open)
-                {
-                    sqlcmd.Connection.Close();
-                }
             }
-            catch (Exception ex)
-            {
-                //do nothing
-            }
-
         }
 
     }

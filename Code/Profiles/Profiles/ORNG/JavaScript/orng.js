@@ -10,115 +10,120 @@ _gaq.push = function(data) {    //
  };
 
 // pubsub
-gadgets.pubsubrouter.init(function(id) {
-    return my.gadgets[shindig.container.gadgetService.getGadgetIdFromModuleId(id)].url; 
-  }, {
-    onSubscribe: function(sender, channel) {
-      setTimeout("my.onSubscribe('" + sender + "', '" + channel + "')", 3000);
-      // return true to reject the request.
-      return false;
-    },
-    onUnsubscribe: function(sender, channel) {
-      //alert(sender + " unsubscribes from channel '" + channel + "'");
-      // return true to reject the request.
-      return false;
-    },
-    onPublish: function(sender, channel, message) {
-      // return true to reject the request.
-      
-      // track with google analytics
-      if (sender != '..' ) {
-          var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(sender);
-      }
-      
-      if (channel == 'VISIBLE') {
-	      var statusId = document.getElementById(sender + '_status');	      
-          if (statusId) {
-            // only act on these in HOME view since they are only  meant to be seen when viewer=owner
-            if (my.gadgets[moduleId].view != 'home') {
-                return true;
-            }
-            if (message == 'Y') {
-		        statusId.style.color = 'GREEN';
-		        statusId.innerHTML = 'This section is VISIBLE';
-		        if (my.gadgets[moduleId].visible_scope == 'U') {
-		            statusId.innerHTML += ' to UCSF';
-		        }
-		        else {
-		            statusId.innerHTML += ' to the public';
-		        }
-            }
-            else {
-		        statusId.style.color = '#CC0000';
-		        statusId.innerHTML = 'This section is HIDDEN';
-		        if (my.gadgets[moduleId].visible_scope == 'U') {
-		            statusId.innerHTML += ' from UCSF';
-		        }
-		        else {
-		            statusId.innerHTML += ' from the public';
-		        }
-            }
+ gadgets.pubsubrouter.init(function (id) {
+     return my.gadgets[shindig.container.gadgetService.getGadgetIdFromModuleId(id)].url;
+ }, {
+     onSubscribe: function (sender, channel) {
+         setTimeout("my.onSubscribe('" + sender + "', '" + channel + "')", 3000);
+         // return true to reject the request.
+         return false;
+     },
+     onUnsubscribe: function (sender, channel) {
+         //alert(sender + " unsubscribes from channel '" + channel + "'");
+         // return true to reject the request.
+         return false;
+     },
+     onPublish: function (sender, channel, message) {
+         // return true to reject the request.
+
+         // track with google analytics
+         if (sender != '..') {
+             var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(sender);
          }
-      }
-      else if (channel == 'added' && my.gadgets[moduleId].view == 'home') {
-          if (message == 'Y') {
-            _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'SHOW', 'profile_edit_view']);    
-            osapi.activities.create(
-		    { 	'userId': gadgets.util.getUrlParameters()['Person'],
-			    'appId': my.gadgets[moduleId].appId,
-			    'activity': {'postedTime': new Date().getTime(), 'title': 'added a gadget', 'body': 'added the ' + my.gadgets[moduleId].name + ' gadget to their profile' }
-		    }).execute(function(response){});
-		  }
-		  else {
-            _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'HIDE', 'profile_edit_view']);    
-		  }
-      }
-      else if (channel == 'status') {
-          // message should be of the form 'COLOR:Message Content'
-	      var statusId = document.getElementById(sender + '_status');	      
-          if (statusId) {
-            var messageSplit = message.split(':');
-            if (messageSplit.length == 2) {
-		        statusId.style.color = messageSplit[0];
-		        statusId.innerHTML = messageSplit[1];
-		    }
-		    else {
-		        statusId.innerHTML = message;
-		    }
-	      }
-      }
-      else if (channel == 'analytics') {
-          // publish to google analytics
-          // message should be JSON encoding object with required action and optional label and value 
-          // as documented here: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
-          // note that event category will be set to the gadget name automatically by this code
-          // Note: message will be already converted to an object 
-          if (message.hasOwnProperty('value')) {
-            _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label, message.value]);    
-          }
-          else if (message.hasOwnProperty('label')) {
-            _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label]);    
-          }
-          else {
-            _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action]);    
-          }
-      }
-      else if (channel == 'profile') {
-          _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'go_to_profile', message]);    
-          document.location.href = '/' + location.pathname.split('/')[1] + '/display/n' + message;
-	  }
-      else if (channel == 'hide') {
-          document.getElementById(sender).parentNode.parentNode.style.display = 'none';
-      }
-      else if (channel == 'JSONPersonIds' || channel == 'JSONPubMedIds') {
-          // do nothing, no need to alert
-	  }
-      else {
-	      alert(sender + " publishes '" + message + "' to channel '" + channel + "'");
-	  }
-      return false;
-    }
-});
+
+         if (channel == 'VISIBLE') {
+             var statusId = document.getElementById(sender + '_status');
+             if (statusId) {
+                 // only act on these in HOME view since they are only  meant to be seen when viewer=owner
+                 if (my.gadgets[moduleId].view != 'home') {
+                     return true;
+                 }
+                 if (message == 'Y') {
+                     statusId.style.color = 'GREEN';
+                     statusId.innerHTML = 'This section is VISIBLE';
+                     if (my.gadgets[moduleId].visible_scope == 'U') {
+                         statusId.innerHTML += ' to UCSF';
+                     }
+                     else {
+                         statusId.innerHTML += ' to the public';
+                     }
+                 }
+                 else {
+                     statusId.style.color = '#CC0000';
+                     statusId.innerHTML = 'This section is HIDDEN';
+                     if (my.gadgets[moduleId].visible_scope == 'U') {
+                         statusId.innerHTML += ' from UCSF';
+                     }
+                     else {
+                         statusId.innerHTML += ' from the public';
+                     }
+                 }
+             }
+         }
+         else if (channel == 'added' && my.gadgets[moduleId].view == 'home') {
+             if (message == 'Y') {
+                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'SHOW', 'profile_edit_view']);
+                 osapi.activities.create(
+		    { 'userId': gadgets.util.getUrlParameters()['Person'],
+		        'appId': my.gadgets[moduleId].appId,
+		        'activity': { 'postedTime': new Date().getTime(), 'title': 'added a gadget', 'body': 'added the ' + my.gadgets[moduleId].name + ' gadget to their profile' }
+		    }).execute(function (response) { });
+             }
+             else {
+                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'HIDE', 'profile_edit_view']);
+             }
+         }
+         else if (channel == 'status') {
+             // message should be of the form 'COLOR:Message Content'
+             var statusId = document.getElementById(sender + '_status');
+             if (statusId) {
+                 var messageSplit = message.split(':');
+                 if (messageSplit.length == 2) {
+                     statusId.style.color = messageSplit[0];
+                     statusId.innerHTML = messageSplit[1];
+                 }
+                 else {
+                     statusId.innerHTML = message;
+                 }
+             }
+         }
+         else if (channel == 'analytics') {
+             // publish to google analytics
+             // message should be JSON encoding object with required action and optional label and value 
+             // as documented here: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
+             // note that event category will be set to the gadget name automatically by this code
+             // Note: message will be already converted to an object 
+             if (message.hasOwnProperty('value')) {
+                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label, message.value]);
+             }
+             else if (message.hasOwnProperty('label')) {
+                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label]);
+             }
+             else {
+                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action]);
+             }
+         }
+         else if (channel == 'profile') {
+             _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'go_to_profile', message]);
+             document.location.href = '/' + location.pathname.split('/')[1] + '/display/n' + message;
+         }
+         else if (channel == 'hide') {
+             document.getElementById(sender).parentNode.parentNode.style.display = 'none';
+             // remove from TOC if needed
+             if (typeof drawGadgetsTOC == 'function') {
+                 my.gadgets[moduleId].chrome_id = 'NONE';
+                 drawGadgetsTOC();
+             }
+         }
+         else if (channel == 'JSONPersonIds' || channel == 'JSONPubMedIds') {
+             // do nothing, no need to alert
+         }
+         else {
+             alert(sender + " publishes '" + message + "' to channel '" + channel + "'");
+         }
+         return false;
+     }
+ });
 
 // helper functions
 my.findGadgetsAttachingTo = function(chromeId) {

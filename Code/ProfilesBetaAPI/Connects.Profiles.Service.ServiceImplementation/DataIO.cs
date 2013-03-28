@@ -677,6 +677,44 @@ namespace Connects.Profiles.Service.ServiceImplementation
             return personId;
         }
 
+        public bool GetIsActive(int personid)
+        {
+            System.Text.StringBuilder sql = new System.Text.StringBuilder();
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            bool isactive = false;
+
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+
+            sql.AppendLine("select p.IsActive from [Profile.Data].Person p with(nolock) where p.personid = " + personid);
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlCommand dbcommand = new SqlCommand();
+
+            SqlDataReader dbreader;
+            dbconnection.Open();
+            dbcommand.CommandType = CommandType.Text;
+
+            dbcommand.CommandText = sql.ToString();
+            dbcommand.CommandTimeout = 5000;
+
+            dbcommand.Connection = dbconnection;
+
+            dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            if (dbreader.Read())
+            {
+                isactive = Convert.ToBoolean(dbreader[0].ToString());
+            }
+
+            if (!dbreader.IsClosed)
+                dbreader.Close();
+
+            return isactive;
+        }
+
         // UCSF
         static readonly string PERSON = "Person";
         static readonly string DISAMBIGUATION = "Disambiguation";
@@ -961,36 +999,48 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
                     foreach (XmlNode publication in RDF.SelectNodes("//vivo:authorInAuthorship", namespaces))
                     {
-                        pub = RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + publication.SelectSingleNode("@rdf:resource", namespaces).Value + "']/vivo:linkedInformationResource/@rdf:resource", namespaces).Value + "']", namespaces);
-
-
-                        if (pub.SelectSingleNode("bibo:pmid", namespaces) != null)
-                            returnxml.Append("<Publication CustomCategory='' Type='PubMed' Visible='true'>");
-                        else
-                            returnxml.Append("<Publication CustomCategory='' Type='Custom' Visible='true'>");
-
-
-                        returnxml.Append("<PublicationID>");
-                        returnxml.Append(publication.SelectSingleNode("@rdf:resource", namespaces).Value);
-                        returnxml.Append("</PublicationID>");
-
-                        returnxml.Append("<PublicationReference>");
-                        returnxml.Append(pub.SelectSingleNode("rdfs:label", namespaces).InnerText);
-                        returnxml.Append("</PublicationReference>");
-
-                        returnxml.Append("<PublicationMatchDetailList>");
-
-                        returnxml.Append("</PublicationMatchDetailList>");
-
-                        returnxml.Append("<PublicationSourceList>");
-
-                        if (pub.SelectSingleNode("bibo:pmid", namespaces) != null)
+                        try
                         {
-                            returnxml.Append("<PublicationSource ID='" + pub.SelectSingleNode("bibo:pmid", namespaces).InnerText + "' URL='" + "http://www.ncbi.nlm.nih.gov/pubmed/" + pub.SelectSingleNode("bibo:pmid", namespaces).InnerText + "' Primary='true' Name='PubMed'/>");
-                        }
-                        returnxml.Append("</PublicationSourceList>");
+                            pub = RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + publication.SelectSingleNode("@rdf:resource", namespaces).Value + "']/vivo:linkedInformationResource/@rdf:resource", namespaces).Value + "']", namespaces);
 
-                        returnxml.Append("</Publication>");
+
+                            if (pub.SelectSingleNode("bibo:pmid", namespaces) != null)
+                                returnxml.Append("<Publication CustomCategory='' Type='PubMed' Visible='true'>");
+                            else
+                                returnxml.Append("<Publication CustomCategory='' Type='Custom' Visible='true'>");
+
+
+                            returnxml.Append("<PublicationID>");
+                            returnxml.Append(publication.SelectSingleNode("@rdf:resource", namespaces).Value);
+                            returnxml.Append("</PublicationID>");
+
+                            if (pub.SelectSingleNode("prns:informationResourceReference", namespaces) != null)
+                            {
+                                returnxml.Append("<PublicationReference>");
+                                //returnxml.Append(pub.SelectSingleNode("rdfs:label", namespaces).InnerText);
+                                returnxml.Append(pub.SelectSingleNode("prns:informationResourceReference", namespaces).InnerText.Replace("&", "&amp;").Replace(">", "&gt;").Replace("<", "&lt;").Replace("%", "&#37;"));
+                                returnxml.Append("</PublicationReference>");
+                            }
+
+                            returnxml.Append("<PublicationMatchDetailList>");
+
+                            returnxml.Append("</PublicationMatchDetailList>");
+
+                            returnxml.Append("<PublicationSourceList>");
+
+                            if (pub.SelectSingleNode("bibo:pmid", namespaces) != null)
+                            {
+                                returnxml.Append("<PublicationSource ID='" + pub.SelectSingleNode("bibo:pmid", namespaces).InnerText + "' URL='" + "http://www.ncbi.nlm.nih.gov/pubmed/" + pub.SelectSingleNode("bibo:pmid", namespaces).InnerText + "' Primary='true' Name='PubMed'/>");
+                            }
+                            returnxml.Append("</PublicationSourceList>");
+
+                            returnxml.Append("</Publication>");
+                        }
+                        catch (Exception ex)
+                        {
+                            DebugLogging.Log(ex.Message);
+                            DebugLogging.Log(ex.StackTrace);
+                        }
                     }
 
 
@@ -1089,11 +1139,12 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
             string complete = "false";
 
-            if (count.ToString() == RDF.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaces).InnerText)
+            if (RDF.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaces) != null && count.ToString() == RDF.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaces).InnerText)
                 complete = "true";
 
             topnode = "<?xml version=\"1.0\"?><PersonList Complete=\"" + complete + "\"  ThisCount=\"" + count.ToString() + "\"  TotalCount=\"" +
-                        RDF.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaces).InnerText + "\"  QueryID=\"" +
+                (RDF.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaces) == null ? "0" :
+                         RDF.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaces).InnerText) + "\"  QueryID=\"" +
                         queryid + "\"  xmlns=\"http://connects.profiles.schema/profiles/personlist\"  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
                         " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">";
 

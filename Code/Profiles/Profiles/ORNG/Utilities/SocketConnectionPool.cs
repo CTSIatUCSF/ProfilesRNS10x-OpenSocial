@@ -13,16 +13,20 @@ namespace Profiles.ORNG.Utilities
     {
         private int POOL_MAX_SIZE;
         private int POOL_MIN_SIZE;
+        private int EXPIRE_SECONDS;
+        private int RECIEVE_TIMEOUT;
         private string server;
         private int port;
         private Queue<CustomSocket> availableSockets = null;
         private bool Initialized = false;
         private int SocketCounter = 0;
 
-        public SocketConnectionPool(string server, int port, int minConnections, int maxConnections)
+        public SocketConnectionPool(string server, int port, int minConnections, int maxConnections, int expire, int timeout)
         {
             this.POOL_MAX_SIZE = maxConnections;
             this.POOL_MIN_SIZE = minConnections;
+            this.EXPIRE_SECONDS = expire;
+            this.RECIEVE_TIMEOUT = timeout;
             this.server = server;
             this.port = port;
             this.availableSockets = new Queue<CustomSocket>();
@@ -42,12 +46,11 @@ namespace Profiles.ORNG.Utilities
 
         public void PutSocket(CustomSocket socket)
         {
+            DebugLogging.Log("Put Socket -> Pool size: " + availableSockets.Count.ToString());
             lock (availableSockets)
             {
                 TimeSpan socketLifeTime = DateTime.Now.Subtract(socket.TimeCreated);
-                if (availableSockets.Count <
-                    POOL_MAX_SIZE && socketLifeTime.Minutes < 2)
-                // Configuration Value
+                if (availableSockets.Count < POOL_MAX_SIZE && socketLifeTime.Seconds < EXPIRE_SECONDS)
                 {
                     if (socket != null)
                     {
@@ -75,6 +78,7 @@ namespace Profiles.ORNG.Utilities
 
         public CustomSocket GetSocket()
         {
+            DebugLogging.Log("Get Socket -> Pool size: " + availableSockets.Count.ToString());
             if (availableSockets.Count > 0)
             {
                 lock (availableSockets)
@@ -133,6 +137,7 @@ namespace Profiles.ORNG.Utilities
                 if (tempSocket.Connected)
                 {
                     s = tempSocket;
+                    s.ReceiveTimeout = RECIEVE_TIMEOUT;
                     break;
                 }
                 else
