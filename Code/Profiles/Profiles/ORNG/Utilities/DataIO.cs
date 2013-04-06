@@ -33,7 +33,7 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetRegisteredApps(string personId)
         {
-            string sql = "select appId from [ORNG].[AppRegistry] where personId = '" + personId + "';";
+            string sql = "select appId, visible from [ORNG].[AppRegistry] where personId = '" + personId + "';";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

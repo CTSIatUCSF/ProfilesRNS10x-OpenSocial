@@ -102,6 +102,14 @@
 	
 }
 
+.gadgets-gadget-hideshow {
+  font-weight: bold;
+  float: right;
+/*  text-align: center; */
+  font-size: 12px;
+  padding-right: 6px;
+}
+
 .gadgets-gadget-status {
   font-weight: bold;
   float: right;

@@ -1,132 +1,98 @@
 /*
-    Orng Shindig Helper functions for gadget-to-container commands
+Orng Shindig Helper functions for gadget-to-container commands
 
- */
- 
- // dummy function so google analytics does not break for institutions who do not use it
- 
+*/
+
+// dummy function so google analytics does not break for institutions who do not use it
+
 _gaq = {};
-_gaq.push = function(data) {    // 
- };
+_gaq.push = function (data) {    // 
+};
 
 // pubsub
- gadgets.pubsubrouter.init(function (id) {
-     return my.gadgets[shindig.container.gadgetService.getGadgetIdFromModuleId(id)].url;
- }, {
-     onSubscribe: function (sender, channel) {
-         setTimeout("my.onSubscribe('" + sender + "', '" + channel + "')", 3000);
-         // return true to reject the request.
-         return false;
-     },
-     onUnsubscribe: function (sender, channel) {
-         //alert(sender + " unsubscribes from channel '" + channel + "'");
-         // return true to reject the request.
-         return false;
-     },
-     onPublish: function (sender, channel, message) {
-         // return true to reject the request.
+gadgets.pubsubrouter.init(function (id) {
+    return my.gadgets[shindig.container.gadgetService.getGadgetIdFromModuleId(id)].url;
+}, {
+    onSubscribe: function (sender, channel) {
+        setTimeout("my.onSubscribe('" + sender + "', '" + channel + "')", 3000);
+        // return true to reject the request.
+        return false;
+    },
+    onUnsubscribe: function (sender, channel) {
+        //alert(sender + " unsubscribes from channel '" + channel + "'");
+        // return true to reject the request.
+        return false;
+    },
+    onPublish: function (sender, channel, message) {
+        // return true to reject the request.
 
-         // track with google analytics
-         if (sender != '..') {
-             var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(sender);
-         }
+        // track with google analytics
+        if (sender != '..') {
+            var moduleId = shindig.container.gadgetService.getGadgetIdFromModuleId(sender);
+        }
 
-         if (channel == 'VISIBLE') {
-             var statusId = document.getElementById(sender + '_status');
-             if (statusId) {
-                 // only act on these in HOME view since they are only  meant to be seen when viewer=owner
-                 if (my.gadgets[moduleId].view != 'home') {
-                     return true;
-                 }
-                 if (message == 'Y') {
-                     statusId.style.color = 'GREEN';
-                     statusId.innerHTML = 'This section is VISIBLE';
-                     if (my.gadgets[moduleId].visible_scope == 'U') {
-                         statusId.innerHTML += ' to UCSF';
-                     }
-                     else {
-                         statusId.innerHTML += ' to the public';
-                     }
-                 }
-                 else {
-                     statusId.style.color = '#CC0000';
-                     statusId.innerHTML = 'This section is HIDDEN';
-                     if (my.gadgets[moduleId].visible_scope == 'U') {
-                         statusId.innerHTML += ' from UCSF';
-                     }
-                     else {
-                         statusId.innerHTML += ' from the public';
-                     }
-                 }
-             }
-         }
-         else if (channel == 'added' && my.gadgets[moduleId].view == 'home') {
-             if (message == 'Y') {
-                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'SHOW', 'profile_edit_view']);
-                 osapi.activities.create(
-		    { 'userId': gadgets.util.getUrlParameters()['Person'],
-		        'appId': my.gadgets[moduleId].appId,
-		        'activity': { 'postedTime': new Date().getTime(), 'title': 'added a gadget', 'body': 'added the ' + my.gadgets[moduleId].name + ' gadget to their profile' }
-		    }).execute(function (response) { });
-             }
-             else {
-                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'HIDE', 'profile_edit_view']);
-             }
-         }
-         else if (channel == 'status') {
-             // message should be of the form 'COLOR:Message Content'
-             var statusId = document.getElementById(sender + '_status');
-             if (statusId) {
-                 var messageSplit = message.split(':');
-                 if (messageSplit.length == 2) {
-                     statusId.style.color = messageSplit[0];
-                     statusId.innerHTML = messageSplit[1];
-                 }
-                 else {
-                     statusId.innerHTML = message;
-                 }
-             }
-         }
-         else if (channel == 'analytics') {
-             // publish to google analytics
-             // message should be JSON encoding object with required action and optional label and value 
-             // as documented here: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
-             // note that event category will be set to the gadget name automatically by this code
-             // Note: message will be already converted to an object 
-             if (message.hasOwnProperty('value')) {
-                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label, message.value]);
-             }
-             else if (message.hasOwnProperty('label')) {
-                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label]);
-             }
-             else {
-                 _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action]);
-             }
-         }
-         else if (channel == 'profile') {
-             _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'go_to_profile', message]);
-             document.location.href = '/' + location.pathname.split('/')[1] + '/display/n' + message;
-         }
-         else if (channel == 'hide') {
-             document.getElementById(sender).parentNode.parentNode.style.display = 'none';
-             // remove from TOC if needed
-             if (typeof drawGadgetsTOC == 'function') {
-                 my.gadgets[moduleId].chrome_id = 'NONE';
-                 drawGadgetsTOC();
-             }
-         }
-         else if (channel == 'JSONPersonIds' || channel == 'JSONPubMedIds') {
-             // do nothing, no need to alert
-         }
-         else {
-             alert(sender + " publishes '" + message + "' to channel '" + channel + "'");
-         }
-         return false;
-     }
- });
+        if (channel == 'added' && my.gadgets[moduleId].view == 'home') {
+            if (message == 'Y') {
+                _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'SHOW', 'profile_edit_view']);
+            }
+            else {
+                _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'HIDE', 'profile_edit_view']);
+            }
+        }
+        else if (channel == 'status') {
+            // message should be of the form 'COLOR:Message Content'
+            var statusId = document.getElementById(sender + '_status');
+            if (statusId) {
+                var messageSplit = message.split(':');
+                if (messageSplit.length == 2) {
+                    statusId.style.color = messageSplit[0];
+                    statusId.innerHTML = messageSplit[1];
+                }
+                else {
+                    statusId.innerHTML = message;
+                }
+            }
+        }
+        else if (channel == 'analytics') {
+            // publish to google analytics
+            // message should be JSON encoding object with required action and optional label and value 
+            // as documented here: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
+            // note that event category will be set to the gadget name automatically by this code
+            // Note: message will be already converted to an object 
+            if (message.hasOwnProperty('value')) {
+                _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label, message.value]);
+            }
+            else if (message.hasOwnProperty('label')) {
+                _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action, message.label]);
+            }
+            else {
+                _gaq.push(['_trackEvent', my.gadgets[moduleId].name, message.action]);
+            }
+        }
+        else if (channel == 'profile') {
+            _gaq.push(['_trackEvent', my.gadgets[moduleId].name, 'go_to_profile', message]);
+            document.location.href = '/' + location.pathname.split('/')[1] + '/display/n' + message;
+        }
+        else if (channel == 'hide') {
+            document.getElementById(sender).parentNode.parentNode.style.display = 'none';
+            // remove from TOC if needed
+            if (typeof drawGadgetsTOC == 'function') {
+                my.gadgets[moduleId].chrome_id = 'NONE';
+                drawGadgetsTOC();
+            }
+        }
+        else if (channel == 'JSONPersonIds' || channel == 'JSONPubMedIds') {
+            // do nothing, no need to alert
+        }
+        else {
+            alert(sender + " publishes '" + message + "' to channel '" + channel + "'");
+        }
+        return false;
+    }
+});
 
 // helper functions
-my.findGadgetsAttachingTo = function(chromeId) {
+my.findGadgetsAttachingTo = function (chromeId) {
     var retval = [];
     for (var i = 0; i < my.gadgets.length; i++) {
         if (my.gadgets[i].chrome_id == chromeId) {
@@ -135,8 +101,8 @@ my.findGadgetsAttachingTo = function(chromeId) {
     }
     return retval;
 };
-    
-my.removeGadgets = function(gadgetsToRemove) {
+
+my.removeGadgets = function (gadgetsToRemove) {
     for (var i = 0; i < gadgetsToRemove.length; i++) {
         for (var j = 0; j < my.gadgets.length; j++) {
             if (gadgetsToRemove[i].url == my.gadgets[j].url) {
@@ -147,70 +113,71 @@ my.removeGadgets = function(gadgetsToRemove) {
     }
 };
 
-my.onSubscribe = function(sender, channel) {     
-     // lookup pubsub data based on channel and if a match is found, publish the data to that channel after a delay
-     if (my.pubsubData[channel]) {
+my.onSubscribe = function (sender, channel) {
+    // lookup pubsub data based on channel and if a match is found, publish the data to that channel after a delay
+    if (my.pubsubData[channel]) {
         gadgets.pubsubrouter.publish(channel, my.pubsubData[channel]);
-     }
-     else {
+    }
+    else {
         alert(sender + " subscribes to channel '" + channel + "'");
-     }
-     //PageMethods.onSubscribe(sender, channel, my.pubsubHint, my.CallSuccess, my.CallFailed);
+    }
+    //PageMethods.onSubscribe(sender, channel, my.pubsubHint, my.CallSuccess, my.CallFailed);
 };
 
-my.removeParameterFromURL = function(url, parameter) {
-    var urlparts= url.split('?');   // prefer to use l.search if you have a location/link object
-    if (urlparts.length>=2) {
-        var prefix= encodeURIComponent(parameter)+'=';
-        var pars= urlparts[1].split(/[&;]/g);
-        for (var i= pars.length; i-->0;)               //reverse iteration as may be destructive
-            if (pars[i].lastIndexOf(prefix, 0)!==-1)   //idiom for string.startsWith
+my.removeParameterFromURL = function (url, parameter) {
+    var urlparts = url.split('?');   // prefer to use l.search if you have a location/link object
+    if (urlparts.length >= 2) {
+        var prefix = encodeURIComponent(parameter) + '=';
+        var pars = urlparts[1].split(/[&;]/g);
+        for (var i = pars.length; i-- > 0; )               //reverse iteration as may be destructive
+            if (pars[i].lastIndexOf(prefix, 0) !== -1)   //idiom for string.startsWith
                 pars.splice(i, 1);
-        url= urlparts[0]+'?'+pars.join('&');
+        url = urlparts[0] + '?' + pars.join('&');
     }
     return url;
 };
 
- // publish the people
-my.CallSuccess = function(result) {    
-     gadgets.pubsubrouter.publish('person', result);
-};
- 
- // alert message on some failure
-my.CallFailed = function(error) {    
-     alert(error.get_message());
+// publish the people
+my.CallSuccess = function (result) {
+    gadgets.pubsubrouter.publish('person', result);
 };
 
-my.requestGadgetMetaData = function(view, opt_callback) {
+// alert message on some failure
+my.CallFailed = function (error) {
+    alert(error.get_message());
+};
+
+my.requestGadgetMetaData = function (view, opt_callback) {
     var request = {
-      context: {
-        country: "default",
-        language: "default",
-        view: view,
-	    ignoreCache : my.noCache,
-        container: "default"
-      },
-      gadgets: []
+        context: {
+            country: "default",
+            language: "default",
+            view: view,
+            ignoreCache: my.noCache,
+            container: "default"
+        },
+        gadgets: []
     };
 
     for (var moduleId = 0; moduleId < my.gadgets.length; moduleId++) {
-      // only add those with matching views
-      if (my.gadgets[moduleId].view == view) {
-	    request.gadgets[request.gadgets.length] = {'url': my.gadgets[moduleId].url, 'moduleId': moduleId};
-	  }
-    }    
+        // only add those with matching views
+        if (my.gadgets[moduleId].view == view) {
+            request.gadgets[request.gadgets.length] = { 'url': my.gadgets[moduleId].url, 'moduleId': moduleId };
+        }
+    }
 
     var makeRequestParams = {
-      "CONTENT_TYPE" : "JSON",
-      "METHOD" : "POST",
-      "POST_DATA" : gadgets.json.stringify(request)};
+        "CONTENT_TYPE": "JSON",
+        "METHOD": "POST",
+        "POST_DATA": gadgets.json.stringify(request)
+    };
 
     gadgets.io.makeNonProxiedRequest(my.openSocialURL + "/gadgets/metadata",
-      function(data) {
-        data = data.data;
-        if (opt_callback) {
-            opt_callback(data);
-        }
+      function (data) {
+          data = data.data;
+          if (opt_callback) {
+              opt_callback(data);
+          }
       },
       makeRequestParams,
       "application/javascript"
@@ -469,7 +436,7 @@ ORNGToggleGadget.prototype.handleToggle = function (track) {
             }
 
             gadgetContent.style.display = '';
-            gadgetImg.src = '../Framework/Images/gadgetcollapse.gif';
+            gadgetImg.src = _rootDomain + '/Framework/Images/gadgetcollapse.gif';
             // refresh if certain features require so
             //if (this.hasFeature('dynamic-height')) {
             if (my.gadgets[this.id].chrome_id == 'gadgets-search') {
@@ -556,11 +523,70 @@ ORNGToggleGadget.prototype.getTitleBarContent = function (continuation) {
 				+ this.cssClassTitleButton
 				+ '"><img id="gadgets-gadget-title-image-'
 				+ this.id
-				+ '" src="../Framework/Images/gadgetcollapse.gif"/></a></span> <span id="'
+				+ '" src="' + _rootDomain + '/Framework/Images/gadgetcollapse.gif"/></a></span> <span id="'
 				+ this.getIframeId() + '_title" class="' + this.cssClassTitle
 				+ '">' + this.getTitleHtml(this.title)
+				+ '</span><span id="' + this.getIframeId() + '_hideshow" class="gadgets-gadget-hideshow">'
 				+ '</span><span id="' + this.getIframeId()
 				+ '_status" class="gadgets-gadget-status"></span></div>');
+    }
+};
+
+
+ORNGToggleGadget.prototype.registerAppPerson = function (value) {
+    var makeRequestParams = {
+        "CONTENT_TYPE": "JSON",
+        "METHOD": "POST", 
+        "POST_DATA": gadgets.json.stringify(value) };
+
+    var moduleId = this.id;
+
+    gadgets.io.makeNonProxiedRequest(my.openSocialURL + "/rest/registry?st=" + my.gadgets[this.id].secureToken,
+      function () {
+          shindig.container.getGadget(moduleId).getRegistryStatus();
+      },
+      makeRequestParams,
+      "application/javascript"
+    );
+};
+
+
+ORNGToggleGadget.prototype.getRegistryStatus = function () {
+    var makeRequestParams = {
+        "CONTENT_TYPE": "JSON",
+        "METHOD": "GET",
+    };
+
+    var moduleId = this.id;
+
+    gadgets.io.makeNonProxiedRequest(my.openSocialURL + "/rest/registry?st=" + my.gadgets[this.id].secureToken,
+      function (data) {
+          var message = false;
+          for (p in data.data.entry) {
+              message = data.data.entry[p];
+              break;
+          }
+          shindig.container.getGadget(moduleId).showRegistryStatus(message);
+      },
+      makeRequestParams,
+      "application/javascript"
+    );
+};
+
+ORNGToggleGadget.prototype.showRegistryStatus = function (message) {
+    var hideshowId = document.getElementById(this.getIframeId() + '_hideshow');
+    var statusId = document.getElementById(this.getIframeId() + '_status');
+    if (message) {
+        hideshowId.innerHTML = '&nbsp;<a href="#" onclick="shindig.container.getGadget('
+		            + this.id + ').registerAppPerson(false);return false;">Hide</a>&nbsp;|&nbsp;Show';
+        statusId.style.color = 'GREEN';
+        statusId.innerHTML = 'This section is VISIBLE';
+    }
+    else {
+        hideshowId.innerHTML = '&nbsp;Hide&nbsp;|&nbsp;<a href="#" onclick="shindig.container.getGadget('
+		            + this.id + ').registerAppPerson(true);return false;">Show</a>';
+        statusId.style.color = '#CC0000';
+        statusId.innerHTML = 'This section is HIDDEN';
     }
 };
 
@@ -572,4 +598,11 @@ ORNGToggleGadget.prototype.finishRender = function (chrome) {
     else if (chrome && this.width) {
         chrome.style.width = this.width + 'px';
     }
+
+    if (my.gadgets[this.id].view == 'home') {
+        // update hide show status
+        this.getRegistryStatus();
+    }
+
 };
+

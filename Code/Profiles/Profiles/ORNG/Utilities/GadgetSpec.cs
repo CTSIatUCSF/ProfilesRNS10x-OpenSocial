@@ -103,11 +103,19 @@ namespace Profiles.ORNG.Utilities
                 }
                 else if ('R' == req.GetViewerReq())
                 {
-                    show &= IsRegisteredTo(viewerId);
+                    show &= GetRegisteredTo(viewerId).HasValue;
+                }
+                else if ('V' == req.GetViewerReq())
+                {
+                    show &= GetRegisteredTo(viewerId).GetValueOrDefault();
                 }
                 if ('R' == req.GetOwnerReq())
                 {
-                    show &= IsRegisteredTo(ownerId);
+                    show &= GetRegisteredTo(ownerId).HasValue;
+                }
+                else if ('V' == req.GetOwnerReq())
+                {
+                    show &= GetRegisteredTo(ownerId).GetValueOrDefault();
                 }
                 else if ('S' == req.GetOwnerReq())
                 {
@@ -118,32 +126,31 @@ namespace Profiles.ORNG.Utilities
         }
 
         // Bad idea to cache this
-        public bool IsRegisteredTo(string personId)
+        public Nullable<Boolean> GetRegisteredTo(string personId)
         {
             if (personId == null || personId.Trim().Length == 0)
             {
                 return false;
             }
 
-            List<int> registeredApps = (List<int>)Framework.Utilities.Cache.FetchObject(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId) ;
+            Dictionary<int, Boolean> registeredApps = null;//(Dictionary<int, Boolean>)Framework.Utilities.Cache.FetchObject(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId);
             if (registeredApps == null)
             {
-                registeredApps = new List<int>();
+                registeredApps = new Dictionary<int, Boolean>();
                 Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
 
-                SqlDataReader dr = data.GetRegisteredApps(personId);
-                while (dr.Read())
+                using (SqlDataReader dr = data.GetRegisteredApps(personId))
                 {
-                    registeredApps.Add(dr.GetInt32(0));
+                    while (dr.Read())
+                    {
+                        registeredApps[dr.GetInt32(0)] = dr.GetBoolean(1);
+                    }
                 }
 
-                if (!dr.IsClosed)
-                    dr.Close();
-
-                Framework.Utilities.Cache.Set(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId, registeredApps);
+                //Framework.Utilities.Cache.Set(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId, registeredApps);
             }
 
-            return registeredApps.Contains(GetAppId());
+            return registeredApps.ContainsKey(GetAppId()) ? ((Nullable<Boolean>)registeredApps[GetAppId()]) : null;
         }
 
         public bool FromSandbox()

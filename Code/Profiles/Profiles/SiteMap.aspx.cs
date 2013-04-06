@@ -33,7 +33,7 @@ namespace Profiles
             {
                 // if it has a . then it's a pretty name for a user
                 if (reader[0].ToString().Contains("."))
-                    Response.Write("<url><loc>" + Root.Domain + "/" + reader[0].ToString() + "</url></loc>" + Environment.NewLine);
+                    Response.Write("<url><loc>" + Root.Domain + "/" + reader[0].ToString() + "</loc></url>" + Environment.NewLine);
 
             }
 

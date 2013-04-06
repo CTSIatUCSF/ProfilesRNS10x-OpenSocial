@@ -7,10 +7,10 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .PropertyItemHeader { color: #CA7C29; font-size: 16px; background-color: #FFF; clear:left;
   border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 15px 0 0; }
 .PropertyItemHeader a { display: none; }
-#toc { margin: 30px 0; background-color: #EEE; border: none; width: 680px\9; padding-bottom: 4px\9; }
-#toc ul { padding: 0 0 0 10px; margin: 0\9; }
+#toc { margin: 30px 8px 30px 0; background-color: #EEE; border: none; width: 672px\9; padding-bottom: 4px\9; }
+#toc ul { padding: 0; margin: 0; }
 #toc ul li { list-style-type: none; display: inline-block; white-space: nowrap; padding: 0 15px 0 0;
-   border-right: 1px solid #CCC; margin: 5px 15px 5px 0; width: auto\9; float: left\9; } 
+   border-right: 1px solid #CCC; margin: 5px 0px 5px 15px; width: auto\9; float: left\9; } 
 .PropertyGroupData { padding-bottom: 0; }
 .PropertyGroupData div { padding: 0 !important; }
 .profiles .profilesContentMain .sectionHeader { padding-top: 6px;  text-decoration: none; }

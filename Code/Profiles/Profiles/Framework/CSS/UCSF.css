@@ -65,9 +65,9 @@ h1 a:hover { color: #457272; text-decoration: none; }
   color: #D18146;
   text-decoration: underline;
 } 
-#new-features { float: left; width: 330px; margin: 20px 0 0 133px; margin-top: 15px\9; }
+#new-features { float: left; width: 237px; margin: 20px 0 0 227px; margin-top: 15px\9; }
 #new-features a, #new-features a:visited,
-#new-features a:hover { background-color: #D18146; color: #FFF; padding: 6px 8px 6px 10px; margin: 0;
+#new-features a:hover { background-color: #D18146; color: #FFF; padding: 6px 6px 6px 9px; margin: 0;
   font-family: Arial, Helvetica, sans serif; font-size: 14px; text-decoration: none;
   display: inline-block\9;
 }

@@ -6,10 +6,7 @@
         }
     }
     //$('#gadgets_toc').html(gadgetsTOC).css('display', 'inline'); ;
-    if ($('#toc ul li').length < 2) {
-        $('#toc').hide();
-    }
-    $('#toc ul li:contains("Publications")').insertAfter('#toc ul li:last-child');
+    //$('#toc ul li:contains("Publications")').insertAfter('#toc ul li:last-child');
 
     // Add another thing to TOC
     for (var i = 0; (typeof my !== 'undefined') && (i < my.gadgets.length); i++) {
@@ -19,7 +16,11 @@
             $('#toc ul').append('<li><a href="#remote_iframe_' + i + '_title">' + gadg + '</a></li>');
         }
     }
-    $('#toc ul li:contains("Publications")').insertBefore('#toc ul li:last-child');
+
+    if ($('#toc ul li').length < 2) {
+        $('#toc').hide();
+    }
+    $('#toc ul li:contains("Publications")').appendTo('#toc ul');
     $('#toc ul li').last().css('border-right', 'none');
     $('#toc ul li').last().css('margin-right', '0');
 }
@@ -39,7 +40,6 @@ $(document).ready(function () {
     //remove duplicate pubs heading & border
     $('.sectionHeader:contains("Publications")').hide();
     if ($('#gadgets-view').length) {
-        //    $('.PropertyItemHeader:contains("Publications")').parent().insertAfter('#gadgets-view').css('clear','left');
         $('.PropertyItemHeader:contains("Publications")').css('border-top', 'none').css('line-height', '35px');
     }
 
@@ -63,8 +63,8 @@ $(document).ready(function () {
     $('.awardsList td:nth-child(2)').css('white-space', 'nowrap').css('width', '36px');
     if ($('.awardsList tr').length > 4) {
         $('.awardsList tr:gt(2)').hide();
-        $("<div class='atog' id='moreawards'><span> <strong>...</strong> Show more</span> <img src='../Framework/Images/expandRound.gif' alt='+' style='vertical-align:top' /></div>").appendTo('.awardsList tr:nth-child(3) td:nth-child(4)');
-        $("<div class='atog' id='lessawards'><span>Show less</span> <img src='../Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' /></div>").appendTo('.awardsList tr:last-child td:nth-child(4)');
+        $("<div class='atog' id='moreawards'><span> <strong>...</strong> Show more</span> <img src='" + _rootDomain + "/Framework/Images/expandRound.gif' alt='+' style='vertical-align:top' /></div>").appendTo('.awardsList tr:nth-child(3) td:nth-child(4)');
+        $("<div class='atog' id='lessawards'><span>Show less</span> <img src='" + _rootDomain + "/Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' /></div>").appendTo('.awardsList tr:last-child td:nth-child(4)');
     }
     $('#moreawards').click(function () {
         $('.awardsList tr:gt(2)').toggle();
@@ -84,7 +84,7 @@ $(document).ready(function () {
         $('#narrative').addClass('box');
     }
     $('.box').addClass('box-collapsed');
-    $('.box').first().prepend("<div class='plusbutton'><span> <strong>&nbsp;...</strong> Show more</span> <img src='../Framework/Images/expandRound.gif' alt='+' style='vertical-align:top' /></div><div class='minusbutton'><span>Show less</span> <img src='../Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' /></div>");
+    $('.box').first().prepend("<div class='plusbutton'><span> <strong>&nbsp;...</strong> Show more</span> <img src='" +_rootDomain + "/Framework/Images/expandRound.gif' alt='+' style='vertical-align:top' /></div><div class='minusbutton'><span>Show less</span> <img src='../Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' /></div>");
     $('.minusbutton').hide();
     $('.plusbutton').click(function () {
         $(this).parent().removeClass('box-collapsed');

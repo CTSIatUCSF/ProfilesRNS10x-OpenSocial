@@ -448,17 +448,17 @@ namespace Profiles.ORNG.Utilities
             {
                 dbApps = new Dictionary<string, GadgetSpec>();
                 Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-                SqlDataReader dr = data.GetGadgets();
-                while (dr.Read())
+                using (SqlDataReader dr = data.GetGadgets())
                 {
-                    String channelsStr = dr[3].ToString();
-                    String[] channels = channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0];
-                    GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), channels, Convert.ToBoolean(dr[4]), false);
-                    string gadgetFileName = GetGadgetFileNameFromURL(dr[2].ToString());
-                    dbApps.Add(gadgetFileName, spec);
+                    while (dr.Read())
+                    {
+                        String channelsStr = dr[3].ToString();
+                        String[] channels = channelsStr != null && channelsStr.Length > 0 ? channelsStr.Split(' ') : new string[0];
+                        GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), channels, Convert.ToBoolean(dr[4]), false);
+                        string gadgetFileName = GetGadgetFileNameFromURL(dr[2].ToString());
+                        dbApps.Add(gadgetFileName, spec);
+                    }
                 }
-                if (!dr.IsClosed)
-                    dr.Close();
 
                 // add to cache unless noCache is turned on 
                 if (useCache)
