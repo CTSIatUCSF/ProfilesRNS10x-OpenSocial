@@ -8,32 +8,26 @@ namespace Profiles.ORNG.Utilities
     public class GadgetViewRequirements
     {
         private string page;
-        private char viewerReq;  // U for User or null for no requirment
-        private char ownerReq;   // R for Registered or null for no requirement
+        private int securityLevel; 
         private string view;
         private string chromeId;
         private string optParams;
         private Int32 display_order;
 
-        public GadgetViewRequirements(String page, char viewerReq, char ownerReq, String view, string chromeId, String optParams, Int32 display_order)
+        public GadgetViewRequirements(String page, int securityLevel, String view, string chromeId, String optParams, Int32 display_order)
         {
             this.page = page;
-            this.viewerReq = viewerReq;
-            this.ownerReq = ownerReq;
+            this.securityLevel = securityLevel;
             this.view = view;
             this.chromeId = chromeId;
             this.optParams = optParams;
             this.display_order = display_order;
         }
-
-        public char GetViewerReq()
+        // -1 public, -20 viewer must be logged in, -21 viewer must be in AppRegistry for this app, 
+        // -25 owner must be in AppRegistry for this app and viewer must meet securityGroup requirements defined by by AppRegistry value
+        public int GetSecurityLevel()
         {
-            return viewerReq;
-        }
-
-        public char GetOwnerReq()
-        {
-            return ownerReq;
+            return securityLevel;
         }
 
         public string GetView()

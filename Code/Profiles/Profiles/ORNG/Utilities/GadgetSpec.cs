@@ -36,12 +36,8 @@ namespace Profiles.ORNG.Utilities
                     while (dr.Read())
                     {
                         viewRequirements.Add(dr[0].ToString().ToLower(), new GadgetViewRequirements(dr[0].ToString().ToLower(),
-                                dr.IsDBNull(1) ? ' ' : Convert.ToChar(dr[1]),
-                                dr.IsDBNull(2) ? ' ' : Convert.ToChar(dr[2]),
-                                dr[3].ToString(),
-                                dr[4].ToString(),
-                                dr[5].ToString(),
-                                dr.IsDBNull(6) ? Int32.MaxValue : Convert.ToInt32(dr[6])));
+                                dr.GetInt32(1), dr[2].ToString(), dr[3].ToString(),
+                                dr[4].ToString(), dr.IsDBNull(5) ? Int32.MaxValue : dr.GetInt32(5)));
                     }
                 }
             }
@@ -82,12 +78,13 @@ namespace Profiles.ORNG.Utilities
             return null;
         }
 
+        // based on security and securityGroup settings, do we show this?
         public bool Show(string viewerId, string ownerId, String page)
         {
             page = page.ToLower();
             bool show = true;
             // if there are no view requirements, go ahead and show it.  We are likely testing out a new gadget
-            // if there are some, turn it off unless this page is 
+            // if there are some, turn it off unless this page says its OK to turn it on
             if (viewRequirements.Count > 0)
             {
                 show = false;
@@ -95,62 +92,61 @@ namespace Profiles.ORNG.Utilities
 
             if (viewRequirements.ContainsKey(page))
             {
-                show = true;
                 GadgetViewRequirements req = GetGadgetViewRequirements(page);
-                if ('U' == req.GetViewerReq() && viewerId == null)
+                if (req.GetSecurityLevel() == -1)
                 {
-                    show = false;
+                    show = true;
                 }
-                else if ('R' == req.GetViewerReq())
+                else if (req.GetSecurityLevel() == -20 && viewerId != null)
                 {
-                    show &= GetRegisteredTo(viewerId).HasValue;
+                    show = true;
                 }
-                else if ('V' == req.GetViewerReq())
+                else if (req.GetSecurityLevel() == -21 && GetSecurityGroup(viewerId) != 0) // this only happens on edit pages
                 {
-                    show &= GetRegisteredTo(viewerId).GetValueOrDefault();
+                    show = true;
                 }
-                if ('R' == req.GetOwnerReq())
+                else if (req.GetSecurityLevel() == -25) 
                 {
-                    show &= GetRegisteredTo(ownerId).HasValue;
-                }
-                else if ('V' == req.GetOwnerReq())
-                {
-                    show &= GetRegisteredTo(ownerId).GetValueOrDefault();
-                }
-                else if ('S' == req.GetOwnerReq())
-                {
-                    show &= (viewerId == ownerId);
+                    // lower is better
+                    int viewerSecurityLevel = (viewerId == null ? -1 : (ownerId != null && ownerId == viewerId ? -50 : -20));
+                    int osg = GetSecurityGroup(ownerId);
+                    show = osg != 0 && viewerSecurityLevel <= osg;
                 }
             }
             return show;
         }
 
         // Bad idea to cache this
-        public Nullable<Boolean> GetRegisteredTo(string personId)
+        // -1 means anyone can see it
+        // -20 means that only logged in viewers can see it
+        // -50 means that only admins, proxys and the profile owner can see it
+        // -60 means that no one sees it
+        // 0 means that it NEVER shows up for this person, even on their edit page.  
+        public int GetSecurityGroup(string personId)
         {
             if (personId == null || personId.Trim().Length == 0)
             {
-                return false;
+                return 0;
             }
 
-            Dictionary<int, Boolean> registeredApps = null;//(Dictionary<int, Boolean>)Framework.Utilities.Cache.FetchObject(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId);
+            Dictionary<int, int> registeredApps = null;//(Dictionary<int, Boolean>)Framework.Utilities.Cache.FetchObject(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId);
             if (registeredApps == null)
             {
-                registeredApps = new Dictionary<int, Boolean>();
+                registeredApps = new Dictionary<int, int>();
                 Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
 
                 using (SqlDataReader dr = data.GetRegisteredApps(personId))
                 {
                     while (dr.Read())
                     {
-                        registeredApps[dr.GetInt32(0)] = dr.GetBoolean(1);
+                        registeredApps[dr.GetInt32(0)] = dr.GetInt32(1);
                     }
                 }
 
                 //Framework.Utilities.Cache.Set(OpenSocialManager.GADGET_SPEC_KEY + "_registeredApps_" + personId, registeredApps);
             }
 
-            return registeredApps.ContainsKey(GetAppId()) ? ((Nullable<Boolean>)registeredApps[GetAppId()]) : null;
+            return registeredApps.ContainsKey(GetAppId()) ? registeredApps[GetAppId()] : 0;
         }
 
         public bool FromSandbox()
@@ -161,13 +157,6 @@ namespace Profiles.ORNG.Utilities
         public bool IsEnabled()
         {
             return enabled;
-        }
-
-        // who sees it?  Return the viewerReq for the ProfileDetails page
-        public char GetVisibleScope()
-        {
-            GadgetViewRequirements req = GetGadgetViewRequirements("profile/display.aspx");
-            return req != null ? req.GetViewerReq() : ' ';
         }
     }
 }

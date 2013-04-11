@@ -52,6 +52,8 @@
   font-size: 14px;
   color: #CA7C29 !important;
   outline: 0;
+  display: inline-block;
+  width: 400px;
 }
 .EditBody .gadgets-gadget-title a {
   color: #0088CC !important;
@@ -103,19 +105,23 @@
 }
 
 .gadgets-gadget-hideshow {
+  display: inline-block;
+  width: 100px;
   font-weight: bold;
-  float: right;
-/*  text-align: center; */
-  font-size: 12px;
+/*  float: right;
   padding-right: 6px;
+  text-align: center; */
+  font-size: 12px;
 }
 
 .gadgets-gadget-status {
+  display: inline-block;
+  width: 150px;
   font-weight: bold;
-  float: right;
-/*  text-align: center; */
-  font-size: 12px;
+/*  float: right;
   padding-right: 6px;
+  text-align: center; */
+  font-size: 12px;
 }
 * html .gadgets-gadget-status { margin-top: -18px; padding-right: 30px; } /* fudge line break for IE6 */
 *+html .gadgets-gadget-status { margin-top: -18px; padding-right: 30px; } /* fudge line break for IE7 */

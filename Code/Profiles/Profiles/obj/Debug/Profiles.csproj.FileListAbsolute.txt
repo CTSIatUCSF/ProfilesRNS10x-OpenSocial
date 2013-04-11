@@ -47,4 +47,3 @@ C:\Development\ProfilesRNS102-UCSF\Code\Profiles\Profiles\bin\SemWeb.pdb
 C:\Development\ProfilesRNS102-UCSF\Code\Profiles\Profiles\obj\Debug\ResolveAssemblyReference.cache
 C:\Development\ProfilesRNS102-UCSF\Code\Profiles\Profiles\obj\Debug\Profiles.dll
 C:\Development\ProfilesRNS102-UCSF\Code\Profiles\Profiles\obj\Debug\Profiles.pdb
-C:\Development\ProfilesRNS102-UCSF\Code\Profiles\Profiles\bin\Profiles.XML

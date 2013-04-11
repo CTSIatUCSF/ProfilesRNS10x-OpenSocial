@@ -74,7 +74,12 @@ namespace Profiles.ORNG
         }
         public XmlDocument PresentationXML { get; set; }
 
-
+        [System.Web.Services.WebMethod]
+        public static string OnSubscribe(string guid, string sender, string channel)
+        {
+            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(new Guid(guid));
+            return om != null ? om.GetCallbackRespose(channel) : null;
+        }
     }
 
 }

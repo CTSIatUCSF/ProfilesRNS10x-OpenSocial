@@ -22,6 +22,9 @@ namespace Profiles.ORNG.Utilities
         public static string OPENSOCIAL_GADGETS = "OPENSOCIAL_GADGETS";
 
         public static string JSON_PERSONID_CHANNEL = "JSONPersonIds";
+        public static string CHANNEL = "CHANNEL";
+        public static string SENDER = "SENDER";
+        public static string RESPONSE = "RESPONSE";
         private static string OPENSOCIAL_MANAGER = "OPENSOCIAL_MANAGER";
         private static string OPENSOCIAL_PAGE_REQUESTS = "OPENSOCIAL_PAGE_REQUESTS";
 
@@ -30,7 +33,8 @@ namespace Profiles.ORNG.Utilities
         #region "LocalVars"
 
         private List<PreparedGadget> gadgets = new List<PreparedGadget>();
-        private Dictionary<string, string> pubsubdata = new Dictionary<string, string>();
+        private Dictionary<string, ORNGCallbackResponder> callbackResponders = new Dictionary<string, ORNGCallbackResponder>();
+        private Guid guid;
         private string viewerId = null;
         internal string ownerId = null;
         internal bool isDebug = false;
@@ -38,6 +42,8 @@ namespace Profiles.ORNG.Utilities
         private string pageName;
         private Page page;
         private static SocketConnectionPool sockets = null;
+        private static List<WeakReference> managers = new List<WeakReference>();
+
 
         #endregion
 
@@ -75,17 +81,32 @@ namespace Profiles.ORNG.Utilities
             else
             {
                 page.Items.Add(OPENSOCIAL_MANAGER, new OpenSocialManager(ownerId, page, editMode));
-                if (loadingAssets)
-                {
-                    page.Items.Add(OPENSOCIAL_PAGE_REQUESTS, 1);
-                }
+                page.Items.Add(OPENSOCIAL_PAGE_REQUESTS, loadingAssets ? 1 : 0);
             }
             return (OpenSocialManager)page.Items[OPENSOCIAL_MANAGER];
         }
 
+        public static OpenSocialManager GetOpenSocialManager(Guid guid)
+        {
+            OpenSocialManager retval = null;
+            foreach (WeakReference wr in managers.ToArray<WeakReference>()) 
+            {
+                if (wr.Target == null)
+                {
+                    managers.Remove(wr);
+                }
+                else if (guid.Equals(((OpenSocialManager)wr.Target).guid))
+                {
+                    retval = wr.Target as OpenSocialManager;
+                }
+            }
+            return retval;
+        }
         
         private OpenSocialManager(string ownerId, Page page, bool editMode)
         {
+            this.guid = Guid.NewGuid();
+            managers.Add(new WeakReference(this));
             this.isDebug = page.Session != null && page.Session[OPENSOCIAL_DEBUG] != null && (bool)page.Session[OPENSOCIAL_DEBUG];
             this.noCache = page.Session != null && page.Session[OPENSOCIAL_NOCACHE] != null && (bool)page.Session[OPENSOCIAL_NOCACHE];
             this.page = page;
@@ -192,42 +213,25 @@ namespace Profiles.ORNG.Utilities
         }
 
 
-        public void SetPubsubData(string key, string value)
+        public void RegisterORNGCallbackResponder(string channel, ORNGCallbackResponder responder)
         {
-            if (pubsubdata.ContainsKey(key))
+            if (callbackResponders.ContainsKey(channel))
             {
-                pubsubdata.Remove(key);
+                callbackResponders.Remove(channel);
             }
-            if (value != null || value.Length > 0)
+            if (responder != null)
             {
-                pubsubdata.Add(key, value);
+                callbackResponders.Add(channel, responder);
             }
         }
 
-        public Dictionary<string, string> GetPubsubData()
+        public string GetCallbackRespose(string channel)
         {
-            return pubsubdata;
-        }
-
-        public void RemovePubsubGadgetsWithoutData()
-        {
-            // if any visible gadgets depend on pubsub data that isn't present, throw them out
-            List<PreparedGadget> removedGadgets = new List<PreparedGadget>();
-            foreach (PreparedGadget gadget in gadgets)
+            if (callbackResponders.ContainsKey(channel))
             {
-                foreach (string channel in gadget.GetGadgetSpec().GetChannels())
-                {
-                    if (!pubsubdata.ContainsKey(channel))
-                    {
-                        removedGadgets.Add(gadget);
-                        break;
-                    }
-                }
+                return callbackResponders[channel].getCallbackResponse(this, channel);
             }
-            foreach (PreparedGadget gadget in removedGadgets)
-            {
-                gadgets.Remove(gadget);
-            }
+            return null;
         }
 
         public void RemoveGadget(string name)
@@ -404,9 +408,9 @@ namespace Profiles.ORNG.Utilities
 
         private string GetGadgetJavascipt()
         {
-            string gadgetScriptText = Environment.NewLine + 
+            string gadgetScriptText = Environment.NewLine +
                     "var my = {};" + Environment.NewLine +
-                    "my.gadgetSpec = function(appId, name, url, secureToken, view, chrome_id, opt_params, visible_scope) {" + Environment.NewLine +
+                    "my.gadgetSpec = function(appId, name, url, secureToken, view, chrome_id, opt_params) {" + Environment.NewLine +
                     "this.appId = appId;" + Environment.NewLine +
                     "this.name = name;" + Environment.NewLine +
                     "this.url = url;" + Environment.NewLine +
@@ -414,14 +418,9 @@ namespace Profiles.ORNG.Utilities
                     "this.view = view || 'default';" + Environment.NewLine +
                     "this.chrome_id = chrome_id;" + Environment.NewLine +
                     "this.opt_params = opt_params;" + Environment.NewLine +
-                    "this.visible_scope = visible_scope;" + Environment.NewLine +
-                    "};" + Environment.NewLine +
-                "my.pubsubData = {};" + Environment.NewLine;
-            foreach (KeyValuePair<string, string> pair in GetPubsubData())
-            {
-                gadgetScriptText += "my.pubsubData['" + pair.Key + "'] = '" + pair.Value + "';" + Environment.NewLine;
-            }
+                    "};" + Environment.NewLine;
             gadgetScriptText += "my.openSocialURL = '" + ConfigurationManager.AppSettings["OpenSocial.ShindigURL"].ToString().Trim() + "';" + Environment.NewLine +
+                "my.guid = '" + guid.ToString() + "';" + Environment.NewLine +
                 "my.debug = " + (IsDebug() ? "1" : "0") + ";" + Environment.NewLine +
                 "my.noCache = " + (NoCache() ? "1" : "0") + ";" + Environment.NewLine +
                 "my.gadgets = [";
@@ -430,8 +429,7 @@ namespace Profiles.ORNG.Utilities
                 foreach (PreparedGadget gadget in GetVisibleGadgets())
                 {
                     gadgetScriptText += "new my.gadgetSpec(" + gadget.GetAppId() + ",'" + gadget.GetName() + "','" + gadget.GetGadgetURL() + "','" +
-                        gadget.GetSecurityToken() + "','" + gadget.GetView() + "','" + gadget.GetChromeId() + "'," + gadget.GetOptParams() + ",'" +
-                        gadget.GetGadgetSpec().GetVisibleScope() + "'), ";
+                        gadget.GetSecurityToken() + "','" + gadget.GetView() + "','" + gadget.GetChromeId() + "'," + gadget.GetOptParams() + "), ";
                 }
                 gadgetScriptText = gadgetScriptText.Substring(0, gadgetScriptText.Length - 2);
             }

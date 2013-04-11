@@ -18,6 +18,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Web.UI.HtmlControls;
+using System.Web.Script.Serialization;
 
 using Profiles.Login.Utilities;
 using Profiles.Framework.Utilities;
@@ -27,8 +28,7 @@ namespace Profiles.ORNG.Modules.Gadgets
 {
     public partial class Gadgets : BaseModule
     {
-
-        OpenSocialManager om;
+        private OpenSocialManager om;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,11 +38,11 @@ namespace Profiles.ORNG.Modules.Gadgets
             }
         }
 
-
         public Gadgets() { }
         public Gadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
+            om = OpenSocialManager.GetOpenSocialManager(null, Page, false, true);
             string uri = null;
             // code to convert from numeric node ID to URI
             if (base.Namespaces.HasNamespace("rdf"))
@@ -50,10 +50,9 @@ namespace Profiles.ORNG.Modules.Gadgets
                 XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
                 uri = node != null ? node.Value : null;
             }
-            om = OpenSocialManager.GetOpenSocialManager(uri, Page, false, true);
         }
 
-        public void DrawProfilesModule()
+        protected void DrawProfilesModule()
         {
             om.LoadAssets();
             litGadget.Text = base.GetModuleParamXml("HTML").InnerXml;

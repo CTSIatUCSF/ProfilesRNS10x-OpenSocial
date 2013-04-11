@@ -69,7 +69,7 @@ namespace Profiles.Profile.Modules.PropertyList
                 uri = node != null ? node.Value : null;
             }
             OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, false); // we just want to add pubsub data, not a gadget, so do NOT increment count
-            om.SetPubsubData(OpenSocialManager.JSON_PERSONID_CHANNEL, OpenSocialManager.BuildJSONPersonIds(uri, "one person"));
+            om.RegisterORNGCallbackResponder(OpenSocialManager.JSON_PERSONID_CHANNEL, new Responder(uri));
             bool gadgetsShown = false;
 
 
@@ -203,6 +203,21 @@ namespace Profiles.Profile.Modules.PropertyList
        
         private List<Module> Modules { get; set; }
         private XmlDocument PropertyListXML { get; set; }
+
+        public class Responder : ORNGCallbackResponder
+        {
+            string uri;
+
+            public Responder(string uri)
+            {
+                this.uri = uri;
+            }
+
+            public string getCallbackResponse(OpenSocialManager om, string channel)
+            {
+                return OpenSocialManager.BuildJSONPersonIds(uri, "one person");
+            }
+        }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="3"/>
-  <WindowName>Search</WindowName>
+  <WindowName>Find UCSF's top medical research experts</WindowName>
   <PageTitle>Search</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>

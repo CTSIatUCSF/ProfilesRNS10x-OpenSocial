@@ -26,14 +26,14 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetGadgetViewRequirements(int appId)
         {
-            string sql = "select page, viewer_req, owner_req, [view], chromeId, opt_params, display_order from [ORNG].[AppViews] where appId = " + appId;
+            string sql = "select page, securityLevel, [view], chromeId, opt_params, display_order from [ORNG].[AppViews] where appId = " + appId;
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetRegisteredApps(string personId)
         {
-            string sql = "select appId, visible from [ORNG].[AppRegistry] where personId = '" + personId + "';";
+            string sql = "select appId, viewerSecurity from [ORNG].[AppRegistry] where personId = '" + personId + "';";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

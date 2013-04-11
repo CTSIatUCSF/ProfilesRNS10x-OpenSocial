@@ -27,8 +27,7 @@ namespace Profiles.ORNG.Modules.Gadgets
 {
     public partial class SearchGadgets : BaseModule
     {
-
-        OpenSocialManager om;
+        private OpenSocialManager om;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,22 +37,11 @@ namespace Profiles.ORNG.Modules.Gadgets
             }
         }
 
-
         public SearchGadgets() { }
         public SearchGadgets(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
             om = OpenSocialManager.GetOpenSocialManager(null, Page, false, true);
-            List<string> peopleURIs = new List<string>();
-            XmlNodeList people = pagedata.GetElementsByTagName("rdf:object");
-            for (int i = 0; i < people.Count; i++)
-            {
-                peopleURIs.Add(people[i].Attributes["rdf:resource"].Value);
-            }
-            if (peopleURIs.Count > 0)
-            {
-                om.SetPubsubData(OpenSocialManager.JSON_PERSONID_CHANNEL, OpenSocialManager.BuildJSONPersonIds(peopleURIs, "" + peopleURIs.Count + " people found"));
-            }
         }
 
         public string GetKeyword()
@@ -70,7 +58,7 @@ namespace Profiles.ORNG.Modules.Gadgets
             return searchfor;
         }
 
-        public void DrawProfilesModule()
+        protected void DrawProfilesModule()
         {
             om.LoadAssets();
             pnlOpenSocial.Visible = true;

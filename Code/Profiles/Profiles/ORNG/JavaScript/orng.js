@@ -114,14 +114,21 @@ my.removeGadgets = function (gadgetsToRemove) {
 };
 
 my.onSubscribe = function (sender, channel) {
-    // lookup pubsub data based on channel and if a match is found, publish the data to that channel after a delay
-    if (my.pubsubData[channel]) {
-        gadgets.pubsubrouter.publish(channel, my.pubsubData[channel]);
-    }
-    else {
-        alert(sender + " subscribes to channel '" + channel + "'");
-    }
-    //PageMethods.onSubscribe(sender, channel, my.pubsubHint, my.CallSuccess, my.CallFailed);
+    // send an ajax command to the server letting them know we need data
+    var event = { "guid" : my.guid, "sender": sender, "channel": channel };
+    var makeRequestParams = {
+        "CONTENT_TYPE": "JSON",
+        "METHOD": "POST",
+        "POST_DATA": gadgets.json.stringify(event)
+    };
+
+    gadgets.io.makeNonProxiedRequest(_rootDomain + "/ORNG/Default.aspx/OnSubscribe",
+      function (data) {
+          gadgets.pubsubrouter.publish(channel, data.data.d);
+      },
+      makeRequestParams,
+      "application/json"
+    );
 };
 
 my.removeParameterFromURL = function (url, parameter) {
@@ -333,7 +340,7 @@ ORNGGadgetService.prototype.requestNavigateTo = function (view, opt_params) {
         }
     }
     if (url && document.location.href.indexOf(url) == -1) {
-        document.location.href = '../' + url;
+        document.location.href = _rootDomain + '/' + url;
     }
 };
 
@@ -526,14 +533,15 @@ ORNGToggleGadget.prototype.getTitleBarContent = function (continuation) {
 				+ '" src="' + _rootDomain + '/Framework/Images/gadgetcollapse.gif"/></a></span> <span id="'
 				+ this.getIframeId() + '_title" class="' + this.cssClassTitle
 				+ '">' + this.getTitleHtml(this.title)
-				+ '</span><span id="' + this.getIframeId() + '_hideshow" class="gadgets-gadget-hideshow">'
 				+ '</span><span id="' + this.getIframeId()
-				+ '_status" class="gadgets-gadget-status"></span></div>');
+				+ '_status" class="gadgets-gadget-status">'
+				+ '</span><span id="' + this.getIframeId() + '_hideshow" class="gadgets-gadget-hideshow">'
+                + '</span></div>');
     }
 };
 
 
-ORNGToggleGadget.prototype.registerAppPerson = function (value) {
+ORNGToggleGadget.prototype.setViewerSecurity = function (value) {
     var makeRequestParams = {
         "CONTENT_TYPE": "JSON",
         "METHOD": "POST", 
@@ -541,9 +549,9 @@ ORNGToggleGadget.prototype.registerAppPerson = function (value) {
 
     var moduleId = this.id;
 
-    gadgets.io.makeNonProxiedRequest(my.openSocialURL + "/rest/registry?st=" + my.gadgets[this.id].secureToken,
+    gadgets.io.makeNonProxiedRequest(my.openSocialURL + "/rest/registry?st=" + my.gadgets[this.id].secureToken + "&rnd=" + Math.random(),
       function () {
-          shindig.container.getGadget(moduleId).getRegistryStatus();
+          shindig.container.getGadget(moduleId).getViewerSecurity();
       },
       makeRequestParams,
       "application/javascript"
@@ -551,10 +559,10 @@ ORNGToggleGadget.prototype.registerAppPerson = function (value) {
 };
 
 
-ORNGToggleGadget.prototype.getRegistryStatus = function () {
+ORNGToggleGadget.prototype.getViewerSecurity = function () {
     var makeRequestParams = {
         "CONTENT_TYPE": "JSON",
-        "METHOD": "GET",
+        "METHOD": "GET"
     };
 
     var moduleId = this.id;
@@ -566,25 +574,25 @@ ORNGToggleGadget.prototype.getRegistryStatus = function () {
               message = data.data.entry[p];
               break;
           }
-          shindig.container.getGadget(moduleId).showRegistryStatus(message);
+          shindig.container.getGadget(moduleId).showVisibilityStatus(message);
       },
       makeRequestParams,
       "application/javascript"
     );
 };
 
-ORNGToggleGadget.prototype.showRegistryStatus = function (message) {
+ORNGToggleGadget.prototype.showVisibilityStatus = function (message) {
     var hideshowId = document.getElementById(this.getIframeId() + '_hideshow');
     var statusId = document.getElementById(this.getIframeId() + '_status');
-    if (message) {
+    if (message == -1) {
         hideshowId.innerHTML = '&nbsp;<a href="#" onclick="shindig.container.getGadget('
-		            + this.id + ').registerAppPerson(false);return false;">Hide</a>&nbsp;|&nbsp;Show';
+		            + this.id + ').setViewerSecurity(-60);return false;">Hide</a>&nbsp;|&nbsp;Show';
         statusId.style.color = 'GREEN';
         statusId.innerHTML = 'This section is VISIBLE';
     }
     else {
         hideshowId.innerHTML = '&nbsp;Hide&nbsp;|&nbsp;<a href="#" onclick="shindig.container.getGadget('
-		            + this.id + ').registerAppPerson(true);return false;">Show</a>';
+		            + this.id + ').setViewerSecurity(-1);return false;">Show</a>';
         statusId.style.color = '#CC0000';
         statusId.innerHTML = 'This section is HIDDEN';
     }
@@ -601,8 +609,7 @@ ORNGToggleGadget.prototype.finishRender = function (chrome) {
 
     if (my.gadgets[this.id].view == 'home') {
         // update hide show status
-        this.getRegistryStatus();
+        this.getViewerSecurity();
     }
-
 };
 
